@@ -8,7 +8,6 @@
         <type>AIR</type>
         <character>EVIL</character>
         <cavedeath>45.5</cavedeath>
-        <date>10.02.2023</date>
     </object>
     <object id = "374673468340">
         <name>Valera</name>
@@ -18,6 +17,5 @@
         <type>FIRE</type>
         <character>CHAOTIC</character>
         <cavedeath>304.67</cavedeath>
-        <date>10.02.2023</date>
     </object>
 </root>
