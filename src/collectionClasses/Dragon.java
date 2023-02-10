@@ -13,7 +13,7 @@ public class Dragon {
     private DragonCharacter character;
     private DragonCave cave;
 
-    public Dragon(int id, String name, Coordinates coordinates, int age, Color color, DragonType type, DragonCharacter character,
+    public Dragon(Long id, String name, Coordinates coordinates, int age, Color color, DragonType type, DragonCharacter character,
                   DragonCave cave, Date date) {
         this.id = id;
         this.name = name;

@@ -2,7 +2,7 @@
 <root>
     <object id = "274726478289">
         <name>Ivan</name>
-        <coordinates>55; 746</coordinates>
+        <coordinates>55;746</coordinates>
         <age>3</age>
         <color>BlACK</color>
         <type>AIR</type>
@@ -11,7 +11,7 @@
     </object>
     <object id = "374673468340">
         <name>Valera</name>
-        <coordinates>104; -35</coordinates>
+        <coordinates>104;-35</coordinates>
         <age>9</age>
         <color>YELLOW</color>
         <type>FIRE</type>
