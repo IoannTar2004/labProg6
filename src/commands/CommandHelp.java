@@ -1,6 +1,6 @@
 package src.commands;
 
-public class CommandInfo {
+public class CommandHelp {
     public static void execute() {
         System.out.println("info : вывод информации о коллекции;\n" +
                 "show : вывод всех элементов коллекции;\n" +

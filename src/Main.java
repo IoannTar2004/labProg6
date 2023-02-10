@@ -22,7 +22,7 @@ public class Main {
             String command = scanner.nextLine();
             switch (command) {
                 case "help":
-                    CommandInfo.execute();
+                    CommandHelp.execute();
                     break;
                 case "exit":
                     break exit;
