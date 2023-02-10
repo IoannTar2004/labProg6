@@ -42,7 +42,7 @@ public class Reader implements CollArrayDeque {
             Color color = Color.valueOf(element.getElementsByTagName("color").item(0).getTextContent());
             DragonType type = DragonType.valueOf(element.getElementsByTagName("type").item(0).getTextContent());
             DragonCharacter character = DragonCharacter.valueOf(element.getElementsByTagName("character").item(0).getTextContent());
-            DragonCave cave = new DragonCave(Double.parseDouble(element.getElementsByTagName("cavedeath").item(0).getTextContent();));
+            DragonCave cave = new DragonCave(Double.parseDouble(element.getElementsByTagName("cavedeath").item(0).getTextContent());
             Date date = new Date();
 
             Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, date);
