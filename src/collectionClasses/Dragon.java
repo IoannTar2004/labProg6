@@ -32,7 +32,8 @@ public class Dragon {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", coordinates=" + coordinates +
-                ", creationDate=" + creationDate +
+                ", creationDate=" + creationDate.getDate() + "." + creationDate.getMonth() + "." + (creationDate.getYear()+1900)
+                + " - " + creationDate.getHours() + ":" + creationDate.getMinutes() + ":" + creationDate.getSeconds() +
                 ", age=" + age +
                 ", color=" + color.getColor() +
                 ", type=" + type.getType() +

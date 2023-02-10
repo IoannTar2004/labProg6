@@ -27,7 +27,6 @@ public class Reader implements CollArrayDeque {
         NodeList nodeList = document.getElementsByTagName("object");
 
         String[] coor;
-        String data;
 
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node obj = nodeList.item(i);
@@ -43,7 +42,9 @@ public class Reader implements CollArrayDeque {
             Color color = Color.valueOf(element.getElementsByTagName("color").item(0).getTextContent());
             DragonType type = DragonType.valueOf(element.getElementsByTagName("type").item(0).getTextContent());
             DragonCharacter character = DragonCharacter.valueOf(element.getElementsByTagName("character").item(0).getTextContent());
-            DragonCave cave = new DragonCave(Double.parseDouble(element.getElementsByTagName("cave").item(0).getTextContent()));
+            String doubl = element.getElementsByTagName("cavedeath").item(0).getTextContent();
+            System.out.println(doubl);
+            DragonCave cave = new DragonCave(Double.parseDouble(doubl));
             Date date = new Date();
 
             Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, date);
