@@ -23,7 +23,6 @@ public class Reader implements CollArrayDeque {
         DocumentBuilder dbuilder = dbfact.newDocumentBuilder();
         Document document = dbuilder.parse(xml);
 
-        System.out.println(document.getDocumentElement().getNodeName());
         NodeList nodeList = document.getElementsByTagName("object");
 
         String[] coor;

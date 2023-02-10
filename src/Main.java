@@ -13,8 +13,8 @@ import static src.collectionClasses.CollArrayDeque.dragons;
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException{
         Reader.parse("D:\\Program Files\\IntelliJ IDEA 2022.2.3\\PROJECTS\\laba5\\src\\src\\objects.xml");
-        System.out.println(dragons);
         Scanner scanner = new Scanner(System.in);
+        CommandInfo.date();
 
         exit:
         {
@@ -23,6 +23,9 @@ public class Main {
             switch (command) {
                 case "help":
                     CommandHelp.execute();
+                    break;
+                case "info":
+                    CommandInfo.execute();
                     break;
                 case "exit":
                     break exit;
