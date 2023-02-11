@@ -7,8 +7,7 @@ public class DragonCave {
         this.death = death;
     }
 
-    @Override
-    public String toString() {
-        return "" + death;
+    public double getDeath() {
+        return death;
     }
 }

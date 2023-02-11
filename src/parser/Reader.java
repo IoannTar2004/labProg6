@@ -12,11 +12,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
 import java.util.Date;
 
-public class Reader implements CollArrayDeque {
+public class Reader {
     public static void parse(String path) throws ParserConfigurationException, IOException, SAXException {
         File xml = new File(path);
         DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
@@ -45,7 +43,7 @@ public class Reader implements CollArrayDeque {
             Date date = new Date();
 
             Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, date);
-            dragons.add(dragon);
+            CollectionManager.add(dragon);
         }
     }
 }

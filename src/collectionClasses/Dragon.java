@@ -41,4 +41,33 @@ public class Dragon {
                 ", cave=" + cave +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
+    public long getId() {
+        return id;
+    }
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+    public Integer getAge() {
+        return age;
+    }
+    public String getCreationDate() {
+        return creationDate.getDate() + "." + creationDate.getMonth() + "." + (creationDate.getYear()+1900)
+                + " - " + creationDate.getHours() + ":" + creationDate.getMinutes() + ":" + creationDate.getSeconds();
+    }
+    public String getColor() {
+        return color.getColor();
+    }
+    public String getType() {
+        return type.getType();
+    }
+    public String getCharacter() {
+        return character.getCharacter();
+    }
+    public double getCave() {
+        return cave.getDeath();
+    }
 }

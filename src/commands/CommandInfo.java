@@ -1,10 +1,10 @@
 package src.commands;
 
-import src.collectionClasses.CollArrayDeque;
+import src.collectionClasses.CollectionManager;
 
 import java.util.Date;
 
-public class CommandInfo implements CollArrayDeque {
+public class CommandInfo {
     private static String datedisc;
 
     public static String date() {
@@ -16,6 +16,6 @@ public class CommandInfo implements CollArrayDeque {
     public static void execute() {
         System.out.println("Тип коллекции: ArrayDeque;\n" +
                 "Дата инициализации: " + datedisc + ";\n" +
-                "Количество элементов: " + dragons.size() + ".\n");
+                "Количество элементов: " + CollectionManager.length() + ".\n");
     }
 }
