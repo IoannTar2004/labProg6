@@ -1,10 +1,9 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
-
 import java.util.Date;
 
-public class CommandInfo {
+public class CommandInfo implements Command{
     private static String datedisc;
 
     public static String date() {

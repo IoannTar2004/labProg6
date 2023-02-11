@@ -5,6 +5,7 @@ import java.util.Deque;
 
 public class CollectionManager {
     private static Deque<Dragon> dragons = new ArrayDeque<>();
+
     public static void add(Dragon dragon) {
         dragons.add(dragon);
     }

@@ -2,7 +2,7 @@ package src.commands;
 
 import src.collectionClasses.CollectionManager;
 
-public class CommandShow {
+public class CommandShow implements Command{
     public static void execute() {
         for(int i = 0; i < CollectionManager.length(); i++) {
             System.out.println("Имя: " + CollectionManager.getName(i) + " | " +
