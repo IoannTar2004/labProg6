@@ -2,7 +2,7 @@ package src;
 
 import org.xml.sax.SAXException;
 import src.commands.*;
-import src.parser.Reader;
+import src.tools.Reader;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;

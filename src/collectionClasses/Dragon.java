@@ -48,8 +48,8 @@ public class Dragon {
     public long getId() {
         return id;
     }
-    public Coordinates getCoordinates() {
-        return coordinates;
+    public String getCoordinates() {
+        return coordinates.toString();
     }
     public Integer getAge() {
         return age;
@@ -68,6 +68,6 @@ public class Dragon {
         return character.getCharacter();
     }
     public double getCave() {
-        return cave.getDeath();
+        return cave.getDepth();
     }
 }

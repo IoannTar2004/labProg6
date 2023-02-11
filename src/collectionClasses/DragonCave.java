@@ -1,13 +1,13 @@
 package src.collectionClasses;
 
 public class DragonCave {
-    private double death;
+    private double depth;
 
     public DragonCave(double death) {
-        this.death = death;
+        this.depth = death;
     }
 
-    public double getDeath() {
-        return death;
+    public double getDepth() {
+        return depth;
     }
 }
