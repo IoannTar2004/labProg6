@@ -13,6 +13,7 @@ public class Dragon {
     private DragonCharacter character;
     private DragonCave cave;
 
+    public Dragon() {}
     public Dragon(Long id, String name, Coordinates coordinates, int age, Color color, DragonType type, DragonCharacter character,
                   DragonCave cave, Date date) {
         this.id = id;
@@ -69,5 +70,27 @@ public class Dragon {
     }
     public double getCave() {
         return cave.getDepth();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    public void setType(DragonType type) {
+        this.type = type;
+    }
+    public void setCharacter(DragonCharacter character) {
+        this.character = character;
+    }
+    public void setCave(DragonCave cave) {
+        this.cave = cave;
     }
 }

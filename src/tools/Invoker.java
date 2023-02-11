@@ -1,5 +1,6 @@
 package src.tools;
 
+import src.commands.CommandAdd;
 import src.commands.CommandHelp;
 import src.commands.CommandInfo;
 import src.commands.CommandShow;
@@ -25,6 +26,9 @@ public abstract class Invoker {
                         break exit;
                     case "show":
                         CommandShow.execute();
+                        break;
+                    case "add":
+                        CommandAdd.execute();
                         break;
                 }
             }
