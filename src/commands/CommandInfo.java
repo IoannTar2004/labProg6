@@ -3,7 +3,7 @@ package src.commands;
 import src.collectionClasses.CollectionManager;
 import java.util.Date;
 
-public class CommandInfo implements Command{
+public class CommandInfo{
     private static String datedisc;
 
     public static String date() {
