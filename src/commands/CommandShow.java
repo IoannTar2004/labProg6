@@ -9,7 +9,7 @@ public class CommandShow {
                     "id: " + CollectionManager.getId(i) + " | " +
                     "coordinates: " + CollectionManager.getCoordinates(i) + " | " +
                     "возраст: " + CollectionManager.getAge(i) + " | " +
-                    "дата: " + CollectionManager.getCreationDate(i) + " | "+
+                    "дата создания: " + CollectionManager.getCreationDate(i) + " | "+
                     "цвет: " + CollectionManager.getColor(i) + " | " +
                     "тип: " + CollectionManager.getType(i) + " | " +
                     "характер: " + CollectionManager.getCharacter(i) + " | " +

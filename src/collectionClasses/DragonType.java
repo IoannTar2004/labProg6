@@ -1,7 +1,7 @@
 package src.collectionClasses;
 
 public enum DragonType {
-    WATER("Водяной"), UNDERGROUND("Подземельный"), AIR("Воздушный"), FIRE("Огненный");
+    WATER("Водный"), UNDERGROUND("Подземельный"), AIR("Воздушный"), FIRE("Огненный");
 
     private String type;
     DragonType(String type) {

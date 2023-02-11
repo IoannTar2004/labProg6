@@ -93,4 +93,12 @@ public class Dragon {
     public void setCave(DragonCave cave) {
         this.cave = cave;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 }
