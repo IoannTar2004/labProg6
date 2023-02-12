@@ -19,6 +19,9 @@ public class CollectionManager {
     public static void removeAll() {
         dragons.removeAll(dragons);
     }
+    public static void remove_first() {
+        dragons.removeFirst();
+    }
 
     //getters
     public static String getName(int i) {
