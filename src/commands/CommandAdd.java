@@ -137,7 +137,6 @@ public class CommandAdd {
             if(!matcher.matches()) {
                 System.out.println("Введите дробное число вида 'число.число'!");
             } else {
-                coordinates = data.split("\\s+");
                 dragon.setCave(new DragonCave(Double.parseDouble(data)));
             }
         } while(!matcher.matches());

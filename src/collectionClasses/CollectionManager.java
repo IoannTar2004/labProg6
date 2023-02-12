@@ -13,6 +13,7 @@ public class CollectionManager {
         return dragons.size();
     }
 
+    //getters
     public static String getName(int i) {
         Dragon dragon = (Dragon) dragons.toArray()[i];
         return dragon.getName();
@@ -48,5 +49,35 @@ public class CollectionManager {
     public static String getType(int i) {
         Dragon dragon = (Dragon) dragons.toArray()[i];
         return dragon.getType();
+    }
+
+    //updates
+    public static void updateName(int i, String name) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragon.setName(name);
+    }
+    public static void updateCoordinates(int i, Coordinates coordinates) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragon.setCoordinates(coordinates);
+    }
+    public static void updateAge(int i, Integer age) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragon.setAge(age);
+    }
+    public static void updateColor(int i, Color color) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragon.setColor(color);
+    }
+    public static void updateType(int i, DragonType type) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragon.setType(type);
+    }
+    public static void updateCharacter(int i, DragonCharacter character) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragon.setCharacter(character);
+    }
+    public static void updateCave(int i, DragonCave cave) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragon.setCave(cave);
     }
 }

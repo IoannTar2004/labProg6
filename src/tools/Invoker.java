@@ -1,11 +1,9 @@
 package src.tools;
 
-import src.commands.CommandAdd;
-import src.commands.CommandHelp;
-import src.commands.CommandInfo;
-import src.commands.CommandShow;
+import src.commands.*;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public abstract class Invoker {
     public static void invoke() {
@@ -30,6 +28,13 @@ public abstract class Invoker {
                     case "add":
                         CommandAdd.execute();
                         break;
+                    default:
+                        if (command.matches("\\s*update\\s+.*")) {
+                            CommandUpdateId.preexecute(command);
+                        }
+                        else {
+                            System.out.println("Такой команды нет!");
+                        }
                 }
             }
         }
