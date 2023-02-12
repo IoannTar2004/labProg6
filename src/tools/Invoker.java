@@ -28,6 +28,9 @@ public abstract class Invoker {
                     case "add":
                         CommandAdd.execute();
                         break;
+                    case "clear":
+                        CommandClear.execute();
+                        break;
                     default:
                         if (command.matches("\\s*update\\s+.*")) {
                             CommandUpdateId.preexecute(command);

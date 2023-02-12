@@ -16,6 +16,9 @@ public class CollectionManager {
         Dragon dragon = (Dragon) dragons.toArray()[i];
         dragons.remove(dragon);
     }
+    public static void removeAll() {
+        dragons.removeAll(dragons);
+    }
 
     //getters
     public static String getName(int i) {
