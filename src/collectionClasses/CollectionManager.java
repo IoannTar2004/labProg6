@@ -12,6 +12,10 @@ public class CollectionManager {
     public static int length() {
         return dragons.size();
     }
+    public static void remove(int i) {
+        Dragon dragon = (Dragon) dragons.toArray()[i];
+        dragons.remove(dragon);
+    }
 
     //getters
     public static String getName(int i) {

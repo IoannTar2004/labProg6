@@ -52,7 +52,7 @@ public class CommandUpdateId {
         }
     }
 
-    public static void execute(int index) {
+    private static void execute(int index) {
         Scanner scanner = new Scanner(System.in);
         Dragon dragon = new Dragon();
         Matcher matcher;

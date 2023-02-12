@@ -31,8 +31,9 @@ public abstract class Invoker {
                     default:
                         if (command.matches("\\s*update\\s+.*")) {
                             CommandUpdateId.preexecute(command);
-                        }
-                        else {
+                        } else if (command.matches("\\s*remove_by_id\\s+.*")) {
+                            CommandRevoveById.preexecute(command);
+                        } else {
                             System.out.println("Такой команды нет!");
                         }
                 }
