@@ -1,57 +1,66 @@
 package src.commands;
 
 import src.collectionClasses.*;
-
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandAdd {
     public static void execute() {
         Scanner scanner = new Scanner(System.in);
         Dragon dragon = new Dragon();
-        System.out.println("Введите имя");
+        Matcher matcher;
+        String data;
 
-        String data = null;
         //имя
+        System.out.println("Введите имя");
         do {
             data = scanner.nextLine();
-            if (data == "") {
+            if (data.matches("\\s*")) {
                 System.out.println("Имя не может быть пустым!");
             } else {
                 dragon.setName(data);
             }
-        } while(data == null || data == "");
+        } while(data.matches("\\s*"));
 
         //координаты
         System.out.println("Введите координаты (два числа через пробел)");
         String[] coordinates;
+        Pattern pattern = Pattern.compile("\\s*(-?\\d+\\s+-?\\d+)\\s*");
         do {
             data = scanner.nextLine();
-            if(!Pattern.matches("-?\\d+\\s+-?\\d+", data)) {
+            matcher = pattern.matcher(data);
+            data = matcher.matches() ? matcher.group(1) : "?";
+            if(!matcher.matches()) {
                 System.out.println("Введите два числа через пробел!");
             } else {
                 coordinates = data.split("\\s+");
                 dragon.setCoordinates(new Coordinates(Integer.parseInt(coordinates[0]), Long.parseLong(coordinates[1])));
             }
-        } while(!Pattern.matches("-?\\d+\\s+-?\\d+", data));
+        } while(!matcher.matches());
 
         //возраст
+        pattern = Pattern.compile("\\s*(\\d+)\\s*");
         System.out.println("Введите возраст (целое неотрицательное число)");
         do {
             data = scanner.nextLine();
-            if (!Pattern.matches("\\d+", data)) {
+            matcher = pattern.matcher(data);
+            data = matcher.matches() ? matcher.group(1) : "-1";
+            if (!matcher.matches()) {
                 System.out.println("Введите целое неотрицательное число!");
             } else {
                 dragon.setAge(Integer.parseInt(data));
             }
-        } while(!Pattern.matches("\\d+", data));
+        } while(!matcher.matches());
 
         //цвет
         System.out.println("Введите номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)");
+        pattern = Pattern.compile("\\s*([123])\\s*");
         do {
             data = scanner.nextLine();
+            matcher = pattern.matcher(data);
+            data = matcher.matches() ? matcher.group(1) : "0";
             switch (data) {
                 case "1":
                     dragon.setColor(Color.BLACK);
@@ -66,12 +75,15 @@ public class CommandAdd {
                     System.out.println("Введите cоответствующий номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)!");
                     break;
             }
-        } while(!Pattern.matches("[123]", data));
+        } while(!matcher.matches());
 
         //тип
         System.out.println("Введите номер типа (Водный - 1, Подземельный - 2, Воздушный - 3, Огненный - 4)");
+        pattern = Pattern.compile("\\s*([1-4])\\s*");
         do {
             data = scanner.nextLine();
+            matcher = pattern.matcher(data);
+            data = matcher.matches() ? matcher.group(1) : "0";
             switch (data) {
                 case "1":
                     dragon.setType(DragonType.WATER);
@@ -90,12 +102,15 @@ public class CommandAdd {
                             "Воздушный - 3, Огненный - 4)!");
                     break;
             }
-        } while(!Pattern.matches("[1-4]", data));
+        } while(!matcher.matches());
 
         //характер
         System.out.println("Введите номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)");
+        pattern = Pattern.compile("\\s*([123])\\s*");
         do {
             data = scanner.nextLine();
+            matcher = pattern.matcher(data);
+            data = matcher.matches() ? matcher.group(1) : "0";
             switch (data) {
                 case "1":
                     dragon.setCharacter(DragonCharacter.CUNNING);
@@ -110,19 +125,22 @@ public class CommandAdd {
                     System.out.println("Введите соответствующий номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)!");
                     break;
             }
-        } while(!Pattern.matches("[123]", data));
+        } while(!matcher.matches());
 
         //пещера
         System.out.println("Введите дробное число вида 'число.число'");
+        pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
         do {
             data = scanner.nextLine();
-            if(!Pattern.matches("-?\\d+\\.\\d+", data)) {
+            matcher = pattern.matcher(data);
+            data = matcher.matches() ? matcher.group(1) : "0";
+            if(!matcher.matches()) {
                 System.out.println("Введите дробное число вида 'число.число'!");
             } else {
                 coordinates = data.split("\\s+");
                 dragon.setCave(new DragonCave(Double.parseDouble(data)));
             }
-        } while(!Pattern.matches("-?\\d+\\.\\d+", data));
+        } while(!matcher.matches());
 
         //id
         Long id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + Math.pow(10, 11))));
