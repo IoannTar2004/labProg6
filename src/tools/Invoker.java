@@ -34,6 +34,9 @@ public abstract class Invoker {
                     case "remove_first":
                         CommandRemoveFirst.execute();
                         break;
+                    case "head":
+                        CommandHead.execute();
+                        break;
                     default:
                         if (command.matches("\\s*update\\s+.*")) {
                             CommandUpdateId.preexecute(command);
