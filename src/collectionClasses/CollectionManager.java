@@ -23,6 +23,18 @@ public class CollectionManager {
         dragons.removeFirst();
     }
 
+    public static void element(int i) {
+        System.out.println("Имя: " + CollectionManager.getName(i) + " | " +
+                "id: " + CollectionManager.getId(i) + " | " +
+                "coordinates: " + CollectionManager.getCoordinates(i) + " | " +
+                "возраст: " + CollectionManager.getAge(i) + " | " +
+                "дата создания: " + CollectionManager.getCreationDate(i) + " | " +
+                "цвет: " + CollectionManager.getColor(i) + " | " +
+                "тип: " + CollectionManager.getType(i) + " | " +
+                "характер: " + CollectionManager.getCharacter(i) + " | " +
+                "глубина пещеры: " + CollectionManager.getCave(i));
+    }
+
     //getters
     public static String getName(int i) {
         Dragon dragon = (Dragon) dragons.toArray()[i];
