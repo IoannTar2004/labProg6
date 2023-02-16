@@ -158,4 +158,8 @@ public class CommandAdd {
         CollectionManager.add(dragon);
         System.out.println("Объект добавлен в коллекцию!\n");
     }
+
+    public static void addscript() {
+
+    }
 }

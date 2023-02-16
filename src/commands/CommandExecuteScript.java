@@ -1,8 +1,9 @@
 package src.commands;
 
+import src.tools.Invoker;
 import src.tools.ScriptReader;
-
 import java.io.File;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +24,12 @@ public class CommandExecuteScript {
         File file = new File(filename);
 
         if (file.exists()) {
-            ScriptReader.read(file);
+            List<String> commands = ScriptReader.read(file);
+            for (int i = 0; i < commands.size(); i++) {
+                if (!commands.get(i).matches("\\s*add\\s*") && !commands.get(i).matches("\\s*update\\s*.*")) {
+                    Invoker.invoke(commands.get(i));
+                }
+            }
         } else {
             System.out.println("Файл не найден!");
         }
