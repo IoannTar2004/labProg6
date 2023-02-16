@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-public class Reader {
+public class XMLReader {
     public static void parse(String path) throws ParserConfigurationException, IOException, SAXException {
         File xml = new File(path);
         DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
