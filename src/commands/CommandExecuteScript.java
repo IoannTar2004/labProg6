@@ -25,10 +25,17 @@ public class CommandExecuteScript {
 
         if (file.exists()) {
             List<String> commands = ScriptReader.read(file);
-            for (int i = 0; i < commands.size(); i++) {
-                if (!commands.get(i).matches("\\s*add\\s*") && !commands.get(i).matches("\\s*update\\s*.*")) {
+            int i = 0;
+            while(i < commands.size()) {
+                if (commands.get(i).matches("\\s*add\\s*")) {
+                    CommandAdd.addwithscript(commands.get(i+1),commands.get(i+2),commands.get(i+3),commands.get(i+4),
+                            commands.get(i+5),commands.get(i+6),commands.get(i+7));
+                } else if (commands.get(i).matches("\\s*update\\s*.*")) {
+
+                } else {
                     Invoker.invoke(commands.get(i));
                 }
+                i++;
             }
         } else {
             System.out.println("Файл не найден!");

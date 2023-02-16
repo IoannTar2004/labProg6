@@ -1,5 +1,6 @@
 package src.commands;
 
+import com.sun.source.tree.BreakTree;
 import src.collectionClasses.*;
 import java.util.Date;
 import java.util.Scanner;
@@ -159,7 +160,107 @@ public class CommandAdd {
         System.out.println("Объект добавлен в коллекцию!\n");
     }
 
-    public static void addscript() {
+    public static void addwithscript(String name, String coordinates, String age, String color, String type, String character,
+                                     String cave) {
+        Pattern pattern;
+        Matcher matcher;
+        int count = 0;
+        Dragon dragon = new Dragon();
+        if (name.matches("\\s*")) {
+            return;
+        } else {
+            dragon.setName(name);
+            count++;
+        }
 
+        pattern = Pattern.compile("\\s*(-?\\d+\\s+-?\\d+)\\s*");
+        matcher = pattern.matcher(coordinates);
+        if(matcher.matches()) {
+            coordinates = matcher.group(1);
+            String[] coordinates1 = coordinates.split("\\s+");
+            dragon.setCoordinates(new Coordinates(Integer.parseInt(coordinates1[0]), Long.parseLong(coordinates1[1])));
+            count++;
+        } else {
+            return;
+        }
+
+        pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
+        matcher = pattern.matcher(age);
+        if (matcher.matches()){
+            age = matcher.group(1);
+            dragon.setAge(Integer.parseInt(age));
+            count++;
+        } else {
+            return;
+        }
+
+        pattern = Pattern.compile("\\s*([123])\\s*");
+        matcher = pattern.matcher(color);
+        if (matcher.matches()) {
+            color = matcher.group(1);
+            switch (color) {
+                case "1" -> dragon.setColor(Color.BLACK);
+                case "2" -> dragon.setColor(Color.BLUE);
+                case "3" -> dragon.setColor(Color.YELLOW);
+            }
+            count++;
+        } else {
+            return;
+        }
+
+        pattern = Pattern.compile("\\s*([1-4])\\s*");
+        matcher = pattern.matcher(color);
+        if (matcher.matches()) {
+            type = matcher.group(1);
+            switch (type) {
+                case "1" -> dragon.setType(DragonType.WATER);
+                case "2" -> dragon.setType(DragonType.UNDERGROUND);
+                case "3" -> dragon.setType(DragonType.AIR);
+                case "4" -> dragon.setType(DragonType.FIRE);
+            }
+            count++;
+        } else {
+            return;
+        }
+
+        pattern = Pattern.compile("\\s*([123])\\s*");
+        matcher = pattern.matcher(color);
+        if(matcher.matches()) {
+            character = matcher.group(1);
+            switch (character) {
+                case "1" -> dragon.setCharacter(DragonCharacter.CUNNING);
+                case "2" -> dragon.setCharacter(DragonCharacter.EVIL);
+                case "3" -> dragon.setCharacter(DragonCharacter.CHAOTIC);
+            }
+            count++;
+        } else {
+            return;
+        }
+
+        pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
+        matcher = pattern.matcher(cave);
+        if(matcher.matches()) {
+            cave = matcher.group(1);
+            dragon.setCave(new DragonCave(Double.parseDouble(cave)));
+            count++;
+        } else {
+            return;
+        }
+
+        Long id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + Math.pow(10, 11))));
+        for (int i = 0; i < CollectionManager.length(); i++) {
+            if (id == CollectionManager.getId(i)) {
+                id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + Math.pow(10, 11))));
+                i = 0;
+            }
+        }
+        dragon.setId(id);
+
+        //date
+        Date date = new Date();
+        dragon.setCreationDate(date);
+        if (count == 7) {
+            CollectionManager.add(dragon);
+        }
     }
 }
