@@ -37,7 +37,10 @@ public abstract class Invoker {
                     CommandCountGreater.preexecute(command);
                 } else if (command.matches("\\s*filter_by_cave\\s*.*")) {
                     CommandFilterByCave.preexecute(command);
-                } else {
+                } else if (command.matches("\\s*execute_script\\s*.*")) {
+                    CommandExecuteScript.execute(command);
+                }
+                else {
                     System.out.println("Такой команды нет!");
                 }
             }
