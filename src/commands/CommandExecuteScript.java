@@ -8,10 +8,16 @@ import java.util.regex.Pattern;
 
 public class CommandExecuteScript {
     public static void execute(String filename) {
-        Pattern pattern = Pattern.compile("\\s*execute_script\\s+\"?(.*)\"?");
+        Pattern pattern = Pattern.compile("\\s*execute_script\\s+\"*(.[^\"]*)\"*");
         Matcher matcher = pattern.matcher(filename);
 
-        if(matcher.matches()) {
+        Pattern pattern_noargument = Pattern.compile("\\s*execute_script\\s*");
+        Matcher matcher_noargument = pattern_noargument.matcher(filename);
+
+        if(matcher_noargument.matches()) {
+            System.out.println("Команда должна содержать путь до файла в качестве аргумента!");
+            return;
+        } else if (matcher.matches()) {
             filename = matcher.group(1);
         }
         File file = new File(filename);
