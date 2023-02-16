@@ -20,15 +20,20 @@ public class CommandUpdateId {
         Pattern pattern1 = Pattern.compile("\\s*update\\s+(\\d{1,11}|\\d{13,})\\s*");
         Matcher matcher1 = pattern1.matcher(command);
 
-        Pattern pattern2 = Pattern.compile("\\s*update\\s+(.[^0-9]*)");
+        Pattern pattern2 = Pattern.compile("\\s*update\\s+.*");
         Matcher matcher2 = pattern2.matcher(command);
 
-        Pattern pattern3 = Pattern.compile("\\s*update\\s+(-\\d{12})\\s*");
+        Pattern pattern3 = Pattern.compile("\\s*update\\s+-\\d{12}\\s*");
         Matcher matcher3 = pattern3.matcher(command);
 
         Pattern pattern4 = Pattern.compile("\\s*update\\s+(-\\d{1,11}|-\\d{13,})\\s*");
         Matcher matcher4 = pattern4.matcher(command);
 
+        Pattern pattern5 = Pattern.compile("\\s*update\\s+-?\\d*\\.\\d+\\s*");
+        Matcher matcher5 = pattern5.matcher(command);
+
+        Pattern pattern_noargument = Pattern.compile("\\s*update\\s*");
+        Matcher matcher_noargument = pattern_noargument.matcher(command);
         if (matcher.matches()) {
             dragon_id = matcher.group(1);
             for(int i = 0; i < CollectionManager.length(); i++) {
@@ -45,10 +50,14 @@ public class CommandUpdateId {
             System.out.println("id должен содержать 12 цифр!");
         } else if (matcher3.matches()) {
             System.out.println("id должен быть положительным!");
-        } else if (matcher2.matches()) {
-            System.out.println("id должен содержать 12 цифр в десятичной сс!");
         } else if (matcher4.matches()) {
             System.out.println("id должен содержать 12 цифр и быть положительным!");
+        } else if (matcher5.matches()) {
+            System.out.println("id должен быть целым положительным числом");
+        } else if (matcher_noargument.matches()) {
+            System.out.println("Команда должна содержать аргумент!");
+        } else if (matcher2.matches()) {
+            System.out.println("id должен содержать 12 цифр в десятичной сс!");
         }
     }
 
@@ -67,14 +76,14 @@ public class CommandUpdateId {
         }
 
         //координаты
-        System.out.println("Введите новые координаты (два числа через пробел) или просто нажмите 'Enter', чтобы оставить неизменным");
+        System.out.println("Введите новые координаты (два целых числа через пробел) или просто нажмите 'Enter', чтобы оставить неизменным");
         String[] coordinates;
         Pattern pattern = Pattern.compile("\\s*(-?\\d+\\s+-?\\d+)\\s*");
         do {
             data = scanner.nextLine();
             matcher = pattern.matcher(data);
             if(!matcher.matches() && !data.matches("\\s*")) {
-                System.out.println("Введите два числа через пробел!");
+                System.out.println("Введите два целых числа через пробел!");
             } else if (matcher.matches()){
                 data = matcher.group(1);
                 coordinates = data.split("\\s+");
@@ -84,13 +93,13 @@ public class CommandUpdateId {
         } while(!matcher.matches() && !data.matches("\\s*"));
 
         //возраст
-        pattern = Pattern.compile("\\s*(\\d+)\\s*");
-        System.out.println("Введите новый возраст (целое неотрицательное число) или просто нажмите 'Enter', чтобы оставить неизменным");
+        pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
+        System.out.println("Введите новый возраст (целое положительное число) или просто нажмите 'Enter', чтобы оставить неизменным");
         do {
             data = scanner.nextLine();
             matcher = pattern.matcher(data);
             if (!matcher.matches() && !data.matches("\\s*")) {
-                System.out.println("Введите целое неотрицательное число!");
+                System.out.println("Введите целое положительное число!");
             } else if (matcher.matches()){
                 data = matcher.group(1);
                 CollectionManager.updateAge(index, Integer.parseInt(data));
@@ -180,13 +189,13 @@ public class CommandUpdateId {
         } while(!matcher.matches() && !data.matches("\\s*"));
 
         //пещера
-        System.out.println("Введите новое дробное число вида 'число.число' или просто нажмите 'Enter', чтобы оставить неизменным");
+        System.out.println("Введите новое дробное число через точку или просто нажмите 'Enter', чтобы оставить неизменным");
         pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
         do {
             data = scanner.nextLine();
             matcher = pattern.matcher(data);
             if(!matcher.matches() && !data.matches("\\s*")) {
-                System.out.println("Введите дробное число вида 'число.число'!");
+                System.out.println("Введите дробное число через точку!");
             } else if (matcher.matches()){
                 data = matcher.group(1);
                 CollectionManager.updateCave(index, new DragonCave(Double.parseDouble(data)));

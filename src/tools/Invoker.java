@@ -13,38 +13,32 @@ public abstract class Invoker {
         {
             while (true) {
                 String command = scanner.nextLine();
-                switch (command) {
-                    case "help":
-                        CommandHelp.execute();
-                        break;
-                    case "info":
-                        CommandInfo.execute();
-                        break;
-                    case "exit":
-                        break exit;
-                    case "show":
-                        CommandShow.execute();
-                        break;
-                    case "add":
-                        CommandAdd.execute();
-                        break;
-                    case "clear":
-                        CommandClear.execute();
-                        break;
-                    case "remove_first":
-                        CommandRemoveFirst.execute();
-                        break;
-                    case "head":
-                        CommandHead.execute();
-                        break;
-                    default:
-                        if (command.matches("\\s*update\\s+.*")) {
-                            CommandUpdateId.preexecute(command);
-                        } else if (command.matches("\\s*remove_by_id\\s+.*")) {
-                            CommandRevoveById.preexecute(command);
-                        } else {
-                            System.out.println("Такой команды нет!");
-                        }
+                if (command.matches("\\s*help\\s*")) {
+                    CommandHelp.execute();
+                } else if (command.matches("\\s*info\\s*")) {
+                    CommandInfo.execute();
+                } else if (command.matches("\\s*exit\\s*")) {
+                    break exit;
+                } else if (command.matches("\\s*show\\s*")) {
+                    CommandShow.execute();
+                } else if (command.matches("\\s*add\\s*")) {
+                    CommandAdd.execute();
+                } else if (command.matches("\\s*clear\\s*")) {
+                    CommandClear.execute();
+                } else if (command.matches("\\s*remove_first\\s*")) {
+                    CommandRemoveFirst.execute();
+                } else if (command.matches("\\s*head\\s*")) {
+                    CommandHead.execute();
+                } else if (command.matches("\\s*update\\s*.*")) {
+                    CommandUpdateId.preexecute(command);
+                } else if (command.matches("\\s*remove_by_id\\s*.*")) {
+                    CommandRevoveById.preexecute(command);
+                } else if (command.matches("\\s*count_greater_than_age\\s*.*")) {
+                    CommandCountGreater.preexecute(command);
+                } else if (command.matches("\\s*filter_by_cave\\s*.*")) {
+                    CommandFilterByCave.preexecute(command);
+                } else {
+                    System.out.println("Такой команды нет!");
                 }
             }
         }

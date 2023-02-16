@@ -25,7 +25,7 @@ public class CommandAdd {
         } while(data.matches("\\s*"));
 
         //координаты
-        System.out.println("Введите координаты (два числа через пробел)");
+        System.out.println("Введите координаты (два целых числа через пробел)");
         String[] coordinates;
         Pattern pattern = Pattern.compile("\\s*(-?\\d+\\s+-?\\d+)\\s*");
         do {
@@ -33,7 +33,7 @@ public class CommandAdd {
             matcher = pattern.matcher(data);
             data = matcher.matches() ? matcher.group(1) : "?";
             if(!matcher.matches()) {
-                System.out.println("Введите два числа через пробел!");
+                System.out.println("Введите два целых числа через пробел!");
             } else {
                 coordinates = data.split("\\s+");
                 dragon.setCoordinates(new Coordinates(Integer.parseInt(coordinates[0]), Long.parseLong(coordinates[1])));
@@ -41,14 +41,14 @@ public class CommandAdd {
         } while(!matcher.matches());
 
         //возраст
-        pattern = Pattern.compile("\\s*(\\d+)\\s*");
-        System.out.println("Введите возраст (целое неотрицательное число)");
+        pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
+        System.out.println("Введите возраст (целое положительное число)");
         do {
             data = scanner.nextLine();
             matcher = pattern.matcher(data);
             data = matcher.matches() ? matcher.group(1) : "-1";
             if (!matcher.matches()) {
-                System.out.println("Введите целое неотрицательное число!");
+                System.out.println("Введите целое положительное число!");
             } else {
                 dragon.setAge(Integer.parseInt(data));
             }
@@ -128,14 +128,14 @@ public class CommandAdd {
         } while(!matcher.matches());
 
         //пещера
-        System.out.println("Введите дробное число вида 'число.число'");
+        System.out.println("Введите дробное число через точку");
         pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
         do {
             data = scanner.nextLine();
             matcher = pattern.matcher(data);
             data = matcher.matches() ? matcher.group(1) : "0";
             if(!matcher.matches()) {
-                System.out.println("Введите дробное число вида 'число.число'!");
+                System.out.println("Введите дробное число через точку!");
             } else {
                 dragon.setCave(new DragonCave(Double.parseDouble(data)));
             }

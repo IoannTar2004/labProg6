@@ -25,6 +25,12 @@ public class CommandRevoveById {
         Pattern pattern4 = Pattern.compile("\\s*remove_by_id\\s+(-\\d{1,11}|-\\d{13,})\\s*");
         Matcher matcher4 = pattern4.matcher(command);
 
+        Pattern pattern5 = Pattern.compile("\\s*remove_by_id\\s+-?\\d*\\.\\d+\\s*");
+        Matcher matcher5 = pattern5.matcher(command);
+
+        Pattern pattern_noargument = Pattern.compile("\\s*remove_by_id\\s*");
+        Matcher matcher_noargument = pattern_noargument.matcher(command);
+
         if (matcher.matches()) {
             dragon_id = matcher.group(1);
             for(int i = 0; i < CollectionManager.length(); i++) {
@@ -41,10 +47,14 @@ public class CommandRevoveById {
             System.out.println("id должен содержать 12 цифр!");
         } else if (matcher3.matches()) {
             System.out.println("id должен быть положительным!");
-        } else if (matcher2.matches()) {
-            System.out.println("id должен содержать 12 цифр в десятичной сс!");
         } else if (matcher4.matches()) {
             System.out.println("id должен содержать 12 цифр и быть положительным!");
+        } else if (matcher5.matches()) {
+            System.out.println("id должен быть целым положительным числом");
+        }else if (matcher_noargument.matches()) {
+            System.out.println("Команда должна содержать аргумент!");
+        } else if (matcher2.matches()) {
+            System.out.println("id должен содержать 12 цифр в десятичной сс!");
         }
     }
 
