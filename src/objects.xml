@@ -7,7 +7,7 @@
         <color>BLACK</color>
         <type>AIR</type>
         <character>EVIL</character>
-        <cavedeath>45.5</cavedeath>
+        <cavedepth>45.5</cavedepth>
     </object>
     <object id = "374673468340">
         <name>Valera</name>
@@ -16,6 +16,6 @@
         <color>YELLOW</color>
         <type>FIRE</type>
         <character>CHAOTIC</character>
-        <cavedeath>304.67</cavedeath>
+        <cavedepth>304.67</cavedepth>
     </object>
 </root>
