@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.tools.Invoker;
+import src.tools.ScriptInvoker;
 import src.tools.ScriptReader;
 import java.io.File;
 import java.util.List;
@@ -28,12 +29,15 @@ public class CommandExecuteScript {
             int i = 0;
             while(i < commands.size()) {
                 if (commands.get(i).matches("\\s*add\\s*")) {
-                    CommandAdd.addwithscript(commands.get(i+1),commands.get(i+2),commands.get(i+3),commands.get(i+4),
-                            commands.get(i+5),commands.get(i+6),commands.get(i+7));
+                    try {
+                        CommandAdd.addwithscript(commands.get(i+1),commands.get(i+2),commands.get(i+3),commands.get(i+4),
+                                commands.get(i+5),commands.get(i+6),commands.get(i+7));
+                    } catch (IndexOutOfBoundsException e) {}
+
                 } else if (commands.get(i).matches("\\s*update\\s*.*")) {
 
                 } else {
-                    Invoker.invoke(commands.get(i));
+                    ScriptInvoker.invoke(commands.get(i));
                 }
                 i++;
             }

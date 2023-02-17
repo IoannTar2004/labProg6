@@ -4,7 +4,7 @@ import src.commands.*;
 
 import java.util.Scanner;
 
-public abstract class Invoker {
+public abstract class ScriptInvoker {
     public static void invoke(String command) {
         if (command.matches("\\s*help\\s*")) {
             CommandHelp.execute();
@@ -12,16 +12,12 @@ public abstract class Invoker {
             CommandInfo.execute();
         } else if (command.matches("\\s*show\\s*")) {
             CommandShow.execute();
-        } else if (command.matches("\\s*add\\s*")) {
-            CommandAdd.execute();
         } else if (command.matches("\\s*clear\\s*")) {
             CommandClear.execute();
         } else if (command.matches("\\s*remove_first\\s*")) {
             CommandRemoveFirst.execute();
         } else if (command.matches("\\s*head\\s*")) {
             CommandHead.execute();
-        } else if (command.matches("\\s*update\\s*.*")) {
-            CommandUpdateId.preexecute(command);
         } else if (command.matches("\\s*remove_by_id\\s*.*")) {
             CommandRevoveById.preexecute(command);
         } else if (command.matches("\\s*count_greater_than_age\\s*.*")) {
@@ -30,22 +26,8 @@ public abstract class Invoker {
             CommandFilterByCave.preexecute(command);
         } else if (command.matches("\\s*execute_script\\s*.*")) {
             CommandExecuteScript.execute(command);
-        } else {
-            System.out.println("Такой команды нет!");
-        }
-    }
-
-    public static void invoke() {
-        CommandInfo.date();
-        Scanner scanner = new Scanner(System.in);
-        while(true) {
-            String command = scanner.nextLine();
-            if (command.matches("\\s*exit\\s*")) {
-                break;
-            } else if (command.matches("\\s*")) {
-                continue;
-            }
-            Invoker.invoke(command);
+        } else if (command.matches("\\s*exit\\s*")) {
+            System.exit(0);
         }
     }
 }

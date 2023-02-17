@@ -2,6 +2,8 @@ package src.commands;
 
 import com.sun.source.tree.BreakTree;
 import src.collectionClasses.*;
+import src.tools.IdGenerator;
+
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -143,14 +145,7 @@ public class CommandAdd {
         } while(!matcher.matches());
 
         //id
-        Long id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + Math.pow(10, 11))));
-        for (int i = 0; i < CollectionManager.length(); i++) {
-            if (id == CollectionManager.getId(i)) {
-                id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + Math.pow(10, 11))));
-                i = 0;
-            }
-        }
-        dragon.setId(id);
+        dragon.setId(IdGenerator.generate());
 
         //date
         Date date = new Date();
@@ -247,14 +242,7 @@ public class CommandAdd {
             return;
         }
 
-        Long id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + Math.pow(10, 11))));
-        for (int i = 0; i < CollectionManager.length(); i++) {
-            if (id == CollectionManager.getId(i)) {
-                id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + Math.pow(10, 11))));
-                i = 0;
-            }
-        }
-        dragon.setId(id);
+        dragon.setId(IdGenerator.generate());
 
         //date
         Date date = new Date();
