@@ -160,19 +160,18 @@ public class CommandUpdateId {
     }
 
 
-    private static int executeWithScript(int index, String name, String coordinates, String age, String color, String type, String character,
-                                        String cave) {
+    public static void executeWithScript(String command, String name, String coordinates, String age,
+                                         String color, String type, String character, String cave) {
+        int index = IdChecker.check(command);
+        if (index == -1) {return;}
+
         Pattern pattern;
         Matcher matcher;
-        int count = 0;
         Dragon dragon = new Dragon();
 
         //имя
-        if (name.matches("\\s*")) {
-            return 0;
-        } else {
+        if (!name.matches("\\s*")) {
             CollectionManager.updateName(index, name);
-            count++;
         }
 
         //координаты
@@ -183,22 +182,15 @@ public class CommandUpdateId {
             String[] coordinates1 = coordinates.split("\\s+");
             CollectionManager.updateCoordinates(index, new Coordinates(Integer.parseInt(coordinates1[0]),
                     Long.parseLong(coordinates1[1])));
-            count++;
-        } else {
-            return 1;
         }
 
         //возраст
         pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
         matcher = pattern.matcher(age);
-        if (matcher.matches()){
+        if (matcher.matches()) {
             age = matcher.group(1);
             CollectionManager.updateAge(index, Integer.parseInt(age));
-            count++;
-        } else {
-            return 2;
         }
-
         //цвет
         pattern = Pattern.compile("\\s*([123])\\s*");
         matcher = pattern.matcher(color);
@@ -209,11 +201,7 @@ public class CommandUpdateId {
                 case "2" -> CollectionManager.updateColor(index, Color.BLUE);
                 case "3" -> CollectionManager.updateColor(index, Color.YELLOW);
             }
-            count++;
-        } else {
-            return 3;
         }
-
         //тип
         pattern = Pattern.compile("\\s*([1-4])\\s*");
         matcher = pattern.matcher(color);
@@ -225,11 +213,7 @@ public class CommandUpdateId {
                 case "3" -> CollectionManager.updateType(index, DragonType.AIR);
                 case "4" -> CollectionManager.updateType(index, DragonType.FIRE);
             }
-            count++;
-        } else {
-            return 4;
         }
-
         //характер
         pattern = Pattern.compile("\\s*([123])\\s*");
         matcher = pattern.matcher(color);
@@ -240,25 +224,13 @@ public class CommandUpdateId {
                 case "2" -> CollectionManager.updateCharacter(index, DragonCharacter.EVIL);
                 case "3" -> CollectionManager.updateCharacter(index, DragonCharacter.CHAOTIC);
             }
-            count++;
-        } else {
-            return 5;
         }
-
         //пещера
         pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
         matcher = pattern.matcher(cave);
         if(matcher.matches()) {
             cave = matcher.group(1);
             CollectionManager.updateCave(index, new DragonCave(Double.parseDouble(cave)));
-            count++;
-        } else {
-            return 6;
         }
-
-        if (count == 7) {
-            CollectionManager.add(dragon);
-        }
-        return 7;
     }
 }

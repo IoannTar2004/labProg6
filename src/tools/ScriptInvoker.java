@@ -17,7 +17,7 @@ public abstract class ScriptInvoker {
         } else if (command.matches("\\s*remove_first\\s*")) {
             CommandRemoveFirst.execute();
         } else if (command.matches("\\s*update\\s*.*")) {
-            //CommandUpdateId.preexecute(command, 1);
+            CommandUpdateId.executeWithScript(command, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else if (command.matches("\\s*head\\s*")) {
             CommandHead.execute();
         } else if (command.matches("\\s*remove_by_id\\s*.*")) {
