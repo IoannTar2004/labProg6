@@ -21,7 +21,7 @@ public abstract class Invoker {
         } else if (command.matches("\\s*head\\s*")) {
             CommandHead.execute();
         } else if (command.matches("\\s*update\\s*.*")) {
-            CommandUpdateId.preexecute(command, 0);
+            CommandUpdateId.execute(command);
         } else if (command.matches("\\s*remove_by_id\\s*.*")) {
             CommandRevoveById.preexecute(command);
         } else if (command.matches("\\s*count_greater_than_age\\s*.*")) {

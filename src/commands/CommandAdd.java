@@ -154,8 +154,8 @@ public class CommandAdd {
         System.out.println("Объект добавлен в коллекцию!\n");
     }
 
-    public static void addWithScript(String name, String coordinates, String age, String color, String type, String character,
-                                    String cave) {
+    public static void executeWithScript(String name, String coordinates, String age, String color, String type, String character,
+                                         String cave) {
         Pattern pattern;
         Matcher matcher;
         int count = 0;
