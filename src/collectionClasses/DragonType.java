@@ -11,4 +11,13 @@ public enum DragonType {
     public String getType() {
         return type;
     }
+
+    public static DragonType getEnumType(String type) {
+        if (type.matches("\\s*Водный\\s*")) {return WATER;}
+        else if (type.matches("\\s*Подземельный\\s*")) {return UNDERGROUND;}
+        else if (type.matches("\\s*Воздушный\\s*")) {return AIR;}
+        else if (type.matches("\\s*Огненный\\s*")) {return FIRE;}
+
+        return null;
+    }
 }
