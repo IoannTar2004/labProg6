@@ -2,10 +2,8 @@ package src.tools;
 
 import src.commands.*;
 
-import java.util.Scanner;
-
 public abstract class ScriptInvoker {
-    public static void invoke(String command) {
+    public static boolean simpleinvoke(String command) {
         if (command.matches("\\s*help\\s*")) {
             CommandHelp.execute();
         } else if (command.matches("\\s*info\\s*")) {
@@ -28,6 +26,16 @@ public abstract class ScriptInvoker {
             CommandExecuteScript.execute(command);
         } else if (command.matches("\\s*exit\\s*")) {
             System.exit(0);
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public static void complexinvoke(String command, String name, String coordinates, String age, String color, String type, String character,
+                                     String cave) {
+        if (command.matches("\\s*add\\s*")) {
+            CommandAdd.addwithscript(name, coordinates, age, color, type, character, cave);
         }
     }
 }

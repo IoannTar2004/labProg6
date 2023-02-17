@@ -155,14 +155,14 @@ public class CommandAdd {
         System.out.println("Объект добавлен в коллекцию!\n");
     }
 
-    public static void addwithscript(String name, String coordinates, String age, String color, String type, String character,
+    public static int addwithscript(String name, String coordinates, String age, String color, String type, String character,
                                      String cave) {
         Pattern pattern;
         Matcher matcher;
         int count = 0;
         Dragon dragon = new Dragon();
         if (name.matches("\\s*")) {
-            return;
+            return 0;
         } else {
             dragon.setName(name);
             count++;
@@ -176,7 +176,7 @@ public class CommandAdd {
             dragon.setCoordinates(new Coordinates(Integer.parseInt(coordinates1[0]), Long.parseLong(coordinates1[1])));
             count++;
         } else {
-            return;
+            return 1;
         }
 
         pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
@@ -186,7 +186,7 @@ public class CommandAdd {
             dragon.setAge(Integer.parseInt(age));
             count++;
         } else {
-            return;
+            return 2;
         }
 
         pattern = Pattern.compile("\\s*([123])\\s*");
@@ -200,7 +200,7 @@ public class CommandAdd {
             }
             count++;
         } else {
-            return;
+            return 3;
         }
 
         pattern = Pattern.compile("\\s*([1-4])\\s*");
@@ -215,7 +215,7 @@ public class CommandAdd {
             }
             count++;
         } else {
-            return;
+            return 4;
         }
 
         pattern = Pattern.compile("\\s*([123])\\s*");
@@ -229,7 +229,7 @@ public class CommandAdd {
             }
             count++;
         } else {
-            return;
+            return 5;
         }
 
         pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
@@ -239,7 +239,7 @@ public class CommandAdd {
             dragon.setCave(new DragonCave(Double.parseDouble(cave)));
             count++;
         } else {
-            return;
+            return 6;
         }
 
         dragon.setId(IdGenerator.generate());
@@ -250,5 +250,6 @@ public class CommandAdd {
         if (count == 7) {
             CollectionManager.add(dragon);
         }
+        return 7;
     }
 }
