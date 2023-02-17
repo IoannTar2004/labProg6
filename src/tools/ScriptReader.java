@@ -15,9 +15,8 @@ public class ScriptReader {
 
             do {
                 command = input.readLine();
-                if (command != null && !command.matches("\\s*")) {commands.add(command);}
+                if (command != null) {commands.add(command);}
             } while(command != null);
-
             input.close();
             return commands;
 
