@@ -4,18 +4,18 @@
         <name>Ivan</name>
         <coordinates>55;746</coordinates>
         <age>3</age>
-        <color>BLACK</color>
-        <type>AIR</type>
-        <character>EVIL</character>
+        <color>Чёрный</color>
+        <type>Воздушный</type>
+        <character>Злой</character>
         <cavedepth>45.5</cavedepth>
     </object>
     <object id = "374673468340">
         <name>Valera</name>
         <coordinates>104;-35</coordinates>
         <age>9</age>
-        <color>YELLOW</color>
-        <type>FIRE</type>
-        <character>CHAOTIC</character>
+        <color>Жёлтый</color>
+        <type>Огненный</type>
+        <character>Хаотичный</character>
         <cavedepth>304.67</cavedepth>
     </object>
 </root>
