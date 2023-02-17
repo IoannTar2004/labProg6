@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.*;
+import src.tools.IdGenerator;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandUpdateId {
-    public static void preexecute(String command) {
+    public static void preexecute(String command, int mode) {
         String dragon_id;
         boolean check = false;
 
@@ -38,7 +39,8 @@ public class CommandUpdateId {
             dragon_id = matcher.group(1);
             for(int i = 0; i < CollectionManager.length(); i++) {
                 if(Long.parseLong(dragon_id) == CollectionManager.getId(i)) {
-                    execute(i);
+                    if (mode == 0) {execute(i);}
+                    else {}
                     check = true;
                     break;
                 }
@@ -203,5 +205,108 @@ public class CommandUpdateId {
         } while(!matcher.matches() && !data.matches("\\s*"));
 
         System.out.println("Данные объекта изменены!\n");
+    }
+
+
+    private static int executeWithScript(int index, String name, String coordinates, String age, String color, String type, String character,
+                                        String cave) {
+        Pattern pattern;
+        Matcher matcher;
+        int count = 0;
+        Dragon dragon = new Dragon();
+
+        //имя
+        if (name.matches("\\s*")) {
+            return 0;
+        } else {
+            CollectionManager.updateName(index, name);
+            count++;
+        }
+
+        //координаты
+        pattern = Pattern.compile("\\s*(-?\\d+\\s+-?\\d+)\\s*");
+        matcher = pattern.matcher(coordinates);
+        if(matcher.matches()) {
+            coordinates = matcher.group(1);
+            String[] coordinates1 = coordinates.split("\\s+");
+            CollectionManager.updateCoordinates(index, new Coordinates(Integer.parseInt(coordinates1[0]),
+                    Long.parseLong(coordinates1[1])));
+            count++;
+        } else {
+            return 1;
+        }
+
+        //возраст
+        pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
+        matcher = pattern.matcher(age);
+        if (matcher.matches()){
+            age = matcher.group(1);
+            CollectionManager.updateAge(index, Integer.parseInt(age));
+            count++;
+        } else {
+            return 2;
+        }
+
+        //цвет
+        pattern = Pattern.compile("\\s*([123])\\s*");
+        matcher = pattern.matcher(color);
+        if (matcher.matches()) {
+            color = matcher.group(1);
+            switch (color) {
+                case "1" -> CollectionManager.updateColor(index, Color.BLACK);
+                case "2" -> CollectionManager.updateColor(index, Color.BLUE);
+                case "3" -> CollectionManager.updateColor(index, Color.YELLOW);
+            }
+            count++;
+        } else {
+            return 3;
+        }
+
+        //тип
+        pattern = Pattern.compile("\\s*([1-4])\\s*");
+        matcher = pattern.matcher(color);
+        if (matcher.matches()) {
+            type = matcher.group(1);
+            switch (type) {
+                case "1" -> CollectionManager.updateType(index, DragonType.WATER);
+                case "2" -> CollectionManager.updateType(index, DragonType.UNDERGROUND);
+                case "3" -> CollectionManager.updateType(index, DragonType.AIR);
+                case "4" -> CollectionManager.updateType(index, DragonType.FIRE);
+            }
+            count++;
+        } else {
+            return 4;
+        }
+
+        //характер
+        pattern = Pattern.compile("\\s*([123])\\s*");
+        matcher = pattern.matcher(color);
+        if(matcher.matches()) {
+            character = matcher.group(1);
+            switch (character) {
+                case "1" -> CollectionManager.updateCharacter(index, DragonCharacter.CUNNING);
+                case "2" -> CollectionManager.updateCharacter(index, DragonCharacter.EVIL);
+                case "3" -> CollectionManager.updateCharacter(index, DragonCharacter.CHAOTIC);
+            }
+            count++;
+        } else {
+            return 5;
+        }
+
+        //пещера
+        pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
+        matcher = pattern.matcher(cave);
+        if(matcher.matches()) {
+            cave = matcher.group(1);
+            CollectionManager.updateCave(index, new DragonCave(Double.parseDouble(cave)));
+            count++;
+        } else {
+            return 6;
+        }
+
+        if (count == 7) {
+            CollectionManager.add(dragon);
+        }
+        return 7;
     }
 }

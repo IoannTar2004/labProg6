@@ -1,6 +1,5 @@
 package src.commands;
 
-import com.sun.source.tree.BreakTree;
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
 
@@ -155,14 +154,14 @@ public class CommandAdd {
         System.out.println("Объект добавлен в коллекцию!\n");
     }
 
-    public static int addwithscript(String name, String coordinates, String age, String color, String type, String character,
-                                     String cave) {
+    public static void addWithScript(String name, String coordinates, String age, String color, String type, String character,
+                                    String cave) {
         Pattern pattern;
         Matcher matcher;
         int count = 0;
         Dragon dragon = new Dragon();
         if (name.matches("\\s*")) {
-            return 0;
+            return;
         } else {
             dragon.setName(name);
             count++;
@@ -176,7 +175,7 @@ public class CommandAdd {
             dragon.setCoordinates(new Coordinates(Integer.parseInt(coordinates1[0]), Long.parseLong(coordinates1[1])));
             count++;
         } else {
-            return 1;
+            return;
         }
 
         pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
@@ -186,7 +185,7 @@ public class CommandAdd {
             dragon.setAge(Integer.parseInt(age));
             count++;
         } else {
-            return 2;
+            return;
         }
 
         pattern = Pattern.compile("\\s*([123])\\s*");
@@ -200,7 +199,7 @@ public class CommandAdd {
             }
             count++;
         } else {
-            return 3;
+            return;
         }
 
         pattern = Pattern.compile("\\s*([1-4])\\s*");
@@ -215,7 +214,7 @@ public class CommandAdd {
             }
             count++;
         } else {
-            return 4;
+            return;
         }
 
         pattern = Pattern.compile("\\s*([123])\\s*");
@@ -229,7 +228,7 @@ public class CommandAdd {
             }
             count++;
         } else {
-            return 5;
+            return;
         }
 
         pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
@@ -239,7 +238,7 @@ public class CommandAdd {
             dragon.setCave(new DragonCave(Double.parseDouble(cave)));
             count++;
         } else {
-            return 6;
+            return;
         }
 
         dragon.setId(IdGenerator.generate());
@@ -250,6 +249,5 @@ public class CommandAdd {
         if (count == 7) {
             CollectionManager.add(dragon);
         }
-        return 7;
     }
 }

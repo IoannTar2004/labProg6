@@ -3,7 +3,7 @@ package src.tools;
 import src.commands.*;
 
 public abstract class ScriptInvoker {
-    public static boolean simpleinvoke(String command) {
+    public static void simpleinvoke(String command, String... args) {
         if (command.matches("\\s*help\\s*")) {
             CommandHelp.execute();
         } else if (command.matches("\\s*info\\s*")) {
@@ -12,8 +12,12 @@ public abstract class ScriptInvoker {
             CommandShow.execute();
         } else if (command.matches("\\s*clear\\s*")) {
             CommandClear.execute();
+        } if (command.matches("\\s*add\\s*")) {
+            CommandAdd.addWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else if (command.matches("\\s*remove_first\\s*")) {
             CommandRemoveFirst.execute();
+        } else if (command.matches("\\s*update\\s*.*")) {
+            CommandUpdateId.preexecute(command, 1);
         } else if (command.matches("\\s*head\\s*")) {
             CommandHead.execute();
         } else if (command.matches("\\s*remove_by_id\\s*.*")) {
@@ -26,16 +30,6 @@ public abstract class ScriptInvoker {
             CommandExecuteScript.execute(command);
         } else if (command.matches("\\s*exit\\s*")) {
             System.exit(0);
-        } else {
-            return false;
-        }
-        return true;
-    }
-
-    public static void complexinvoke(String command, String name, String coordinates, String age, String color, String type, String character,
-                                     String cave) {
-        if (command.matches("\\s*add\\s*")) {
-            CommandAdd.addwithscript(name, coordinates, age, color, type, character, cave);
         }
     }
 }
