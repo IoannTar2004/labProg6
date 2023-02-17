@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 public class IdChecker {
     public static int check(String command) {
         String dragon_id;
-        boolean check = false;
 
         Pattern pattern = Pattern.compile("\\s*.*\\s+(\\d{12})\\s*");
         Matcher matcher = pattern.matcher(command);

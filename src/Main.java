@@ -1,7 +1,6 @@
 package src;
 
 import org.xml.sax.SAXException;
-import src.tools.IdChecker;
 import src.tools.Invoker;
 import src.tools.XMLReader;
 
