@@ -38,6 +38,8 @@ public abstract class Invoker {
                 CommandFilterByCave.preexecute(command);
             } else if (command.matches("\\s*execute_script\\s*.*")) {
                 CommandExecuteScript.execute(command);
+            } else if (command.matches("\\s*save\\s*")) {
+                CommandSave.execute();
             } else {
                 System.out.println("Такой команды нет!");
             }
