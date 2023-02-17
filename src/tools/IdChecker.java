@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 public class IdChecker {
     public static int check(String command) {
-        System.out.println("yes");
         String dragon_id;
         boolean check = false;
 
