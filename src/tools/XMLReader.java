@@ -38,7 +38,7 @@ public class XMLReader {
             boolean create = true;
             String error = " - ошибка в \"object id: " + element.getAttribute("id") + "\"";
 
-            Long id = RegexChecker.idCheck(element.getAttribute("id"));
+            Long id = RegexChecker.idChecker(element.getAttribute("id"));
             if (id == -1) {
                 System.out.println(error);
                 create = false;

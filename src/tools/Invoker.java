@@ -31,7 +31,7 @@ public abstract class Invoker {
             } else if (command.matches("\\s*update\\s*.*")) {
                 CommandUpdateId.execute(command);
             } else if (command.matches("\\s*remove_by_id\\s*.*")) {
-                CommandRevoveById.preexecute(command);
+                CommandRemoveById.execute(command);
             } else if (command.matches("\\s*count_greater_than_age\\s*.*")) {
                 CommandCountGreater.preexecute(command);
             } else if (command.matches("\\s*filter_by_cave\\s*.*")) {

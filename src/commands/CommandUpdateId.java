@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class CommandUpdateId {
     public static void execute(String command) {
-        int index = RegexChecker.idChecker(command);
+        int index = RegexChecker.idIndexChecker(command);
         if (index == -1) {return;}
 
         Scanner scanner = new Scanner(System.in);
@@ -106,7 +106,7 @@ public class CommandUpdateId {
 
     public static void executeWithScript(String command, String name, String coordinates, String age,
                                          String color, String type, String character, String cave) {
-        int index = RegexChecker.idChecker(command);
+        int index = RegexChecker.idIndexChecker(command);
         if (index == -1) {
             return;
         }
