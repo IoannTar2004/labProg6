@@ -26,14 +26,10 @@ public class CommandExecuteScript {
         if (file.exists()) {
             List<String> commands = ScriptReader.read(file);
             int i = 0;
-            while(i < commands.size()) {
-                try {
+            while(commands.get(i) != "") {
                     ScriptInvoker.simpleinvoke(commands.get(i), commands.get(i + 1), commands.get(i + 2),
                             commands.get(i + 3), commands.get(i + 4),
                             commands.get(i + 5), commands.get(i + 6), commands.get(i + 7));
-                } catch (IndexOutOfBoundsException ignored) {
-                    ScriptInvoker.simpleinvoke(commands.get(i));
-                }
                 i++;
             }
         } else {

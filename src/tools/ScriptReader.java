@@ -18,6 +18,10 @@ public class ScriptReader {
                 if (command != null) {commands.add(command);}
             } while(command != null);
             input.close();
+
+            for(int i = 0; i < 8; i++) {
+                commands.add("");
+            }
             return commands;
 
         } catch (Exception e) {
