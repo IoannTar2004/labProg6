@@ -1,20 +1,13 @@
 package src.commands;
 
 import src.collectionClasses.*;
-import src.tools.IdChecker;
-import src.tools.IdGenerator;
 import src.tools.RegexChecker;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Objects;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CommandUpdateId {
     public static void execute(String command) {
-        int index = IdChecker.check(command);
+        int index = RegexChecker.idChecker(command);
         if (index == -1) {return;}
 
         Scanner scanner = new Scanner(System.in);
@@ -33,7 +26,7 @@ public class CommandUpdateId {
         Coordinates coordinates;
         do {
             data = scanner.nextLine();
-            coordinates = RegexChecker.coordinatesCheck(data);
+            coordinates = RegexChecker.coordinatesChecker(data);
             if(coordinates == null && !data.matches("\\s*")) {
                 System.out.println("Введите два целых числа через пробел!");
             } else if (coordinates != null){
@@ -113,28 +106,35 @@ public class CommandUpdateId {
 
     public static void executeWithScript(String command, String name, String coordinates, String age,
                                          String color, String type, String character, String cave) {
-        int index = IdChecker.check(command);
+        int index = RegexChecker.idChecker(command);
         if (index == -1) {
             return;
         }
 
+        //имя
         if ((!name.matches("\\s*"))) {CollectionManager.updateName(index, name);}
 
-        Coordinates coordinates1 = RegexChecker.coordinatesCheck(coordinates);
+        //координаты
+        Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
         if (coordinates1 != null) {CollectionManager.updateCoordinates(index, coordinates1);}
 
+        //возраст
         int age1 = RegexChecker.ageChecker(age);
         if (age1 != -1) {CollectionManager.updateAge(index, age1);}
 
+        //цвет
         Color color1 = Color.getColorByNumber(color);
         if (color1 != null) {CollectionManager.updateColor(index, color1);}
 
+        //тип
         DragonType type1 = DragonType.getTypeByNumber(type);
         if (type1 != null) {CollectionManager.updateType(index, type1);}
 
+        //характер
         DragonCharacter character1 = DragonCharacter.getCharacterByNumber(character);
         if (character1 != null) {CollectionManager.updateCharacter(index, character1);}
 
+        //пещера
         DragonCave cave1 = RegexChecker.caveChecker(cave);
         if (cave1 != null) {CollectionManager.updateCave(index, cave1);}
     }

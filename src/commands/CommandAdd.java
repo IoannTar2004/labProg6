@@ -4,11 +4,8 @@ import src.collectionClasses.*;
 import src.tools.IdGenerator;
 import src.tools.RegexChecker;
 
-import java.lang.reflect.RecordComponent;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CommandAdd {
     public static void execute() {
@@ -31,7 +28,7 @@ public class CommandAdd {
         Coordinates coordinates;
         do {
             data = scanner.nextLine();
-            coordinates = RegexChecker.coordinatesCheck(data);
+            coordinates = RegexChecker.coordinatesChecker(data);
             if(coordinates == null) {
                 System.out.println("Введите два целых числа через пробел!");
             }
@@ -111,7 +108,7 @@ public class CommandAdd {
         if (RegexChecker.nameCheck(name) != null) {count++;}
         else {return;}
 
-        Coordinates coordinates1 = RegexChecker.coordinatesCheck(coordinates);
+        Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
         if(coordinates1 != null) {count++;}
         else {return;}
 

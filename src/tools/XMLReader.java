@@ -52,7 +52,7 @@ public class XMLReader {
                 start = false;
             }
 
-            Coordinates coordinates = RegexChecker.coordinatesCheck(element.getElementsByTagName("coordinates").item(0).getTextContent());
+            Coordinates coordinates = RegexChecker.coordinatesChecker(element.getElementsByTagName("coordinates").item(0).getTextContent());
             if (coordinates == null) {
                 System.out.println("Координаты должны быть записаны в виде двух чисел через пробел или точку с запятой" +
                         error);
