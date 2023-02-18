@@ -18,9 +18,9 @@ public class XMLWriteParser {
             data = data + "\t\t<name>" + CollectionManager.getName(i) + "</name>\n";
             data = data + "\t\t<coordinates>" + CollectionManager.getCoordinates(i) + "</coordinates>\n";
             data = data + "\t\t<age>" + CollectionManager.getAge(i) + "</age>\n";
-            data = data + "\t\t<color>" + Color.valueOf(CollectionManager.getColor(i)) + "</color>\n";
-            data = data + "\t\t<type>" + DragonType.valueOf(CollectionManager.getType(i)) + "</type>\n";
-            data = data + "\t\t<character>" + DragonCharacter.valueOf(CollectionManager.getCharacter(i)) + "</character>\n";
+            data = data + "\t\t<color>" + CollectionManager.getColor(i) + "</color>\n";
+            data = data + "\t\t<type>" + CollectionManager.getType(i) + "</type>\n";
+            data = data + "\t\t<character>" + CollectionManager.getCharacter(i) + "</character>\n";
             data = data + "\t\t<cavedepth>" + CollectionManager.getCave(i) + "</cavedepth>\n";
 
             data = data + "\t</object>\n";
