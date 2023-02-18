@@ -3,6 +3,7 @@ package src.tools;
 import src.collectionClasses.Coordinates;
 import src.collectionClasses.DragonCave;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,7 +58,7 @@ public class RegexChecker {
         Matcher matcher = pattern.matcher(coor);
 
         if (matcher.matches()) {
-            String[] coordinates = matcher.group(1).split("(\\s*;\\s)|(\\s+)");
+            String[] coordinates = matcher.group(1).split("(\\s*;\\s*)|(\\s+)");
             Coordinates coordinates1 = new Coordinates(Integer.parseInt(coordinates[0]), Long.parseLong(coordinates[1]));
             return coordinates1;
         }
@@ -69,6 +70,7 @@ public class RegexChecker {
         Matcher matcher = pattern.matcher(age);
 
         if(matcher.matches()) {
+            age = matcher.group(1);
             return Integer.parseInt(age);
         }
         return -1;
@@ -79,6 +81,7 @@ public class RegexChecker {
         Matcher matcher = pattern.matcher(cave);
 
         if (matcher.matches()) {
+            cave = matcher.group(1);
             DragonCave cave1 = new DragonCave(Double.parseDouble(cave));
             return cave1;
         }

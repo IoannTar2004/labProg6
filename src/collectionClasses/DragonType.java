@@ -20,4 +20,13 @@ public enum DragonType {
 
         return null;
     }
+
+    public static DragonType getTypeByNumber(String type) {
+        if (type.matches("\\s*1\\s*")) {return WATER;}
+        else if (type.matches("\\s*2\\s*")) {return UNDERGROUND;}
+        else if (type.matches("\\s*3\\s*")) {return AIR;}
+        else if (type.matches("\\s*4\\s*")) {return FIRE;}
+
+        return null;
+    }
 }

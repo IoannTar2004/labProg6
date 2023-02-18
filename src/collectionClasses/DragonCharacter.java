@@ -19,4 +19,12 @@ public enum DragonCharacter {
 
         return null;
     }
+
+    public static DragonCharacter getCharacterByNumber(String character) {
+        if (character.matches("\\s*1\\s*")) {return CUNNING;}
+        else if (character.matches("\\s*2\\s*")) {return EVIL;}
+        else if (character.matches("\\s*3\\s*")) {return CHAOTIC;}
+
+        return null;
+    }
 }
