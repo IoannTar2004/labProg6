@@ -29,18 +29,15 @@ public class Dragon {
 
     @Override
     public String toString() {
-        return "Dragon{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", coordinates=" + coordinates +
-                ", creationDate=" + creationDate.getDate() + "." + creationDate.getMonth() + "." + (creationDate.getYear()+1900)
-                + " - " + creationDate.getHours() + ":" + creationDate.getMinutes() + ":" + creationDate.getSeconds() +
-                ", age=" + age +
-                ", color=" + color.getColor() +
-                ", type=" + type.getType() +
-                ", character=" + character.getCharacter() +
-                ", cave=" + cave +
-                '}';
+        return "Имя: " + this.name + " | " +
+                "id: " + this.id + " | " +
+                "coordinates: " + this.coordinates.toString() + " | " +
+                "возраст: " + this.age + " | " +
+                "дата создания: " + this.getCreationDate() + " | " +
+                "цвет: " + this.color.getColor() + " | " +
+                "тип: " + this.type.getType() + " | " +
+                "характер: " + this.character.getCharacter() + " | " +
+                "глубина пещеры: " + this.cave.getDepth();
     }
 
     public String getName() {

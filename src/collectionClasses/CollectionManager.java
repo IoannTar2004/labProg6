@@ -23,15 +23,7 @@ public class CollectionManager {
     }
 
     public static void element(Dragon dragon) {
-        System.out.println("Имя: " + CollectionManager.getName(dragon) + " | " +
-                "id: " + CollectionManager.getId(dragon) + " | " +
-                "coordinates: " + CollectionManager.getCoordinates(dragon) + " | " +
-                "возраст: " + CollectionManager.getAge(dragon) + " | " +
-                "дата создания: " + CollectionManager.getCreationDate(dragon) + " | " +
-                "цвет: " + CollectionManager.getColor(dragon) + " | " +
-                "тип: " + CollectionManager.getType(dragon) + " | " +
-                "характер: " + CollectionManager.getCharacter(dragon) + " | " +
-                "глубина пещеры: " + CollectionManager.getCave(dragon));
+        System.out.println(dragon.toString());
     }
 
     //getters
