@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
+import src.collectionClasses.Dragon;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,8 +33,9 @@ public class CommandFilterByCave {
     private static void execute(double cave) {
         boolean check = false;
         for (int i = 0; i < CollectionManager.length(); i++) {
-            if (CollectionManager.getCave(i) == cave) {
-                CollectionManager.element(i);
+            Dragon dragon = CollectionManager.getDragonByIndex(i);
+            if (CollectionManager.getCave(dragon) == cave) {
+                CollectionManager.element(dragon);
                 check = true;
             }
         }

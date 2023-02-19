@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
+import src.collectionClasses.Dragon;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,7 +39,8 @@ public class CommandCountGreater {
     private static void execute(int age) {
         int count = 0;
         for (int i = 0; i < CollectionManager.length(); i++) {
-            if (CollectionManager.getAge(i) > age) {
+            Dragon dragon = CollectionManager.getDragonByIndex(i);
+            if (CollectionManager.getAge(dragon) > age) {
                 count++;
             }
         }

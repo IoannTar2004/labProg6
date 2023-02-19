@@ -12,8 +12,7 @@ public class CollectionManager {
     public static int length() {
         return dragons.size();
     }
-    public static void remove(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void remove(Dragon dragon) {
         dragons.remove(dragon);
     }
     public static void removeAll() {
@@ -46,6 +45,8 @@ public class CollectionManager {
         return null;
     }
 
+    public static Dragon getDragonByIndex(int index) {return (Dragon) dragons.toArray()[index];}
+
     public static String getName(Dragon dragon) {
         return dragon.getName();
     }
@@ -72,9 +73,6 @@ public class CollectionManager {
     }
     public static String getType(Dragon dragon) {
         return dragon.getType();
-    }
-    public static Deque<Dragon> getDragons() {
-        return dragons;
     }
 
     //updates

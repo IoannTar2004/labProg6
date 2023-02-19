@@ -5,6 +5,6 @@ import src.collectionClasses.CollectionManager;
 public class CommandRemoveFirst {
     public static void execute() {
         CollectionManager.remove_first();
-        System.out.println("Первый объект удалён!");
+        System.out.println("Первый объект удалён!\n");
     }
 }

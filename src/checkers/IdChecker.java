@@ -1,8 +1,5 @@
 package src.checkers;
 
-import src.collectionClasses.CollectionManager;
-import src.collectionClasses.Dragon;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,10 +30,7 @@ public class IdChecker {
 
         if (matcher.matches()) {
             dragon_id = matcher.group(1);
-            Dragon dragon = CollectionManager.getDragonById(Long.parseLong(dragon_id));
-            if (dragon != null) {
-                return Long.parseLong(dragon_id);
-            } else {System.out.println("Объекта с таким id не существует!");}
+            return Long.parseLong(dragon_id);
 
         } else if (matcher1.matches()) {
             System.out.println("id должен содержать 12 цифр!");
