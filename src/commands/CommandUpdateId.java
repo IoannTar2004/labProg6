@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class CommandUpdateId {
     public static void execute(String command) {
-        int index = RegexChecker.idIndexChecker(command);
-        if (index == -1) {return;}
+        Dragon dragon = RegexChecker.idChecker(command);
+        if (dragon == null) {return;}
 
         Scanner scanner = new Scanner(System.in);
 
@@ -18,7 +18,7 @@ public class CommandUpdateId {
         System.out.println("Введите новое имя или просто нажмите 'Enter', чтобы оставить неизменным");
         data = scanner.nextLine();
         if ((!data.matches("\\s*"))) {
-                CollectionManager.updateName(index, data);
+                CollectionManager.updateName(dragon, data);
         }
 
         //координаты
@@ -30,7 +30,7 @@ public class CommandUpdateId {
             if(coordinates == null && !data.matches("\\s*")) {
                 System.out.println("Введите два целых числа через пробел!");
             } else if (coordinates != null){
-                CollectionManager.updateCoordinates(index, coordinates);
+                CollectionManager.updateCoordinates(dragon, coordinates);
             }
         } while(coordinates == null && !data.matches("\\s*"));
 
@@ -43,7 +43,7 @@ public class CommandUpdateId {
             if (age == -1 && !data.matches("\\s*")) {
                 System.out.println("Введите целое положительное число!");
             } else if (age != -1){
-                CollectionManager.updateAge(index, age);
+                CollectionManager.updateAge(dragon, age);
             }
         } while(age == -1 && !data.matches("\\s*"));
 
@@ -56,7 +56,7 @@ public class CommandUpdateId {
             if (color == null && !data.matches("\\s*")) {
                 System.out.println("\"Введите cоответствующий номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)!\"");
             } else if (color != null){
-                CollectionManager.updateColor(index, color);
+                CollectionManager.updateColor(dragon, color);
             }
         } while(color == null && !data.matches("\\s*"));
 
@@ -70,7 +70,7 @@ public class CommandUpdateId {
                 System.out.println("Введите соответвующий номер типа (Водный - 1, Подземельный - 2, " +
                         "Воздушный - 3, Огненный - 4)!");
             } else if (type != null){
-                CollectionManager.updateType(index, type);
+                CollectionManager.updateType(dragon, type);
             }
         } while(type == null && !data.matches("\\s*"));
 
@@ -83,7 +83,7 @@ public class CommandUpdateId {
             if (character == null && !data.matches("\\s*")) {
                 System.out.println("Введите соответствующий номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)!");
             } else if (character != null){
-                CollectionManager.updateCharacter(index, character);
+                CollectionManager.updateCharacter(dragon, character);
             }
         } while(character == null && !data.matches("\\s*"));
 
@@ -96,7 +96,7 @@ public class CommandUpdateId {
             if(cave == null && !data.matches("\\s*")) {
                 System.out.println("Введите дробное число через точку!");
             } else if (cave != null){;
-                CollectionManager.updateCave(index, cave);
+                CollectionManager.updateCave(dragon, cave);
             }
         } while(cave == null && !data.matches("\\s*"));
 
@@ -106,36 +106,34 @@ public class CommandUpdateId {
 
     public static void executeWithScript(String command, String name, String coordinates, String age,
                                          String color, String type, String character, String cave) {
-        int index = RegexChecker.idIndexChecker(command);
-        if (index == -1) {
-            return;
-        }
+        Dragon dragon = RegexChecker.idChecker(command);
+        if (dragon == null) {return;}
 
         //имя
-        if ((!name.matches("\\s*"))) {CollectionManager.updateName(index, name);}
+        if ((!name.matches("\\s*"))) {CollectionManager.updateName(dragon, name);}
 
         //координаты
         Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
-        if (coordinates1 != null) {CollectionManager.updateCoordinates(index, coordinates1);}
+        if (coordinates1 != null) {CollectionManager.updateCoordinates(dragon, coordinates1);}
 
         //возраст
         int age1 = RegexChecker.ageChecker(age);
-        if (age1 != -1) {CollectionManager.updateAge(index, age1);}
+        if (age1 != -1) {CollectionManager.updateAge(dragon, age1);}
 
         //цвет
         Color color1 = Color.getColorByNumber(color);
-        if (color1 != null) {CollectionManager.updateColor(index, color1);}
+        if (color1 != null) {CollectionManager.updateColor(dragon, color1);}
 
         //тип
         DragonType type1 = DragonType.getTypeByNumber(type);
-        if (type1 != null) {CollectionManager.updateType(index, type1);}
+        if (type1 != null) {CollectionManager.updateType(dragon, type1);}
 
         //характер
         DragonCharacter character1 = DragonCharacter.getCharacterByNumber(character);
-        if (character1 != null) {CollectionManager.updateCharacter(index, character1);}
+        if (character1 != null) {CollectionManager.updateCharacter(dragon, character1);}
 
         //пещера
         DragonCave cave1 = RegexChecker.caveChecker(cave);
-        if (cave1 != null) {CollectionManager.updateCave(index, cave1);}
+        if (cave1 != null) {CollectionManager.updateCave(dragon, cave1);}
     }
 }

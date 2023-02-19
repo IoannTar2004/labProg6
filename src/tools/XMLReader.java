@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import src.checkers.IdChecker;
 import src.checkers.RegexChecker;
 import src.collectionClasses.*;
 
@@ -39,7 +40,7 @@ public class XMLReader {
             boolean create = true;
             String error = " - ошибка в \"object id: " + element.getAttribute("id") + "\"";
 
-            Long id = RegexChecker.idChecker(element.getAttribute("id"));
+            Long id = IdChecker.check(element.getAttribute("id"));
             if (id == -1) {
                 System.out.println(error);
                 create = false;

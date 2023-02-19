@@ -1,12 +1,13 @@
 package src.checkers;
 
 import src.collectionClasses.CollectionManager;
+import src.collectionClasses.Dragon;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IdChecker {
-    public static String check(String command, String key) {
+    public static Long check(String command) {
         String dragon_id;
 
         Pattern pattern = Pattern.compile("\\s*.*\\s*(\\d{12})\\s*");
@@ -32,16 +33,11 @@ public class IdChecker {
 
         if (matcher.matches()) {
             dragon_id = matcher.group(1);
-            if (key == "id") {
-                return dragon_id;
-            } else if(key == "index") {
-                for (int i = 0; i < CollectionManager.length(); i++) {
-                    if (Long.parseLong(dragon_id) == CollectionManager.getId(i)) {
-                        return String.valueOf(i);
-                    }
-                }
-            }
-            System.out.println("Объекта с таким id не существует!");
+            Dragon dragon = CollectionManager.getDragonById(Long.parseLong(dragon_id));
+            if (dragon != null) {
+                return Long.parseLong(dragon_id);
+            } else {System.out.println("Объекта с таким id не существует!");}
+
         } else if (matcher1.matches()) {
             System.out.println("id должен содержать 12 цифр!");
         } else if (matcher3.matches()) {
@@ -55,6 +51,6 @@ public class IdChecker {
         } else if (matcher2.matches()) {
             System.out.println("id должен содержать 12 цифр в десятичной сс!");
         }
-        return null;
+        return -1L;
     }
 }

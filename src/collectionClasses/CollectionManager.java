@@ -23,83 +23,80 @@ public class CollectionManager {
         dragons.removeFirst();
     }
 
-    public static void element(int i) {
-        System.out.println("Имя: " + CollectionManager.getName(i) + " | " +
-                "id: " + CollectionManager.getId(i) + " | " +
-                "coordinates: " + CollectionManager.getCoordinates(i) + " | " +
-                "возраст: " + CollectionManager.getAge(i) + " | " +
-                "дата создания: " + CollectionManager.getCreationDate(i) + " | " +
-                "цвет: " + CollectionManager.getColor(i) + " | " +
-                "тип: " + CollectionManager.getType(i) + " | " +
-                "характер: " + CollectionManager.getCharacter(i) + " | " +
-                "глубина пещеры: " + CollectionManager.getCave(i));
+    public static void element(Dragon dragon) {
+        System.out.println("Имя: " + CollectionManager.getName(dragon) + " | " +
+                "id: " + CollectionManager.getId(dragon) + " | " +
+                "coordinates: " + CollectionManager.getCoordinates(dragon) + " | " +
+                "возраст: " + CollectionManager.getAge(dragon) + " | " +
+                "дата создания: " + CollectionManager.getCreationDate(dragon) + " | " +
+                "цвет: " + CollectionManager.getColor(dragon) + " | " +
+                "тип: " + CollectionManager.getType(dragon) + " | " +
+                "характер: " + CollectionManager.getCharacter(dragon) + " | " +
+                "глубина пещеры: " + CollectionManager.getCave(dragon));
     }
 
     //getters
-    public static String getName(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static Dragon getDragonById(Long id) {
+        for (int i = 0; i < dragons.size(); i++) {
+            Dragon dragon = (Dragon) dragons.toArray()[i];
+            if (id == dragon.getId()) {
+                return dragon;
+            }
+        }
+        return null;
+    }
+
+    public static String getName(Dragon dragon) {
         return dragon.getName();
     }
-    public static Long getId(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static Long getId(Dragon dragon) {
         return dragon.getId();
     }
-    public static String getCoordinates(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static String getCoordinates(Dragon dragon) {
         return dragon.getCoordinates();
     }
-    public static String getColor(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static String getColor(Dragon dragon) {
         return dragon.getColor();
     }
-    public static String getCharacter(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static String getCharacter(Dragon dragon) {
         return dragon.getCharacter();
     }
-    public static double getCave(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static double getCave(Dragon dragon) {
         return dragon.getCave();
     }
-    public static String getCreationDate(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static String getCreationDate(Dragon dragon) {
         return dragon.getCreationDate();
     }
-    public static Integer getAge(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static Integer getAge(Dragon dragon) {
         return dragon.getAge();
     }
-    public static String getType(int i) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static String getType(Dragon dragon) {
         return dragon.getType();
+    }
+    public static Deque<Dragon> getDragons() {
+        return dragons;
     }
 
     //updates
-    public static void updateName(int i, String name) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void updateName(Dragon dragon, String name) {
         dragon.setName(name);
     }
-    public static void updateCoordinates(int i, Coordinates coordinates) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void updateCoordinates(Dragon dragon, Coordinates coordinates) {
         dragon.setCoordinates(coordinates);
     }
-    public static void updateAge(int i, Integer age) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void updateAge(Dragon dragon, Integer age) {
         dragon.setAge(age);
     }
-    public static void updateColor(int i, Color color) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void updateColor(Dragon dragon, Color color) {
         dragon.setColor(color);
     }
-    public static void updateType(int i, DragonType type) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void updateType(Dragon dragon, DragonType type) {
         dragon.setType(type);
     }
-    public static void updateCharacter(int i, DragonCharacter character) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void updateCharacter(Dragon dragon, DragonCharacter character) {
         dragon.setCharacter(character);
     }
-    public static void updateCave(int i, DragonCave cave) {
-        Dragon dragon = (Dragon) dragons.toArray()[i];
+    public static void updateCave(Dragon dragon, DragonCave cave) {
         dragon.setCave(cave);
     }
 }

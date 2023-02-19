@@ -1,9 +1,6 @@
 package src.checkers;
 
-import src.checkers.IdChecker;
-import src.collectionClasses.Coordinates;
-import src.collectionClasses.DragonCave;
-
+import src.collectionClasses.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,19 +49,16 @@ public class RegexChecker {
         return null;
     }
 
-    public static Long idChecker(String command) {
-        String id = IdChecker.check(command, "id");
-        if (id != null) {
-            return Long.parseLong(id);
-        }
-        return -1L;
-    }
+    public static Dragon idChecker(String command) {
+        Long id = IdChecker.check(command);
+        if (id != -1) {
+            for (int i = 0; i < CollectionManager.length(); i++) {
+                Dragon dragon = CollectionManager.getDragonById(id);
 
-    public static int idIndexChecker(String command) {
-        String id = IdChecker.check(command, "index");
-        if (id != null) {
-            return Integer.parseInt(id);
+                if (dragon != null) {return dragon;}
+            }
+            System.out.println("Объекта с таким id не существует!");
         }
-        return -1;
+        return null;
     }
 }
