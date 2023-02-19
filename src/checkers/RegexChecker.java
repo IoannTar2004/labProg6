@@ -1,6 +1,6 @@
-package src.tools;
+package src.checkers;
 
-import src.collectionClasses.CollectionManager;
+import src.checkers.IdChecker;
 import src.collectionClasses.Coordinates;
 import src.collectionClasses.DragonCave;
 

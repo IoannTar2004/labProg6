@@ -1,7 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
-import src.tools.RegexChecker;
+import src.checkers.RegexChecker;
 
 public class CommandRemoveById {
     public static void execute(String command) {

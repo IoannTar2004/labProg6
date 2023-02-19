@@ -2,7 +2,7 @@ package src.commands;
 
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
-import src.tools.RegexChecker;
+import src.checkers.RegexChecker;
 
 import java.util.Date;
 import java.util.Scanner;

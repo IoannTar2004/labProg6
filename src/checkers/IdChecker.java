@@ -1,4 +1,4 @@
-package src.tools;
+package src.checkers;
 
 import src.collectionClasses.CollectionManager;
 
