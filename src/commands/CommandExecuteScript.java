@@ -25,13 +25,7 @@ public class CommandExecuteScript {
 
         if (file.exists()) {
             List<String> commands = ScriptReader.read(file);
-            int i = 0;
-            while(commands.get(i) != "") {
-                    ScriptInvoker.simpleinvoke(commands.get(i), commands.get(i + 1), commands.get(i + 2),
-                            commands.get(i + 3), commands.get(i + 4),
-                            commands.get(i + 5), commands.get(i + 6), commands.get(i + 7));
-                i++;
-            }
+            ScriptInvoker.invoke(commands);
         } else {
             System.out.println("Файл не найден!");
         }
