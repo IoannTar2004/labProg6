@@ -134,14 +134,14 @@ public class XMLReader {
 
             DragonCave cave = null;
             try {
-                cave = new DragonCave(Double.parseDouble(element.getElementsByTagName("cavedepth").item(0).getTextContent()));
+                cave = RegexChecker.caveChecker(element.getElementsByTagName("cavedepth").item(0).getTextContent());
                 if (cave == null) {
                     System.out.println("Глубина пещеры должна быть записана в виде дробного числа через точку!" + error);
                     create = false;
                     start = false;
                 }
             } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <cave>"+error);
+                System.out.println("Отсутствует тег <cavedepth>"+error);
                 create = false;
                 start = false;
             }

@@ -41,7 +41,7 @@ public class RegexChecker {
     }
 
     public static DragonCave caveChecker(String cave) {
-        Pattern pattern = Pattern.compile("\\s*(-?\\d+\\.\\d+)\\s*");
+        Pattern pattern = Pattern.compile("\\s*(-?(\\d+\\.\\d*)|(\\d+))\\s*");
         Matcher matcher = pattern.matcher(cave);
 
         if (matcher.matches()) {
