@@ -46,53 +46,106 @@ public class XMLReader {
                 start = false;
             }
 
-            String name = RegexChecker.nameCheck(element.getElementsByTagName("name").item(0).getTextContent());
-            if (name == null) {
-                System.out.println("Имя не может быть пустым!" + error);
+            String name = null;
+            try {
+                name = RegexChecker.nameCheck(element.getElementsByTagName("name").item(0).getTextContent());
+                if (name == null) {
+                    System.out.println("Имя не может быть пустым!" + error);
+                    create = false;
+                    start = false;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Отсутствует тег <name>"+error);
                 create = false;
                 start = false;
             }
 
-            Coordinates coordinates = RegexChecker.coordinatesChecker(element.getElementsByTagName("coordinates").item(0).getTextContent());
-            if (coordinates == null) {
-                System.out.println("Координаты должны быть записаны в виде двух чисел через пробел или точку с запятой" +
-                        error);
+            Coordinates coordinates = null;
+            try {
+                coordinates = RegexChecker.coordinatesChecker(element.getElementsByTagName("coordinates").item(0).getTextContent());
+                if (coordinates == null) {
+                    System.out.println("Координаты должны быть записаны в виде двух чисел через пробел или точку с запятой" +
+                            error);
+                    create = false;
+                    start = false;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Отсутствует тег <coordinates>"+error);
                 create = false;
                 start = false;
             }
 
-            int age = RegexChecker.ageChecker(element.getElementsByTagName("age").item(0).getTextContent());
-            if (age == -1) {
-                System.out.println("Возраст должен быть целым положительным числом!" + error);
+            int age = -1;
+            try {
+                age = RegexChecker.ageChecker(element.getElementsByTagName("age").item(0).getTextContent());
+                if (age == -1) {
+                    System.out.println("Возраст должен быть целым положительным числом!" + error);
+                    create = false;
+                    start = false;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Отсутствует тег <age>"+error);
                 create = false;
                 start = false;
             }
 
-            Color color = Color.getEnumColor(element.getElementsByTagName("color").item(0).getTextContent());
-            if (color == null) {
-                System.out.println("Такого цвета нет!"+error);
+
+            Color color = null;
+            try {
+                color = Color.getEnumColor(element.getElementsByTagName("color").item(0).getTextContent());
+                if (color == null) {
+                    System.out.println("Такого цвета нет!"+error);
+                    create = false;
+                    start = false;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Отсутствует тег <color>"+error);
                 create = false;
                 start = false;
             }
 
-            DragonType type = DragonType.getEnumType(element.getElementsByTagName("type").item(0).getTextContent());
-            if (type == null) {
-                System.out.println("Такого типа нет!"+error);
+            DragonType type = null;
+            try {
+                type = DragonType.getEnumType(element.getElementsByTagName("type").item(0).getTextContent());
+                if (type == null) {
+                    System.out.println("Такого типа нет!"+error);
+                    create = false;
+                    start = false;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Отсутствует тег <type>"+error);
                 create = false;
                 start = false;
             }
 
-            DragonCharacter character = DragonCharacter.getEnumCharacter(element.getElementsByTagName("character").item(0).getTextContent());
-            if (character == null) {
-                System.out.println("Такого характера нет!"+error);
+            DragonCharacter character = null;
+            try {
+                character = DragonCharacter.getEnumCharacter(element.getElementsByTagName("character").item(0).getTextContent());
+                if (character == null) {
+                    System.out.println("Такого характера нет!"+error);
+                    create = false;
+                    start = false;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Отсутствует тег <character>"+error);
                 create = false;
                 start = false;
             }
 
-            DragonCave cave = new DragonCave(Double.parseDouble(element.getElementsByTagName("cavedepth").item(0).getTextContent()));
-            if (cave == null) {
-                System.out.println("Глубина пещеры должна быть записана в виде дробного числа через точку!" + error);
+            DragonCave cave = null;
+            try {
+                cave = new DragonCave(Double.parseDouble(element.getElementsByTagName("cavedepth").item(0).getTextContent()));
+                if (cave == null) {
+                    System.out.println("Глубина пещеры должна быть записана в виде дробного числа через точку!" + error);
+                    create = false;
+                    start = false;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Отсутствует тег <cave>"+error);
+                create = false;
+                start = false;
             }
+
 
             Date date = new Date();
 
