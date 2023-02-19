@@ -40,7 +40,10 @@ public abstract class Invoker {
                 CommandExecuteScript.execute(command);
             } else if (command.matches("\\s*save\\s*")) {
                 CommandSave.execute();
-            } else {
+            } else if (command.matches("\\s*print_descending\\s*")) {
+                CommandPrintDescending.execute();
+            }
+            else {
                 System.out.println("Такой команды нет!");
             }
         }

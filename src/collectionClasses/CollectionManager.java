@@ -38,6 +38,7 @@ public class CollectionManager {
     }
 
     public static Dragon getDragonByIndex(int index) {return (Dragon) dragons.toArray()[index];}
+    public static Deque<Dragon> getAll() {return dragons;}
 
     public static String getName(Dragon dragon) {
         return dragon.getName();
