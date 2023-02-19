@@ -5,11 +5,11 @@ import src.collectionClasses.Dragon;
 
 import java.util.Comparator;
 
-public class MaxSeaker {
-    public static class nameMaxSeaker implements Comparator<Dragon>{
+public class SortClasses {
+    public static class SortByName extends SortClasses implements Comparator<Dragon>{
         @Override
         public int compare(Dragon d1, Dragon d2) {
-            return 0;
+            return CollectionManager.getName(d1).compareTo(CollectionManager.getName(d2));
         }
     }
 }

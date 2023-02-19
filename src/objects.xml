@@ -18,13 +18,4 @@
 		<character>Хаотичный</character>
 		<cavedepth>304.67</cavedepth>
 	</object>
-	<object id = "103835197901">
-		<name>Owl</name>
-		<coordinates>-654; 45</coordinates>
-		<age>3</age>
-		<color>Синий</color>
-		<type>Подземельный</type>
-		<character>Злой</character>
-		<cavedepth>-56.34</cavedepth>
-	</object>
 </root>
