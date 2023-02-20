@@ -28,6 +28,11 @@ public class CommandPrintDescending {
                 switch (field) {
                     case "1" -> Sort.sort(new Sort.SortByName());
                     case "2" -> Sort.sort(new Sort.SortByCoodinates());
+                    case "3" -> Sort.sort(new Sort.SortByAge());
+                    case "4" -> Sort.sort(new Sort.SortByColor());
+                    case "5" -> Sort.sort(new Sort.SortByType());
+                    case "6" -> Sort.sort(new Sort.SortByCharacter());
+                    case "7" -> Sort.sort(new Sort.SortByCave());
                 }
             }
         } while (!matcher.matches());

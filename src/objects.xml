@@ -7,7 +7,7 @@
 		<color>Чёрный</color>
 		<type>Воздушный</type>
 		<character>Злой</character>
-		<cavedepth>45.5</cavedepth>
+		<cavedepth>3.04</cavedepth>
 	</object>
 	<object id = "374673468340">
 		<name>Valera</name>
@@ -16,6 +16,6 @@
 		<color>Жёлтый</color>
 		<type>Огненный</type>
 		<character>Хаотичный</character>
-		<cavedepth>304.67</cavedepth>
+		<cavedepth>3.05</cavedepth>
 	</object>
 </root>
