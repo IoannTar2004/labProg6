@@ -17,11 +17,11 @@ public class CommandAdd {
         String name;
         do {
             data = scanner.nextLine();
-            name = data;
-            if (RegexChecker.nameCheck(data) == null) {
+            name = RegexChecker.nameCheck(data);
+            if (name == null) {
                 System.out.println("Имя не может быть пустым!");
             }
-        } while(RegexChecker.nameCheck(data) == null);
+        } while(name == null);
 
         //координаты
         System.out.println("Введите координаты (два целых числа через пробел)");

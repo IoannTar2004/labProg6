@@ -9,7 +9,7 @@ public class MaxField extends Sort {
     public static void max(String fieldNum) {
         switch (fieldNum) {
             case "1" -> maxName();
-            case "2" -> maxCoordinates();
+            case "2" -> maxSumCoordinates();
             case "3" -> maxAge();
             case "4" -> maxColor();
             case "5" -> maxType();
@@ -25,13 +25,20 @@ public class MaxField extends Sort {
         return sortlist.get(0).getName();
     }
 
-    public static Long maxCoordinates() {
+    public static Long maxSumCoordinates() {
         sortlist.sort(new SortByCoordinates());
         int x = Integer.parseInt(sortlist.get(0).getCoordinates().split("; ")[0]);
         long y = Long.parseLong(sortlist.get(0).getCoordinates().split("; ")[1]);
         Collections.reverse(sortlist);
 
         return x + y;
+    }
+
+    public static String maxCoordinates() {
+        sortlist.sort(new SortByCoordinates());
+        Collections.reverse(sortlist);
+
+        return sortlist.get(0).getCoordinates();
     }
 
     public static int maxAge() {
@@ -65,7 +72,7 @@ public class MaxField extends Sort {
     public static double maxCave() {
         sortlist.sort(new SortByCave());
         Collections.reverse(sortlist);
-        
+
         return sortlist.get(0).getCave();
     }
 }

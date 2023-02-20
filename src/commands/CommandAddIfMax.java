@@ -1,16 +1,21 @@
 package src.commands;
 
 import src.collectionClasses.*;
+import src.fieldSupport.MaxField;
 import src.fieldSupport.RegexChecker;
 import src.tools.IdGenerator;
 
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommandAddIfMax {
     public static void execute() {
         Scanner scanner = new Scanner(System.in);
+        Matcher matcher;
         String data;
+        boolean checkField;
 
         System.out.println("\t\tВведите номер поля, по которому будет производиться проверка\n" +
                 "1 - имя\n" +
@@ -20,27 +25,61 @@ public class CommandAddIfMax {
                 "5 - тип\n" +
                 "6 - характер\n" +
                 "7 - глубина пещеры");
+        Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
+        String field;
+        do {
+            field = scanner.nextLine();
+            matcher = pattern.matcher(field);
+
+            if(matcher.matches()) {
+                field = matcher.group(1);
+                MaxField.max(field);
+            } else {System.out.println("Введите число от 1 до 7!");}
+
+        } while (!matcher.matches());
+
         //имя
         System.out.println("Введите имя");
-        String name;
+        String name, maxName;
         do {
             data = scanner.nextLine();
-            name = data;
-            if (RegexChecker.nameCheck(data) == null) {
+            name = RegexChecker.nameCheck(data);
+            maxName = MaxField.maxName();
+            checkField = true;
+            if (name == null) {
                 System.out.println("Имя не может быть пустым!");
+            } else if (name.compareTo(maxName) < 0 && field.equals("1")) {
+                System.out.println("Введенное имя меньше по значению, чем имя \"" + maxName + "\". Объект не будет создан. " +
+                        "Введите имя повторно.");
+                checkField = false;
+            } else if (name.compareTo(maxName) == 0 && field.equals("1")) {
+                System.out.println("Введенное имя cовпадает по значению с именем \"" + maxName + "\". Объект не будет создан. " +
+                        "Введите имя повторно.");
+                checkField = false;
             }
-        } while(RegexChecker.nameCheck(data) == null);
+        } while(name == null || !checkField);
 
         //координаты
         System.out.println("Введите координаты (два целых числа через пробел)");
         Coordinates coordinates;
+        Long sumMax;
         do {
             data = scanner.nextLine();
             coordinates = RegexChecker.coordinatesChecker(data);
-            if(coordinates == null) {
+            sumMax = MaxField.maxSumCoordinates();
+            checkField = true;
+            if (coordinates == null) {
                 System.out.println("Введите два целых числа через пробел!");
+            } else if (coordinates.sum().compareTo(sumMax) < 0 && field.equals("2")) {
+                System.out.println("Сумма введенных координаты меньше, чем сумма \"" + MaxField.maxCoordinates() + "\". " +
+                        "Объект не будет создан. Введите координаты повторно.");
+                checkField = false;
+            } else if (coordinates.sum().compareTo(sumMax) == 0 && field.equals("2")) {
+                System.out.println("Сумма введенных координаты равна сумме \"" + MaxField.maxCoordinates() + "\". " +
+                        "Объект не будет создан. Введите координаты повторно.");
+                checkField = false;
             }
-        } while(coordinates == null);
+        } while(coordinates == null || !checkField);
 
         //возраст
         System.out.println("Введите возраст (целое положительное число)");

@@ -3,15 +3,17 @@ package src.fieldSupport;
 import src.collectionClasses.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class Sort {
+    static List<Dragon> sortlist = new ArrayList<>(CollectionManager.getAll());
+
     public static void sort(String fieldNum) {
-        List<Dragon> sortlist = new ArrayList<>(CollectionManager.getAll());
         switch (fieldNum) {
             case "1" -> sortlist.sort(new SortByName());
-            case "2" -> sortlist.sort(new SortByCoodinates());
+            case "2" -> sortlist.sort(new SortByCoordinates());
             case "3" -> sortlist.sort(new SortByAge());
             case "4" -> sortlist.sort(new SortByColor());
             case "5" -> sortlist.sort(new SortByType());
@@ -21,11 +23,13 @@ public class Sort {
                 return;
             }
         }
-        for(int i = sortlist.size() - 1; i >= 0; i--) {
+        Collections.reverse(sortlist);
+        for(int i = 0; i < sortlist.size(); i++) {
             CollectionManager.element(sortlist.get(i));
         }
         System.out.println();
     }
+
 
     public static class SortByName extends Sort implements Comparator<Dragon>{
         @Override
@@ -33,8 +37,7 @@ public class Sort {
             return CollectionManager.getName(d1).compareTo(CollectionManager.getName(d2));
         }
     }
-
-    public static class SortByCoodinates extends Sort implements Comparator<Dragon> {
+    public static class SortByCoordinates extends Sort implements Comparator<Dragon> {
         @Override
         public int compare(Dragon d1, Dragon d2) {
             int d1x = Integer.parseInt(d1.getCoordinates().split("; ")[0]);

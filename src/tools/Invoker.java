@@ -42,6 +42,8 @@ public abstract class Invoker {
                 CommandSave.execute();
             } else if (command.matches("\\s*print_descending\\s*")) {
                 CommandPrintDescending.execute();
+            } else if (command.matches("\\s*add_if_max\\s*")) {
+                CommandAddIfMax.execute();
             }
             else {
                 System.out.println("Такой команды нет!");
