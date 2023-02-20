@@ -25,16 +25,9 @@ public class CommandPrintDescending {
 
             if(matcher.matches()) {
                 field = matcher.group(1);
-                switch (field) {
-                    case "1" -> Sort.sort(new Sort.SortByName());
-                    case "2" -> Sort.sort(new Sort.SortByCoodinates());
-                    case "3" -> Sort.sort(new Sort.SortByAge());
-                    case "4" -> Sort.sort(new Sort.SortByColor());
-                    case "5" -> Sort.sort(new Sort.SortByType());
-                    case "6" -> Sort.sort(new Sort.SortByCharacter());
-                    case "7" -> Sort.sort(new Sort.SortByCave());
-                }
-            }
+                Sort.sort(field);
+            } else {System.out.println("Введите число от 1 до 7!");}
+
         } while (!matcher.matches());
     }
 
@@ -45,15 +38,7 @@ public class CommandPrintDescending {
 
         if(matcher.matches()) {
             arg = matcher.group(1);
-            switch (arg) {
-                case "1" -> Sort.sort(new Sort.SortByName());
-                case "2" -> Sort.sort(new Sort.SortByCoodinates());
-                case "3" -> Sort.sort(new Sort.SortByAge());
-                case "4" -> Sort.sort(new Sort.SortByColor());
-                case "5" -> Sort.sort(new Sort.SortByType());
-                case "6" -> Sort.sort(new Sort.SortByCharacter());
-                case "7" -> Sort.sort(new Sort.SortByCave());
-            }
+            Sort.sort(arg);
         }
     }
 }

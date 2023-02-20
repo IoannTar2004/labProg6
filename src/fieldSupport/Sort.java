@@ -7,9 +7,20 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Sort {
-    public static void sort(Sort sort) {
+    public static void sort(String fieldNum) {
         List<Dragon> sortlist = new ArrayList<>(CollectionManager.getAll());
-        sortlist.sort((Comparator<? super Dragon>) sort);
+        switch (fieldNum) {
+            case "1" -> sortlist.sort(new SortByName());
+            case "2" -> sortlist.sort(new SortByCoodinates());
+            case "3" -> sortlist.sort(new SortByAge());
+            case "4" -> sortlist.sort(new SortByColor());
+            case "5" -> sortlist.sort(new SortByType());
+            case "6" -> sortlist.sort(new SortByCharacter());
+            case "7" -> sortlist.sort(new SortByCave());
+            default -> {
+                return;
+            }
+        }
         for(int i = sortlist.size() - 1; i >= 0; i--) {
             CollectionManager.element(sortlist.get(i));
         }
