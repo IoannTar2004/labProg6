@@ -1,4 +1,4 @@
-package src.fieldManager;
+package src.fieldSupport;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

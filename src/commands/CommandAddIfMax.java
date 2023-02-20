@@ -1,17 +1,25 @@
 package src.commands;
 
 import src.collectionClasses.*;
-import src.tools.IdGenerator;
 import src.fieldSupport.RegexChecker;
+import src.tools.IdGenerator;
 
 import java.util.Date;
 import java.util.Scanner;
 
-public class CommandAdd {
+public class CommandAddIfMax {
     public static void execute() {
         Scanner scanner = new Scanner(System.in);
         String data;
 
+        System.out.println("\t\tВведите номер поля, по которому будет производиться проверка\n" +
+                "1 - имя\n" +
+                "2 - координаты\n" +
+                "3 - возраст\n" +
+                "4 - цвет\n" +
+                "5 - тип\n" +
+                "6 - характер\n" +
+                "7 - глубина пещеры");
         //имя
         System.out.println("Введите имя");
         String name;
@@ -98,43 +106,5 @@ public class CommandAdd {
         Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, date);
 
         CollectionManager.add(dragon);
-        System.out.println("Объект добавлен в коллекцию!\n");
-    }
-
-    public static void executeWithScript(String name, String coordinates, String age, String color, String type, String character,
-                                         String cave) {
-        int count = 0;
-
-        if (RegexChecker.nameCheck(name) != null) {count++;}
-        else {return;}
-
-        Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
-        if(coordinates1 != null) {count++;}
-        else {return;}
-
-        int age1 = RegexChecker.ageChecker(age);
-        if (age1 != -1){count++;} else {return;}
-
-        Color color1 = Color.getColorByNumber(color);
-        if (color1 != null){count++;} else {return;}
-
-        DragonType type1 = DragonType.getTypeByNumber(type);
-        if (type1 != null){count++;} else {return;}
-
-        DragonCharacter character1 = DragonCharacter.getCharacterByNumber(character);
-        if (character1 != null){count++;} else {return;}
-
-        DragonCave cave1 = RegexChecker.caveChecker(cave);
-        if (cave1 != null){count++;} else {return;}
-
-        Long id = IdGenerator.generate();
-
-        //дата
-        Date date = new Date();
-
-        if (count == 7) {
-            Dragon dragon = new Dragon(id, name, coordinates1, age1, color1, type1, character1, cave1, date);
-            CollectionManager.add(dragon);
-        }
     }
 }

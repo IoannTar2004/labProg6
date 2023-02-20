@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.fieldManager.Sort;
+import src.fieldSupport.Sort;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
