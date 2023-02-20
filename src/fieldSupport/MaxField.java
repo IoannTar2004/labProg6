@@ -1,7 +1,10 @@
 package src.fieldSupport;
 
 import src.collectionClasses.Color;
+import src.collectionClasses.DragonCharacter;
+import src.collectionClasses.DragonType;
 
+import java.lang.reflect.Type;
 import java.util.Collections;
 
 public class MaxField extends Sort {
@@ -52,26 +55,26 @@ public class MaxField extends Sort {
         sortlist.sort(new SortByColor());
         Collections.reverse(sortlist);
 
-        return Color.getEnumColor(sortlist.get(0).getColor()).ordinal();
+        return Color.getEnumColor(sortlist.get(0).getColor()).ordinal() + 1;
     }
 
     public static int maxType() {
         sortlist.sort(new SortByType());
         Collections.reverse(sortlist);
 
-        return Color.getEnumColor(sortlist.get(0).getType()).ordinal();
+        return DragonType.getEnumType(sortlist.get(0).getType()).ordinal() + 1;
     }
 
     public static int maxCharacter() {
         sortlist.sort(new SortByCharacter());
         Collections.reverse(sortlist);
 
-        return Color.getEnumColor(sortlist.get(0).getCharacter()).ordinal();
+        return DragonCharacter.getEnumCharacter(sortlist.get(0).getCharacter()).ordinal() + 1;
     }
 
     public static double maxCave() {
         sortlist.sort(new SortByCave());
-        Collections.reverse(sortlist);
+        //Collections.reverse(sortlist);
 
         return sortlist.get(0).getCave();
     }

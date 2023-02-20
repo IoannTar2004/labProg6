@@ -86,7 +86,7 @@ public class Sort {
     public static class SortByCave extends Sort implements Comparator<Dragon>{
         @Override
         public int compare(Dragon d1, Dragon d2) {
-            return (int) (d1.getCave()-d2.getCave());
+            return (int) (d2.getCave()-d1.getCave());
         }
     }
 }
