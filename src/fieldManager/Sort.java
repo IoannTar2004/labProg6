@@ -1,9 +1,8 @@
-package src.checkers;
+package src.fieldManager;
 
 import src.collectionClasses.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -20,7 +19,6 @@ public class Sort {
     public static class SortByName extends Sort implements Comparator<Dragon>{
         @Override
         public int compare(Dragon d1, Dragon d2) {
-            System.out.println(CollectionManager.getName(d1).compareTo(CollectionManager.getName(d2)));
             return CollectionManager.getName(d1).compareTo(CollectionManager.getName(d2));
         }
     }

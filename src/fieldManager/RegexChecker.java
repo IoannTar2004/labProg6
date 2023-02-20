@@ -1,4 +1,4 @@
-package src.checkers;
+package src.fieldManager;
 
 import src.collectionClasses.*;
 import java.util.regex.Matcher;

@@ -1,7 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
-import src.checkers.RegexChecker;
+import src.fieldManager.RegexChecker;
 import src.collectionClasses.Dragon;
 
 public class CommandRemoveById {

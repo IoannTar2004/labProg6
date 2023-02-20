@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.checkers.Sort;
+import src.fieldManager.Sort;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,5 +36,24 @@ public class CommandPrintDescending {
                 }
             }
         } while (!matcher.matches());
+    }
+
+    public static void executeWithScript(String arg) {
+        Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
+        Matcher matcher;
+        matcher = pattern.matcher(arg);
+
+        if(matcher.matches()) {
+            arg = matcher.group(1);
+            switch (arg) {
+                case "1" -> Sort.sort(new Sort.SortByName());
+                case "2" -> Sort.sort(new Sort.SortByCoodinates());
+                case "3" -> Sort.sort(new Sort.SortByAge());
+                case "4" -> Sort.sort(new Sort.SortByColor());
+                case "5" -> Sort.sort(new Sort.SortByType());
+                case "6" -> Sort.sort(new Sort.SortByCharacter());
+                case "7" -> Sort.sort(new Sort.SortByCave());
+            }
+        }
     }
 }

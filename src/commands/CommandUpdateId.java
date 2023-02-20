@@ -1,7 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.*;
-import src.checkers.RegexChecker;
+import src.fieldManager.RegexChecker;
 
 import java.util.Scanner;
 

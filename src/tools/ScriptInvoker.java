@@ -39,6 +39,8 @@ public abstract class ScriptInvoker {
                 CommandExecuteScript.execute(commands.get(i));
             } else if (commands.get(i).matches("\\s*exit\\s*")) {
                 System.exit(0);
+            } else if (commands.get(i).matches("\\s*print_descending\\s*.*")) {
+                CommandPrintDescending.executeWithScript(commands.get(i+1));
             }
 
             i++;
