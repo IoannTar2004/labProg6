@@ -3,6 +3,7 @@ package src.fieldSupport;
 import src.collectionClasses.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -73,11 +74,12 @@ public class RegexChecker {
 
         if(matcher.matches()) {
             filename = matcher.group(1);
-            return new File(filename);
+            File file = new File(filename);
+            if (file.exists()) {
+                return file;
+            } else {System.out.println("Файл не найден!");}
         } else if (matcher_noargument.matches()) {
             System.out.println("Команда должна содержать путь до файла в качестве аргумента!");
-        } else {
-            System.out.println("Файл не найден!");
         }
         return null;
     }

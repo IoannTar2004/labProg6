@@ -1,6 +1,8 @@
 package src.tools;
 
+import java.io.File;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ProgramStart {
     public static void start() {
@@ -28,5 +30,14 @@ public class ProgramStart {
             } else if(data.matches("\\s*n\\s*")) {break;}
             else {System.out.println("(y - да, n - нет)");}
         } while (true);
+
+        System.out.println("Имена файлов, с которыми работает эта программа, передаются ей через переменную окружения. " +
+                "Введите название переменной, значение которой содержит полный путь до xml-файла.");
+        File file;
+        do {
+            data = scanner.nextLine();
+            file = new File(data);
+            if(!file.exists()) {System.out.println("Файл не наден!");}
+        } while (!file.exists());
     }
 }
