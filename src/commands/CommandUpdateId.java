@@ -54,7 +54,7 @@ public class CommandUpdateId {
             data = scanner.nextLine();
             color = Color.getColorByNumber(data);
             if (color == null && !data.matches("\\s*")) {
-                System.out.println("\"Введите cоответствующий номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)!\"");
+                System.out.println("Введите cоответствующий номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)!");
             } else if (color != null){
                 CollectionManager.updateColor(dragon, color);
             }

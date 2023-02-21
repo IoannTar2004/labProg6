@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-	<object id = "274726478289">
-		<name>Ivan</name>
-		<coordinates>55; 746</coordinates>
-		<age>3</age>
+	<object id = "1058927600476">
+		<name>Walera</name>
+		<coordinates>1; 1</coordinates>
+		<age>1</age>
 		<color>Чёрный</color>
-		<type>Воздушный</type>
-		<character>Злой</character>
-		<cavedepth>3.04</cavedepth>
+		<type>Водный</type>
+		<character>Хитрый</character>
+		<cavedepth>18.0</cavedepth>
 	</object>
-	<object id = "374673468340">
-		<name>Valera</name>
-		<coordinates>104; 3500</coordinates>
-		<age>9</age>
+	<object id = "593378632510">
+		<name>ss</name>
+		<coordinates>2; 2</coordinates>
+		<age>3</age>
 		<color>Жёлтый</color>
 		<type>Огненный</type>
 		<character>Хаотичный</character>
-		<cavedepth>3.05</cavedepth>
+		<cavedepth>56.09</cavedepth>
 	</object>
 </root>

@@ -22,10 +22,11 @@ public class CommandExecuteScript {
             return;
         }
 
-        List<String> commands = ScriptReader.read(file);
-
-        if (file != null && commands != null) {
-            ScriptInvoker.invoke(commands);
+        if (file != null) {
+            List<String> commands = ScriptReader.read(file);
+            if (commands.size() > 0) {
+                ScriptInvoker.invoke(commands);
+            }
         }
     }
 }
