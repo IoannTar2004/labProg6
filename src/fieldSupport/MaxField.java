@@ -25,11 +25,13 @@ public class MaxField extends Sort {
         sortlist.sort(new SortByName());
         Collections.reverse(sortlist);
 
-        return sortlist.get(0).getName();
+        return sortlist.size() > 0 ? sortlist.get(0).getName() : " ";
     }
 
     public static Long maxSumCoordinates() {
         sortlist.sort(new SortByCoordinates());
+        if (sortlist.size() == 0) {return Long.MIN_VALUE;}
+
         int x = Integer.parseInt(sortlist.get(0).getCoordinates().split("; ")[0]);
         long y = Long.parseLong(sortlist.get(0).getCoordinates().split("; ")[1]);
         Collections.reverse(sortlist);
@@ -41,41 +43,40 @@ public class MaxField extends Sort {
         sortlist.sort(new SortByCoordinates());
         Collections.reverse(sortlist);
 
-        return sortlist.get(0).getCoordinates();
+        return sortlist.size() > 0 ? sortlist.get(0).getCoordinates() : "";
     }
 
     public static int maxAge() {
         sortlist.sort(new SortByAge());
         Collections.reverse(sortlist);
 
-        return sortlist.get(0).getAge();
+        return sortlist.size() > 0 ? sortlist.get(0).getAge() : Integer.MIN_VALUE;
     }
 
     public static int maxColor() {
         sortlist.sort(new SortByColor());
         Collections.reverse(sortlist);
 
-        return Color.getEnumColor(sortlist.get(0).getColor()).ordinal() + 1;
+        return sortlist.size() > 0 ? Color.getEnumColor(sortlist.get(0).getColor()).ordinal() + 1 : 0;
     }
 
     public static int maxType() {
         sortlist.sort(new SortByType());
         Collections.reverse(sortlist);
 
-        return DragonType.getEnumType(sortlist.get(0).getType()).ordinal() + 1;
+        return sortlist.size() > 0 ? DragonType.getEnumType(sortlist.get(0).getType()).ordinal() + 1 : 0;
     }
 
     public static int maxCharacter() {
         sortlist.sort(new SortByCharacter());
         Collections.reverse(sortlist);
 
-        return DragonCharacter.getEnumCharacter(sortlist.get(0).getCharacter()).ordinal() + 1;
+        return sortlist.size() > 0 ? DragonCharacter.getEnumCharacter(sortlist.get(0).getCharacter()).ordinal() + 1 : 0;
     }
 
     public static double maxCave() {
         sortlist.sort(new SortByCave());
-        //Collections.reverse(sortlist);
 
-        return sortlist.get(0).getCave();
+        return sortlist.size() > 0 ? sortlist.get(0).getCave() : Double.MIN_VALUE;
     }
 }
