@@ -18,12 +18,12 @@ public class CommandExecuteScript {
 
         if(matcher.matches()) {
             filename = matcher.group(1);
-            System.out.println(filename);
             file = Checks.fileChecker(filename);
         } else {System.out.println("Команда должна содержать путь до файла в качестве аргумента!");}
 
-        if (file != null) {
-            List<String> commands = ScriptReader.read(file);
+        List<String> commands = ScriptReader.read(file);
+
+        if (file != null && commands != null) {
             ScriptInvoker.invoke(commands);
         }
     }
