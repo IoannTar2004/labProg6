@@ -8,9 +8,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Sort {
-    static List<Dragon> sortlist = new ArrayList<>(CollectionManager.getAll());
 
     public static void sort(String fieldNum) {
+        List<Dragon> sortlist = new ArrayList<>(CollectionManager.getAll());
         switch (fieldNum) {
             case "1" -> sortlist.sort(new SortByName());
             case "2" -> sortlist.sort(new SortByCoordinates());

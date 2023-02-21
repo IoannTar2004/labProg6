@@ -13,13 +13,14 @@ public class CommandExecuteScript {
         Pattern pattern = Pattern.compile("\\s*execute_script\\s+(\\S.*)\\s*");
         Matcher matcher = pattern.matcher(filename);
 
-
-        File file = null;
+        File file;
 
         if(matcher.matches()) {
             filename = matcher.group(1);
             file = Checks.fileChecker(filename);
-        } else {System.out.println("Команда должна содержать путь до файла в качестве аргумента!");}
+        } else {System.out.println("Команда должна содержать путь до файла в качестве аргумента!");
+            return;
+        }
 
         List<String> commands = ScriptReader.read(file);
 
