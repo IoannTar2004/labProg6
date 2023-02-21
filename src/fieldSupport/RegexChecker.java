@@ -1,6 +1,8 @@
 package src.fieldSupport;
 
 import src.collectionClasses.*;
+
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,6 +60,24 @@ public class RegexChecker {
                 if (dragon != null) {return dragon;}
             }
             System.out.println("Объекта с таким id не существует!");
+        }
+        return null;
+    }
+
+    public static File fileChecker(String filename) {
+        Pattern pattern = Pattern.compile("\\s*.\\S*\\s+\"*(.[^\"]*)\"*");
+        Matcher matcher = pattern.matcher(filename);
+
+        Pattern pattern_noargument = Pattern.compile("\\s*.\\S*\\s*");
+        Matcher matcher_noargument = pattern_noargument.matcher(filename);
+
+        if(matcher.matches()) {
+            filename = matcher.group(1);
+            return new File(filename);
+        } else if (matcher_noargument.matches()) {
+            System.out.println("Команда должна содержать путь до файла в качестве аргумента!");
+        } else {
+            System.out.println("Файл не найден!");
         }
         return null;
     }
