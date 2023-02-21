@@ -18,17 +18,15 @@ import java.io.IOException;
 import java.util.Date;
 
 public class XMLReader {
-    public static void parse(String path) throws ParserConfigurationException, IOException, SAXException {
+    public static void parse(File xml) {
         boolean start = true;
 
-        File xml = new File(path);
         DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dbuilder = dbfact.newDocumentBuilder();
         Document document = null;
-
         try {
+            DocumentBuilder dbuilder = dbfact.newDocumentBuilder();
             document = dbuilder.parse(xml);
-        } catch (SAXParseException e) {
+        } catch (SAXException | IOException | ParserConfigurationException e) {
             System.out.println("XML-файл не валиден! Проверьте теги!");
             System.exit(0);
         }
