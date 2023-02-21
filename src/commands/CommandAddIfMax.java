@@ -30,13 +30,30 @@ public class CommandAddIfMax {
         do {
             field = scanner.nextLine();
             matcher = pattern.matcher(field);
+            checkField = true;
 
             if(matcher.matches()) {
                 field = matcher.group(1);
                 MaxField.max(field);
-            } else {System.out.println("Введите число от 1 до 7!");}
+            } else {
+                System.out.println("Введите число от 1 до 7!");
+                checkField = false;
+            }
 
-        } while (!matcher.matches());
+            if(field.equals("4") && MaxField.maxColor() == 3) {
+                System.out.println("В коллекции уже существует объект с максимальным по значению цветом. " +
+                        "Объект не будет создан. Введите другое число!");
+                checkField = false;
+            } else if(field.equals("5") && MaxField.maxType() == 4) {
+                System.out.println("В коллекции уже существует объект с максимальным по значению типом. " +
+                        "Объект не будет создан. Введите другое число!");
+                checkField = false;
+            } else if(field.equals("6") && MaxField.maxCharacter() == 3) {
+                System.out.println("В коллекции уже существует объект с максимальным по значению характером. " +
+                        "Объект не будет создан. Введите другое число!");
+                checkField = false;
+            }
+        } while (!checkField);
 
         //имя
         System.out.println("Введите имя");
@@ -211,5 +228,67 @@ public class CommandAddIfMax {
 
         CollectionManager.add(dragon);
         System.out.println("Объект добавлен в коллекцию!\n");
+    }
+
+    public static void executeWithScript(String field, String name, String coordinates,
+                                         String age, String color, String type, String character,
+                                         String cave) {
+        int count = 0;
+
+        Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
+        Matcher matcher = pattern.matcher(field);
+
+        if(matcher.matches()) {count++;} else {return;}
+
+        String nameMax = MaxField.maxName();
+        if (RegexChecker.nameCheck(name) != null && !field.equals("1")) {count++;}
+        else if (name.compareTo(nameMax) > 0 && field.equals("1")) {count++;}
+        else {return;}
+
+        Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
+        Long sum = MaxField.maxSumCoordinates();
+        if(coordinates1 != null && !field.equals("2")) {count++;}
+        else if (coordinates1.sum() > sum && field.equals("2")) {count++;}
+        else {return;}
+
+        int age1 = RegexChecker.ageChecker(age);
+        int maxAge = MaxField.maxAge();
+        if (age1 != -1 && !field.equals("3")){count++;}
+        else if (age1 > maxAge && field.equals("3")) {count++;}
+        else {return;}
+
+        Color color1 = Color.getColorByNumber(color);
+        int maxColor = MaxField.maxColor();
+        if (color1 != null && !field.equals("4")){count++;}
+        else if (color1.ordinal()+1 > maxColor && field.equals("4")) {count++;}
+        else {return;}
+
+        DragonType type1 = DragonType.getTypeByNumber(type);
+        int maxType = MaxField.maxType();
+        if (type1 != null && !field.equals("5")){count++;}
+        else if (type1.ordinal()+1 > maxType && field.equals("5")) {count++;}
+        else {return;}
+
+        DragonCharacter character1 = DragonCharacter.getCharacterByNumber(character);
+        int maxCharacter = MaxField.maxCharacter();
+        if (character1 != null && !field.equals("6")){count++;}
+        else if (character1.ordinal()+1 > maxCharacter && field.equals("6")){count++;}
+        else {return;}
+
+        DragonCave cave1 = RegexChecker.caveChecker(cave);
+        double maxCave = MaxField.maxCave();
+        if (cave1 != null && !field.equals("7")){count++;}
+        else if (cave1.getDepth() > maxCave && field.equals("7")) {count++;}
+        else {return;}
+
+        Long id = IdGenerator.generate();
+
+        //дата
+        Date date = new Date();
+
+        if (count == 8) {
+            Dragon dragon = new Dragon(id, name, coordinates1, age1, color1, type1, character1, cave1, date);
+            CollectionManager.add(dragon);
+        }
     }
 }

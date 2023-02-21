@@ -41,6 +41,10 @@ public abstract class ScriptInvoker {
                 System.exit(0);
             } else if (commands.get(i).matches("\\s*print_descending\\s*.*")) {
                 CommandPrintDescending.executeWithScript(commands.get(i+1));
+            } else if (commands.get(i).matches("\\s*add_if_max\\s*")) {
+                CommandAddIfMax.executeWithScript(commands.get(i+1), commands.get(i+2), commands.get(i+3), commands.get(i+4),
+                        commands.get(i+5), commands.get(i+6), commands.get(i+7), commands.get(i+8));
+
             }
 
             i++;
