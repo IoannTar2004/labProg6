@@ -1,8 +1,9 @@
 package src.tools;
 
+import src.fieldSupport.Checks;
+
 import java.io.File;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class ProgramStart {
     public static void start() {
@@ -27,6 +28,7 @@ public class ProgramStart {
                         "\t\t<cavedepth>3.04</cavedepth>\n" +
                         "\t</object>\n" +
                         "</root>\n");
+                break;
             } else if(data.matches("\\s*n\\s*")) {break;}
             else {System.out.println("(y - да, n - нет)");}
         } while (true);
@@ -36,8 +38,18 @@ public class ProgramStart {
         File file;
         do {
             data = scanner.nextLine();
-            file = new File(data);
-            if(!file.exists()) {System.out.println("Файл не наден!");}
-        } while (!file.exists());
+            file = Checks.fileChecker(data);
+            if (file != null) {break;}
+        } while (true);
+
+        System.out.println("Считать данные из файла? (y - да, n - нет)");
+        do {
+            data = scanner.nextLine();
+            if(data.matches("\\s*y\\s*")) {
+                XMLReader.parse(file);
+                break;
+            } else if(data.matches("\\s*n\\s*")) {break;}
+            else {System.out.println("(y - да, n - нет)");}
+        } while (true);
     }
 }

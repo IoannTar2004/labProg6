@@ -2,7 +2,7 @@ package src.commands;
 
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
-import src.fieldSupport.RegexChecker;
+import src.fieldSupport.Checks;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -17,7 +17,7 @@ public class CommandAdd {
         String name;
         do {
             data = scanner.nextLine();
-            name = RegexChecker.nameCheck(data);
+            name = Checks.nameCheck(data);
             if (name == null) {
                 System.out.println("Имя не может быть пустым!");
             }
@@ -28,7 +28,7 @@ public class CommandAdd {
         Coordinates coordinates;
         do {
             data = scanner.nextLine();
-            coordinates = RegexChecker.coordinatesChecker(data);
+            coordinates = Checks.coordinatesChecker(data);
             if(coordinates == null) {
                 System.out.println("Введите два целых числа через пробел!");
             }
@@ -39,7 +39,7 @@ public class CommandAdd {
         int age;
         do {
             data = scanner.nextLine();
-            age = RegexChecker.ageChecker(data);
+            age = Checks.ageChecker(data);
             if (age == -1) {
                 System.out.println("Введите целое положительное число!");
             }
@@ -84,7 +84,7 @@ public class CommandAdd {
         DragonCave cave;
         do {
             data = scanner.nextLine();
-            cave = RegexChecker.caveChecker(data);
+            cave = Checks.caveChecker(data);
             if(cave == null) {
                 System.out.println("Введите дробное число через точку!");
             }
@@ -105,14 +105,14 @@ public class CommandAdd {
                                          String cave) {
         int count = 0;
 
-        if (RegexChecker.nameCheck(name) != null) {count++;}
+        if (Checks.nameCheck(name) != null) {count++;}
         else {return;}
 
-        Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
+        Coordinates coordinates1 = Checks.coordinatesChecker(coordinates);
         if(coordinates1 != null) {count++;}
         else {return;}
 
-        int age1 = RegexChecker.ageChecker(age);
+        int age1 = Checks.ageChecker(age);
         if (age1 != -1){count++;} else {return;}
 
         Color color1 = Color.getColorByNumber(color);
@@ -124,7 +124,7 @@ public class CommandAdd {
         DragonCharacter character1 = DragonCharacter.getCharacterByNumber(character);
         if (character1 != null){count++;} else {return;}
 
-        DragonCave cave1 = RegexChecker.caveChecker(cave);
+        DragonCave cave1 = Checks.caveChecker(cave);
         if (cave1 != null){count++;} else {return;}
 
         Long id = IdGenerator.generate();

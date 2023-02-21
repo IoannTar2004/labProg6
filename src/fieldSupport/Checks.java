@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class RegexChecker {
+public class Checks {
 
     public static String nameCheck(String name) {
         if (name.matches("\\s*")) {
@@ -64,24 +64,8 @@ public class RegexChecker {
     }
 
     public static File fileChecker(String filename) {
-        Pattern pattern = Pattern.compile("\\s*.*\\s+(.*)\\s*");
-        Matcher matcher = pattern.matcher(filename);
-
-        Pattern pattern1 = Pattern.compile("\\s*(.*)\\s*");
-        Matcher matcher1 = pattern1.matcher(filename);
-
-        Pattern pattern_noargument = Pattern.compile("\\s*.\\S*\\s*");
-        Matcher matcher_noargument = pattern_noargument.matcher(filename);
-
-        if(matcher.matches() || matcher1.matches()) {
-            filename = matcher.matches() ? matcher.group(1) : matcher1.group(1);
-            try {
-                return new File(System.getenv(filename));
-            } catch (NullPointerException e) {System.out.println("Файл не найден!");}
-        } else if (matcher_noargument.matches()) {
-            System.out.println("Команда должна содержать путь до файла в качестве аргумента!");
-        }
-
+        File file = new File(filename);
+        if (file.exists()) {return file;}
         return null;
     }
 }

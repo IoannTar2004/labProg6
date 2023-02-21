@@ -1,13 +1,13 @@
 package src.commands;
 
 import src.collectionClasses.*;
-import src.fieldSupport.RegexChecker;
+import src.fieldSupport.Checks;
 
 import java.util.Scanner;
 
 public class CommandUpdateId {
     public static void execute(String command) {
-        Dragon dragon = RegexChecker.idChecker(command);
+        Dragon dragon = Checks.idChecker(command);
         if (dragon == null) {return;}
 
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class CommandUpdateId {
         Coordinates coordinates;
         do {
             data = scanner.nextLine();
-            coordinates = RegexChecker.coordinatesChecker(data);
+            coordinates = Checks.coordinatesChecker(data);
             if(coordinates == null && !data.matches("\\s*")) {
                 System.out.println("Введите два целых числа через пробел!");
             } else if (coordinates != null){
@@ -39,7 +39,7 @@ public class CommandUpdateId {
         int age;
         do {
             data = scanner.nextLine();
-            age = RegexChecker.ageChecker(data);
+            age = Checks.ageChecker(data);
             if (age == -1 && !data.matches("\\s*")) {
                 System.out.println("Введите целое положительное число!");
             } else if (age != -1){
@@ -92,7 +92,7 @@ public class CommandUpdateId {
         DragonCave cave;
         do {
             data = scanner.nextLine();
-            cave = RegexChecker.caveChecker(data);
+            cave = Checks.caveChecker(data);
             if(cave == null && !data.matches("\\s*")) {
                 System.out.println("Введите дробное число через точку!");
             } else if (cave != null){;
@@ -106,18 +106,18 @@ public class CommandUpdateId {
 
     public static void executeWithScript(String command, String name, String coordinates, String age,
                                          String color, String type, String character, String cave) {
-        Dragon dragon = RegexChecker.idChecker(command);
+        Dragon dragon = Checks.idChecker(command);
         if (dragon == null) {return;}
 
         //имя
         if ((!name.matches("\\s*"))) {CollectionManager.updateName(dragon, name);}
 
         //координаты
-        Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
+        Coordinates coordinates1 = Checks.coordinatesChecker(coordinates);
         if (coordinates1 != null) {CollectionManager.updateCoordinates(dragon, coordinates1);}
 
         //возраст
-        int age1 = RegexChecker.ageChecker(age);
+        int age1 = Checks.ageChecker(age);
         if (age1 != -1) {CollectionManager.updateAge(dragon, age1);}
 
         //цвет
@@ -133,7 +133,7 @@ public class CommandUpdateId {
         if (character1 != null) {CollectionManager.updateCharacter(dragon, character1);}
 
         //пещера
-        DragonCave cave1 = RegexChecker.caveChecker(cave);
+        DragonCave cave1 = Checks.caveChecker(cave);
         if (cave1 != null) {CollectionManager.updateCave(dragon, cave1);}
     }
 }

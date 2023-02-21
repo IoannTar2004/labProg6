@@ -5,9 +5,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import src.fieldSupport.IdChecker;
-import src.fieldSupport.RegexChecker;
+import src.fieldSupport.Checks;
 import src.collectionClasses.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -47,7 +46,7 @@ public class XMLReader {
 
             String name = null;
             try {
-                name = RegexChecker.nameCheck(element.getElementsByTagName("name").item(0).getTextContent());
+                name = Checks.nameCheck(element.getElementsByTagName("name").item(0).getTextContent());
                 if (name == null) {
                     System.out.println("Имя не может быть пустым!" + error);
                     create = false;
@@ -61,7 +60,7 @@ public class XMLReader {
 
             Coordinates coordinates = null;
             try {
-                coordinates = RegexChecker.coordinatesChecker(element.getElementsByTagName("coordinates").item(0).getTextContent());
+                coordinates = Checks.coordinatesChecker(element.getElementsByTagName("coordinates").item(0).getTextContent());
                 if (coordinates == null) {
                     System.out.println("Координаты должны быть записаны в виде двух чисел через пробел или точку с запятой" +
                             error);
@@ -76,7 +75,7 @@ public class XMLReader {
 
             int age = -1;
             try {
-                age = RegexChecker.ageChecker(element.getElementsByTagName("age").item(0).getTextContent());
+                age = Checks.ageChecker(element.getElementsByTagName("age").item(0).getTextContent());
                 if (age == -1) {
                     System.out.println("Возраст должен быть целым положительным числом!" + error);
                     create = false;
@@ -133,7 +132,7 @@ public class XMLReader {
 
             DragonCave cave = null;
             try {
-                cave = RegexChecker.caveChecker(element.getElementsByTagName("cavedepth").item(0).getTextContent());
+                cave = Checks.caveChecker(element.getElementsByTagName("cavedepth").item(0).getTextContent());
                 if (cave == null) {
                     System.out.println("Глубина пещеры должна быть записана в виде дробного числа через точку!" + error);
                     create = false;

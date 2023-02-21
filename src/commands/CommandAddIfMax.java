@@ -2,7 +2,7 @@ package src.commands;
 
 import src.collectionClasses.*;
 import src.fieldSupport.MaxField;
-import src.fieldSupport.RegexChecker;
+import src.fieldSupport.Checks;
 import src.tools.IdGenerator;
 
 import java.util.Date;
@@ -60,7 +60,7 @@ public class CommandAddIfMax {
         String name, maxName;
         do {
             data = scanner.nextLine();
-            name = RegexChecker.nameCheck(data);
+            name = Checks.nameCheck(data);
             maxName = MaxField.maxName();
             checkField = true;
 
@@ -83,7 +83,7 @@ public class CommandAddIfMax {
         Long sumMax;
         do {
             data = scanner.nextLine();
-            coordinates = RegexChecker.coordinatesChecker(data);
+            coordinates = Checks.coordinatesChecker(data);
             sumMax = MaxField.maxSumCoordinates();
             checkField = true;
 
@@ -105,7 +105,7 @@ public class CommandAddIfMax {
         int age, maxAge;
         do {
             data = scanner.nextLine();
-            age = RegexChecker.ageChecker(data);
+            age = Checks.ageChecker(data);
             maxAge = MaxField.maxAge();
             checkField = true;
 
@@ -203,7 +203,7 @@ public class CommandAddIfMax {
         double maxCave;
         do {
             data = scanner.nextLine();
-            cave = RegexChecker.caveChecker(data);
+            cave = Checks.caveChecker(data);
             maxCave = MaxField.maxCave();
             checkField = true;
             if (cave == null) {
@@ -241,17 +241,17 @@ public class CommandAddIfMax {
         if(matcher.matches()) {count++;} else {return;}
 
         String nameMax = MaxField.maxName();
-        if (RegexChecker.nameCheck(name) != null && !field.equals("1")) {count++;}
+        if (Checks.nameCheck(name) != null && !field.equals("1")) {count++;}
         else if (name.compareTo(nameMax) > 0 && field.equals("1")) {count++;}
         else {return;}
 
-        Coordinates coordinates1 = RegexChecker.coordinatesChecker(coordinates);
+        Coordinates coordinates1 = Checks.coordinatesChecker(coordinates);
         Long sum = MaxField.maxSumCoordinates();
         if(coordinates1 != null && !field.equals("2")) {count++;}
         else if (coordinates1.sum() > sum && field.equals("2")) {count++;}
         else {return;}
 
-        int age1 = RegexChecker.ageChecker(age);
+        int age1 = Checks.ageChecker(age);
         int maxAge = MaxField.maxAge();
         if (age1 != -1 && !field.equals("3")){count++;}
         else if (age1 > maxAge && field.equals("3")) {count++;}
@@ -275,7 +275,7 @@ public class CommandAddIfMax {
         else if (character1.ordinal()+1 > maxCharacter && field.equals("6")){count++;}
         else {return;}
 
-        DragonCave cave1 = RegexChecker.caveChecker(cave);
+        DragonCave cave1 = Checks.caveChecker(cave);
         double maxCave = MaxField.maxCave();
         if (cave1 != null && !field.equals("7")){count++;}
         else if (cave1.getDepth() > maxCave && field.equals("7")) {count++;}
