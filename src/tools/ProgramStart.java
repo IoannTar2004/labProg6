@@ -1,6 +1,7 @@
 package src.tools;
 
 import src.fieldSupport.Checks;
+import src.fieldSupport.FileManager;
 
 import java.io.File;
 import java.util.Scanner;
@@ -39,7 +40,10 @@ public class ProgramStart {
         do {
             data = scanner.nextLine();
             file = Checks.fileChecker(data);
-            if (file != null) {break;}
+            if (file != null) {
+                FileManager.setFile(file);
+                break;
+            }
         } while (true);
 
         System.out.println("Считать данные из файла? (y - да, n - нет)");

@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-	<object id = "589276004769">
-		<name>Walera</name>
-		<coordinates>1; 1</coordinates>
-		<age>1</age>
-		<color>Чёрный</color>
-		<type>Водный</type>
-		<character>Хитрый</character>
-		<cavedepth>18.0</cavedepth>
-	</object>
-	<object id = "593378632510">
-		<name>ss</name>
-		<coordinates>2; 2</coordinates>
-		<age>3</age>
-		<color>Жёлтый</color>
-		<type>Огненный</type>
-		<character>Хаотичный</character>
-		<cavedepth>56.09</cavedepth>
-	</object>
+    <object id = "593378632510">
+        <name>ss</name>
+        <coordinates>2; 2</coordinates>
+        <age>3</age>
+        <color>Жёлтый</color>
+        <type>Огненный</type>
+        <character>Хаотичный</character>
+        <cavedepth>56.09</cavedepth>
+    </object>
 </root>

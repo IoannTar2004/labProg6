@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 
@@ -25,8 +26,11 @@ public class XMLReader {
         try {
             DocumentBuilder dbuilder = dbfact.newDocumentBuilder();
             document = dbuilder.parse(xml);
-        } catch (SAXException | IOException | ParserConfigurationException e) {
+        } catch (SAXException | ParserConfigurationException e) {
             System.out.println("XML-файл не валиден! Проверьте теги!");
+            System.exit(0);
+        } catch (IOException e) {
+            System.out.println("Файл куда-то пропал!");
             System.exit(0);
         }
         NodeList nodeList = document.getElementsByTagName("object");

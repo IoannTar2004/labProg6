@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.fieldSupport.Checks;
+import src.fieldSupport.FileManager;
 import src.tools.XMLWriteParser;
 
 import java.io.File;
@@ -15,9 +16,16 @@ public class CommandSave {
         File file;
         String data;
 
+        System.out.println("Введите название переменной окружения, " +
+                "куда вы хотите сохранить или нажмите 'Enter', если хотите сохранить в текущий файл.");
+
         do {
             data = scanner.nextLine();
-            file = Checks.fileChecker(data);
+            if (!data.matches("\\s*")) {
+                file = Checks.fileChecker(data);
+            } else {
+                file = FileManager.getFile();
+            }
         } while (file == null);
 
         try {
