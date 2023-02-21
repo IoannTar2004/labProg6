@@ -2,6 +2,7 @@ package src.fieldSupport;
 
 import src.collectionClasses.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,8 +65,11 @@ public class Checks {
     }
 
     public static File fileChecker(String filename) {
-        File file = new File(filename);
-        if (file.exists()) {return file;}
+        try {
+            return new File(System.getenv(filename));
+        } catch (NullPointerException e) {
+            System.out.println("Файл не найден!");
+        }
         return null;
     }
 }
