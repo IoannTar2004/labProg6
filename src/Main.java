@@ -1,10 +1,7 @@
 package src;
 
 import org.xml.sax.SAXException;
-import src.tools.Invoker;
-import src.tools.ProgramStart;
-import src.tools.XMLReader;
-import src.tools.XMLWriteParser;
+import src.tools.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;

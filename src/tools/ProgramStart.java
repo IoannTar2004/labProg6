@@ -51,5 +51,7 @@ public class ProgramStart {
             } else if(data.matches("\\s*n\\s*")) {break;}
             else {System.out.println("(y - да, n - нет)");}
         } while (true);
+
+        System.out.println("\nПрограмма готова к работе. Введите команду help, чтобы посмотреть все команды.\n");
     }
 }

@@ -2,7 +2,6 @@ package src.fieldSupport;
 
 import src.collectionClasses.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,14 +51,23 @@ public class Checks {
     }
 
     public static Dragon idChecker(String command) {
-        Long id = IdChecker.check(command);
-        if (id != -1) {
-            for (int i = 0; i < CollectionManager.length(); i++) {
-                Dragon dragon = CollectionManager.getDragonById(id);
+        Pattern pattern = Pattern.compile("\\s*.\\S*\\s+(-?\\d+)\\s*");
+        Matcher matcher = pattern.matcher(command);
 
-                if (dragon != null) {return dragon;}
+        if(matcher.matches()) {
+            command = matcher.group(1);
+            Long id = IdChecker.check(command);
+            if (id != -1) {
+                Dragon dragon = CollectionManager.getDragonById(id);
+                if (dragon != null) {
+                    return dragon;
+                } else {
+                    System.out.println("Объекта с таким id не существует!");
+                }
             }
-            System.out.println("Объекта с таким id не существует!");
+
+        } else {
+            System.out.println("Команда должна содеражть аргумент в виде id!");
         }
         return null;
     }
