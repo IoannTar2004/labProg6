@@ -96,14 +96,14 @@ public class Checks {
     }
 
     public static File fileChecker(String filename) {
-        Pattern pattern = Pattern.compile("\\s*(.\\S*)\\s*");
+        Pattern pattern = Pattern.compile("\\s*(\\S.*)\\s*");
         Matcher matcher = pattern.matcher(filename);
         if (matcher.matches()) {filename = matcher.group(1);}
         try {
-            return new File(System.getenv(filename));
-        } catch (NullPointerException e) {
-            System.out.println("Файл не найден!");
-        }
+            File file = new File(System.getenv(filename));
+            if (file.exists()) {return file;}
+        } catch (NullPointerException ignored) {}
+        System.out.println("Файл не найден!");
         return null;
     }
 }
