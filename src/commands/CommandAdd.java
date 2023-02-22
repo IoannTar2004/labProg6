@@ -43,7 +43,7 @@ public class CommandAdd {
             if (age == -1) {
                 System.out.println("Введите целое положительное число!");
             }
-        } while(age == -1);
+        } while(age <= -1);
 
         //цвет
         System.out.println("Введите номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)");

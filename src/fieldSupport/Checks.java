@@ -18,10 +18,24 @@ public class Checks {
     public static Coordinates coordinatesChecker(String coor) {
         Pattern pattern = Pattern.compile("\\s*(-?\\d+((\\s*;\\s*)|(\\s+))-?\\d+)\\s*");
         Matcher matcher = pattern.matcher(coor);
+        int x; Long y;
 
         if (matcher.matches()) {
             String[] coordinates = matcher.group(1).split("(\\s*;\\s*)|(\\s+)");
-            Coordinates coordinates1 = new Coordinates(Integer.parseInt(coordinates[0]), Long.parseLong(coordinates[1]));
+            try {
+                x = Integer.parseInt(coordinates[0]);
+            } catch (NumberFormatException e) {
+                System.out.println("Превышен формат числа x: введите число меньше 2 147 483 648");
+                return null;
+            }
+
+            try {
+                y = Long.parseLong(coordinates[1]);
+            } catch (NumberFormatException e) {
+                System.out.println("Превышен формат числа y: введите число меньше " + Long.MAX_VALUE + " + 1");
+                return null;
+            }
+            Coordinates coordinates1 = new Coordinates(x, y);
             return coordinates1;
         }
         return null;
@@ -33,7 +47,12 @@ public class Checks {
 
         if(matcher.matches()) {
             age = matcher.group(1);
-            return Integer.parseInt(age);
+            try {
+                return Integer.parseInt(age);
+            } catch (NumberFormatException e) {
+                System.out.println("Превышен формат числа: введите число меньше 2 147 483 648");
+                return -2;
+            }
         }
         return -1;
     }
@@ -44,8 +63,12 @@ public class Checks {
 
         if (matcher.matches()) {
             cave = matcher.group(1);
-            DragonCave cave1 = new DragonCave(Double.parseDouble(cave));
-            return cave1;
+            try {
+                DragonCave cave1 = new DragonCave(Double.parseDouble(cave));
+                return cave1;
+            } catch (NumberFormatException e) {
+                System.out.println("Превышен формат числа: введите число меньше " + Double.MAX_VALUE);
+            }
         }
         return null;
     }
@@ -73,6 +96,9 @@ public class Checks {
     }
 
     public static File fileChecker(String filename) {
+        Pattern pattern = Pattern.compile("\\s*(.\\S*)\\s*");
+        Matcher matcher = pattern.matcher(filename);
+        if (matcher.matches()) {filename = matcher.group(1);}
         try {
             return new File(System.getenv(filename));
         } catch (NullPointerException e) {
