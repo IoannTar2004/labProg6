@@ -2,10 +2,19 @@ package src.tools;
 
 import src.commands.*;
 
+import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * command selection for commands from script files.
+ */
 public abstract class ScriptInvoker {
+    /**
+     * ScriptInvoker.invoke() works also as {@link Invoker#invoke()} but processes {@link ScriptReader#read(File)} list of commands}.
+     *
+     * @param commands list of commands from script file
+     */
     public static void invoke(List<String> commands) {
         int i = 0;
         while(!Objects.equals(commands.get(i), "")) {

@@ -1,5 +1,8 @@
 package src.collectionClasses;
 
+/**
+ * Enums of dragon's type
+ */
 public enum DragonType {
     WATER("Водный"), UNDERGROUND("Подземельный"), AIR("Воздушный"), FIRE("Огненный");
 
@@ -12,6 +15,11 @@ public enum DragonType {
         return type;
     }
 
+    /**
+     *
+     * @param type type in Russian
+     * @return DragonType
+     */
     public static DragonType getEnumType(String type) {
         if (type.matches("\\s*Водный\\s*")) {return WATER;}
         else if (type.matches("\\s*Подземельный\\s*")) {return UNDERGROUND;}
@@ -21,6 +29,11 @@ public enum DragonType {
         return null;
     }
 
+    /**
+     *
+     * @param type ordinal+1 type
+     * @return DragonType
+     */
     public static DragonType getTypeByNumber(String type) {
         if (type.matches("\\s*1\\s*")) {return WATER;}
         else if (type.matches("\\s*2\\s*")) {return UNDERGROUND;}

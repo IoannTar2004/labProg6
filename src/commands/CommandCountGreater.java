@@ -6,7 +6,14 @@ import src.collectionClasses.Dragon;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Count amount of objects which have greater age than entered.
+ */
 public class CommandCountGreater {
+    /**
+     * Method checks if the age entered correctly then runs {@link CommandCountGreater#execute(int)}. If this is not the case print mistake messages.
+     * @param command command with argument as dragon's age
+     */
     public static void preexecute(String command) {
         String age;
         Pattern pattern = Pattern.compile("\\s*count_greater_than_age\\s+([1-9][0-9]*)\\s*");
@@ -36,6 +43,9 @@ public class CommandCountGreater {
         }
     }
 
+    /**
+     * Count amount of objects which have greater age than entered.
+     */
     private static void execute(int age) {
         int count = 0;
         for (int i = 0; i < CollectionManager.length(); i++) {

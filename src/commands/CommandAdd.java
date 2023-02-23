@@ -2,12 +2,18 @@ package src.commands;
 
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
-import src.fieldSupport.Checks;
+import src.support.Checks;
 
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Add object to collection.
+ */
 public class CommandAdd {
+    /**
+     * Triggers when user enters this command to terminal
+     */
     public static void execute() {
         Scanner scanner = new Scanner(System.in);
         String data;
@@ -93,14 +99,22 @@ public class CommandAdd {
         //id
         Long id = IdGenerator.generate();
 
-        //date
-        Date date = new Date();
-        Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, date);
+        Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, new Date());
 
         CollectionManager.add(dragon);
         System.out.println("Объект добавлен в коллекцию!\n");
     }
 
+    /**
+     * Triggers when command is from script file. Object is not created if at least one of the argument is invalid.
+     * @param name name
+     * @param coordinates two coordinates separated by a space or semicolon
+     * @param age age
+     * @param color ordinal+1 of color
+     * @param type ordinal+1 of type
+     * @param character ordinal+1 of character
+     * @param cave cave depth
+     */
     public static void executeWithScript(String name, String coordinates, String age, String color, String type, String character,
                                          String cave) {
         int count = 0;
@@ -129,11 +143,8 @@ public class CommandAdd {
 
         Long id = IdGenerator.generate();
 
-        //дата
-        Date date = new Date();
-
         if (count == 7) {
-            Dragon dragon = new Dragon(id, name, coordinates1, age1, color1, type1, character1, cave1, date);
+            Dragon dragon = new Dragon(id, name, coordinates1, age1, color1, type1, character1, cave1, new Date());
             CollectionManager.add(dragon);
         }
     }

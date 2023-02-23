@@ -1,11 +1,17 @@
 package src.commands;
 
-import src.fieldSupport.Sort;
+import src.support.Sort;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Prints objects in descending order by its value of field.
+ */
 public class CommandPrintDescending {
+    /**
+     * Triggers when user enters this command to terminal
+     */
     public static void execute() {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
@@ -31,6 +37,10 @@ public class CommandPrintDescending {
         } while (!matcher.matches());
     }
 
+    /**
+     * Triggers when command is from script file. Object is not created if at least one of the argument is invalid.
+     * @param arg number of field
+     */
     public static void executeWithScript(String arg) {
         Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
         Matcher matcher;

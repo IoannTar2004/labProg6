@@ -3,6 +3,9 @@ package src.collectionClasses;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * Controls the collection
+ */
 public class CollectionManager {
     private static Deque<Dragon> dragons = new ArrayDeque<>();
 
@@ -15,9 +18,7 @@ public class CollectionManager {
     public static void remove(Dragon dragon) {
         dragons.remove(dragon);
     }
-    public static void removeAll() {
-        dragons.removeAll(dragons);
-    }
+    public static void clear() {dragons.clear();}
     public static void remove_first() {
         dragons.removeFirst();
     }

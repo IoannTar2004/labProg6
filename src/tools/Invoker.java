@@ -4,7 +4,14 @@ import src.commands.*;
 
 import java.util.Scanner;
 
+/**
+ * command selection
+ */
+
 public abstract class Invoker {
+    /**
+     * This method captures entered command and checks it using RegEx. It works while user enters command "exit".
+     */
     public static void invoke() {
         CommandInfo.date();
         Scanner scanner = new Scanner(System.in);

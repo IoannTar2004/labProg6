@@ -1,8 +1,8 @@
 package src.commands;
 
 import src.collectionClasses.*;
-import src.fieldSupport.MaxField;
-import src.fieldSupport.Checks;
+import src.support.MaxField;
+import src.support.Checks;
 import src.tools.IdGenerator;
 
 import java.util.Date;
@@ -10,7 +10,14 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Add object to collection if max value of one field is less than entered value.
+ */
 public class CommandAddIfMax {
+
+    /**
+     * Triggers when user enters this command to terminal
+     */
     public static void execute() {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
@@ -230,6 +237,17 @@ public class CommandAddIfMax {
         System.out.println("Объект добавлен в коллекцию!\n");
     }
 
+    /**
+     * Triggers when command is from script file. Object is not created if at least one of the argument is invalid or less than max.
+     * @param field number of field whose value must be greater
+     * @param name name
+     * @param coordinates two coordinates separated by a space or semicolon
+     * @param age age
+     * @param color ordinal+1 of color
+     * @param type ordinal+1 of type
+     * @param character ordinal+1 of character
+     * @param cave cave depth
+     */
     public static void executeWithScript(String field, String name, String coordinates,
                                          String age, String color, String type, String character,
                                          String cave) {

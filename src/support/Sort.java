@@ -1,16 +1,22 @@
-package src.fieldSupport;
+package src.support;
 
 import src.collectionClasses.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
+/**
+ * class for sort objects in collection
+ */
 public class Sort {
 
+    protected static List<Dragon> sortlist = new ArrayList<>();
+    /**
+     * Sort elements in collection using inner classes which implement Comparator interface and print them.
+     * @param fieldNum number of {@link Dragon} field (1 - name, 2 - coordinates, 3 - age, etc).
+     */
     public static void sort(String fieldNum) {
-        List<Dragon> sortlist = new ArrayList<>(CollectionManager.getAll());
+        sortlist.clear();
+        sortlist.addAll(CollectionManager.getAll());
         switch (fieldNum) {
             case "1" -> sortlist.sort(new SortByName());
             case "2" -> sortlist.sort(new SortByCoordinates());
@@ -28,6 +34,7 @@ public class Sort {
             CollectionManager.element(sortlist.get(i));
         }
         System.out.println();
+        sortlist.clear();
     }
 
 
@@ -40,12 +47,7 @@ public class Sort {
     public static class SortByCoordinates extends Sort implements Comparator<Dragon> {
         @Override
         public int compare(Dragon d1, Dragon d2) {
-            int d1x = Integer.parseInt(d1.getCoordinates().split("; ")[0]);
-            int d1y = Integer.parseInt(d1.getCoordinates().split("; ")[1]);
-            int d2x = Integer.parseInt(d2.getCoordinates().split("; ")[0]);
-            int d2y = Integer.parseInt(d1.getCoordinates().split("; ")[1]);
-
-            return d2x + d2y - d1x + d1y;
+            return d1.getSumCoordinate().compareTo(d2.getSumCoordinate());
         }
     }
 
@@ -86,7 +88,7 @@ public class Sort {
     public static class SortByCave extends Sort implements Comparator<Dragon>{
         @Override
         public int compare(Dragon d1, Dragon d2) {
-            return (int) (d2.getCave()-d1.getCave());
+            return (int) (d1.getCave()-d2.getCave());
         }
     }
 }

@@ -1,5 +1,8 @@
 package src.collectionClasses;
 
+/**
+ * Enums of dragon's character
+ */
 public enum DragonCharacter {
     CUNNING("Хитрый"), EVIL("Злой"), CHAOTIC("Хаотичный");
 
@@ -12,6 +15,11 @@ public enum DragonCharacter {
         return character;
     }
 
+    /**
+     *
+     * @param character character in Russian
+     * @return DragonCharacter
+     */
     public static DragonCharacter getEnumCharacter(String character) {
         if (character.matches("\\s*Хитрый\\s*")) {return CUNNING;}
         else if (character.matches("\\s*Злой\\s*")) {return EVIL;}
@@ -20,6 +28,11 @@ public enum DragonCharacter {
         return null;
     }
 
+    /**
+     *
+     * @param character ordinal+1 character
+     * @return DragonCharacter
+     */
     public static DragonCharacter getCharacterByNumber(String character) {
         if (character.matches("\\s*1\\s*")) {return CUNNING;}
         else if (character.matches("\\s*2\\s*")) {return EVIL;}

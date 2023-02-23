@@ -6,7 +6,15 @@ import src.collectionClasses.Dragon;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Prints objects if they have a same cave depth
+ */
 public class CommandFilterByCave {
+    /**
+     * Method checks if the cave depth entered correctly then runs {@link CommandFilterByCave#execute(double)}.
+     * If this is not the case print mistake messages.
+     * @param command command with argument as dragon's cave depth
+     */
     public static void preexecute(String command) {
         String cave;
         Pattern pattern = Pattern.compile("\\s*filter_by_cave\\s+(-?\\d+\\.\\d+)\\s*");
@@ -30,6 +38,9 @@ public class CommandFilterByCave {
         }
     }
 
+    /**
+     * Prints objects if they have a same cave depth.
+     */
     private static void execute(double cave) {
         boolean check = false;
         for (int i = 0; i < CollectionManager.length(); i++) {

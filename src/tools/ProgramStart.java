@@ -1,12 +1,15 @@
 package src.tools;
 
-import src.fieldSupport.Checks;
-import src.fieldSupport.FileManager;
+import src.support.Checks;
+import src.support.FileManager;
 
 import java.io.File;
 import java.util.Scanner;
 
 public class ProgramStart {
+    /**
+     * This method runs at the beginning. It explains basic things of this program and requests initial xml file.
+     */
     public static void start() {
         Scanner scanner = new Scanner(System.in);
         String data;

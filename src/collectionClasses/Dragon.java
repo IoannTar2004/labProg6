@@ -2,6 +2,9 @@ package src.collectionClasses;
 
 import java.util.Date;
 
+/**
+ * Class Dragon whose objects stored in Java Collection and xml file
+ */
 public class Dragon {
     private long id;
     private String name;
@@ -13,7 +16,18 @@ public class Dragon {
     private DragonCharacter character;
     private DragonCave cave;
 
-    public Dragon() {}
+    /**
+     *
+     * @param id "Long"; 12-digit number
+     * @param name notNull string
+     * @param coordinates {@link Coordinates coordinates (x, y)}
+     * @param age integer positive number
+     * @param color {@link Color color}
+     * @param type {@link DragonType type}
+     * @param character {@link DragonCharacter character}
+     * @param cave fractional number separated by a dot {@link DragonCave}
+     * @param date date of creation
+     */
     public Dragon(Long id, String name, Coordinates coordinates, int age, Color color, DragonType type, DragonCharacter character,
                   DragonCave cave, Date date) {
         this.id = id;
@@ -40,15 +54,12 @@ public class Dragon {
                 "глубина пещеры: " + this.cave.getDepth();
     }
 
-    public String getName() {
-        return name;
-    }
-    public long getId() {
-        return id;
-    }
+    public String getName() {return name;}
+    public long getId() {return id;}
     public String getCoordinates() {
         return coordinates.toString();
     }
+    public Long getSumCoordinate() {return coordinates.getX() + coordinates.getY();}
     public Integer getAge() {
         return age;
     }
@@ -93,9 +104,5 @@ public class Dragon {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
     }
 }

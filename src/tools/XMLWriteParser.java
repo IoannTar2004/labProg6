@@ -2,10 +2,12 @@ package src.tools;
 
 import src.collectionClasses.*;
 
-import java.io.IOException;
-
 public class XMLWriteParser {
-    public static String parse() throws IOException {
+    /**
+     * It forms xml strings reading collection of {@link Dragon dragons}.
+     * @return The finished xml String.
+     */
+    public static String parse() {
         String data = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
         data = data + "<root>\n";

@@ -1,7 +1,7 @@
 package src.commands;
 
-import src.fieldSupport.Checks;
-import src.fieldSupport.FileManager;
+import src.support.Checks;
+import src.support.FileManager;
 import src.tools.XMLWriteParser;
 
 import java.io.File;
@@ -10,7 +10,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Saves collection to entered xml file.
+ */
 public class CommandSave {
+    /**
+     * Saves collection to entered xml file.
+     */
     public static void execute(){
         Scanner scanner = new Scanner(System.in);
         File file;

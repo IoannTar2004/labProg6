@@ -1,7 +1,10 @@
-package src.fieldSupport;
+package src.support;
 
 import java.io.File;
 
+/**
+ * class for saving an initial file
+ */
 public class FileManager {
     private static File file;
 

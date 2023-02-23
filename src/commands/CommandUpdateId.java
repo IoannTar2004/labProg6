@@ -1,11 +1,17 @@
 package src.commands;
 
 import src.collectionClasses.*;
-import src.fieldSupport.Checks;
+import src.support.Checks;
 
 import java.util.Scanner;
 
+/**
+ * Changes {@link Dragon dragon's fields} by its ID.
+ */
 public class CommandUpdateId {
+    /**
+     * Triggers when user enters this command to terminal
+     */
     public static void execute(String command) {
         Dragon dragon = Checks.idChecker(command);
         if (dragon == null) {return;}
@@ -103,7 +109,17 @@ public class CommandUpdateId {
         System.out.println("Данные объекта изменены!\n");
     }
 
-
+    /**
+     * Triggers when command is from script file. Object is not created if at least one of the argument is invalid.
+     * @param command commend "update 'id'"
+     * @param name name
+     * @param coordinates two coordinates separated by a space or semicolon
+     * @param age age
+     * @param color ordinal+1 of color
+     * @param type ordinal+1 of type
+     * @param character ordinal+1 of character
+     * @param cave cave depth
+     */
     public static void executeWithScript(String command, String name, String coordinates, String age,
                                          String color, String type, String character, String cave) {
         Dragon dragon = Checks.idChecker(command);

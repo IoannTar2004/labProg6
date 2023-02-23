@@ -1,6 +1,12 @@
 package src.commands;
 
-public class CommandHelp{
+/**
+ * Prints all commands.
+ */
+public class CommandHelp {
+    /**
+     * Prints all commands.
+     */
     public static void execute() {
         System.out.println("info : вывод информации о коллекции;\n" +
                 "show : вывод всех элементов коллекции;\n" +

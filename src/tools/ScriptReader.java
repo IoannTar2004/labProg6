@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptReader {
+    /**
+     * Reads entered script file with commands.
+     * @param file script file
+     * @return list of commands
+     */
     public static List<String> read(File file) {
         List<String> commands = new ArrayList<>();
         String command;

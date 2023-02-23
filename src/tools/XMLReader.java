@@ -5,19 +5,22 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import src.fieldSupport.IdChecker;
-import src.fieldSupport.Checks;
+import src.support.IdChecker;
+import src.support.Checks;
 import src.collectionClasses.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 
 public class XMLReader {
+    /**
+     * Reads initial xml file during {@link ProgramStart#start() programm start}. Method can print mistakes pointing to the object.
+     * @param xml xml file
+     */
     public static void parse(File xml) {
         boolean start = true;
 
@@ -46,6 +49,13 @@ public class XMLReader {
                 System.out.println(error);
                 create = false;
                 start = false;
+            } else {
+                Dragon dragon = CollectionManager.getDragonById(id);
+                if (dragon != null) {
+                    System.out.println("Объект с id: \"" + element.getAttribute("id") + "\" уже существует");
+                    create = false;
+                    start = false;
+                }
             }
 
             String name = null;
@@ -148,11 +158,8 @@ public class XMLReader {
                 start = false;
             }
 
-
-            Date date = new Date();
-
             if (create) {
-                Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, date);
+                Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, new Date());
                 CollectionManager.add(dragon);
             }
         }
