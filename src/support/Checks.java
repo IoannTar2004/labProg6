@@ -127,12 +127,14 @@ public class Checks {
     public static File fileChecker(String filename) {
         Pattern pattern = Pattern.compile("\\s*(\\S.*)\\s*");
         Matcher matcher = pattern.matcher(filename);
+
         if (matcher.matches()) {filename = matcher.group(1);}
         try {
             File file = new File(System.getenv(filename));
             if (file.exists()) {return file;}
         } catch (NullPointerException ignored) {}
-        System.out.println("Файл не найден!");
+
+        System.out.println("Файл не найден! Проверьте путь до файла или его права.");
         return null;
     }
 }

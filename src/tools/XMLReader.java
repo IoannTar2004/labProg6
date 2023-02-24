@@ -33,7 +33,7 @@ public class XMLReader {
             System.out.println("XML-файл не валиден! Проверьте теги!");
             System.exit(0);
         } catch (IOException e) {
-            System.out.println("Файл куда-то пропал!");
+            System.out.println("Файл куда-то пропал или были изменены его права!");
             System.exit(0);
         }
         NodeList nodeList = document.getElementsByTagName("object");
