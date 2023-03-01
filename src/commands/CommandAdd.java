@@ -1,5 +1,6 @@
 package src.commands;
 
+import resources.OutputText;
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
 import src.support.Checks;
@@ -25,7 +26,7 @@ public class CommandAdd {
             data = scanner.nextLine();
             name = Checks.nameCheck(data);
             if (name == null) {
-                System.out.println("Имя не может быть пустым!");
+                OutputText.error("EmptyName");
             }
         } while(name == null);
 
@@ -36,7 +37,7 @@ public class CommandAdd {
             data = scanner.nextLine();
             coordinates = Checks.coordinatesChecker(data);
             if(coordinates == null) {
-                System.out.println("Введите два целых числа через пробел!");
+                OutputText.error("CoordinatesIncorrect");
             }
         } while(coordinates == null);
 
@@ -47,7 +48,7 @@ public class CommandAdd {
             data = scanner.nextLine();
             age = Checks.ageChecker(data);
             if (age == -1) {
-                System.out.println("Введите целое положительное число!");
+                OutputText.error("AgeIncorrect");
             }
         } while(age <= -1);
 
@@ -58,7 +59,7 @@ public class CommandAdd {
             data = scanner.nextLine();
             color = Color.getColorByNumber(data);
             if (color == null) {
-                System.out.println("Введите cоответствующий номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)!");
+                OutputText.error("ColorIncorrect");
             }
         } while(color == null);
 
@@ -69,8 +70,7 @@ public class CommandAdd {
             data = scanner.nextLine();
             type = DragonType.getTypeByNumber(data);
             if (type == null) {
-                System.out.println("Введите соответвующий номер типа (Водный - 1, Подземельный - 2, " +
-                        "Воздушный - 3, Огненный - 4)!");
+                OutputText.error("TypeIncorrect");
             }
         } while(type == null);
 
@@ -81,7 +81,7 @@ public class CommandAdd {
             data = scanner.nextLine();
             character = DragonCharacter.getCharacterByNumber(data);
             if (character == null) {
-                System.out.println("Введите соответствующий номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)!");
+                OutputText.error("CharacterIncorrect");
             }
         } while(character == null);
 
@@ -92,7 +92,7 @@ public class CommandAdd {
             data = scanner.nextLine();
             cave = Checks.caveChecker(data);
             if(cave == null) {
-                System.out.println("Введите дробное число через точку!");
+                OutputText.error("CaveIncorrect");
             }
         } while(cave == null);
 

@@ -35,9 +35,24 @@ public class OutputText {
 
     public static void error(String error) {
         switch (error) {
-            case "FileNotFound" ->  System.out.println("Файл не найден! Проверьте путь до файла или его права.");
+            case "FileNotFound" -> System.out.println("Файл не найден! Проверьте путь до файла или его права.");
 
             case "EmptyName" -> System.out.println("Имя не может быть пустым!");
+
+            case "CoordinatesIncorrect" -> System.out.println("Введите два целых числа через пробел!");
+
+            case "AgeIncorrect" -> System.out.println("Введите целое положительное число!");
+
+            case "ColorIncorrect" -> System.out.println("Введите cоответствующий номер цвета " +
+                    "(Чёрный - 1, Синий - 2, Жёлтый - 3)!");
+
+            case "TypeIncorrect" -> System.out.println("Введите соответвующий номер типа " +
+                    "(Водный - 1, Подземельный - 2, Воздушный - 3, Огненный - 4)!");
+
+            case "CharacterIncorrect" -> System.out.println("Введите соответствующий номер характера " +
+                    "(Хитрый - 1, Злой - 2, Хаотичный - 3)!");
+
+            case "CaveIncorrect" -> System.out.println("Введите дробное число через точку!");
         }
     }
 }
