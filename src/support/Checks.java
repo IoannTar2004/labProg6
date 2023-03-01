@@ -1,6 +1,9 @@
 package src.support;
 
+import resources.OutputText;
 import src.collectionClasses.*;
+import src.tools.XMLReader;
+
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -134,7 +137,7 @@ public class Checks {
             if (file.exists()) {return file;}
         } catch (NullPointerException ignored) {}
 
-        System.out.println("Файл не найден! Проверьте путь до файла или его права.");
+        OutputText.error("FileNotFound");
         return null;
     }
 }
