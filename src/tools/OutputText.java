@@ -1,36 +1,16 @@
 package resources;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+/**
+ * class to output texts from .properties files. Contains of temporary methods.
+ */
 public class OutputText {
+    private static final Locale locale = new Locale("ru", "RU");
+    private static final ResourceBundle startInfo = ResourceBundle.getBundle("resources.StartInfo", locale);
     public static void startInformation(String info) {
-        switch (info) {
-            case "CorrectXmlFile" -> System.out.println("Данная программа работает с коллекции типа ArrayDeque. " +
-                    "Cчитывает и записывает данные в xml файл. " +
-                    "Вывести пример правильного xml-файла? (y - да, n - нет)");
-
-            case "Example" -> System.out.println("<root>\n" +
-                    "\t<object id = \"274726478289\">\n" +
-                    "\t\t<name>Ivan</name>\n" +
-                    "\t\t<coordinates>55; 746</coordinates>\n" +
-                    "\t\t<age>3</age>\n" +
-                    "\t\t<color>Чёрный</color>\n" +
-                    "\t\t<type>Воздушный</type>\n" +
-                    "\t\t<character>Злой</character>\n" +
-                    "\t\t<cavedepth>3.04</cavedepth>\n" +
-                    "\t</object>\n" +
-                    "</root>\n");
-
-            case "EnvVar" -> System.out.println("Имена файлов, с которыми работает эта программа, " +
-                    "передаются ей через переменную окружения." +
-                    "Введите название переменной, значение которой содержит полный путь до xml-файла.");
-
-            case "ReadFile" -> System.out.println("Считать данные из файла? (y - да, n - нет)");
-
-            case "ProgramReady" -> System.out.println("\nПрограмма готова к работе. " +
-                    "Введите команду help, чтобы посмотреть все команды.\n");
-
-            case "yes_no" -> System.out.println("(y - да, n - нет)");
-
-        }
+        System.out.println(startInfo.getString(info));
     }
 
     public static void error(String error) {
@@ -61,7 +41,8 @@ public class OutputText {
             case "IdIncorrect5" -> System.out.println("id должен содержать 12 цифр в десятичной сс!");
 
             case "DragonDoesNotExist" -> System.out.println("Объекта с таким id не существует!");
-            case "NoIdArgument" -> System.out.println("Команда должна содержать аргумент в виде id!");
+            case "NoArgument" -> System.out.println("Команда должна содержать аргумент в виде id!");
+            case "NoFileArgument" -> System.out.println("Команда должна содержать путь до файла в качестве аргумента!");
         }
     }
 
