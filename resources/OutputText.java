@@ -55,4 +55,16 @@ public class OutputText {
             case "CaveIncorrect" -> System.out.println("Введите дробное число через точку!");
         }
     }
+
+    public static void input(String input) {
+        switch (input) {
+            case "NameInput" -> System.out.println("Введите имя");
+            case "CoordinatesInput" -> System.out.println("Введите координаты (два целых числа через пробел)");
+            case "AgeInput" -> System.out.println("Введите возраст (целое положительное число)");
+            case "ColorInput" -> System.out.println("Введите номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)");
+            case "TypeInput" -> System.out.println("Введите номер типа (Водный - 1, Подземельный - 2, Воздушный - 3, Огненный - 4)");
+            case "CharacterInput" -> System.out.println("Введите номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)");
+            case "CaveInput" -> System.out.println("Введите дробное число через точку");
+        }
+    }
 }
