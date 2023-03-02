@@ -1,5 +1,7 @@
 package src.support;
 
+import resources.OutputText;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,15 +33,15 @@ public class IdChecker {
             return Long.parseLong(id);
 
         } else if (matcher1.matches()) {
-            System.out.println("id должен содержать 12 цифр!");
+            OutputText.error("IdIncorrect1");
         } else if (matcher3.matches()) {
-            System.out.println("id должен быть положительным!");
+            OutputText.error("IdIncorrect2");
         } else if (matcher4.matches()) {
-            System.out.println("id должен содержать 12 цифр и быть положительным!");
+            OutputText.error("IdIncorrect3");
         } else if (matcher5.matches()) {
-            System.out.println("id должен быть целым положительным числом");
+            OutputText.error("IdIncorrect4");
         }  else {
-            System.out.println("id должен содержать 12 цифр в десятичной сс!");
+            OutputText.error("IdIncorrect5");
         }
         return -1L;
     }

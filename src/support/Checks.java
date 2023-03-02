@@ -2,7 +2,6 @@ package src.support;
 
 import resources.OutputText;
 import src.collectionClasses.*;
-import src.tools.XMLReader;
 
 import java.io.File;
 import java.util.regex.Matcher;
