@@ -1,5 +1,6 @@
 package src.commands;
 
+import resources.OutputText;
 import src.collectionClasses.*;
 import src.support.MaxField;
 import src.support.Checks;
@@ -72,7 +73,7 @@ public class CommandAddIfMax {
             checkField = true;
 
             if (name == null) {
-                System.out.println("Имя не может быть пустым!");
+                OutputText.error("EmptyName");
             } else if (name.compareTo(maxName) < 0 && field.equals("1")) {
                 System.out.println("Введенное имя меньше по значению, чем имя \"" + maxName + "\". Объект не будет создан. " +
                         "Введите имя повторно.");
@@ -95,7 +96,7 @@ public class CommandAddIfMax {
             checkField = true;
 
             if (coordinates == null) {
-                System.out.println("Введите два целых числа через пробел!");
+                OutputText.error("CoordinatesIncorrect");
             } else if (coordinates.sum().compareTo(sumMax) < 0 && field.equals("2")) {
                 System.out.println("Сумма введенных координаты меньше, чем сумма \"" + MaxField.maxCoordinates() + "\". " +
                         "Объект не будет создан. Введите координаты повторно.");
@@ -117,7 +118,7 @@ public class CommandAddIfMax {
             checkField = true;
 
             if (age == -1) {
-                System.out.println("Введите целое положительное число!");
+                OutputText.error("AgeIncorrect");
             } else if (age < maxAge && field.equals("3")) {
                 System.out.println("Введенный возраст меньше " + maxAge +
                         ". Объект не будет создан. Введите возраст повторно.");
@@ -140,7 +141,7 @@ public class CommandAddIfMax {
             checkField = true;
 
             if (color == null) {
-                System.out.println("Введите cоответствующий номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)!");
+                OutputText.error("ColorIncorrect");
             } else if (color.ordinal()+1 < maxColor && field.equals("4")) {
                 System.out.println("Введенный номер цвета по индексу меньше цвета \"" +
                         Color.getColorByNumber(String.valueOf(maxColor)).getColor() + "\". Объект не будет создан. " +
@@ -165,8 +166,7 @@ public class CommandAddIfMax {
             checkField = true;
 
             if (type == null) {
-                System.out.println("Введите соответвующий номер типа (Водный - 1, Подземельный - 2, " +
-                        "Воздушный - 3, Огненный - 4)!");
+                OutputText.error("TypeIncorrect");
             } else if (type.ordinal()+1 < maxType && field.equals("5")) {
                 System.out.println("Введенный номер типа по индексу меньше типа \"" +
                         DragonType.getTypeByNumber(String.valueOf(maxType)).getType() + "\". Объект не будет создан. " +
@@ -190,7 +190,7 @@ public class CommandAddIfMax {
             maxCharacter = MaxField.maxCharacter();
             checkField = true;
             if (character == null) {
-                System.out.println("Введите соответствующий номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)!");
+                OutputText.error("CharacterIncorrect");
             } else if (character.ordinal()+1 < maxCharacter && field.equals("6")) {
                 System.out.println("Введенный номер характера по индексу меньше характеру \"" +
                         DragonCharacter.getCharacterByNumber(String.valueOf(maxCharacter)).getCharacter() + "\". Объект не будет создан. " +
@@ -214,7 +214,7 @@ public class CommandAddIfMax {
             maxCave = MaxField.maxCave();
             checkField = true;
             if (cave == null) {
-                System.out.println("Введите дробное число через точку!");
+                OutputText.error("CaveIncorrect");
             } else if (cave.getDepth() < maxCave && field.equals("7")) {
                 System.out.println("Введенная глубина пещеры меньше " + maxCave +
                         ". Объект не будет создан. Введите возраст повторно.");

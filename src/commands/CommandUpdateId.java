@@ -1,5 +1,6 @@
 package src.commands;
 
+import resources.OutputText;
 import src.collectionClasses.*;
 import src.support.Checks;
 
@@ -34,7 +35,7 @@ public class CommandUpdateId {
             data = scanner.nextLine();
             coordinates = Checks.coordinatesChecker(data);
             if(coordinates == null && !data.matches("\\s*")) {
-                System.out.println("Введите два целых числа через пробел!");
+                OutputText.error("CoordinatesIncorrect");
             } else if (coordinates != null){
                 CollectionManager.updateCoordinates(dragon, coordinates);
             }
@@ -47,7 +48,7 @@ public class CommandUpdateId {
             data = scanner.nextLine();
             age = Checks.ageChecker(data);
             if (age == -1 && !data.matches("\\s*")) {
-                System.out.println("Введите целое положительное число!");
+                OutputText.error("AgeIncorrect");
             } else if (age != -1){
                 CollectionManager.updateAge(dragon, age);
             }
@@ -60,7 +61,7 @@ public class CommandUpdateId {
             data = scanner.nextLine();
             color = Color.getColorByNumber(data);
             if (color == null && !data.matches("\\s*")) {
-                System.out.println("Введите cоответствующий номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)!");
+                OutputText.error("ColorIncorrect");
             } else if (color != null){
                 CollectionManager.updateColor(dragon, color);
             }
@@ -73,8 +74,7 @@ public class CommandUpdateId {
             data = scanner.nextLine();
             type = DragonType.getTypeByNumber(data);
             if (type == null && !data.matches("\\s*")) {
-                System.out.println("Введите соответвующий номер типа (Водный - 1, Подземельный - 2, " +
-                        "Воздушный - 3, Огненный - 4)!");
+                OutputText.error("TypeIncorrect");
             } else if (type != null){
                 CollectionManager.updateType(dragon, type);
             }
@@ -87,8 +87,8 @@ public class CommandUpdateId {
             data = scanner.nextLine();
             character = DragonCharacter.getCharacterByNumber(data);
             if (character == null && !data.matches("\\s*")) {
-                System.out.println("Введите соответствующий номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)!");
-            } else if (character != null){
+                OutputText.error("CharacterIncorrect");
+            } else if (character != null) {
                 CollectionManager.updateCharacter(dragon, character);
             }
         } while(character == null && !data.matches("\\s*"));
@@ -100,7 +100,7 @@ public class CommandUpdateId {
             data = scanner.nextLine();
             cave = Checks.caveChecker(data);
             if(cave == null && !data.matches("\\s*")) {
-                System.out.println("Введите дробное число через точку!");
+                OutputText.error("CaveIncorrect");
             } else if (cave != null){;
                 CollectionManager.updateCave(dragon, cave);
             }
