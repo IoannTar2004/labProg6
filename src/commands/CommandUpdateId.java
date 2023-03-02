@@ -22,14 +22,14 @@ public class CommandUpdateId {
         String data;
 
         //имя
-        System.out.println("Введите новое имя или просто нажмите 'Enter', чтобы оставить неизменным");
+        OutputText.input("newNameInput");
         data = scanner.nextLine();
         if ((!data.matches("\\s*"))) {
-                CollectionManager.updateName(dragon, data);
+            CollectionManager.updateName(dragon, data);
         }
 
         //координаты
-        System.out.println("Введите новые координаты (два целых числа через пробел) или просто нажмите 'Enter', чтобы оставить неизменным");
+        OutputText.input("newCoordinatesInput");
         Coordinates coordinates;
         do {
             data = scanner.nextLine();
@@ -42,7 +42,7 @@ public class CommandUpdateId {
         } while(coordinates == null && !data.matches("\\s*"));
 
         //возраст
-        System.out.println("Введите новый возраст (целое положительное число) или просто нажмите 'Enter', чтобы оставить неизменным");
+        OutputText.input("newAgeInput");
         int age;
         do {
             data = scanner.nextLine();
@@ -55,7 +55,7 @@ public class CommandUpdateId {
         } while(age == -1 && !data.matches("\\s*"));
 
         //цвет
-        System.out.println("Введите новый номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3) или просто нажмите 'Enter', чтобы оставить неизменным");
+        OutputText.input("newColorInput");
         Color color;
         do {
             data = scanner.nextLine();
@@ -68,7 +68,7 @@ public class CommandUpdateId {
         } while(color == null && !data.matches("\\s*"));
 
         //тип
-        System.out.println("Введите новый номер типа (Водный - 1, Подземельный - 2, Воздушный - 3, Огненный - 4) или просто нажмите 'Enter', чтобы оставить неизменным");
+        OutputText.input("newTypeInput");
         DragonType type;
         do {
             data = scanner.nextLine();
@@ -81,7 +81,7 @@ public class CommandUpdateId {
         } while(type == null && !data.matches("\\s*"));
 
         //характер
-        System.out.println("Введите новый номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3) или просто нажмите 'Enter', чтобы оставить неизменным" );
+        OutputText.input("newCharacterInput");
         DragonCharacter character;
         do {
             data = scanner.nextLine();
@@ -94,7 +94,7 @@ public class CommandUpdateId {
         } while(character == null && !data.matches("\\s*"));
 
         //пещера
-        System.out.println("Введите новое дробное число через точку или просто нажмите 'Enter', чтобы оставить неизменным");
+        OutputText.input("newCaveInput");
         DragonCave cave;
         do {
             data = scanner.nextLine();
