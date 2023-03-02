@@ -20,7 +20,7 @@ public class CommandAdd {
         String data;
 
         //имя
-        System.out.println("Введите имя");
+        OutputText.input("NameInput");
         String name;
         do {
             data = scanner.nextLine();
@@ -31,7 +31,7 @@ public class CommandAdd {
         } while(name == null);
 
         //координаты
-        System.out.println("Введите координаты (два целых числа через пробел)");
+        OutputText.input("CoordinatesInput");
         Coordinates coordinates;
         do {
             data = scanner.nextLine();
@@ -42,7 +42,7 @@ public class CommandAdd {
         } while(coordinates == null);
 
         //возраст
-        System.out.println("Введите возраст (целое положительное число)");
+        OutputText.input("AgeInput");
         int age;
         do {
             data = scanner.nextLine();
@@ -53,7 +53,7 @@ public class CommandAdd {
         } while(age <= -1);
 
         //цвет
-        System.out.println("Введите номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)");
+        OutputText.input("ColorInput");
         Color color;
         do {
             data = scanner.nextLine();
@@ -64,7 +64,7 @@ public class CommandAdd {
         } while(color == null);
 
         //тип
-        System.out.println("Введите номер типа (Водный - 1, Подземельный - 2, Воздушный - 3, Огненный - 4)");
+        OutputText.input("TypeInput");
         DragonType type;
         do {
             data = scanner.nextLine();
@@ -75,7 +75,7 @@ public class CommandAdd {
         } while(type == null);
 
         //характер
-        System.out.println("Введите номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)");
+        OutputText.input("CharacterInput");
         DragonCharacter character;
         do {
             data = scanner.nextLine();
@@ -86,7 +86,7 @@ public class CommandAdd {
         } while(character == null);
 
         //пещера
-        System.out.println("Введите дробное число через точку");
+        OutputText.input("CaveInput");
         DragonCave cave;
         do {
             data = scanner.nextLine();

@@ -25,14 +25,7 @@ public class CommandAddIfMax {
         String data;
         boolean checkField;
 
-        System.out.println("\t\tВведите номер поля, по которому будет производиться проверка\n" +
-                "1 - имя\n" +
-                "2 - координаты\n" +
-                "3 - возраст\n" +
-                "4 - цвет\n" +
-                "5 - тип\n" +
-                "6 - характер\n" +
-                "7 - глубина пещеры");
+        OutputText.input("FieldInput");
         Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
         String field;
         do {
@@ -64,7 +57,7 @@ public class CommandAddIfMax {
         } while (!checkField);
 
         //имя
-        System.out.println("Введите имя");
+        OutputText.input("NameInput");
         String name, maxName;
         do {
             data = scanner.nextLine();
@@ -86,7 +79,7 @@ public class CommandAddIfMax {
         } while(name == null || !checkField);
 
         //координаты
-        System.out.println("Введите координаты (два целых числа через пробел)");
+        OutputText.input("CoordinatesInput");
         Coordinates coordinates;
         Long sumMax;
         do {
@@ -109,7 +102,7 @@ public class CommandAddIfMax {
         } while(coordinates == null || !checkField);
 
         //возраст
-        System.out.println("Введите возраст (целое положительное число)");
+        OutputText.input("AgeInput");
         int age, maxAge;
         do {
             data = scanner.nextLine();
@@ -131,7 +124,7 @@ public class CommandAddIfMax {
         } while(age == -1 || !checkField);
 
         //цвет
-        System.out.println("Введите номер цвета (Чёрный - 1, Синий - 2, Жёлтый - 3)");
+        OutputText.input("ColorInput");
         Color color;
         int maxColor;
         do {
@@ -156,7 +149,7 @@ public class CommandAddIfMax {
         } while(color == null || !checkField);
 
         //тип
-        System.out.println("Введите номер типа (Водный - 1, Подземельный - 2, Воздушный - 3, Огненный - 4)");
+        OutputText.input("TypeInput");
         DragonType type;
         int maxType;
         do {
@@ -181,7 +174,7 @@ public class CommandAddIfMax {
         } while(type == null || !checkField);
 
         //характер
-        System.out.println("Введите номер характера (Хитрый - 1, Злой - 2, Хаотичный - 3)");
+        OutputText.input("CharacterInput");
         DragonCharacter character;
         int maxCharacter;
         do {
@@ -205,7 +198,7 @@ public class CommandAddIfMax {
         } while(character == null || !checkField);
 
         //пещера
-        System.out.println("Введите дробное число через точку");
+        OutputText.input("CaveInput");
         DragonCave cave;
         double maxCave;
         do {
