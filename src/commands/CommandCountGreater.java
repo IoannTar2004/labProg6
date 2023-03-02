@@ -1,5 +1,6 @@
 package src.commands;
 
+import src.tools.OutputText;
 import src.collectionClasses.CollectionManager;
 import src.collectionClasses.Dragon;
 
@@ -36,7 +37,7 @@ public class CommandCountGreater {
         } else if (matcher2.matches()) {
             System.out.println("Возраст - целое положительное число!");
         } else if (matcher_noargument.matches()) {
-            System.out.println("Команда должна содержать аргумент!");
+            OutputText.error("NoArgument");
         }
         else {
             System.out.println("Возраст должен быть положительным целым числом в 10 сс!");

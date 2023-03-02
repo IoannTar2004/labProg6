@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
+import src.tools.OutputText;
 
 /**
  * Clears collection.
@@ -11,6 +12,6 @@ public class CommandClear {
      */
     public static void execute() {
         CollectionManager.clear();
-        System.out.println("Коллекция очищена!");
+        OutputText.result("Cleared");
     }
 }

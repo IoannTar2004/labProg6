@@ -43,7 +43,7 @@ public class CommandSave {
             writer.flush();
             writer.close();
 
-            System.out.println("Сохранено!");
+            System.out.println("Сохранено");
         } catch (IOException ignored) {}
     }
 }

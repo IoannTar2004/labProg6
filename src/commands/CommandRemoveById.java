@@ -3,6 +3,7 @@ package src.commands;
 import src.collectionClasses.CollectionManager;
 import src.support.Checks;
 import src.collectionClasses.Dragon;
+import src.tools.OutputText;
 
 /**
  * Removes object by its ID.
@@ -18,6 +19,6 @@ public class CommandRemoveById {
             return;
         }
         CollectionManager.remove(dragon);
-        System.out.println("Объект удалён из коллекции\n");
+        OutputText.result("Removed");
     }
 }

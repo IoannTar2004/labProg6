@@ -1,5 +1,7 @@
 package src.commands;
 
+import src.tools.OutputText;
+
 /**
  * Prints all commands.
  */
@@ -8,20 +10,6 @@ public class CommandHelp {
      * Prints all commands.
      */
     public static void execute() {
-        System.out.println("info : вывод информации о коллекции;\n" +
-                "show : вывод всех элементов коллекции;\n" +
-                "add : добавить новый элемент в коллекцию;\n" +
-                "update id : обновить значение элемента коллекции, id которого равен заданному;\n" +
-                "remove_by_id id : удалить элемент из коллекции по его id;\n" +
-                "clear : очистить коллекцию;\n" +
-                "save : сохранить коллекцию в файл;\n" +
-                "execute_script file_name : считать и исполнить скрипт из указанного файла;\n" +
-                "exit : завершить программу (без сохранения в файл);\n" +
-                "remove_first : удалить первый элемент из коллекции;\n" +
-                "head : вывести первый элемент коллекции;\n" +
-                "add_if_max : добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции;\n" +
-                "count_greater_than_age age : вывести количество элементов, значение поля age которых больше заданного;\n" +
-                "filter_by_cave cave : вывести элементы, значение поля cave которых равно заданному;\n" +
-                "print_descending : вывести элементы коллекции в порядке убывания.\n");
+        OutputText.result("AllCommands");
     }
 }

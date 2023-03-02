@@ -1,5 +1,6 @@
 package src.commands;
 
+import src.tools.OutputText;
 import src.support.Checks;
 import src.tools.ScriptInvoker;
 import src.tools.ScriptReader;
@@ -24,7 +25,8 @@ public class CommandExecuteScript {
         if(matcher.matches()) {
             filename = matcher.group(1);
             file = Checks.fileChecker(filename);
-        } else {System.out.println("Команда должна содержать путь до файла в качестве аргумента!");
+        } else {
+            OutputText.error("NoFileArgument");
             return;
         }
 

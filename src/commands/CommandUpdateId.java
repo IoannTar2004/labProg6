@@ -1,6 +1,6 @@
 package src.commands;
 
-import resources.OutputText;
+import src.tools.OutputText;
 import src.collectionClasses.*;
 import src.support.Checks;
 
@@ -22,14 +22,14 @@ public class CommandUpdateId {
         String data;
 
         //имя
-        OutputText.input("newNameInput");
+        OutputText.input("NewNameInput");
         data = scanner.nextLine();
         if ((!data.matches("\\s*"))) {
             CollectionManager.updateName(dragon, data);
         }
 
         //координаты
-        OutputText.input("newCoordinatesInput");
+        OutputText.input("NewCoordinatesInput");
         Coordinates coordinates;
         do {
             data = scanner.nextLine();
@@ -42,7 +42,7 @@ public class CommandUpdateId {
         } while(coordinates == null && !data.matches("\\s*"));
 
         //возраст
-        OutputText.input("newAgeInput");
+        OutputText.input("NewAgeInput");
         int age;
         do {
             data = scanner.nextLine();
@@ -55,7 +55,7 @@ public class CommandUpdateId {
         } while(age == -1 && !data.matches("\\s*"));
 
         //цвет
-        OutputText.input("newColorInput");
+        OutputText.input("NewColorInput");
         Color color;
         do {
             data = scanner.nextLine();
@@ -68,7 +68,7 @@ public class CommandUpdateId {
         } while(color == null && !data.matches("\\s*"));
 
         //тип
-        OutputText.input("newTypeInput");
+        OutputText.input("NewTypeInput");
         DragonType type;
         do {
             data = scanner.nextLine();
@@ -81,7 +81,7 @@ public class CommandUpdateId {
         } while(type == null && !data.matches("\\s*"));
 
         //характер
-        OutputText.input("newCharacterInput");
+        OutputText.input("NewCharacterInput");
         DragonCharacter character;
         do {
             data = scanner.nextLine();
@@ -94,7 +94,7 @@ public class CommandUpdateId {
         } while(character == null && !data.matches("\\s*"));
 
         //пещера
-        OutputText.input("newCaveInput");
+        OutputText.input("NewCaveInput");
         DragonCave cave;
         do {
             data = scanner.nextLine();

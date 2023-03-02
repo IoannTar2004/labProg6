@@ -1,6 +1,6 @@
 package src.commands;
 
-import resources.OutputText;
+import src.tools.OutputText;
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
 import src.support.Checks;
@@ -102,7 +102,7 @@ public class CommandAdd {
         Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, new Date());
 
         CollectionManager.add(dragon);
-        System.out.println("Объект добавлен в коллекцию!\n");
+        OutputText.result("Added");
     }
 
     /**

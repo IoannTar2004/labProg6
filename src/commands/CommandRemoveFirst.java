@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
+import src.tools.OutputText;
 
 /**
  * Removes the first object in collection.
@@ -10,7 +11,10 @@ public class CommandRemoveFirst {
      * Removes the first object in collection.
      */
     public static void execute() {
-        CollectionManager.remove_first();
-        System.out.println("Первый объект удалён!\n");
+        if (CollectionManager.length() > 0) {
+            CollectionManager.remove_first();
+            OutputText.result("RemovedFirst");
+        }
+        else {OutputText.result("Empty");}
     }
 }

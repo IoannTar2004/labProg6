@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
+import src.tools.OutputText;
 
 /**
  * Prints all objects in collection
@@ -16,7 +17,7 @@ public class CommandShow {
                 CollectionManager.element(CollectionManager.getDragonByIndex(i));
             }
         } else {
-            System.out.println("Коллекция пуста.");
+            OutputText.result("Empty");
         }
         System.out.println();
     }

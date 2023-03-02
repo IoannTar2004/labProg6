@@ -1,5 +1,6 @@
 package src.commands;
 
+import src.tools.OutputText;
 import src.collectionClasses.CollectionManager;
 import src.collectionClasses.Dragon;
 
@@ -32,9 +33,9 @@ public class CommandFilterByCave {
         } else if (matcher1.matches()) {
             System.out.println("Дробное часть числа не может быть отрицательной!");
         } else if (matcher2.matches()) {
-            System.out.println("Команда должна содержать аргумент!");
+            OutputText.error("NoArgument");
         } else {
-            System.out.println("Глубина пещеры - дробное число черех точку!");
+            System.out.println("Глубина пещеры - дробное число через точку!");
         }
     }
 
@@ -51,7 +52,7 @@ public class CommandFilterByCave {
             }
         }
         if (!check) {
-            System.out.println("Объекты не найдены!");
+            OutputText.error("ObjectsNotFound");
         }
     }
 }

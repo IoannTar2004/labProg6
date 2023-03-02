@@ -1,6 +1,6 @@
 package src.support;
 
-import resources.OutputText;
+import src.tools.OutputText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

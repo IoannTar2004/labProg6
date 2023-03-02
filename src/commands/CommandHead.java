@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
+import src.tools.OutputText;
 
 /**
  * Prints the first object in collection if it is not empty.
@@ -14,7 +15,7 @@ public class CommandHead {
         if (CollectionManager.length() > 0) {
             CollectionManager.element(CollectionManager.getDragonByIndex(0));
         } else {
-            System.out.println("Коллекция пуста!\n");
+            OutputText.result("Empty");
         }
     }
 }

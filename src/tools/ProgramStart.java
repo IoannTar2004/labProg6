@@ -1,6 +1,5 @@
 package src.tools;
 
-import resources.OutputText;
 import src.support.Checks;
 import src.support.FileManager;
 
