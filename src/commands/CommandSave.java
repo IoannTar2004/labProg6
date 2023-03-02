@@ -2,6 +2,7 @@ package src.commands;
 
 import src.support.Checks;
 import src.support.FileManager;
+import src.tools.OutputText;
 import src.tools.XMLWriteParser;
 
 import java.io.File;
@@ -43,7 +44,7 @@ public class CommandSave {
             writer.flush();
             writer.close();
 
-            System.out.println("Сохранено");
+            OutputText.result("Saved");
         } catch (IOException ignored) {}
     }
 }

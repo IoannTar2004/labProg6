@@ -106,7 +106,7 @@ public class CommandUpdateId {
             }
         } while(cave == null && !data.matches("\\s*"));
 
-        System.out.println("Данные объекта изменены!\n");
+       OutputText.result("DataChanged");
     }
 
     /**
