@@ -43,16 +43,22 @@ public class OutputText {
 
             case "AgeIncorrect" -> System.out.println("Введите целое положительное число!");
 
-            case "ColorIncorrect" -> System.out.println("Введите cоответствующий номер цвета " +
+            case "ColorIncorrect" -> System.out.println("Введите соответствующий номер цвета " +
                     "(Чёрный - 1, Синий - 2, Жёлтый - 3)!");
 
-            case "TypeIncorrect" -> System.out.println("Введите соответвующий номер типа " +
+            case "TypeIncorrect" -> System.out.println("Введите соответствующий номер типа " +
                     "(Водный - 1, Подземельный - 2, Воздушный - 3, Огненный - 4)!");
 
             case "CharacterIncorrect" -> System.out.println("Введите соответствующий номер характера " +
                     "(Хитрый - 1, Злой - 2, Хаотичный - 3)!");
 
             case "CaveIncorrect" -> System.out.println("Введите дробное число через точку!");
+
+            case "IdIncorrect1" -> System.out.println("id должен содержать 12 цифр!");
+            case "IdIncorrect2" -> System.out.println("id должен быть положительным!");
+            case "IdIncorrect3" -> System.out.println("id должен содержать 12 цифр и быть положительным!");
+            case "IdIncorrect4" -> System.out.println("id должен быть целым положительным числом");
+            case "IdIncorrect5" -> System.out.println("id должен содержать 12 цифр в десятичной сс!");
         }
     }
 
