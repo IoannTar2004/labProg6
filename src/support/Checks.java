@@ -1,6 +1,6 @@
 package src.support;
 
-import resources.OutputText;
+import src.tools.OutputText;
 import src.collectionClasses.*;
 
 import java.io.File;
@@ -17,10 +17,13 @@ public class Checks {
      * @return name or null in case of empty string
      */
     public static String nameCheck(String name) {
-        if (name.matches("\\s*")) {
-            return null;
+        Pattern pattern = Pattern.compile("\\s*(\\S.*)\\s*");
+        Matcher matcher = pattern.matcher(name);
+        if (matcher.matches()) {
+            name = matcher.group(1);
+            return name;
         }
-        return name;
+        return null;
     }
 
     /**
@@ -116,7 +119,7 @@ public class Checks {
             }
 
         } else {
-            OutputText.error("NoIdArgument");
+            OutputText.error("NoArgument");
         }
         return null;
     }
