@@ -111,12 +111,12 @@ public class Checks {
                 if (dragon != null) {
                     return dragon;
                 } else {
-                    System.out.println("Объекта с таким id не существует!");
+                    OutputText.error("DragonDoesNotExist");
                 }
             }
 
         } else {
-            System.out.println("Команда должна содеражть аргумент в виде id!");
+            OutputText.error("NoIdArgument");
         }
         return null;
     }

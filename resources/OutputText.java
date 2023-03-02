@@ -7,7 +7,7 @@ public class OutputText {
                     "Cчитывает и записывает данные в xml файл. " +
                     "Вывести пример правильного xml-файла? (y - да, n - нет)");
 
-            case "Example" ->  System.out.println("<root>\n" +
+            case "Example" -> System.out.println("<root>\n" +
                     "\t<object id = \"274726478289\">\n" +
                     "\t\t<name>Ivan</name>\n" +
                     "\t\t<coordinates>55; 746</coordinates>\n" +
@@ -59,6 +59,9 @@ public class OutputText {
             case "IdIncorrect3" -> System.out.println("id должен содержать 12 цифр и быть положительным!");
             case "IdIncorrect4" -> System.out.println("id должен быть целым положительным числом");
             case "IdIncorrect5" -> System.out.println("id должен содержать 12 цифр в десятичной сс!");
+
+            case "DragonDoesNotExist" -> System.out.println("Объекта с таким id не существует!");
+            case "NoIdArgument" -> System.out.println("Команда должна содержать аргумент в виде id!");
         }
     }
 
