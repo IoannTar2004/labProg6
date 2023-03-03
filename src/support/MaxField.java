@@ -1,10 +1,9 @@
 package src.support;
 
 import src.collectionClasses.*;
+import src.tools.OutputText;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * this class has a similar destiny to {@link Sort} but it is used to get max values.
@@ -51,6 +50,24 @@ public class MaxField extends Sort {
 
         Collections.reverse(sortlist);
         return sortlist.get(0).getSumCoordinate();
+    }
+
+    public static int maxX() {
+        sortlist.clear();
+        sortlist.addAll(CollectionManager.getAll());
+        sortlist.sort(new SortByCoordinates());
+
+        Collections.reverse(sortlist);
+        return sortlist.get(0).getX();
+    }
+
+    public static Long maxY() {
+        sortlist.clear();
+        sortlist.addAll(CollectionManager.getAll());
+        sortlist.sort(new SortByCoordinates());
+
+        Collections.reverse(sortlist);
+        return sortlist.get(0).getY();
     }
 
     /**
@@ -129,5 +146,28 @@ public class MaxField extends Sort {
 
         Collections.reverse(sortlist);
         return sortlist.size() > 0 ? sortlist.get(0).getCave() : Double.MIN_VALUE;
+    }
+
+    public static boolean existence(String field) {
+        if(field.equals("2") && (maxX() == Integer.MAX_VALUE || maxY() == Long.MAX_VALUE)) {
+            OutputText.maxValues("MaxCoordinates");
+            return false;
+        } else if (field.equals("3") && maxAge() == Integer.MAX_VALUE) {
+            OutputText.maxValues("MaxAge");
+            return false;
+        } else if(field.equals("4") && maxColor() == 3) {
+            OutputText.maxValues("MaxColor");
+            return false;
+        } else if(field.equals("5") && maxType() == 4) {
+            OutputText.maxValues("MaxType");
+            return false;
+        } else if(field.equals("6") && maxCharacter() == 3) {
+            OutputText.maxValues("MaxCharacter");
+            return false;
+        } else if(field.equals("7") && maxCave() == Double.MAX_VALUE) {
+            OutputText.maxValues("MaxCave");
+            return false;
+        }
+        return true;
     }
 }

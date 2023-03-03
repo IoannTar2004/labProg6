@@ -36,24 +36,13 @@ public class CommandAddIfMax {
             if(matcher.matches()) {
                 field = matcher.group(1);
                 MaxField.max(field);
+
             } else {
-                System.out.println("Введите число от 1 до 7!");
+                OutputText.error("FieldIncorrect");
                 checkField = false;
             }
 
-            if(field.equals("4") && MaxField.maxColor() == 3) {
-                System.out.println("В коллекции уже существует объект с максимальным по значению цветом. " +
-                        "Объект не будет создан. Введите другое число!");
-                checkField = false;
-            } else if(field.equals("5") && MaxField.maxType() == 4) {
-                System.out.println("В коллекции уже существует объект с максимальным по значению типом. " +
-                        "Объект не будет создан. Введите другое число!");
-                checkField = false;
-            } else if(field.equals("6") && MaxField.maxCharacter() == 3) {
-                System.out.println("В коллекции уже существует объект с максимальным по значению характером. " +
-                        "Объект не будет создан. Введите другое число!");
-                checkField = false;
-            }
+            if (!MaxField.existence(field)) {checkField = false;}
         } while (!checkField);
 
         //имя
