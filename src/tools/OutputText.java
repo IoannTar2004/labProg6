@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * class to output texts from .properties files. Contains of temporary methods.
+ * class to output texts from .properties files.
  */
 public class OutputText {
     private static final Locale locale = new Locale("ru", "RU");

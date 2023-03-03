@@ -52,6 +52,10 @@ public class MaxField extends Sort {
         return sortlist.get(0).getSumCoordinate();
     }
 
+    /**
+     *
+     * @return x coordinate of the object which has max sum coordinates.
+     */
     public static int maxX() {
         sortlist.clear();
         sortlist.addAll(CollectionManager.getAll());
@@ -61,6 +65,10 @@ public class MaxField extends Sort {
         return sortlist.get(0).getX();
     }
 
+    /**
+     *
+     * @return y coordinate of the object which has max sum coordinates.
+     */
     public static Long maxY() {
         sortlist.clear();
         sortlist.addAll(CollectionManager.getAll());
@@ -148,6 +156,11 @@ public class MaxField extends Sort {
         return sortlist.size() > 0 ? sortlist.get(0).getCave() : Double.MIN_VALUE;
     }
 
+    /**
+     * This method checks that dragon's field does not have max format value.
+     * @param field
+     * @return
+     */
     public static boolean existence(String field) {
         if(field.equals("2") && (maxX() == Integer.MAX_VALUE || maxY() == Long.MAX_VALUE)) {
             OutputText.maxValues("MaxCoordinates");
