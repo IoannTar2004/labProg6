@@ -13,9 +13,11 @@ public class OutputText {
     private static final ResourceBundle errors = ResourceBundle.getBundle("resources.Errors", locale);
     private static final ResourceBundle inputs = ResourceBundle.getBundle("resources.Inputs", locale);
     private static final ResourceBundle results = ResourceBundle.getBundle("resources.Results", locale);
+    private static final ResourceBundle values = ResourceBundle.getBundle("resources.MaxValues", locale);
 
     public static void startInformation(String info) {
-        System.out.println(startInfo.getString(info));
+        String s = startInfo.getString(info);
+        System.out.println(s);
     }
 
     public static void error(String error) {
@@ -29,4 +31,6 @@ public class OutputText {
     public static void result(String result) {
         System.out.println(results.getString(result));
     }
+
+    public static void maxValues(String value) {System.out.println(values.getString(value));}
 }
