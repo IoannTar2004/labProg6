@@ -56,10 +56,14 @@ public class Dragon {
 
     public String getName() {return name;}
     public long getId() {return id;}
+
     public String getCoordinates() {
         return coordinates.toString();
     }
+    public int getX() {return coordinates.getX();}
+    public Long getY() {return coordinates.getY();}
     public Long getSumCoordinate() {return coordinates.getX() + coordinates.getY();}
+
     public Integer getAge() {
         return age;
     }
