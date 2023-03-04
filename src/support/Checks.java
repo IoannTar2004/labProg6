@@ -41,14 +41,14 @@ public class Checks {
             try {
                 x = Integer.parseInt(coordinates[0]);
             } catch (NumberFormatException e) {
-                System.out.println("Превышен формат числа x: введите число меньше 2 147 483 648");
+                OutputText.errorWithArgs("X_IntegerFormatExceeded", Integer.MAX_VALUE);
                 return null;
             }
 
             try {
                 y = Long.parseLong(coordinates[1]);
             } catch (NumberFormatException e) {
-                System.out.println("Превышен формат числа y: введите число меньше " + Long.MAX_VALUE + " + 1");
+                OutputText.errorWithArgs("Y_LongFormatExceeded", Long.MAX_VALUE);
                 return null;
             }
             return new Coordinates(x, y);
@@ -70,7 +70,7 @@ public class Checks {
             try {
                 return Integer.parseInt(age);
             } catch (NumberFormatException e) {
-                System.out.println("Превышен формат числа: введите число меньше 2 147 483 648");
+                OutputText.errorWithArgs("IntegerFormatExceeded", Integer.MAX_VALUE);
                 return -2;
             }
         }
@@ -91,7 +91,7 @@ public class Checks {
             try {
                 return new DragonCave(Double.parseDouble(cave));
             } catch (NumberFormatException e) {
-                System.out.println("Превышен формат числа: введите число меньше " + Double.MAX_VALUE);
+                OutputText.errorWithArgs("DoubleFormatExceeded", Double.MAX_VALUE);
             }
         }
         return null;
