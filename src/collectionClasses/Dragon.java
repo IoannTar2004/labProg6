@@ -1,5 +1,6 @@
 package src.collectionClasses;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -9,12 +10,14 @@ public class Dragon {
     private long id;
     private String name;
     private Coordinates coordinates;
-    private java.util.Date creationDate;
+    private Date creationDate;
     private Integer age;
     private Color color;
     private DragonType type;
     private DragonCharacter character;
     private DragonCave cave;
+
+    private final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy - HH:mm:ss");
 
     /**
      *
@@ -55,6 +58,7 @@ public class Dragon {
     }
 
     public String getName() {return name;}
+
     public long getId() {return id;}
 
     public String getCoordinates() {
@@ -67,10 +71,9 @@ public class Dragon {
     public Integer getAge() {
         return age;
     }
-    public String getCreationDate() {
-        return creationDate.getDate() + "." + creationDate.getMonth() + "." + (creationDate.getYear()+1900)
-                + " - " + creationDate.getHours() + ":" + creationDate.getMinutes() + ":" + creationDate.getSeconds();
-    }
+
+    public String getCreationDate() {return formatter.format(creationDate);}
+
     public String getColor() {
         return color.getColor();
     }
@@ -80,6 +83,7 @@ public class Dragon {
     public String getCharacter() {
         return character.getCharacter();
     }
+
     public double getCave() {
         return cave.getDepth();
     }

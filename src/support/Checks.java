@@ -103,7 +103,7 @@ public class Checks {
      * @return {@link Dragon} if collection includes dragon with this ID, else null.
      */
     public static Dragon idChecker(String command) {
-        Pattern pattern = Pattern.compile("\\s*.\\S*\\s+(-?\\d+)\\s*");
+        Pattern pattern = Pattern.compile("\\s*.\\S*\\s+(\\S.*)\\s*");
         Matcher matcher = pattern.matcher(command);
 
         if(matcher.matches()) {
@@ -119,7 +119,7 @@ public class Checks {
             }
 
         } else {
-            OutputText.error("NoArgument");
+            OutputText.error("NoIdArgument");
         }
         return null;
     }

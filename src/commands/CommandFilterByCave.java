@@ -33,7 +33,7 @@ public class CommandFilterByCave {
         } else if (matcher1.matches()) {
             System.out.println("Дробное часть числа не может быть отрицательной!");
         } else if (matcher2.matches()) {
-            OutputText.error("NoArgument");
+            OutputText.error("NoIdArgument");
         } else {
             System.out.println("Глубина пещеры - дробное число через точку!");
         }
