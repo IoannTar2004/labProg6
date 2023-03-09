@@ -38,7 +38,7 @@ public abstract class Invoker {
             if (line.length == 1) {
                 command.execute();
             } else if (line.length > 1) {
-                command.execute(line[1]);
+                command.execute(line);
             }
         } catch (NullPointerException e) {
             System.out.println("Такой команды нет!\n");
