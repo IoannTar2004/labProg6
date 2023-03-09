@@ -62,17 +62,23 @@ public class Checks {
      * @return 'int age' if entered age is a positive integer number; -2 in case of exceeding Integer.MAX_VALUE; -1 in other cases.
      */
     public static int ageChecker(String age) {
-        Pattern pattern = Pattern.compile("\\s*([1-9][0-9]*)\\s*");
-        Matcher matcher = pattern.matcher(age);
+        Matcher matcher = Pattern.compile("[1-9][0-9]*").matcher(age);
+        Matcher matcher1 = Pattern.compile("-\\d+|0").matcher(age);
+        Matcher matcher2 = Pattern.compile("-?\\d+\\.\\d+").matcher(age);
 
-        if(matcher.matches()) {
-            age = matcher.group(1);
+        if (matcher.matches()) {
             try {
                 return Integer.parseInt(age);
             } catch (NumberFormatException e) {
                 OutputText.errorWithArgs("IntegerFormatExceeded", Integer.MAX_VALUE);
                 return -2;
             }
+        } else if (matcher1.matches()) {
+            System.out.println("Возраст - положительное число!");
+        } else if (matcher2.matches()) {
+            System.out.println("Возраст - целое положительное число!");
+        } else {
+            System.out.println("Возраст должен быть положительным целым числом в 10 сс!");
         }
         return -1;
     }
