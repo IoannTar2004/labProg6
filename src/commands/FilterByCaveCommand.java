@@ -20,7 +20,7 @@ public class FilterByCaveCommand implements Command {
     public void execute(String... cave) {
         boolean check = false;
         try {
-            DragonCave cave1 = Checks.caveChecker(cave[0]);
+            DragonCave cave1 = Checks.caveChecker(cave[1]);
             if (cave1 != null) {
                 for (int i = 0; i < CollectionManager.length(); i++) {
                     Dragon dragon = CollectionManager.getDragonByIndex(i);

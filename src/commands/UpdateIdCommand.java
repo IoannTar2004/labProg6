@@ -15,7 +15,7 @@ public class UpdateIdCommand implements Command {
      */
     @Override
     public void execute(String... command) {
-        Dragon dragon = Checks.idChecker(command[0]);
+        Dragon dragon = Checks.idChecker(command[1]);
         if (dragon == null) {return;}
 
         Scanner scanner = new Scanner(System.in);
