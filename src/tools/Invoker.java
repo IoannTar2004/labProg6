@@ -14,7 +14,7 @@ public abstract class Invoker {
     private static Map<String, Command> commands = new HashMap<>();
     static {
         commands.put("help", new CommandHelp());
-        commands.put("exit")
+        //commands.put("exit")
     }
 
     /**
