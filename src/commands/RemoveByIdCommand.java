@@ -15,11 +15,15 @@ public class RemoveByIdCommand implements Command{
      */
     @Override
     public void execute(String... command) {
-        Dragon dragon = Checks.idChecker(command[0]);
-        if (dragon == null) {
-            return;
+        try {
+            Dragon dragon = Checks.idChecker(command[0]);
+            if (dragon == null) {
+                return;
+            }
+            CollectionManager.remove(dragon);
+            OutputText.result("Removed");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            OutputText.error("NoIdArgument");
         }
-        CollectionManager.remove(dragon);
-        OutputText.result("Removed");
     }
 }

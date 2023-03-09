@@ -29,7 +29,7 @@ public class FilterByCaveCommand implements Command {
 
         if (matcher.matches()) {
             cave = matcher.group(1);
-            execute(cave);
+            //execute(cave);
         } else if (matcher1.matches()) {
             System.out.println("Дробное часть числа не может быть отрицательной!");
         } else if (matcher2.matches()) {

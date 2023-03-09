@@ -31,7 +31,7 @@ public class CountGreaterCommand implements Command {
 
         if (matcher.matches()) {
             age = matcher.group(1);
-            execute(age);
+            //execute(age);
         } else if (matcher1.matches()) {
             System.out.println("Возраст - положительное число!");
         } else if (matcher2.matches()) {
