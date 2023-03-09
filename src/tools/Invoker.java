@@ -24,6 +24,7 @@ public abstract class Invoker {
         commands.put("save", new SaveCommand());
         commands.put("show", new ShowCommand());
 
+        commands.put("count_greater_than_age", new CountGreaterCommand());
         commands.put("remove_by_id", new RemoveByIdCommand());
         commands.put("update", new UpdateIdCommand());
     }
