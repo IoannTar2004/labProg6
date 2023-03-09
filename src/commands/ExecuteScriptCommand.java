@@ -1,5 +1,6 @@
 package src.commands;
 
+import src.support.ArgumentManager;
 import src.tools.OutputText;
 import src.support.Checks;
 import src.tools.ScriptInvoker;
@@ -18,15 +19,12 @@ public class ExecuteScriptCommand implements Command{
      */
     @Override
     public void execute(String... filename) {
-        Pattern pattern = Pattern.compile("\\s*execute_script\\s+(\\S.*)\\s*");
-        Matcher matcher = pattern.matcher(filename[0]);
-
         File file;
 
-        if(matcher.matches()) {
-            filename[0] = matcher.group(1);
-            file = Checks.fileChecker(filename[0]);
-        } else {
+        try {
+            String filename1 = ArgumentManager.builder(filename);
+            file = Checks.fileChecker(filename1);
+        } catch (ArrayIndexOutOfBoundsException e){
             OutputText.error("NoFileArgument");
             return;
         }

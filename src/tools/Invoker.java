@@ -25,6 +25,7 @@ public abstract class Invoker {
         commands.put("show", new ShowCommand());
 
         commands.put("count_greater_than_age", new CountGreaterCommand());
+        commands.put("execute_script", new ExecuteScriptCommand());
         commands.put("filter_by_cave", new FilterByCaveCommand());
         commands.put("remove_by_id", new RemoveByIdCommand());
         commands.put("update", new UpdateIdCommand());
