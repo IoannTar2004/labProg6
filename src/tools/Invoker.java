@@ -13,24 +13,34 @@ import java.util.Scanner;
 public abstract class Invoker {
     private static Map<String, Command> commands = new HashMap<>();
     static {
-        commands.put("help", new CommandHelp());
-        //commands.put("exit")
+        commands.put("help", new HelpCommand());
+        commands.put("exit", new ExitCommand());
+        commands.put("clear", new ClearCommand());
+        commands.put("head", new HeadCommand());
+        commands.put("info", new InfoCommand());
+        commands.put("remove_first", new RemoveFirstCommand());
+        commands.put("save", new SaveCommand());
+        commands.put("show", new ShowCommand());
+
+        commands.put("remove_by_id", new RemoveByIdCommand());
     }
 
     /**
      * This method captures entered command and checks it using RegEx. It works while user enters command "exit".
      */
     public static void invoke() {
-        CommandInfo.date();
+        InfoCommand.date();
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
             String[] line = input.trim().split("\\s+");
+            Command command = commands.get(line[0]);
 
             if(line.length == 1) {
-                Command command = commands.get(line[0]);
                 command.execute();
+            } else if (line.length > 1) {
+                command.execute(line[1]);
             }
             /*if (input.matches("\\s*help\\s*")) {
                 CommandHelp.execute();
