@@ -13,6 +13,8 @@ import java.util.Scanner;
 public abstract class Invoker {
     private static Map<String, Command> commands = new HashMap<>();
     static {
+        commands.put("add", new AddCommand());
+        commands.put("add_if_max", new AddIfMaxCommand());
         commands.put("help", new HelpCommand());
         commands.put("exit", new ExitCommand());
         commands.put("clear", new ClearCommand());
@@ -23,6 +25,7 @@ public abstract class Invoker {
         commands.put("show", new ShowCommand());
 
         commands.put("remove_by_id", new RemoveByIdCommand());
+        commands.put("update", new UpdateIdCommand());
     }
 
     /**
@@ -37,10 +40,14 @@ public abstract class Invoker {
             String[] line = input.trim().split("\\s+");
             Command command = commands.get(line[0]);
 
-            if(line.length == 1) {
-                command.execute();
-            } else if (line.length > 1) {
-                command.execute(line[1]);
+            try {
+                if (line.length == 1) {
+                    command.execute();
+                } else if (line.length > 1) {
+                    command.execute(line[1]);
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Такой команды нет!\n");
             }
             /*if (input.matches("\\s*help\\s*")) {
                 CommandHelp.execute();
