@@ -89,17 +89,21 @@ public class Checks {
      * @return new {@link DragonCave} or null in case of invalid input or exceeding Double.MAX_VALUE.
      */
     public static DragonCave caveChecker(String cave) {
-        Pattern pattern = Pattern.compile("\\s*(-?(\\d+\\.\\d*)|(\\d+))\\s*");
-        Matcher matcher = pattern.matcher(cave);
+        Matcher matcher = Pattern.compile("-?(\\d+\\.\\d*)|(\\d+)").matcher(cave);
+        Matcher matcher1 = Pattern.compile("-?\\d+\\.-\\d+").matcher(cave);
 
         if (matcher.matches()) {
-            cave = matcher.group(1);
             try {
                 return new DragonCave(Double.parseDouble(cave));
             } catch (NumberFormatException e) {
                 OutputText.errorWithArgs("DoubleFormatExceeded", Double.MAX_VALUE);
             }
+        } else if (matcher1.matches()) {
+            System.out.println("Дробное часть числа не может быть отрицательной!");
+        } else {
+            System.out.println("Глубина пещеры - дробное число через точку!");
         }
+
         return null;
     }
 
