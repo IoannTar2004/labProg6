@@ -1,5 +1,7 @@
 package src.commands;
 
+import src.collectionClasses.DragonCave;
+import src.support.Checks;
 import src.tools.OutputText;
 import src.collectionClasses.CollectionManager;
 import src.collectionClasses.Dragon;
@@ -45,15 +47,22 @@ public class FilterByCaveCommand implements Command {
     @Override
     public void execute(String... cave) {
         boolean check = false;
-        for (int i = 0; i < CollectionManager.length(); i++) {
-            Dragon dragon = CollectionManager.getDragonByIndex(i);
-            if (CollectionManager.getCave(dragon) == Double.parseDouble(cave[0])) {
-                CollectionManager.element(dragon);
-                check = true;
+        try {
+            DragonCave cave1 = Checks.caveChecker(cave[0]);
+            if (cave1 != null) {
+                for (int i = 0; i < CollectionManager.length(); i++) {
+                    Dragon dragon = CollectionManager.getDragonByIndex(i);
+                    if (CollectionManager.getCave(dragon) == cave1.getDepth()) {
+                        CollectionManager.element(dragon);
+                        check = true;
+                    }
+                }
+                if (!check) {
+                    OutputText.error("ObjectsNotFound");
+                }
             }
-        }
-        if (!check) {
-            OutputText.error("ObjectsNotFound");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            OutputText.error("NoCaveArgument");
         }
     }
 }
