@@ -5,11 +5,12 @@ import src.tools.OutputText;
 /**
  * Prints all commands.
  */
-public class CommandHelp {
+public class HelpCommand implements Command {
     /**
      * Prints all commands.
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         OutputText.result("AllCommands");
     }
 }

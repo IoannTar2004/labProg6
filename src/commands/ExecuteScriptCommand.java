@@ -12,19 +12,20 @@ import java.util.regex.Pattern;
 /**
  * creates the list of commands received from txt file and runs {@link ScriptInvoker#invoke(List)}
  */
-public class CommandExecuteScript {
+public class ExecuteScriptCommand implements Command{
     /**
      * Creates the list of commands received from txt file and runs {@link ScriptInvoker#invoke(List)}.
      */
-    public static void execute(String filename) {
+    @Override
+    public void execute(String... filename) {
         Pattern pattern = Pattern.compile("\\s*execute_script\\s+(\\S.*)\\s*");
-        Matcher matcher = pattern.matcher(filename);
+        Matcher matcher = pattern.matcher(filename[0]);
 
         File file;
 
         if(matcher.matches()) {
-            filename = matcher.group(1);
-            file = Checks.fileChecker(filename);
+            filename[0] = matcher.group(1);
+            file = Checks.fileChecker(filename[0]);
         } else {
             OutputText.error("NoFileArgument");
             return;

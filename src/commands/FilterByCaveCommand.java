@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 /**
  * Prints objects if they have a same cave depth
  */
-public class CommandFilterByCave {
+public class FilterByCaveCommand implements Command {
     /**
-     * Method checks if the cave depth entered correctly then runs {@link CommandFilterByCave#execute(double)}.
+     * Method checks if the cave depth entered correctly then runs {@link FilterByCaveCommand#execute(String...)}.
      * If this is not the case print mistake messages.
      * @param command command with argument as dragon's cave depth
      */
@@ -29,7 +29,7 @@ public class CommandFilterByCave {
 
         if (matcher.matches()) {
             cave = matcher.group(1);
-            execute(Double.parseDouble(cave));
+            execute(cave);
         } else if (matcher1.matches()) {
             System.out.println("Дробное часть числа не может быть отрицательной!");
         } else if (matcher2.matches()) {
@@ -42,11 +42,12 @@ public class CommandFilterByCave {
     /**
      * Prints objects if they have a same cave depth.
      */
-    private static void execute(double cave) {
+    @Override
+    public void execute(String... cave) {
         boolean check = false;
         for (int i = 0; i < CollectionManager.length(); i++) {
             Dragon dragon = CollectionManager.getDragonByIndex(i);
-            if (CollectionManager.getCave(dragon) == cave) {
+            if (CollectionManager.getCave(dragon) == Double.parseDouble(cave[0])) {
                 CollectionManager.element(dragon);
                 check = true;
             }

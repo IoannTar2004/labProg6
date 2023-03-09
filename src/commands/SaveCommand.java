@@ -14,11 +14,12 @@ import java.util.Scanner;
 /**
  * Saves collection to entered xml file.
  */
-public class CommandSave {
+public class SaveCommand implements Command {
     /**
      * Saves collection to entered xml file.
      */
-    public static void execute(){
+    @Override
+    public void execute(String... args){
         Scanner scanner = new Scanner(System.in);
         File file;
         String data;

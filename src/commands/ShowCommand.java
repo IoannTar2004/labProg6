@@ -6,12 +6,13 @@ import src.tools.OutputText;
 /**
  * Prints all objects in collection
  */
-public class CommandShow {
+public class ShowCommand implements Command {
 
     /**
      * Prints all objects in collection
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         if (CollectionManager.length() > 0) {
             for (int i = 0; i < CollectionManager.length(); i++) {
                 CollectionManager.element(CollectionManager.getDragonByIndex(i));

@@ -6,11 +6,12 @@ import src.tools.OutputText;
 /**
  * Clears collection.
  */
-public class CommandClear {
+public class ClearCommand implements Command {
     /**
      * Clears collection.
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         CollectionManager.clear();
         OutputText.result("Cleared");
     }

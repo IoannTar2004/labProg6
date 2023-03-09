@@ -8,11 +8,12 @@ import java.util.regex.Pattern;
 /**
  * Prints objects in descending order by its value of field.
  */
-public class CommandPrintDescending {
+public class PrintDescendingCommand implements Command {
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
 

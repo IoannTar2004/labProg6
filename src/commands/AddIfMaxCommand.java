@@ -14,12 +14,13 @@ import java.util.regex.Pattern;
 /**
  * Add object to collection if max value of one field is less than entered value.
  */
-public class CommandAddIfMax {
+public class AddIfMaxCommand implements Command {
 
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
         String data;

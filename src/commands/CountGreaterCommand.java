@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 /**
  * Count amount of objects which have greater age than entered.
  */
-public class CommandCountGreater {
+public class CountGreaterCommand implements Command {
     /**
-     * Method checks if the age entered correctly then runs {@link CommandCountGreater#execute(int)}. If this is not the case print mistake messages.
+     * Method checks if the age entered correctly then runs {@link CountGreaterCommand#execute(String...)}. If this is not the case print mistake messages.
      * @param command command with argument as dragon's age
      */
     public static void preexecute(String command) {
@@ -31,7 +31,7 @@ public class CommandCountGreater {
 
         if (matcher.matches()) {
             age = matcher.group(1);
-            execute(Integer.parseInt(age));
+            execute(age);
         } else if (matcher1.matches()) {
             System.out.println("Возраст - положительное число!");
         } else if (matcher2.matches()) {
@@ -47,11 +47,12 @@ public class CommandCountGreater {
     /**
      * Count amount of objects which have greater age than entered.
      */
-    private static void execute(int age) {
+    @Override
+    public void execute(String... age) {
         int count = 0;
         for (int i = 0; i < CollectionManager.length(); i++) {
             Dragon dragon = CollectionManager.getDragonByIndex(i);
-            if (CollectionManager.getAge(dragon) > age) {
+            if (CollectionManager.getAge(dragon) > Integer.parseInt(age[0])) {
                 count++;
             }
         }

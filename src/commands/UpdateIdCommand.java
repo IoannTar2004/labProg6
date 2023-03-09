@@ -9,12 +9,13 @@ import java.util.Scanner;
 /**
  * Changes {@link Dragon dragon's fields} by its ID.
  */
-public class CommandUpdateId {
+public class UpdateIdCommand implements Command {
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void execute(String command) {
-        Dragon dragon = Checks.idChecker(command);
+    @Override
+    public void execute(String... command) {
+        Dragon dragon = Checks.idChecker(command[0]);
         if (dragon == null) {return;}
 
         Scanner scanner = new Scanner(System.in);

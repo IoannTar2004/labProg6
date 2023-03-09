@@ -11,11 +11,12 @@ import java.util.Scanner;
 /**
  * Add object to collection.
  */
-public class CommandAdd {
+public class AddCommand implements Command {
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         Scanner scanner = new Scanner(System.in);
         String data;
 

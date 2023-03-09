@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Prints information about collection.
  */
-public class CommandInfo{
+public class InfoCommand implements Command {
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy - HH:mm:ss");
 
     /**
@@ -22,7 +22,8 @@ public class CommandInfo{
     /**
      * Prints information about collection.
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         System.out.println("Тип коллекции: ArrayDeque;\n" +
                 "Дата инициализации: " + date() + ";\n" +
                 "Количество элементов: " + CollectionManager.length() + ".\n");

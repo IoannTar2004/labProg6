@@ -8,13 +8,14 @@ import src.tools.OutputText;
 /**
  * Removes object by its ID.
  */
-public class CommandRemoveById {
+public class RemoveByIdCommand implements Command{
     /**
      * Removes object by its ID.
      * @param command command with ID
      */
-    public static void execute(String command) {
-        Dragon dragon = Checks.idChecker(command);
+    @Override
+    public void execute(String... command) {
+        Dragon dragon = Checks.idChecker(command[0]);
         if (dragon == null) {
             return;
         }

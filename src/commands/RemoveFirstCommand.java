@@ -6,11 +6,12 @@ import src.tools.OutputText;
 /**
  * Removes the first object in collection.
  */
-public class CommandRemoveFirst {
+public class RemoveFirstCommand implements Command {
     /**
      * Removes the first object in collection.
      */
-    public static void execute() {
+    @Override
+    public void execute(String... args) {
         if (CollectionManager.length() > 0) {
             CollectionManager.remove_first();
             OutputText.result("RemovedFirst");
