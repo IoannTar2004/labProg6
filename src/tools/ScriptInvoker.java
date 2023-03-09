@@ -16,10 +16,10 @@ public abstract class ScriptInvoker {
      * @param commands list of commands from script file
      */
     public static void invoke(List<String> commands) {
-        int i = 0;
+        /*int i = 0;
         while(!Objects.equals(commands.get(i), "")) {
             if (commands.get(i).matches("\\s*help\\s*")) {
-                CommandHelp.execute();
+                //CommandHelp.execute();
             } else if (commands.get(i).matches("\\s*info\\s*")) {
                 CommandInfo.execute();
             } else if (commands.get(i).matches("\\s*show\\s*")) {
@@ -56,7 +56,7 @@ public abstract class ScriptInvoker {
 
             }
 
-            i++;
+            i++;*/
         }
     }
 }
