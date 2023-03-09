@@ -37,7 +37,7 @@ public class CommandCountGreater {
         } else if (matcher2.matches()) {
             System.out.println("Возраст - целое положительное число!");
         } else if (matcher_noargument.matches()) {
-            OutputText.error("NoIdArgument");
+            OutputText.error("NoAgeArgument");
         }
         else {
             System.out.println("Возраст должен быть положительным целым числом в 10 сс!");

@@ -18,7 +18,7 @@ public class CommandFilterByCave {
      */
     public static void preexecute(String command) {
         String cave;
-        Pattern pattern = Pattern.compile("\\s*filter_by_cave\\s+(-?\\d+\\.\\d+)\\s*");
+        Pattern pattern = Pattern.compile("\\s*filter_by_cave\\s*(-?(\\d+\\.\\d*)|(\\d+))\\s*");
         Matcher matcher = pattern.matcher(command);
 
         Pattern pattern1 = Pattern.compile("\\s*filter_by_cave\\s+(-?\\d+\\.-\\d+)\\s*");
@@ -33,7 +33,7 @@ public class CommandFilterByCave {
         } else if (matcher1.matches()) {
             System.out.println("Дробное часть числа не может быть отрицательной!");
         } else if (matcher2.matches()) {
-            OutputText.error("NoIdArgument");
+            OutputText.error("NoCaveArgument");
         } else {
             System.out.println("Глубина пещеры - дробное число через точку!");
         }
