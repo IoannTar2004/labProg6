@@ -19,7 +19,7 @@ public class SaveCommand implements Command {
      * Saves collection to entered xml file.
      */
     @Override
-    public void execute(String mode, String[] line, String... args){
+    public void execute(String mode, String[] line, String[] args){
         Scanner scanner = new Scanner(System.in);
         File file;
         String data;

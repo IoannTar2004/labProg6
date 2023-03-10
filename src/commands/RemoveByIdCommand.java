@@ -17,7 +17,7 @@ public class RemoveByIdCommand implements Command{
      * @param command command with ID
      */
     @Override
-    public void execute(String mode, String[] line, String... command) {
+    public void execute(String mode, String[] line, String[] command) {
         try {
             Dragon dragon = Checks.idChecker(command[1]);
             if (dragon == null) {
