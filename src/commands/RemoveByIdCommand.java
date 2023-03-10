@@ -12,10 +12,12 @@ public class RemoveByIdCommand implements Command{
     /**
      * Removes object by its ID.
      *
+     * @param mode
+     * @param input
      * @param command command with ID
      */
     @Override
-    public void execute(String... command) {
+    public void execute(String mode, String input, String... command) {
         try {
             Dragon dragon = Checks.idChecker(command[1]);
             if (dragon == null) {

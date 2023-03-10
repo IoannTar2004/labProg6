@@ -13,7 +13,7 @@ public class PrintDescendingCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     @Override
-    public void execute(String... args) {
+    public void execute(String mode, String input, String... args) {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
 

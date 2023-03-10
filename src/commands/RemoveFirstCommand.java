@@ -11,7 +11,7 @@ public class RemoveFirstCommand implements Command {
      * Removes the first object in collection.
      */
     @Override
-    public void execute(String... args) {
+    public void execute(String mode, String input, String... args) {
         if (CollectionManager.length() > 0) {
             CollectionManager.remove_first();
             OutputText.result("RemovedFirst");
