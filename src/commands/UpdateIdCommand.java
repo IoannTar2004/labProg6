@@ -4,17 +4,25 @@ import src.tools.OutputText;
 import src.collectionClasses.*;
 import src.support.Checks;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
  * Changes {@link Dragon dragon's fields} by its ID.
  */
 public class UpdateIdCommand implements Command {
+    @Override
+    public void execute(String mode, String[] line, String... args) {
+        System.out.println(line[1]);
+        if (Objects.equals(mode, "script")) {
+            executeWithScript(line, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        } else {update(line);}
+    }
     /**
      * Triggers when user enters this command to terminal
      */
-    @Override
-    public void execute(String mode, String[] line, String... args) {
+
+    public static void update(String[] line) {
         Dragon dragon = Checks.idChecker(line[1]);
         if (dragon == null) {return;}
 
@@ -121,9 +129,9 @@ public class UpdateIdCommand implements Command {
      * @param character ordinal+1 of character
      * @param cave cave depth
      */
-    public static void executeWithScript(String command, String name, String coordinates, String age,
+    public static void executeWithScript(String[] command, String name, String coordinates, String age,
                                          String color, String type, String character, String cave) {
-        Dragon dragon = Checks.idChecker(command);
+        Dragon dragon = Checks.idChecker(command[1]);
         if (dragon == null) {return;}
 
         //имя

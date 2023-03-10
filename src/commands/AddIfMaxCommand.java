@@ -33,7 +33,7 @@ public class AddIfMaxCommand implements Command {
     /**
      * Triggers when user enters this command to terminal
      */
-    public void addIfMax() {
+    public static void addIfMax() {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
         String data;
