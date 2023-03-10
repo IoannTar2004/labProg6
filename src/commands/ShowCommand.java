@@ -12,7 +12,7 @@ public class ShowCommand implements Command {
      * Prints all objects in collection
      */
     @Override
-    public void execute(String... args) {
+    public void execute(String mode, String... args) {
         if (CollectionManager.length() > 0) {
             for (int i = 0; i < CollectionManager.length(); i++) {
                 CollectionManager.element(CollectionManager.getDragonByIndex(i));

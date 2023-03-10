@@ -13,7 +13,7 @@ public class CountGreaterCommand implements Command {
      * Count amount of objects which have greater age than entered.
      */
     @Override
-    public void execute(String... age) {
+    public void execute(String mode, String... age) {
         try {
             int age1 = Checks.ageChecker(age[0]);
 

@@ -40,7 +40,7 @@ public abstract class Invoker {
 
         try {
             if (line.length == 1) {
-                command.execute(mode);
+                command.execute("user", mode);
             } else if (line.length > 1) {
                 command.execute(mode, line);
             }
