@@ -4,8 +4,6 @@ import src.collectionClasses.CollectionManager;
 import src.collectionClasses.DragonElements;
 import src.tools.OutputText;
 
-import java.util.Arrays;
-
 /**
  * Prints all objects in collection
  */
