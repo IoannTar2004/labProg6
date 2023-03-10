@@ -34,12 +34,15 @@ public abstract class Invoker {
     /**
      * This method captures entered command and checks it using RegEx. It works while user enters command "exit".
      */
-    public static void invoke(Command command, String[] line) {
+    public static void invoke(String input, String mode) {
+        String[] line = input.trim().split("\\s+");
+        Command command = commands.get(line[0]);
+
         try {
             if (line.length == 1) {
-                command.execute();
+                command.execute(mode);
             } else if (line.length > 1) {
-                command.execute(line);
+                command.execute(mode, line);
             }
         } catch (NullPointerException e) {
             System.out.println("Такой команды нет!\n");
@@ -52,10 +55,7 @@ public abstract class Invoker {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
-            String[] line = input.trim().split("\\s+");
-            Command command = commands.get(line[0]);
-
-            invoke(command, line);
+            invoke(input, "user");
         }
     }
 }

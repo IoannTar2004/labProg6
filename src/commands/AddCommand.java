@@ -17,6 +17,11 @@ public class AddCommand implements Command {
      */
     @Override
     public void execute(String... args) {
+        if (args[0] == "script") {
+            executeWithScript(args[1],args[2],args[3], args[4], args[5], args[6], args[7]);
+            return;
+        }
+
         Scanner scanner = new Scanner(System.in);
         String data;
 

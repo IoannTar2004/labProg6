@@ -1,28 +1,27 @@
 package src.commands;
 
-import src.support.ArgumentManager;
+import src.support.InputManager;
+import src.tools.Invoker;
 import src.tools.OutputText;
 import src.support.Checks;
-import src.tools.ScriptInvoker;
 import src.tools.ScriptReader;
 import java.io.File;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Objects;
 
 /**
- * creates the list of commands received from txt file and runs {@link ScriptInvoker#invoke(List)}
+ * creates the list of commands received from txt file and runs.
  */
 public class ExecuteScriptCommand implements Command{
     /**
-     * Creates the list of commands received from txt file and runs {@link ScriptInvoker#invoke(List)}.
+     * Creates the list of commands received from txt file and runs.
      */
     @Override
     public void execute(String... filename) {
         File file;
 
         try {
-            String filename1 = ArgumentManager.builder(filename);
+            String filename1 = InputManager.builder(filename);
             file = Checks.fileChecker(filename1);
         } catch (ArrayIndexOutOfBoundsException e){
             OutputText.error("NoFileArgument");
@@ -31,8 +30,12 @@ public class ExecuteScriptCommand implements Command{
 
         if (file != null) {
             List<String> commands = ScriptReader.read(file);
+            System.out.println(commands);
             if (commands.size() > 0) {
-                ScriptInvoker.invoke(commands);
+                int i = 0;
+                while(!Objects.equals(commands.get(i), "")) {
+                    Invoker.commandParser(commands.get(i));
+                }
             }
         }
     }

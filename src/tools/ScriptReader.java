@@ -21,7 +21,7 @@ public class ScriptReader {
             input = new BufferedInputStream(new FileInputStream(file));
             bf = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
         } catch (Exception e) {
-            System.out.println("Файл не найден! Проверьте путь до файла или его права.");
+            OutputText.error("FileNotFound");
             return null;
         }
         try {

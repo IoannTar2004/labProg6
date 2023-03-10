@@ -1,6 +1,6 @@
 package src.support;
 
-public class ArgumentManager {
+public class InputManager {
 
     public static String builder(String[] arg) {
         String line = arg[1];
