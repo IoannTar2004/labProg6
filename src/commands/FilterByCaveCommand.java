@@ -14,7 +14,7 @@ public class FilterByCaveCommand implements Command {
      * Prints objects if they have a same cave depth.
      */
     @Override
-    public void execute(String mode, String input, String... cave) {
+    public void execute(String mode, String[] line, String... cave) {
         boolean check = false;
         try {
             DragonCave cave1 = Checks.caveChecker(cave[1]);
