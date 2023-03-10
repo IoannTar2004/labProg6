@@ -13,17 +13,23 @@ import java.util.Scanner;
  * Add object to collection.
  */
 public class AddCommand implements Command {
+
     /**
-     * Triggers when user enters this command to terminal
+     *
+     * @param mode
+     * @param line
+     * @param args
      */
     @Override
     public void execute(String mode, String[] line, String... args) {
         if (Objects.equals(mode, "script")) {
-            System.out.println("yes");
             executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else {add();}
     }
 
+    /**
+     * Triggers when user enters this command to terminal
+     */
     public static void add() {
         Scanner scanner = new Scanner(System.in);
         String data;

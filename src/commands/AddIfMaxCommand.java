@@ -7,6 +7,7 @@ import src.support.Checks;
 import src.tools.IdGenerator;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,12 +16,18 @@ import java.util.regex.Pattern;
  * Add object to collection if max value of one field is less than entered value.
  */
 public class AddIfMaxCommand implements Command {
+    
+    @Override
+    public void execute(String mode, String[] line, String... args) {
+        if (Objects.equals(mode, "script")) {
+            executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+        } else {addIfMax();}
+    }
 
     /**
      * Triggers when user enters this command to terminal
      */
-    @Override
-    public void execute(String mode, String[] line, String... args) {
+    public void addIfMax() {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
         String data;
