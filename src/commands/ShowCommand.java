@@ -10,7 +10,7 @@ import src.tools.OutputText;
 public class ShowCommand implements Command {
 
     /**
-     * Prints objects in collection. If arguments are absent it print all elements.
+     * Prints objects in collection. If arguments are absent it prints all elements.
      * It can print some fields in relation to numbers.
      */
     @Override
