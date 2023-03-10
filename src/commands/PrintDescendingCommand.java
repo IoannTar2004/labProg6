@@ -1,6 +1,8 @@
 package src.commands;
 
 import src.support.Sort;
+
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,10 +12,22 @@ import java.util.regex.Pattern;
  */
 public class PrintDescendingCommand implements Command {
     /**
-     * Triggers when user enters this command to terminal
+     * Prints objects in descending order by its value of field.
+     * @param mode
+     * @param line
+     * @param args
      */
     @Override
     public void execute(String mode, String[] line, String... args) {
+        if (Objects.equals(mode, "script")) {
+            executeWithScript(args[0]);
+        } else {printDescending();}
+    }
+
+    /**
+     * Triggers when user enters this command to terminal
+     */
+    public static void printDescending() {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
 

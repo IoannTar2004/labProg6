@@ -21,7 +21,7 @@ public abstract class Invoker {
         commands.put("clear", new ClearCommand());
         commands.put("head", new HeadCommand());
         commands.put("info", new InfoCommand());
-        commands.put("print", new PrintDescendingCommand());
+        commands.put("print_descending", new PrintDescendingCommand());
         commands.put("remove_first", new RemoveFirstCommand());
         commands.put("save", new SaveCommand());
         commands.put("show", new ShowCommand());
@@ -48,7 +48,7 @@ public abstract class Invoker {
             }
         }
     }
-    
+
     public static void commandScan() {
         InfoCommand.date();
 
