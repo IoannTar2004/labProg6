@@ -5,8 +5,6 @@ import src.support.Checks;
 import src.collectionClasses.Dragon;
 import src.tools.OutputText;
 
-import java.util.Arrays;
-
 /**
  * Removes object by its ID.
  */
@@ -15,13 +13,12 @@ public class RemoveByIdCommand implements Command{
      * Removes object by its ID.
      *
      * @param mode
-     * @param line
      * @param command command with ID
      */
     @Override
-    public void execute(String mode, String[] line, String... args) {
+    public void execute(String mode, String[] command, String... args) {
         try {
-            Dragon dragon = Checks.idChecker(line[1]);
+            Dragon dragon = Checks.idChecker(command[1]);
             if (dragon == null) {
                 return;
             }

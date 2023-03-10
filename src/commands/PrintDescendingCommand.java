@@ -13,12 +13,13 @@ import java.util.regex.Pattern;
 public class PrintDescendingCommand implements Command {
     /**
      * Prints objects in descending order by its value of field.
+     *
      * @param mode
-     * @param line
+     * @param command
      * @param args
      */
     @Override
-    public void execute(String mode, String[] line, String... args) {
+    public void execute(String mode, String[] command, String... args) {
         if (Objects.equals(mode, "script")) {
             executeWithScript(args[0]);
         } else {printDescending();}

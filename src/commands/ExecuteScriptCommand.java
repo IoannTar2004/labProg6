@@ -17,11 +17,11 @@ public class ExecuteScriptCommand implements Command{
      * Creates the list of commands received from txt file and runs.
      */
     @Override
-    public void execute(String mode, String[] line, String... filename) {
+    public void execute(String mode, String[] command, String... filename) {
         File file;
 
         try {
-            String filename1 = InputManager.builder(line);
+            String filename1 = InputManager.builder(command);
             file = Checks.fileChecker(filename1);
         } catch (ArrayIndexOutOfBoundsException e){
             OutputText.error("NoFileArgument");

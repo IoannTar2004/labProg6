@@ -16,12 +16,13 @@ public class AddCommand implements Command {
 
     /**
      * Add object to collection.
+     *
      * @param mode
-     * @param line
+     * @param command
      * @param args
      */
     @Override
-    public void execute(String mode, String[] line, String... args) {
+    public void execute(String mode, String[] command, String... args) {
         if (Objects.equals(mode, "script")) {
             executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else {add();}
