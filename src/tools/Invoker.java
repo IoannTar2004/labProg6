@@ -34,7 +34,8 @@ public abstract class Invoker {
     }
 
     /**
-     * This method captures entered command and checks it using RegEx. It works while user enters command "exit".
+     * This method receives entered or read from script command and splits by spaces.
+     * It works while command is not "exit".
      */
     public static void invoke(String mode, String input, String... args) {
         String[] line = input.trim().split("\\s+");

@@ -3,6 +3,9 @@ package src.support;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * class for initializing date when program starts
+ */
 public class InitializationDate {
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy - HH:mm:ss");
     private static String date;
