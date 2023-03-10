@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionClasses.CollectionManager;
+import src.support.InitializationDate;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +26,7 @@ public class InfoCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... args) {
         System.out.println("Тип коллекции: ArrayDeque;\n" +
-                "Дата инициализации: " + date() + ";\n" +
+                "Дата инициализации: " + InitializationDate.getDate() + ";\n" +
                 "Количество элементов: " + CollectionManager.length() + ".\n");
     }
 }

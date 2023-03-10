@@ -49,6 +49,9 @@ public abstract class Invoker {
         }
     }
 
+    /**
+     * Method reads commands entered by user.
+     */
     public static void commandScan() {
         InfoCommand.date();
 

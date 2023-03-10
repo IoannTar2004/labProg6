@@ -11,9 +11,6 @@ import src.tools.OutputText;
 public class RemoveByIdCommand implements Command{
     /**
      * Removes object by its ID.
-     *
-     * @param mode
-     * @param command command with ID
      */
     @Override
     public void execute(String mode, String[] command, String... args) {

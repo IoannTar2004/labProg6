@@ -13,10 +13,6 @@ import java.util.Scanner;
 public class UpdateIdCommand implements Command {
     /**
      * Changes {@link Dragon dragon's fields} by its ID.
-     *
-     * @param mode
-     * @param command
-     * @param args
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
