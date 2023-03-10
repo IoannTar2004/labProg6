@@ -21,7 +21,7 @@ public class ExecuteScriptCommand implements Command{
         File file;
 
         try {
-            String filename1 = InputManager.builder(filename);
+            String filename1 = InputManager.builder(line);
             file = Checks.fileChecker(filename1);
         } catch (ArrayIndexOutOfBoundsException e){
             OutputText.error("NoFileArgument");
@@ -30,11 +30,11 @@ public class ExecuteScriptCommand implements Command{
 
         if (file != null) {
             List<String> commands = ScriptReader.read(file);
-            System.out.println(commands);
             if (commands.size() > 0) {
                 int i = 0;
                 while(!Objects.equals(commands.get(i), "")) {
-                    Invoker.invoke(commands.get(i), "script");
+                    Invoker.invoke("script", commands.get(i), commands.get(i+1), commands.get(i+2), commands.get(i+3),
+                            commands.get(i+4), commands.get(i+5), commands.get(i+6), commands.get(i+7), commands.get(i+8));
                     i++;
                 }
             }

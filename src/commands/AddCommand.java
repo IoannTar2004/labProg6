@@ -19,10 +19,12 @@ public class AddCommand implements Command {
     @Override
     public void execute(String mode, String[] line, String... args) {
         if (Objects.equals(mode, "script")) {
-            executeWithScript(args[1],args[2],args[3], args[4], args[5], args[6], args[7]);
-            return;
-        }
+            System.out.println("yes");
+            executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        } else {add();}
+    }
 
+    public static void add() {
         Scanner scanner = new Scanner(System.in);
         String data;
 

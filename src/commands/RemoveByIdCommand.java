@@ -5,6 +5,8 @@ import src.support.Checks;
 import src.collectionClasses.Dragon;
 import src.tools.OutputText;
 
+import java.util.Arrays;
+
 /**
  * Removes object by its ID.
  */
