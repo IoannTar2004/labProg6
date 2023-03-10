@@ -29,13 +29,15 @@ public class DragonElements extends CollectionManager {
             elements.put("8", "характер: " + dragon.getCharacter());
             elements.put("9", "глубина пещеры: " + dragon.getCave());
 
-            String show = "| ";
+            String show = "";
+            boolean unknownNumber = false;
             for (int i = 1; i < fields.length; i++) {
                 if (elements.get(fields[i]) != null) {
                     show = show + elements.get(fields[i]) + " | ";
+                    unknownNumber = true;
                 }
             }
-            System.out.println(show);
+            if  (unknownNumber) {System.out.println(show);}
         }
     }
 }
