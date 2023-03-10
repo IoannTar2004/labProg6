@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class AddCommand implements Command {
 
     /**
-     *
+     * Add object to collection.
      * @param mode
      * @param line
      * @param args

@@ -16,7 +16,13 @@ import java.util.regex.Pattern;
  * Add object to collection if max value of one field is less than entered value.
  */
 public class AddIfMaxCommand implements Command {
-    
+
+    /**
+     * Add object to collection if max value of one field is less than entered value.
+     * @param mode
+     * @param line
+     * @param args
+     */
     @Override
     public void execute(String mode, String[] line, String... args) {
         if (Objects.equals(mode, "script")) {
