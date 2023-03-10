@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.support.Sort;
+import src.tools.OutputText;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -28,14 +29,7 @@ public class PrintDescendingCommand implements Command {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
 
-        System.out.println("\t\tВведите номер поля, по которому будет производиться сортировка\n" +
-                "1 - имя\n" +
-                "2 - координаты\n" +
-                "3 - возраст\n" +
-                "4 - цвет\n" +
-                "5 - тип\n" +
-                "6 - характер\n" +
-                "7 - глубина пещеры");
+        OutputText.input("DescendingInput");
         Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
         do {
             String field = scanner.nextLine();
@@ -44,7 +38,7 @@ public class PrintDescendingCommand implements Command {
             if(matcher.matches()) {
                 field = matcher.group(1);
                 Sort.sort(field);
-            } else {System.out.println("Введите число от 1 до 7!");}
+            } else {OutputText.error("FieldIncorrect");}
 
         } while (!matcher.matches());
     }

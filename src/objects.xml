@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-    <object id = "593378632519">
-        <name>ss</name>
-        <coordinates>2; 2</coordinates>
-        <age>3</age>
-        <color>Жёлтый</color>
-        <type>Огненный</type>
-        <character>Хаотичный</character>
-        <cavedepth>56.09</cavedepth>
-    </object>
-    <object id = "993378632519">
-        <name>Valera</name>
-        <coordinates>45; -2</coordinates>
-        <age>10</age>
-        <color>Синий</color>
-        <type>Воздушный</type>
-        <character>Злой</character>
-        <cavedepth>-102.94</cavedepth>
-    </object>
-    <object id = "673378632519">
-        <name>Valera</name>
-        <coordinates>3; 3</coordinates>
-        <age>10</age>
-        <color>Синий</color>
-        <type>Воздушный</type>
-        <character>Злой</character>
-        <cavedepth>-104.94</cavedepth>
-    </object>
+	<object id = "593378632519">
+		<name>ss</name>
+		<coordinates>2; 2</coordinates>
+		<age>3</age>
+		<color>Жёлтый</color>
+		<type>Огненный</type>
+		<character>Хаотичный</character>
+		<cavedepth>56.09</cavedepth>
+	</object>
+	<object id = "993378632519">
+		<name>Valera</name>
+		<coordinates>45; -2</coordinates>
+		<age>10</age>
+		<color>Синий</color>
+		<type>Воздушный</type>
+		<character>Злой</character>
+		<cavedepth>-102.94</cavedepth>
+	</object>
+	<object id = "673378632519">
+		<name>Valera</name>
+		<coordinates>3; 3</coordinates>
+		<age>10</age>
+		<color>Синий</color>
+		<type>Воздушный</type>
+		<character>Злой</character>
+		<cavedepth>-104.94</cavedepth>
+	</object>
+	<object id = "945547537044">
+		<name>Vova</name>
+		<coordinates>45; -1</coordinates>
+		<age>3</age>
+		<color>Синий</color>
+		<type>Водный</type>
+		<character>Злой</character>
+		<cavedepth>4.889</cavedepth>
+	</object>
 </root>
