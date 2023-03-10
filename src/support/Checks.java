@@ -17,10 +17,8 @@ public class Checks {
      * @return name or null in case of empty string
      */
     public static String nameCheck(String name) {
-        Pattern pattern = Pattern.compile("\\s*(\\S.*)\\s*");
-        Matcher matcher = pattern.matcher(name);
-        if (matcher.matches()) {
-            name = matcher.group(1);
+        name = name.trim();
+        if (!name.equals("")) {
             return name;
         }
         return null;
