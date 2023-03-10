@@ -46,9 +46,9 @@ public class Dragon {
 
     @Override
     public String toString() {
-        return "Имя: " + this.name + " | " +
+        return "| Имя: " + this.name + " | " +
                 "id: " + this.id + " | " +
-                "coordinates: " + this.coordinates.toString() + " | " +
+                "координаты: " + this.coordinates.toString() + " | " +
                 "возраст: " + this.age + " | " +
                 "дата создания: " + this.getCreationDate() + " | " +
                 "цвет: " + this.color.getColor() + " | " +

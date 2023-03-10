@@ -2,10 +2,7 @@ package src.tools;
 
 import src.commands.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * command selection
@@ -38,7 +35,7 @@ public abstract class Invoker {
      * It works while command is not "exit".
      */
     public static void invoke(String mode, String input, String... args) {
-        String[] line = input.trim().split("\\s+");
+        String[] line = input.trim().split("(\\s*\\W+\\s*)|(\\s+)");
         Command command = commands.get(line[0]);
 
         try {
