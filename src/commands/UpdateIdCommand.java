@@ -14,8 +14,8 @@ public class UpdateIdCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     @Override
-    public void execute(String mode, String[] line, String[] command) {
-        Dragon dragon = Checks.idChecker(command[1]);
+    public void execute(String mode, String[] line, String... args) {
+        Dragon dragon = Checks.idChecker(line[1]);
         if (dragon == null) {return;}
 
         Scanner scanner = new Scanner(System.in);
