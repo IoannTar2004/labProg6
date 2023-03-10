@@ -17,7 +17,7 @@ public class ExecuteScriptCommand implements Command{
      * Creates the list of commands received from txt file and runs.
      */
     @Override
-    public void execute(String mode, String... filename) {
+    public void execute(String... filename) {
         File file;
 
         try {
@@ -34,7 +34,8 @@ public class ExecuteScriptCommand implements Command{
             if (commands.size() > 0) {
                 int i = 0;
                 while(!Objects.equals(commands.get(i), "")) {
-                    Invoker.commandParser(commands.get(i));
+                    Invoker.invoke(commands.get(i), "script");
+                    i++;
                 }
             }
         }

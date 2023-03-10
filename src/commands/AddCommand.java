@@ -6,6 +6,7 @@ import src.tools.IdGenerator;
 import src.support.Checks;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -16,8 +17,8 @@ public class AddCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     @Override
-    public void execute(String mode, String... args) {
-        if (args[0] == "script") {
+    public void execute(String... args) {
+        if (Objects.equals(mode, "script")) {
             executeWithScript(args[1],args[2],args[3], args[4], args[5], args[6], args[7]);
             return;
         }

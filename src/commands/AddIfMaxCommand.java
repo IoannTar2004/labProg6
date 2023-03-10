@@ -20,7 +20,7 @@ public class AddIfMaxCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     @Override
-    public void execute(String mode, String... args) {
+    public void execute(String... args) {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
         String data;

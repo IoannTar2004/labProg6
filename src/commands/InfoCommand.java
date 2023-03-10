@@ -23,7 +23,7 @@ public class InfoCommand implements Command {
      * Prints information about collection.
      */
     @Override
-    public void execute(String mode, String... args) {
+    public void execute(String... args) {
         System.out.println("Тип коллекции: ArrayDeque;\n" +
                 "Дата инициализации: " + date() + ";\n" +
                 "Количество элементов: " + CollectionManager.length() + ".\n");
