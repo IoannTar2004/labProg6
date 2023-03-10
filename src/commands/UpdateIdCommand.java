@@ -11,9 +11,14 @@ import java.util.Scanner;
  * Changes {@link Dragon dragon's fields} by its ID.
  */
 public class UpdateIdCommand implements Command {
+    /**
+     * Changes {@link Dragon dragon's fields} by its ID.
+     * @param mode
+     * @param line
+     * @param args
+     */
     @Override
     public void execute(String mode, String[] line, String... args) {
-        System.out.println(line[1]);
         if (Objects.equals(mode, "script")) {
             executeWithScript(line, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else {update(line);}
