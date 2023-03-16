@@ -66,7 +66,13 @@ public class Dragon {
     }
     public int getX() {return coordinates.getX();}
     public Long getY() {return coordinates.getY();}
-    public Long getSumCoordinate() {return coordinates.getX() + coordinates.getY();}
+    public Long getSumCoordinate() {
+        try {
+            return coordinates.getX() + coordinates.getY();
+        } catch (NumberFormatException e) {
+            return Long.MAX_VALUE;
+        }
+    }
 
     public Integer getAge() {
         return age;
