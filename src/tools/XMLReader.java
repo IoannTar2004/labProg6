@@ -48,13 +48,11 @@ public class XMLReader {
             if (id == -1) {
                 System.out.println(error);
                 create = false;
-                start = false;
             } else {
                 Dragon dragon = CollectionManager.getDragonById(id);
                 if (dragon != null) {
                     System.out.println("Объект с id: \"" + element.getAttribute("id") + "\" уже существует");
                     create = false;
-                    start = false;
                 }
             }
 
@@ -64,12 +62,10 @@ public class XMLReader {
                 if (name == null) {
                     System.out.println("Имя не может быть пустым!" + error);
                     create = false;
-                    start = false;
                 }
             } catch (NullPointerException e) {
                 System.out.println("Отсутствует тег <name>"+error);
                 create = false;
-                start = false;
             }
 
             Coordinates coordinates = null;
@@ -79,12 +75,10 @@ public class XMLReader {
                     System.out.println("Координаты должны быть записаны в виде двух чисел через пробел или точку с запятой" +
                             error);
                     create = false;
-                    start = false;
                 }
             } catch (NullPointerException e) {
                 System.out.println("Отсутствует тег <coordinates>"+error);
                 create = false;
-                start = false;
             }
 
             int age = -1;
@@ -93,12 +87,10 @@ public class XMLReader {
                 if (age == -1) {
                     System.out.println("Возраст должен быть целым положительным числом!" + error);
                     create = false;
-                    start = false;
                 }
             } catch (NullPointerException e) {
                 System.out.println("Отсутствует тег <age>"+error);
                 create = false;
-                start = false;
             }
 
 
@@ -108,12 +100,10 @@ public class XMLReader {
                 if (color == null) {
                     System.out.println("Такого цвета нет!"+error);
                     create = false;
-                    start = false;
                 }
             } catch (NullPointerException e) {
                 System.out.println("Отсутствует тег <color>"+error);
                 create = false;
-                start = false;
             }
 
             DragonType type = null;
@@ -122,12 +112,10 @@ public class XMLReader {
                 if (type == null) {
                     System.out.println("Такого типа нет!"+error);
                     create = false;
-                    start = false;
                 }
             } catch (NullPointerException e) {
                 System.out.println("Отсутствует тег <type>"+error);
                 create = false;
-                start = false;
             }
 
             DragonCharacter character = null;
@@ -136,12 +124,10 @@ public class XMLReader {
                 if (character == null) {
                     System.out.println("Такого характера нет!"+error);
                     create = false;
-                    start = false;
                 }
             } catch (NullPointerException e) {
                 System.out.println("Отсутствует тег <character>"+error);
                 create = false;
-                start = false;
             }
 
             DragonCave cave = null;
@@ -150,12 +136,10 @@ public class XMLReader {
                 if (cave == null) {
                     System.out.println("Глубина пещеры должна быть записана в виде дробного числа через точку!" + error);
                     create = false;
-                    start = false;
                 }
             } catch (NullPointerException e) {
                 System.out.println("Отсутствует тег <cavedepth>"+error);
                 create = false;
-                start = false;
             }
 
             if (create) {

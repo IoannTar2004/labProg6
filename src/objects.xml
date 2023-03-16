@@ -1,11 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <root>
-    <object id = "274726478289">
-        <name>Ivan</name>
-        <coordinates>55; 746</coordinates>
-        <age>3</age>
-        <color>Чёрный</color>
-        <type>Воздушный</type>
-        <character>Злой</character>
-        <cavedepth>3.04</cavedepth>
-    </object>
+	<object id = "274724782895">
+		<name>Ivan</name>
+		<coordinates>55; 746</coordinates>
+		<age>3</age>
+		<color>Чёрный</color>
+		<type>Воздушный</type>
+		<character>Злой</character>
+		<cavedepth>3.04</cavedepth>
+	</object>
+	<object id = "926718140584">
+		<name>Vasya</name>
+		<coordinates>444; 444</coordinates>
+		<age>3</age>
+		<color>Синий</color>
+		<type>Водный</type>
+		<character>Злой</character>
+		<cavedepth>1.0</cavedepth>
+	</object>
 </root>
