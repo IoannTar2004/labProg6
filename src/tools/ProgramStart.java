@@ -39,10 +39,10 @@ public class ProgramStart {
         OutputText.startInformation("ReadFile");
         do {
             data = scanner.nextLine();
-            if(data.matches("\\s*y\\s*")) {
+            if(data.matches("\\s*y\\s*") && FileManager.isNotEmpty(file)) {
                 XMLReader.parse(file);
                 break;
-            } else if(data.matches("\\s*n\\s*")) {break;}
+            } else if(data.matches("\\s*n\\s*") || !FileManager.isNotEmpty(file)) {break;}
             else {OutputText.startInformation("yes_no");}
         } while (true);
 
