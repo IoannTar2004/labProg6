@@ -1,5 +1,10 @@
 package src.support;
 
+import src.tools.OutputText;
+
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 /**
  * class for processing inputs
  */
@@ -15,5 +20,19 @@ public class InputManager {
             line = line + " " + arg[i];
         }
         return line;
+    }
+
+    public static boolean yesNoInput() throws NoSuchElementException {
+        Scanner scanner = new Scanner(System.in);
+        String data;
+        do {
+            data = scanner.nextLine();
+            if(data.equals("y")) {
+                return true;
+            } else if(data.equals("n")) {
+                return false;
+            }
+            OutputText.startInformation("yes_no");
+        } while (true);
     }
 }

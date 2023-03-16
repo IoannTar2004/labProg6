@@ -1,1 +1,11 @@
-c
+<root>
+    <object id = "274726478289">
+        <name>Ivan</name>
+        <coordinates>55; 746</coordinates>
+        <age>3</age>
+        <color>Чёрный</color>
+        <type>Воздушный</type>
+        <character>Злой</character>
+        <cavedepth>3.04</cavedepth>
+    </object>
+</root>

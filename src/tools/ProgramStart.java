@@ -2,8 +2,10 @@ package src.tools;
 
 import src.support.Checks;
 import src.support.FileManager;
+import src.support.InputManager;
 
 import java.io.File;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ProgramStart {
@@ -12,40 +14,34 @@ public class ProgramStart {
      */
     public static void start() {
         Scanner scanner = new Scanner(System.in);
-        String data;
         OutputText.startInformation("CorrectXmlFile");
 
-        do {
-            data = scanner.nextLine();
-            if(data.matches("\\s*y\\s*")) {
-               OutputText.startInformation("Example");
-                break;
-            } else if(data.matches("\\s*n\\s*")) {break;}
-
-            else {OutputText.startInformation("yes_no");}
-        } while (true);
-
-        OutputText.startInformation("EnvVar");
-        File file;
-        do {
-            data = scanner.nextLine();
-            file = Checks.fileChecker(data);
-            if (file != null) {
-                FileManager.setFile(file);
-                break;
+        try {
+            String data;
+            if (InputManager.yesNoInput()) {
+                OutputText.startInformation("Example");
             }
-        } while (true);
 
-        OutputText.startInformation("ReadFile");
-        do {
-            data = scanner.nextLine();
-            if(data.matches("\\s*y\\s*") && FileManager.isNotEmpty(file)) {
-                XMLReader.parse(file);
-                break;
-            } else if(data.matches("\\s*n\\s*") || !FileManager.isNotEmpty(file)) {break;}
-            else {OutputText.startInformation("yes_no");}
-        } while (true);
+            OutputText.startInformation("EnvVar");
+            File file;
+            do {
+                data = scanner.nextLine();
+                file = Checks.fileChecker(data);
+                if (file != null) {
+                    FileManager.setFile(file);
+                    break;
+                }
+            } while (true);
 
-        OutputText.startInformation("ProgramReady");
+            OutputText.startInformation("ReadFile");
+
+            if (InputManager.yesNoInput()) {
+                if (FileManager.isNotEmpty(file)) {
+                    XMLReader.parse(file);
+                }
+            }
+
+            OutputText.startInformation("ProgramReady");
+        } catch (NoSuchElementException e) {System.exit(0);}
     }
 }
