@@ -11,29 +11,19 @@ public class ScriptReader {
      * @param file script file
      * @return list of commands
      */
-    public static List<String> read(File file) {
+    public static List<String> read(File file) throws FileNotFoundException {
         List<String> commands = new ArrayList<>();
         String command;
         BufferedReader buffer;
-        BufferedInputStream input;
+        buffer = new BufferedReader(new FileReader(file));
 
-        try {
-            input = new BufferedInputStream(new FileInputStream(file));
-            buffer = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
-        } catch (Exception e) {
-            OutputText.error("FileNotFound");
-            return null;
-        }
         try {
             do {
                 command = buffer.readLine();
-                if (command != null) {
-                    commands.add(command);
-                }
+                commands.add(command);
             } while (command != null);
 
             buffer.close();
-            input.close();
         }
         catch (IOException e) {
             System.out.println("Возникли проблемы с input/output");
