@@ -16,7 +16,7 @@ public class IdGenerator {
         for (int i = 0; i < CollectionManager.length(); i++) {
             Dragon dragon = CollectionManager.getDragonByIndex(i);
             if (id == CollectionManager.getId(dragon)) {
-                id = Long.parseLong(String.valueOf(Math.round((Math.random() * Math.pow(10, 11)) + 9*Math.pow(10, 11)-1)));
+                id = generate();
                 i = 0;
             }
         }
