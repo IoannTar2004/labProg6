@@ -134,6 +134,7 @@ public class Checks {
 
         if (matcher.matches()) {filename = matcher.group(1);}
         try {
+            filename = filename.replaceAll("\\s*~\\s*",System.getProperty("user.home"));
             File file = new File(System.getenv(filename));
             if (file.exists()) {return file;}
         } catch (NullPointerException ignored) {}
