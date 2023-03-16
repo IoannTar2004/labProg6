@@ -14,25 +14,25 @@ public class ScriptReader {
     public static List<String> read(File file) {
         List<String> commands = new ArrayList<>();
         String command;
-        BufferedReader bf;
+        BufferedReader buffer;
         BufferedInputStream input;
 
         try {
             input = new BufferedInputStream(new FileInputStream(file));
-            bf = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+            buffer = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
         } catch (Exception e) {
             OutputText.error("FileNotFound");
             return null;
         }
         try {
             do {
-                command = bf.readLine();
+                command = buffer.readLine();
                 if (command != null) {
                     commands.add(command);
                 }
             } while (command != null);
 
-            bf.close();
+            buffer.close();
             input.close();
         }
         catch (IOException e) {
