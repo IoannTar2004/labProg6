@@ -6,6 +6,7 @@ import src.collectionClasses.DragonFields;
 import src.tools.OutputText;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -54,13 +55,18 @@ public class InputManager {
     public Dragon dragonProcessing(Dragon dragon, DragonFields fieldName, String input)
             throws NoSuchFieldException, IllegalAccessException {
         Class<Dragon> dragonClass = Dragon.class;
-        Field field = dragonClass.getDeclaredField(fieldName.name());
+        Field field = dragonClass.getDeclaredField(fieldName.getField());
+        Method method;
+
         String regex = field.getAnnotation(Validation.class).value();
+        Checks checks = new Checks();
 
         if (input.matches(regex)) {
-            if (!Objects.equals(String.valueOf(field.getType()), "class java.lang.String")) {
-                Method method = dragonClass.getMethod()
-            }
+            try {
+                method = dragonClass.getMethod(fieldName.getField() + "Checker");
+                Object obj = method.invoke(checks);
+            } catch (NoSuchMethodException | InvocationTargetException ignored) {}
+
             field.setAccessible(true);
             field.set(dragon, input);
         }
