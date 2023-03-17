@@ -6,7 +6,9 @@ import src.collectionClasses.DragonFields;
 import src.tools.OutputText;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -55,7 +57,10 @@ public class InputManager {
         Field field = dragonClass.getDeclaredField(fieldName.name());
         String regex = field.getAnnotation(Validation.class).value();
 
-        if (input.matches(regex))  {
+        if (input.matches(regex)) {
+            if (!Objects.equals(String.valueOf(field.getType()), "class java.lang.String")) {
+                Method method = dragonClass.getMethod()
+            }
             field.setAccessible(true);
             field.set(dragon, input);
         }
