@@ -14,11 +14,13 @@ public class ProgramStart {
      */
     public static void start() {
         Scanner scanner = new Scanner(System.in);
+        InputManager inputManager = new InputManager();
+
         OutputText.startInformation("CorrectXmlFile");
 
         try {
             String data;
-            if (InputManager.yesNoInput()) {
+            if (inputManager.yesNoInput()) {
                 OutputText.startInformation("Example");
             }
 
@@ -35,7 +37,7 @@ public class ProgramStart {
 
             OutputText.startInformation("ReadFile");
 
-            if (InputManager.yesNoInput()) {
+            if (inputManager.yesNoInput()) {
                 if (FileManager.isNotEmpty(file)) {
                     XMLReader.parse(file);
                 }
