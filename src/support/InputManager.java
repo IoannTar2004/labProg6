@@ -49,14 +49,14 @@ public class InputManager {
         } while (true);
     }
 
-    public Dragon dragonProcessing(Dragon dragon, DragonFields fieldName, String input) throws NoSuchFieldException {
+    public Dragon dragonProcessing(Dragon dragon, DragonFields fieldName, String input)
+            throws NoSuchFieldException, IllegalAccessException {
         Class<Dragon> dragonClass = Dragon.class;
         Field field = dragonClass.getDeclaredField(fieldName.name());
         String regex = field.getAnnotation(Validation.class).value();
 
         if (input.matches(regex))  {
             field.setAccessible(true);
-            Checks<?> element = new Checks<>();
             field.set(dragon, input);
         }
     }
