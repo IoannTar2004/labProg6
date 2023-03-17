@@ -1,7 +1,11 @@
 package src.support;
 
+import src.annotations.Validation;
+import src.collectionClasses.Dragon;
+import src.collectionClasses.DragonFields;
 import src.tools.OutputText;
 
+import java.lang.reflect.Field;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -9,6 +13,10 @@ import java.util.Scanner;
  * class for processing inputs
  */
 public class InputManager {
+
+    @Validation("\\S*")
+    private String name;
+
     /**
      * Method builds argument that was separated by a space in {@link src.tools.Invoker#invoke(String, String, String...)}
      * @param arg - command
@@ -27,7 +35,7 @@ public class InputManager {
      * @return true if input is 'y' (yes), else return false if input is 'n' (no)
      * @throws NoSuchElementException
      */
-    public static boolean yesNoInput() throws NoSuchElementException {
+    public boolean yesNoInput() throws NoSuchElementException {
         Scanner scanner = new Scanner(System.in);
         String data;
         do {
@@ -39,5 +47,12 @@ public class InputManager {
             }
             OutputText.startInformation("yes_no");
         } while (true);
+    }
+
+    public Dragon dragonProcessing(Dragon dragon, DragonFields fieldName, String input) throws NoSuchFieldException {
+        Class<Dragon> dragonClass = Dragon.class;
+        Field field = dragonClass.getDeclaredField(fieldName.name());
+
+        
     }
 }
