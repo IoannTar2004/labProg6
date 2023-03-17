@@ -50,12 +50,14 @@ public class InputManager {
     }
 
     public Dragon dragonProcessing(Dragon dragon, DragonFields fieldName, String input) throws NoSuchFieldException {
-        //Class<Dragon> dragonClass = Dragon.class;
-        Field field = Dragon.class.getDeclaredField(fieldName.name());
+        Class<Dragon> dragonClass = Dragon.class;
+        Field field = dragonClass.getDeclaredField(fieldName.name());
         String regex = field.getAnnotation(Validation.class).value();
 
         if (input.matches(regex))  {
-            
+            field.setAccessible(true);
+            Checks<?> element = new Checks<>();
+            field.set(dragon, input);
         }
     }
 }
