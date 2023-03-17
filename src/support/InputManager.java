@@ -22,11 +22,16 @@ public class InputManager {
         return line;
     }
 
+    /**
+     * Method is used for answer the closed questions
+     * @return true if input is 'y' (yes), else return false if input is 'n' (no)
+     * @throws NoSuchElementException
+     */
     public static boolean yesNoInput() throws NoSuchElementException {
         Scanner scanner = new Scanner(System.in);
         String data;
         do {
-            data = scanner.nextLine();
+            data = scanner.nextLine().trim();
             if(data.equals("y")) {
                 return true;
             } else if(data.equals("n")) {
