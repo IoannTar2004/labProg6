@@ -40,9 +40,9 @@ public class AddCommand implements Command {
         String name;
         do {
             data = scanner.nextLine();
-            name = Checks.nameCheck(data);
+            name = Checks.nameChecker(data);
             if (name == null) {
-                OutputText.error("EmptyName");
+                OutputText.error("nameIncorrect");
             }
         } while(name == null);
 
@@ -53,7 +53,7 @@ public class AddCommand implements Command {
             data = scanner.nextLine();
             coordinates = Checks.coordinatesChecker(data);
             if(coordinates == null) {
-                OutputText.error("CoordinatesIncorrect");
+                OutputText.error("coordinatesIncorrect");
             }
         } while(coordinates == null);
 
@@ -64,7 +64,7 @@ public class AddCommand implements Command {
             data = scanner.nextLine();
             age = Checks.ageChecker(data);
             if (age == -1) {
-                OutputText.error("AgeIncorrect");
+                OutputText.error("ageIncorrect");
             }
         } while(age <= -1);
 
@@ -75,7 +75,7 @@ public class AddCommand implements Command {
             data = scanner.nextLine();
             color = Color.getColorByNumber(data);
             if (color == null) {
-                OutputText.error("ColorIncorrect");
+                OutputText.error("colorIncorrect");
             }
         } while(color == null);
 
@@ -86,7 +86,7 @@ public class AddCommand implements Command {
             data = scanner.nextLine();
             type = DragonType.getTypeByNumber(data);
             if (type == null) {
-                OutputText.error("TypeIncorrect");
+                OutputText.error("typeIncorrect");
             }
         } while(type == null);
 
@@ -97,7 +97,7 @@ public class AddCommand implements Command {
             data = scanner.nextLine();
             character = DragonCharacter.getCharacterByNumber(data);
             if (character == null) {
-                OutputText.error("CharacterIncorrect");
+                OutputText.error("characterIncorrect");
             }
         } while(character == null);
 
@@ -108,7 +108,7 @@ public class AddCommand implements Command {
             data = scanner.nextLine();
             cave = Checks.caveChecker(data);
             if(cave == null) {
-                OutputText.error("CaveIncorrect");
+                OutputText.error("caveIncorrect");
             }
         } while(cave == null);
 
@@ -135,7 +135,7 @@ public class AddCommand implements Command {
                                          String cave) {
         int count = 0;
 
-        if (Checks.nameCheck(name) != null) {count++;}
+        if (Checks.nameChecker(name) != null) {count++;}
         else {return;}
 
         Coordinates coordinates1 = Checks.coordinatesChecker(coordinates);

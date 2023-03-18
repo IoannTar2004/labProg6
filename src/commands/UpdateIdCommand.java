@@ -46,7 +46,7 @@ public class UpdateIdCommand implements Command {
             data = scanner.nextLine();
             coordinates = Checks.coordinatesChecker(data);
             if(coordinates == null && !data.matches("\\s*")) {
-                OutputText.error("CoordinatesIncorrect");
+                OutputText.error("coordinatesIncorrect");
             } else if (coordinates != null){
                 CollectionManager.updateCoordinates(dragon, coordinates);
             }
@@ -59,7 +59,7 @@ public class UpdateIdCommand implements Command {
             data = scanner.nextLine();
             age = Checks.ageChecker(data);
             if (age == -1 && !data.matches("\\s*")) {
-                OutputText.error("AgeIncorrect");
+                OutputText.error("ageIncorrect");
             } else if (age != -1){
                 CollectionManager.updateAge(dragon, age);
             }
@@ -72,7 +72,7 @@ public class UpdateIdCommand implements Command {
             data = scanner.nextLine();
             color = Color.getColorByNumber(data);
             if (color == null && !data.matches("\\s*")) {
-                OutputText.error("ColorIncorrect");
+                OutputText.error("colorIncorrect");
             } else if (color != null){
                 CollectionManager.updateColor(dragon, color);
             }
@@ -85,7 +85,7 @@ public class UpdateIdCommand implements Command {
             data = scanner.nextLine();
             type = DragonType.getTypeByNumber(data);
             if (type == null && !data.matches("\\s*")) {
-                OutputText.error("TypeIncorrect");
+                OutputText.error("typeIncorrect");
             } else if (type != null){
                 CollectionManager.updateType(dragon, type);
             }
@@ -98,7 +98,7 @@ public class UpdateIdCommand implements Command {
             data = scanner.nextLine();
             character = DragonCharacter.getCharacterByNumber(data);
             if (character == null && !data.matches("\\s*")) {
-                OutputText.error("CharacterIncorrect");
+                OutputText.error("characterIncorrect");
             } else if (character != null) {
                 CollectionManager.updateCharacter(dragon, character);
             }
@@ -111,7 +111,7 @@ public class UpdateIdCommand implements Command {
             data = scanner.nextLine();
             cave = Checks.caveChecker(data);
             if(cave == null && !data.matches("\\s*")) {
-                OutputText.error("CaveIncorrect");
+                OutputText.error("caveIncorrect");
             } else if (cave != null){;
                 CollectionManager.updateCave(dragon, cave);
             }

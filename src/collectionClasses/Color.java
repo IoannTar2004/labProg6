@@ -33,11 +33,5 @@ public enum Color {
      * @param color ordinal+1 color
      * @return color
      */
-    public static Color getColorByNumber(String color) {
-        if (color.matches("\\s*1\\s*")) {return BLACK;}
-        else if (color.matches("\\s*2\\s*")) {return BLUE;}
-        else if (color.matches("\\s*3\\s*")) {return YELLOW;}
 
-        return null;
-    }
 }

@@ -65,12 +65,12 @@ public class AddIfMaxCommand implements Command {
         String name, maxName;
         do {
             data = scanner.nextLine();
-            name = Checks.nameCheck(data);
+            name = Checks.nameChecker(data);
             maxName = MaxField.maxName();
             checkField = true;
 
             if (name == null) {
-                OutputText.error("EmptyName");
+                OutputText.error("nameIncorrect");
             } else if (name.compareTo(maxName) < 0 && field.equals("1")) {
                 OutputText.errorWithArgs("NameLess", maxName);
                 checkField = false;
@@ -91,7 +91,7 @@ public class AddIfMaxCommand implements Command {
             checkField = true;
 
             if (coordinates == null) {
-                OutputText.error("CoordinatesIncorrect");
+                OutputText.error("coordinatesIncorrect");
             } else if (coordinates.sum().compareTo(sumMax) < 0 && field.equals("2")) {
                 OutputText.errorWithArgs("CoordinatesLess", MaxField.maxCoordinates());
                 checkField = false;
@@ -111,7 +111,7 @@ public class AddIfMaxCommand implements Command {
             checkField = true;
 
             if (age == -1) {
-                OutputText.error("AgeIncorrect");
+                OutputText.error("ageIncorrect");
             } else if (age < maxAge && field.equals("3")) {
                 OutputText.errorWithArgs("AgeLess", maxAge);
                 checkField = false;
@@ -132,7 +132,7 @@ public class AddIfMaxCommand implements Command {
             checkField = true;
 
             if (color == null) {
-                OutputText.error("ColorIncorrect");
+                OutputText.error("colorIncorrect");
             } else if (color.ordinal()+1 < maxColor && field.equals("4")) {
                 OutputText.errorWithArgs("ColorLess", Color.getColorByNumber(String.valueOf(maxColor)).getColor());
                 checkField = false;
@@ -153,7 +153,7 @@ public class AddIfMaxCommand implements Command {
             checkField = true;
 
             if (type == null) {
-                OutputText.error("TypeIncorrect");
+                OutputText.error("typeIncorrect");
             } else if (type.ordinal()+1 < maxType && field.equals("5")) {
                 OutputText.errorWithArgs("TypeLess", DragonType.getTypeByNumber(String.valueOf(maxType)).getType());
                 checkField = false;
@@ -173,7 +173,7 @@ public class AddIfMaxCommand implements Command {
             maxCharacter = MaxField.maxCharacter();
             checkField = true;
             if (character == null) {
-                OutputText.error("CharacterIncorrect");
+                OutputText.error("characterIncorrect");
             } else if (character.ordinal()+1 < maxCharacter && field.equals("6")) {
                 OutputText.errorWithArgs("CharacterLess", DragonCharacter.getCharacterByNumber(String.valueOf(maxCharacter)).getCharacter());
                 checkField = false;
@@ -193,7 +193,7 @@ public class AddIfMaxCommand implements Command {
             maxCave = MaxField.maxCave();
             checkField = true;
             if (cave == null) {
-                OutputText.error("CaveIncorrect");
+                OutputText.error("caveIncorrect");
             } else if (cave.getDepth() < maxCave && field.equals("7")) {
                 OutputText.errorWithArgs("CaveLess", maxCave);
                 checkField = false;
@@ -236,7 +236,7 @@ public class AddIfMaxCommand implements Command {
         if(matcher.matches()) {count++;} else {return;}
 
         String nameMax = MaxField.maxName();
-        if (Checks.nameCheck(name) != null && !field.equals("1")) {count++;}
+        if (Checks.nameChecker(name) != null && !field.equals("1")) {count++;}
         else if (name.compareTo(nameMax) > 0 && field.equals("1")) {count++;}
         else {return;}
 

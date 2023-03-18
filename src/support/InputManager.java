@@ -52,23 +52,29 @@ public class InputManager {
         } while (true);
     }
 
-    public Dragon dragonProcessing(Dragon dragon, DragonFields fieldName, String input)
+    public <T> T dragonProcessing(DragonFields fieldName)
             throws NoSuchFieldException, IllegalAccessException {
-        Class<Dragon> dragonClass = Dragon.class;
-        Field field = dragonClass.getDeclaredField(fieldName.getField());
+        Class<InputManager> managerClass = InputManager.class;
+        Field field = managerClass.getDeclaredField(fieldName.getField());
         Method method;
+        Scanner scanner = new Scanner(System.in);
 
         String regex = field.getAnnotation(Validation.class).value();
+        Object obj;
         Checks checks = new Checks();
 
-        if (input.matches(regex)) {
+        do {
+            String input = scanner.nextLine().trim();
             try {
-                method = dragonClass.getMethod(fieldName.getField() + "Checker");
-                Object obj = method.invoke(checks);
-            } catch (NoSuchMethodException | InvocationTargetException ignored) {}
-
-            field.setAccessible(true);
-            field.set(dragon, input);
-        }
+                method = managerClass.getMethod(fieldName.getField() + "Checker");
+                obj = method.invoke(checks);
+            } catch (NoSuchMethodException | InvocationTargetException e) {
+                obj = input;
+            }
+            if (input.matches(regex)) {
+                return (T) obj;
+            }
+            OutputText.
+        } while (true);
     }
 }

@@ -7,6 +7,10 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static src.collectionClasses.Color.*;
+import static src.collectionClasses.DragonCharacter.*;
+import static src.collectionClasses.DragonType.*;
+
 /**
  * Consists of methods which check entered data, formats them and return finished values. Some of them can be saved to object fields.
  */
@@ -16,12 +20,12 @@ public class Checks {
      * @param name entered dragon's name
      * @return name or null in case of empty string
      */
-    public static String nameCheck(String name) {
-        name = name.trim();
-        if (!name.equals("")) {
-            return name;
+    public static String nameChecker(String name) {
+        if (!name.matches("\\S*")) {
+            OutputText.error("nameIncorrect");
+            return null;
         }
-        return null;
+        return name;
     }
 
     /**
@@ -79,6 +83,31 @@ public class Checks {
             System.out.println("Возраст должен быть положительным целым числом в 10 сс!");
         }
         return -1;
+    }
+    //TODO javadoc
+    public static Color colorParser(String color) {
+        if (color.matches("\\s*1\\s*")) {return BLACK;}
+        else if (color.matches("\\s*2\\s*")) {return BLUE;}
+        else if (color.matches("\\s*3\\s*")) {return YELLOW;}
+
+        return null;
+    }
+
+    public static DragonType typeParser(String type) {
+        if (type.matches("\\s*1\\s*")) {return WATER;}
+        else if (type.matches("\\s*2\\s*")) {return UNDERGROUND;}
+        else if (type.matches("\\s*3\\s*")) {return AIR;}
+        else if (type.matches("\\s*4\\s*")) {return FIRE;}
+
+        return null;
+    }
+
+    public static DragonCharacter characterParser(String character) {
+        if (character.matches("\\s*1\\s*")) {return CUNNING;}
+        else if (character.matches("\\s*2\\s*")) {return EVIL;}
+        else if (character.matches("\\s*3\\s*")) {return CHAOTIC;}
+
+        return null;
     }
 
     /**

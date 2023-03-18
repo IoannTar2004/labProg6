@@ -58,7 +58,7 @@ public class XMLReader {
 
             String name = null;
             try {
-                name = Checks.nameCheck(element.getElementsByTagName("name").item(0).getTextContent());
+                name = Checks.nameChecker(element.getElementsByTagName("name").item(0).getTextContent());
                 if (name == null) {
                     System.out.println("Имя не может быть пустым!" + error);
                     create = false;
