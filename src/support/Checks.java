@@ -21,7 +21,7 @@ public class Checks {
      * @return name or null in case of empty string
      */
     public static String nameChecker(String name) {
-        if (!name.matches("\\S*")) {
+        if (name.matches("\\s*")) {
             OutputText.error("nameIncorrect");
             return null;
         }
