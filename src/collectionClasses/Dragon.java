@@ -118,6 +118,10 @@ public class Dragon {
         this.cave = cave;
     }
 
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
