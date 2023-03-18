@@ -1,5 +1,6 @@
 package src.commands;
 
+import src.support.InputManager;
 import src.tools.OutputText;
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
@@ -32,93 +33,9 @@ public class AddCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     public static void add() {
-        Scanner scanner = new Scanner(System.in);
-        String data;
+        InputManager manager = new InputManager();
 
-        //имя
-        OutputText.input("NameInput");
-        String name;
-        do {
-            data = scanner.nextLine();
-            name = Checks.nameChecker(data);
-            if (name == null) {
-                OutputText.error("nameIncorrect");
-            }
-        } while(name == null);
-
-        //координаты
-        OutputText.input("CoordinatesInput");
-        Coordinates coordinates;
-        do {
-            data = scanner.nextLine();
-            coordinates = Checks.coordinatesChecker(data);
-            if(coordinates == null) {
-                OutputText.error("coordinatesIncorrect");
-            }
-        } while(coordinates == null);
-
-        //возраст
-        OutputText.input("AgeInput");
-        int age;
-        do {
-            data = scanner.nextLine();
-            age = Checks.ageChecker(data);
-            if (age == -1) {
-                OutputText.error("ageIncorrect");
-            }
-        } while(age <= -1);
-
-        //цвет
-        OutputText.input("ColorInput");
-        Color color;
-        do {
-            data = scanner.nextLine();
-            color = Color.getColorByNumber(data);
-            if (color == null) {
-                OutputText.error("colorIncorrect");
-            }
-        } while(color == null);
-
-        //тип
-        OutputText.input("TypeInput");
-        DragonType type;
-        do {
-            data = scanner.nextLine();
-            type = DragonType.getTypeByNumber(data);
-            if (type == null) {
-                OutputText.error("typeIncorrect");
-            }
-        } while(type == null);
-
-        //характер
-        OutputText.input("CharacterInput");
-        DragonCharacter character;
-        do {
-            data = scanner.nextLine();
-            character = DragonCharacter.getCharacterByNumber(data);
-            if (character == null) {
-                OutputText.error("characterIncorrect");
-            }
-        } while(character == null);
-
-        //пещера
-        OutputText.input("CaveInput");
-        DragonCave cave;
-        do {
-            data = scanner.nextLine();
-            cave = Checks.caveChecker(data);
-            if(cave == null) {
-                OutputText.error("caveIncorrect");
-            }
-        } while(cave == null);
-
-        //id
-        Long id = IdGenerator.generate();
-
-        Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, new Date());
-
-        CollectionManager.add(dragon);
-        OutputText.result("Added");
+        manager.dragonProcessing()
     }
 
     /**

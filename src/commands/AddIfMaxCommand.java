@@ -61,7 +61,7 @@ public class AddIfMaxCommand implements Command {
         } while (!checkField);
 
         //имя
-        OutputText.input("NameInput");
+        OutputText.input("nameInput");
         String name, maxName;
         do {
             data = scanner.nextLine();
@@ -81,7 +81,7 @@ public class AddIfMaxCommand implements Command {
         } while(name == null || !checkField);
 
         //координаты
-        OutputText.input("CoordinatesInput");
+        OutputText.input("coordinatesInput");
         Coordinates coordinates;
         Long sumMax;
         do {
@@ -102,7 +102,7 @@ public class AddIfMaxCommand implements Command {
         } while(coordinates == null || !checkField);
 
         //возраст
-        OutputText.input("AgeInput");
+        OutputText.input("ageInput");
         int age, maxAge;
         do {
             data = scanner.nextLine();
@@ -122,7 +122,7 @@ public class AddIfMaxCommand implements Command {
         } while(age == -1 || !checkField);
 
         //цвет
-        OutputText.input("ColorInput");
+        OutputText.input("colorInput");
         Color color;
         int maxColor;
         do {
@@ -143,7 +143,7 @@ public class AddIfMaxCommand implements Command {
         } while(color == null || !checkField);
 
         //тип
-        OutputText.input("TypeInput");
+        OutputText.input("typeInput");
         DragonType type;
         int maxType;
         do {
@@ -164,7 +164,7 @@ public class AddIfMaxCommand implements Command {
         } while(type == null || !checkField);
 
         //характер
-        OutputText.input("CharacterInput");
+        OutputText.input("characterInput");
         DragonCharacter character;
         int maxCharacter;
         do {
@@ -184,7 +184,7 @@ public class AddIfMaxCommand implements Command {
         } while(character == null || !checkField);
 
         //пещера
-        OutputText.input("CaveInput");
+        OutputText.input("caveInput");
         DragonCave cave;
         double maxCave;
         do {

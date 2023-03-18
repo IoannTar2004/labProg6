@@ -63,6 +63,7 @@ public class InputManager {
         Object obj;
         Checks checks = new Checks();
 
+        OutputText.input();
         do {
             String input = scanner.nextLine().trim();
             try {
@@ -74,7 +75,6 @@ public class InputManager {
             if (input.matches(regex)) {
                 return (T) obj;
             }
-            OutputText.
         } while (true);
     }
 }
