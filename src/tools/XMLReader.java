@@ -22,7 +22,7 @@ public class XMLReader {
      * @param xml xml file
      */
     public static void parse(File xml) {
-        boolean start = true;
+        /*boolean start = true;
 
         DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
         Document document = null;
@@ -58,7 +58,9 @@ public class XMLReader {
 
             String name = null;
             try {
-                name = Checks.nameChecker(element.getElementsByTagName("name").item(0).getTextContent());
+                //TODO changed
+                Checks checks = new Checks(element.getElementsByTagName("name").item(0).getTextContent());
+                name = checks.nameChecker();
                 if (name == null) {
                     System.out.println("Имя не может быть пустым!" + error);
                     create = false;
@@ -149,6 +151,6 @@ public class XMLReader {
         }
         if (!start) {
             System.exit(0);
-        }
+        }*/
     }
 }
