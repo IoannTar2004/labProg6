@@ -16,15 +16,15 @@ public class UpdateIdCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
-        if (Objects.equals(mode, "script")) {
+        /*if (Objects.equals(mode, "script")) {
             executeWithScript(command, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else {update(command);}
-    }
+    }*/
     /**
      * Triggers when user enters this command to terminal
      */
 
-    public static void update(String[] line) {
+    /*public static void update(String[] line) {
         Dragon dragon = Checks.idChecker(line[1]);
         if (dragon == null) {return;}
 
@@ -131,7 +131,7 @@ public class UpdateIdCommand implements Command {
      * @param character ordinal+1 of character
      * @param cave cave depth
      */
-    public static void executeWithScript(String[] command, String name, String coordinates, String age,
+    /*public static void executeWithScript(String[] command, String name, String coordinates, String age,
                                          String color, String type, String character, String cave) {
         Dragon dragon = Checks.idChecker(command[1]);
         if (dragon == null) {return;}
@@ -161,6 +161,6 @@ public class UpdateIdCommand implements Command {
 
         //пещера
         DragonCave cave1 = Checks.caveChecker(cave);
-        if (cave1 != null) {CollectionManager.updateCave(dragon, cave1);}
+        if (cave1 != null) {CollectionManager.updateCave(dragon, cave1);}*/
     }
 }

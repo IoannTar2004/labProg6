@@ -26,15 +26,15 @@ public class AddIfMaxCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
-        if (Objects.equals(mode, "script")) {
+       /* if (Objects.equals(mode, "script")) {
             executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
         } else {addIfMax();}
-    }
+    }*/
 
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void addIfMax() {
+    /*public static void addIfMax() {
         Scanner scanner = new Scanner(System.in);
         Matcher matcher;
         String data;
@@ -225,10 +225,10 @@ public class AddIfMaxCommand implements Command {
      * @param character ordinal+1 of character
      * @param cave cave depth
      */
-    public static void executeWithScript(String field, String name, String coordinates,
+    /*public static void executeWithScript(String field, String name, String coordinates,
                                          String age, String color, String type, String character,
                                          String cave) {
-        int count = 0;
+        /* count = 0;
 
         Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
         Matcher matcher = pattern.matcher(field);
@@ -284,6 +284,6 @@ public class AddIfMaxCommand implements Command {
         if (count == 8) {
             Dragon dragon = new Dragon(id, name, coordinates1, age1, color1, type1, character1, cave1, date);
             CollectionManager.add(dragon);
-        }
+        }*/
     }
 }
