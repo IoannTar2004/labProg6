@@ -44,6 +44,8 @@ public class Dragon {
         this.cave = cave;
     }
 
+    public Dragon() {}
+
     @Override
     public String toString() {
         return "| Имя: " + this.name + " | " +
