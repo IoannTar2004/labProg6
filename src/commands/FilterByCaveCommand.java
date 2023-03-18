@@ -16,8 +16,9 @@ public class FilterByCaveCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... cave) {
         boolean check = false;
+        Checks checks = new Checks(cave[1]);
         try {
-            DragonCave cave1 = Checks.caveChecker(cave[1]);
+            DragonCave cave1 = checks.caveChecker();
             if (cave1 != null) {
                 for (int i = 0; i < CollectionManager.length(); i++) {
                     Dragon dragon = CollectionManager.getDragonByIndex(i);

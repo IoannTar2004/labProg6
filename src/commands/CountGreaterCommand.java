@@ -14,8 +14,9 @@ public class CountGreaterCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
+        Checks checks = new Checks(command[1]);
         try {
-            int age1 = Checks.ageChecker(command[1]);
+            int age1 = checks.ageChecker();
 
             if (age1 > 0) {
                 int count = 0;
