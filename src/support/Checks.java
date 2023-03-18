@@ -15,27 +15,32 @@ import static src.collectionClasses.DragonType.*;
  * Consists of methods which check entered data, formats them and return finished values. Some of them can be saved to object fields.
  */
 public class Checks {
-    /**
-     *
-     * @param name entered dragon's name
-     * @return name or null in case of empty string
-     */
-    public static String nameChecker(String name) {
-        if (name.matches("\\s*")) {
-            OutputText.error("nameIncorrect");
-            return null;
-        }
-        return name;
+
+    private String input;
+    //TODO javadoc
+    public Checks(String input) {
+        this.input = input;
     }
 
     /**
      *
-     * @param coor two coordinates separated by a space or semicolon.
+     * @return name or null in case of empty string
+     */
+    public String nameChecker() {
+        if (input.matches("\\s*")) {
+            OutputText.error("nameIncorrect");
+            return null;
+        }
+        return input;
+    }
+
+    /**
+     *
      * @return new {@link Coordinates} or null in case of invalid input or exceeding the max value.
      */
-    public static Coordinates coordinatesChecker(String coor) {
+    public Coordinates coordinatesChecker() {
         Pattern pattern = Pattern.compile("\\s*(-?\\d+((\\s*;\\s*)|(\\s+))-?\\d+)\\s*");
-        Matcher matcher = pattern.matcher(coor);
+        Matcher matcher = pattern.matcher(input);
         int x; long y;
 
         if (matcher.matches()) {
@@ -55,25 +60,25 @@ public class Checks {
             }
             return new Coordinates(x, y);
         }
+        OutputText.error("coordinatesIncorrect");
         return null;
     }
 
     /**
      *
-     * @param age entered dragon's age
-     * @return 'int age' if entered age is a positive integer number; -2 in case of exceeding Integer.MAX_VALUE; -1 in other cases.
+     * @return 'int input' if entered input is a positive integer number; -2 in case of exceeding Integer.MAX_VALUE; -1 in other cases.
      */
-    public static int ageChecker(String age) {
-        Matcher matcher = Pattern.compile("[1-9][0-9]*").matcher(age);
-        Matcher matcher1 = Pattern.compile("-\\d+|0").matcher(age);
-        Matcher matcher2 = Pattern.compile("-?\\d+\\.\\d+").matcher(age);
+    public Integer ageChecker() {
+        Matcher matcher = Pattern.compile("[1-9][0-9]*").matcher(input);
+        Matcher matcher1 = Pattern.compile("-\\d+|0").matcher(input);
+        Matcher matcher2 = Pattern.compile("-?\\d+\\.\\d+").matcher(input);
 
         if (matcher.matches()) {
             try {
-                return Integer.parseInt(age);
+                return Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 OutputText.errorWithArgs("IntegerFormatExceeded", Integer.MAX_VALUE);
-                return -2;
+                return null;
             }
         } else if (matcher1.matches()) {
             System.out.println("Возраст - положительное число!");
@@ -82,46 +87,48 @@ public class Checks {
         } else {
             System.out.println("Возраст должен быть положительным целым числом в 10 сс!");
         }
-        return -1;
+        return null;
     }
     //TODO javadoc
-    public static Color colorParser(String color) {
-        if (color.matches("\\s*1\\s*")) {return BLACK;}
-        else if (color.matches("\\s*2\\s*")) {return BLUE;}
-        else if (color.matches("\\s*3\\s*")) {return YELLOW;}
+    public Color colorChecker() {
+        if (input.matches("\\s*1\\s*")) {return BLACK;}
+        else if (input.matches("\\s*2\\s*")) {return BLUE;}
+        else if (input.matches("\\s*3\\s*")) {return YELLOW;}
 
+        OutputText.error("colorIncorrect");
         return null;
     }
 
-    public static DragonType typeParser(String type) {
-        if (type.matches("\\s*1\\s*")) {return WATER;}
-        else if (type.matches("\\s*2\\s*")) {return UNDERGROUND;}
-        else if (type.matches("\\s*3\\s*")) {return AIR;}
-        else if (type.matches("\\s*4\\s*")) {return FIRE;}
+    public DragonType typeChecker() {
+        if (input.matches("\\s*1\\s*")) {return WATER;}
+        else if (input.matches("\\s*2\\s*")) {return UNDERGROUND;}
+        else if (input.matches("\\s*3\\s*")) {return AIR;}
+        else if (input.matches("\\s*4\\s*")) {return FIRE;}
 
+        OutputText.error("typeIncorrect");
         return null;
     }
 
-    public static DragonCharacter characterParser(String character) {
-        if (character.matches("\\s*1\\s*")) {return CUNNING;}
-        else if (character.matches("\\s*2\\s*")) {return EVIL;}
-        else if (character.matches("\\s*3\\s*")) {return CHAOTIC;}
+    public DragonCharacter characterChecker() {
+        if (input.matches("\\s*1\\s*")) {return CUNNING;}
+        else if (input.matches("\\s*2\\s*")) {return EVIL;}
+        else if (input.matches("\\s*3\\s*")) {return CHAOTIC;}
 
+        OutputText.error("characterIncorrect");
         return null;
     }
 
     /**
      *
-     * @param cave fractional number separated by a dot.
      * @return new {@link DragonCave} or null in case of invalid input or exceeding Double.MAX_VALUE.
      */
-    public static DragonCave caveChecker(String cave) {
-        Matcher matcher = Pattern.compile("-?(\\d+\\.\\d*)|(\\d+)").matcher(cave);
-        Matcher matcher1 = Pattern.compile("-?\\d+\\.-\\d+").matcher(cave);
+    public DragonCave caveChecker() {
+        Matcher matcher = Pattern.compile("-?(\\d+\\.\\d*)|(\\d+)").matcher(input);
+        Matcher matcher1 = Pattern.compile("-?\\d+\\.-\\d+").matcher(input);
 
         if (matcher.matches()) {
             try {
-                return new DragonCave(Double.parseDouble(cave));
+                return new DragonCave(Double.parseDouble(input));
             } catch (NumberFormatException e) {
                 OutputText.errorWithArgs("DoubleFormatExceeded", Double.MAX_VALUE);
             }

@@ -1,24 +1,17 @@
 package src.support;
 
-import src.annotations.Validation;
-import src.collectionClasses.Dragon;
 import src.collectionClasses.DragonFields;
 import src.tools.OutputText;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
  * class for processing inputs
  */
 public class InputManager {
-
-    @Validation("\\S*")
-    private String name;
 
     /**
      * Method builds argument that was separated by a space in {@link src.tools.Invoker#invoke(String, String, String...)}
@@ -52,29 +45,23 @@ public class InputManager {
         } while (true);
     }
 
-    public <T> T dragonProcessing(DragonFields fieldName)
+    public Object dragonProcessing(DragonFields fieldName)
             throws NoSuchFieldException, IllegalAccessException {
-        Class<InputManager> managerClass = InputManager.class;
-        Field field = managerClass.getDeclaredField(fieldName.getField());
+        Class<Checks> checksClass = Checks.class;
         Method method;
         Scanner scanner = new Scanner(System.in);
 
-        String regex = field.getAnnotation(Validation.class).value();
         Object obj;
-        Checks checks = new Checks();
 
-        OutputText.input();
-        do {
-            String input = scanner.nextLine().trim();
-            try {
-                method = managerClass.getMethod(fieldName.getField() + "Checker");
-                obj = method.invoke(checks);
-            } catch (NoSuchMethodException | InvocationTargetException e) {
-                obj = input;
+        String input = scanner.nextLine().trim();
+        Checks checks = new Checks(input);
+        try {
+            method = checksClass.getMethod(fieldName.getField() + "Checker");
+            obj = method.invoke(checks);
+            if (obj != null) {
+                return obj;
             }
-            if (input.matches(regex)) {
-                return (T) obj;
-            }
-        } while (true);
+        } catch (NoSuchMethodException | InvocationTargetException ignored) {}
+        return null;
     }
 }
