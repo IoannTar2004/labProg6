@@ -1,5 +1,6 @@
 package src.tools;
 
+import src.collectionClasses.CollectionManager;
 import src.commands.*;
 
 import java.util.*;
@@ -37,7 +38,6 @@ public abstract class Invoker {
     public static void invoke(String mode, String input, String... args) {
         String[] line = input.trim().split("(\\s*\\W+\\s*)|(\\s+)");
         Command command = commands.get(line[0]);
-
         try {
             command.execute(mode, line, args);
         } catch (NullPointerException e) {

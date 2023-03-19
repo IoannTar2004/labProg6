@@ -4,7 +4,6 @@ import src.support.InputManager;
 import src.tools.OutputText;
 import src.collectionClasses.*;
 import src.tools.IdGenerator;
-import src.support.Checks;
 
 import java.util.Date;
 import java.util.Objects;
@@ -25,7 +24,7 @@ public class AddCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... args) {
         if (Objects.equals(mode, "script")) {
-            executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+            addWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else {add();}
     }
 
@@ -33,52 +32,39 @@ public class AddCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     public static void add() {
+        Scanner scanner = new Scanner(System.in);
         InputManager manager = new InputManager();
-
-        manager.dragonProcessing()
+        Dragon dragon = new Dragon();
+        for (DragonFields fields: DragonFields.values()) {
+            Object element;
+            OutputText.input(fields.getField() + "Input");
+            do {
+                String input = scanner.nextLine().trim();
+                element = manager.dragonProcessing(fields, input);
+            } while (element == null);
+            dragon = manager.dragonInput(dragon, fields, element);
+        }
+        dragon.setId(IdGenerator.generate());
+        dragon.setCreationDate(new Date());
+        CollectionManager.add(dragon);
+        OutputText.result("Added");
     }
 
     /**
      * Triggers when command is from script file. Object is not created if at least one of the argument is invalid.
-     * @param name name
-     * @param coordinates two coordinates separated by a space or semicolon
-     * @param age age
-     * @param color ordinal+1 of color
-     * @param type ordinal+1 of type
-     * @param character ordinal+1 of character
-     * @param cave cave depth
+     * @param args elements of dragon which written in script
      */
-    public static void executeWithScript(String name, String coordinates, String age, String color, String type, String character,
-                                         String cave) {
-        int count = 0;
-
-        if (Checks.nameChecker(name) != null) {count++;}
-        else {return;}
-
-        Coordinates coordinates1 = Checks.coordinatesChecker(coordinates);
-        if(coordinates1 != null) {count++;}
-        else {return;}
-
-        int age1 = Checks.ageChecker(age);
-        if (age1 != -1){count++;} else {return;}
-
-        Color color1 = Color.getColorByNumber(color);
-        if (color1 != null){count++;} else {return;}
-
-        DragonType type1 = DragonType.getTypeByNumber(type);
-        if (type1 != null){count++;} else {return;}
-
-        DragonCharacter character1 = DragonCharacter.getCharacterByNumber(character);
-        if (character1 != null){count++;} else {return;}
-
-        DragonCave cave1 = Checks.caveChecker(cave);
-        if (cave1 != null){count++;} else {return;}
-
-        Long id = IdGenerator.generate();
-
-        if (count == 7) {
-            Dragon dragon = new Dragon(id, name, coordinates1, age1, color1, type1, character1, cave1, new Date());
-            CollectionManager.add(dragon);
+    public static void addWithScript(String... args) {
+        InputManager manager = new InputManager();
+        Dragon dragon = new Dragon();
+        for (DragonFields fields: DragonFields.values()) {
+            Object element = manager.dragonProcessing(fields, args[fields.ordinal()]);
+            if (element != null) {
+                dragon = manager.dragonInput(dragon, fields, element);
+            } else {return;}
         }
+        dragon.setId(IdGenerator.generate());
+        dragon.setCreationDate(new Date());
+        CollectionManager.add(dragon);
     }
 }

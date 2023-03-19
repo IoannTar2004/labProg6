@@ -1,18 +1,20 @@
 package src.support;
 
+import src.collectionClasses.Dragon;
 import src.collectionClasses.DragonFields;
 import src.tools.OutputText;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
  * class for processing inputs
  */
 public class InputManager {
-
     /**
      * Method builds argument that was separated by a space in {@link src.tools.Invoker#invoke(String, String, String...)}
      * @param arg - command
@@ -45,15 +47,11 @@ public class InputManager {
         } while (true);
     }
 
-    public Object dragonProcessing(DragonFields fieldName)
-            throws NoSuchFieldException, IllegalAccessException {
+    public Object dragonProcessing(DragonFields fieldName, String input) {
         Class<Checks> checksClass = Checks.class;
         Method method;
-        Scanner scanner = new Scanner(System.in);
 
         Object obj;
-
-        String input = scanner.nextLine().trim();
         Checks checks = new Checks(input);
         try {
             method = checksClass.getMethod(fieldName.getField() + "Checker");
@@ -61,7 +59,18 @@ public class InputManager {
             if (obj != null) {
                 return obj;
             }
-        } catch (NoSuchMethodException | InvocationTargetException ignored) {}
+        } catch (Exception ignored) {}
         return null;
+    }
+
+    public Dragon dragonInput(Dragon dragon, DragonFields fields, Object element) {
+        Class<Dragon> dragonClass = Dragon.class;
+        try {
+            Field field = dragonClass.getDeclaredField(fields.getField());
+            field.setAccessible(true);
+            field.set(dragon, element);
+        } catch (NoSuchFieldException | IllegalAccessException ignored) {}
+
+        return dragon;
     }
 }
