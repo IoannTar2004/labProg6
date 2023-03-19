@@ -12,4 +12,14 @@ public enum DragonFields {
     public String getField() {
         return field;
     }
+
+    public static DragonFields getFieldByNumber(String number) {
+        int num = Integer.parseInt(number);
+        for (DragonFields fields: DragonFields.values()) {
+            if (fields.ordinal()+1 == num) {
+                return fields;
+            }
+        }
+        return null;
+    }
 }
