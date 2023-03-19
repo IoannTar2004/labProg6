@@ -1,5 +1,6 @@
 package src.support;
 
+import src.collectionClasses.Dragon;
 import src.tools.OutputText;
 
 import java.util.regex.Matcher;
@@ -44,5 +45,15 @@ public class IdChecker {
             OutputText.error("IdIncorrect5");
         }
         return -1L;
+    }
+
+    public static Dragon parse(String[] command) {
+        try {
+            Dragon dragon = Checks.idChecker(command[1]);
+            if (dragon != null) {return dragon}
+        } catch (ArrayIndexOutOfBoundsException e) {
+            OutputText.error("NoIdArgument");
+        }
+        return null;
     }
 }
