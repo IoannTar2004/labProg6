@@ -51,6 +51,12 @@ public class InputManager {
         } while (true);
     }
 
+    /**
+     * Universal method that can run '{@link Checks Check}' methods in relation to {@link DragonFields}.
+     * @param fieldName run defined method in relation to this argument
+     * @param input it is what you entered
+     * @return any object if you write down correctly
+     */
     public Object dragonProcessing(DragonFields fieldName, String input) {
         Class<Checks> checksClass = Checks.class;
         Method method;
@@ -67,6 +73,13 @@ public class InputManager {
         return null;
     }
 
+    /**
+     * Adds or changes dragon's fields
+     * @param dragon that you need to change
+     * @param fields which field you want to change
+     * @param element value of field
+     * @return changed dragon
+     */
     public Dragon dragonInput(Dragon dragon, DragonFields fields, Object element) {
         Class<Dragon> dragonClass = Dragon.class;
         try {
