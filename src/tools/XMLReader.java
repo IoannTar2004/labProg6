@@ -8,7 +8,6 @@ import org.xml.sax.SAXException;
 import src.collectionManager.ObjectsGetters;
 import src.collectionManager.ObjectsManager;
 import src.collections.*;
-import src.support.Checks;
 import src.support.IdChecker;
 import src.support.InputManager;
 
@@ -18,6 +17,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Objects;
 
 public class XMLReader {
     /**
@@ -31,27 +31,24 @@ public class XMLReader {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node obj = nodeList.item(i);
             Element element = (Element) obj;
-            String error = " - ошибка в \"object id: " + element.getElementsByTagName("id").item(0).getTextContent()
-                    + "\"\n";
 
-            Long id = idParse(element.getElementsByTagName("id").item(0).getTextContent(), element);
-            if (id == -1) {
-                System.out.println(error);
-                continue;
-            }
+            Long id = missingTag("id", element) != null ? Long.valueOf(missingTag("id", element)) : null;
+            if (id == null) {continue;}
+
             Dragon dragon = new Dragon();
             ObjectsManager objectsManager = new ObjectsManager();
             InputManager manager = new InputManager();
+            String input;
 
             for (DragonFields fields : DragonFields.values()) {
-                String input = element.getElementsByTagName(fields.getField()).item(0).getTextContent().trim();
+                input = missingTag(fields.getField(), element);
+                if (input == null) {continue nextObject;}
                 input = getEnumStringByNumber(fields, input);
 
                 Object object = manager.dragonProcessing(fields, input);
                 if (object != null) {
                     dragon = manager.dragonInput(dragon, fields, object);
                 } else {
-                    System.out.println(error);
                     continue nextObject;
                 }
             }
@@ -73,7 +70,7 @@ public class XMLReader {
 
     private static Long idParse(String id, Element element) {
         ObjectsGetters getters = new ObjectsGetters();
-        Long id1 = IdChecker.check(element.getElementsByTagName("id").item(0).getTextContent());
+        Long id1 = IdChecker.check(id);
         if (id1 == -1) {
             return -1L;
         } else {
@@ -101,5 +98,16 @@ public class XMLReader {
             System.exit(0);
         }
         return document.getElementsByTagName("object");
+    }
+
+    private static String missingTag(String field, Element element) {
+        String input;
+        try {
+            input = element.getElementsByTagName(field).item(0).getTextContent().trim();
+        } catch (NullPointerException e) {
+            OutputText.error(field + "MissingTag");
+            return null;
+        }
+        return input;
     }
 }

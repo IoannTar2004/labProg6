@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <root>
-    <object>
-        <id>959755476201</id>
-        <name>Ivan</name>
-        <coordinates>55; 746</coordinates>
-        <age>3</age>
-        <color>Чёрный</color>
-        <type>Воздушный</type>
-        <character>Злой</character>
-        <cave>3.04</cave>
-    </object>
+	<object>
+		<id>964506792250</id>
+		<name>Ivan</name>
+		<coordinates>60; 30</coordinates>
+		<age>18</age>
+		<color>Жёлтый</color>
+		<type>Подземельный</type>
+		<character>Хаотичный</character>
+		<cave>-109.45</cave>
+	</object>
 </root>
