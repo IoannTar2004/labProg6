@@ -3,7 +3,7 @@ package src.commands;
 import src.support.IdChecker;
 import src.support.InputManager;
 import src.tools.OutputText;
-import src.collectionClasses.*;
+import src.collections.*;
 
 import java.util.Objects;
 import java.util.Scanner;

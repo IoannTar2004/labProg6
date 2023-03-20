@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.collectionClasses.DragonFields;
+import src.collections.DragonFields;
 import src.support.InputManager;
 import src.support.Sort;
 import src.tools.OutputText;

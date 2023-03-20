@@ -1,10 +1,10 @@
 package src.commands;
 
-import src.collectionClasses.DragonCave;
+import src.collections.DragonCave;
 import src.support.Checks;
 import src.tools.OutputText;
-import src.collectionClasses.CollectionManager;
-import src.collectionClasses.Dragon;
+import src.collections.CollectionManager;
+import src.collections.Dragon;
 
 /**
  * Prints objects if they have a same cave depth

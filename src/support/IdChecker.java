@@ -1,6 +1,6 @@
 package src.support;
 
-import src.collectionClasses.Dragon;
+import src.collections.Dragon;
 import src.tools.OutputText;
 
 import java.util.regex.Matcher;

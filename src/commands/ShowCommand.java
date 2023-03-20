@@ -1,7 +1,7 @@
 package src.commands;
 
-import src.collectionClasses.CollectionManager;
-import src.collectionClasses.DragonElements;
+import src.collections.CollectionManager;
+import src.collections.DragonElements;
 import src.tools.OutputText;
 
 /**

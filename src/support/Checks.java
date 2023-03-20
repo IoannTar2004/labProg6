@@ -1,15 +1,15 @@
 package src.support;
 
 import src.tools.OutputText;
-import src.collectionClasses.*;
+import src.collections.*;
 
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static src.collectionClasses.Color.*;
-import static src.collectionClasses.DragonCharacter.*;
-import static src.collectionClasses.DragonType.*;
+import static src.collections.Color.*;
+import static src.collections.DragonCharacter.*;
+import static src.collections.DragonType.*;
 
 /**
  * Consists of methods which check entered data, formats them and return finished values. Some of them can be saved to object fields.

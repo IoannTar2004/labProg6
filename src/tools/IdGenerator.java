@@ -1,7 +1,7 @@
 package src.tools;
 
-import src.collectionClasses.CollectionManager;
-import src.collectionClasses.Dragon;
+import src.collections.CollectionManager;
+import src.collections.Dragon;
 
 /**
  * class for id generate

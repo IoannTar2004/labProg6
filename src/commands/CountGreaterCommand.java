@@ -2,8 +2,8 @@ package src.commands;
 
 import src.support.Checks;
 import src.tools.OutputText;
-import src.collectionClasses.CollectionManager;
-import src.collectionClasses.Dragon;
+import src.collections.CollectionManager;
+import src.collections.Dragon;
 
 /**
  * Count amount of objects which have greater age than entered.

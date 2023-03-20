@@ -1,6 +1,6 @@
 package src.support;
 
-import src.collectionClasses.*;
+import src.collections.*;
 
 import java.util.*;
 

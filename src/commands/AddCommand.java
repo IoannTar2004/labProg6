@@ -2,12 +2,11 @@ package src.commands;
 
 import src.support.InputManager;
 import src.tools.OutputText;
-import src.collectionClasses.*;
+import src.collections.*;
 import src.tools.IdGenerator;
 
 import java.util.Date;
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * Add object to collection.

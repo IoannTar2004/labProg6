@@ -1,4 +1,4 @@
-package src.collectionClasses;
+package src.collections;
 
 /**
  * Enums of dragon's color

@@ -1,6 +1,6 @@
 package src.tools;
 
-import src.collectionClasses.*;
+import src.collections.*;
 
 public class XMLWriteParser {
     /**

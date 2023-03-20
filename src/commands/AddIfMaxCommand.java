@@ -1,8 +1,8 @@
 package src.commands;
 
-import src.collectionClasses.CollectionManager;
-import src.collectionClasses.Dragon;
-import src.collectionClasses.DragonFields;
+import src.collections.CollectionManager;
+import src.collections.Dragon;
+import src.collections.DragonFields;
 import src.support.InputManager;
 import src.support.MaxField;
 import src.tools.IdGenerator;
@@ -10,7 +10,7 @@ import src.tools.OutputText;
 
 import java.util.Date;
 import java.util.Objects;
-import java.util.Scanner;
+
 /**
  * Add object to collection if max value of one field is less than entered value.
  */

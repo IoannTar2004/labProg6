@@ -1,6 +1,5 @@
 package src.tools;
 
-import src.collectionClasses.CollectionManager;
 import src.commands.*;
 import src.support.InputManager;
 

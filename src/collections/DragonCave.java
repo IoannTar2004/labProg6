@@ -1,4 +1,4 @@
-package src.collectionClasses;
+package src.collections;
 
 /**
  * Dragon's cave

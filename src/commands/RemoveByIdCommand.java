@@ -1,8 +1,8 @@
 package src.commands;
 
-import src.collectionClasses.CollectionManager;
+import src.collections.CollectionManager;
 import src.support.Checks;
-import src.collectionClasses.Dragon;
+import src.collections.Dragon;
 import src.tools.OutputText;
 
 /**
