@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsManager;
 import src.tools.OutputText;
 
 /**
@@ -12,7 +13,9 @@ public class ClearCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
-        CollectionManager.clear();
+        ObjectsManager objectsManager = new ObjectsManager();
+
+        objectsManager.clear();
         OutputText.result("Cleared");
     }
 }

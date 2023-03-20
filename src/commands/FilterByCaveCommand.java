@@ -1,6 +1,9 @@
 package src.commands;
 
+import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsManager;
 import src.collections.DragonCave;
+import src.collections.DragonElements;
 import src.support.Checks;
 import src.tools.OutputText;
 import src.collectionManager.CollectionManager;
@@ -20,11 +23,15 @@ public class FilterByCaveCommand implements Command {
         try {
             Checks checks = new Checks(command[1]);
             DragonCave cave1 = checks.caveChecker();
+            ObjectsManager objectsManager = new ObjectsManager();
+            DragonElements dragonElements = new DragonElements();
+            ObjectsGetters getters = new ObjectsGetters();
+
             if (cave1 != null) {
-                for (int i = 0; i < CollectionManager.length(); i++) {
-                    Dragon dragon = CollectionManager.getDragonByIndex(i);
-                    if (CollectionManager.getCave(dragon) == cave1.getDepth()) {
-                        CollectionManager.element(dragon);
+                for (int i = 0; i < objectsManager.length(); i++) {
+                    Dragon dragon = getters.getDragonByIndex(i);
+                    if (getters.getCave(dragon) == cave1.getDepth()) {
+                        dragonElements.element(dragon);
                         check = true;
                     }
                 }

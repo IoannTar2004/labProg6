@@ -1,6 +1,9 @@
 package src.commands;
 
 import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsManager;
+import src.collections.DragonElements;
 import src.tools.OutputText;
 
 /**
@@ -13,8 +16,12 @@ public class HeadCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
-        if (CollectionManager.length() > 0) {
-            CollectionManager.element(CollectionManager.getDragonByIndex(0));
+        ObjectsManager objectsManager = new ObjectsManager();
+        DragonElements dragonElements = new DragonElements();
+        ObjectsGetters getters = new ObjectsGetters();
+
+        if (objectsManager.length() > 0) {
+            dragonElements.element(getters.getDragonByIndex(0));
         } else {
             OutputText.result("Empty");
         }

@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsManager;
 import src.tools.OutputText;
 
 /**
@@ -12,8 +13,9 @@ public class RemoveFirstCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
-        if (CollectionManager.length() > 0) {
-            CollectionManager.remove_first();
+        ObjectsManager objectsManager = new ObjectsManager();
+        if (objectsManager.length() > 0) {
+            objectsManager.remove_first();
             OutputText.result("RemovedFirst");
         }
         else {OutputText.result("Empty");}

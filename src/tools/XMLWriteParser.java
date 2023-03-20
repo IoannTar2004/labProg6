@@ -9,7 +9,7 @@ public class XMLWriteParser {
      * @return The finished xml String.
      */
     public static String parse() {
-        String data = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
+        /*String data = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
         data = data + "<root>\n";
         for (int i = 0; i < CollectionManager.length(); i++) {
@@ -27,7 +27,7 @@ public class XMLWriteParser {
             data = data + "\t</object>\n";
         }
         data = data + "</root>";
-
-        return data;
+*/
+        return null;
     }
 }

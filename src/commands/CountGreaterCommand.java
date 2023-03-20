@@ -1,5 +1,7 @@
 package src.commands;
 
+import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsManager;
 import src.support.Checks;
 import src.tools.OutputText;
 import src.collectionManager.CollectionManager;
@@ -15,14 +17,16 @@ public class CountGreaterCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... args) {
         try {
+            ObjectsManager objectsManager = new ObjectsManager();
+            ObjectsGetters getters = new ObjectsGetters();
             Checks checks = new Checks(command[1]);
             Integer age1 = checks.ageChecker();
 
             if (age1 != null) {
                 int count = 0;
-                for (int i = 0; i < CollectionManager.length(); i++) {
-                    Dragon dragon = CollectionManager.getDragonByIndex(i);
-                    if (CollectionManager.getAge(dragon) > age1) {
+                for (int i = 0; i < objectsManager.length(); i++) {
+                    Dragon dragon = getters.getDragonByIndex(i);
+                    if (getters.getAge(dragon) > age1) {
                         count++;
                     }
                 }

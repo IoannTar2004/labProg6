@@ -11,12 +11,11 @@ import java.util.Map;
 public class DragonElements extends CollectionManager {
 
     /**
-     * Method which can build string with dragon's elements in relation on entered numbers. More flexible than
-     * {@link CollectionManager#element(Dragon)}
+     * Method which can build string with dragon's elements in relation on entered numbers.
      * @param dragon
      * @param fields
      */
-    public static void element(Dragon dragon, String... fields) {
+    public void element(Dragon dragon, String... fields) {
         if (fields.length == 1) {System.out.println(dragon.toString());}
         else {
             Map<String, String> elements = new HashMap<>();

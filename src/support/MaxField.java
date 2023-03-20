@@ -1,6 +1,7 @@
 package src.support;
 
 import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsGetters;
 import src.collections.*;
 import src.tools.OutputText;
 
@@ -64,8 +65,10 @@ public class MaxField extends Sort {
      * @return max value of {@link Dragon#getName()} name if collection is not empty.
      */
     public static String maxName() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByName());
         Collections.reverse(sortlist);
 
@@ -77,8 +80,10 @@ public class MaxField extends Sort {
      * @return max sum of {@link Coordinates coordinates} (x + y) if collection is not empty.
      */
     public static Long maxSumCoordinates() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByCoordinates());
         if (sortlist.size() == 0) {return Long.MIN_VALUE;}
 
@@ -91,8 +96,10 @@ public class MaxField extends Sort {
      * @return x coordinate of the object which has max sum coordinates.
      */
     public static int maxX() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByCoordinates());
 
         Collections.reverse(sortlist);
@@ -104,8 +111,10 @@ public class MaxField extends Sort {
      * @return y coordinate of the object which has max sum coordinates.
      */
     public static Long maxY() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByCoordinates());
 
         Collections.reverse(sortlist);
@@ -117,8 +126,10 @@ public class MaxField extends Sort {
      * @return string of the form {@link Dragon#getCoordinates() 'x; y'} (where x + y is max) if collection is not empty
      */
     public static String maxCoordinates() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByCoordinates());
         Collections.reverse(sortlist);
 
@@ -130,8 +141,10 @@ public class MaxField extends Sort {
      * @return max {@link Dragon#getAge() age} if collection is not empty.
      */
     public static int maxAge() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByAge());
         Collections.reverse(sortlist);
 
@@ -143,8 +156,10 @@ public class MaxField extends Sort {
      * @return max ordinal+1 of {@link Color} if collection is not empty.
      */
     public static int maxColor() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByColor());
         Collections.reverse(sortlist);
 
@@ -156,8 +171,10 @@ public class MaxField extends Sort {
      * @return max ordinal+1 of {@link DragonType} if collection is not empty.
      */
     public static int maxType() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByType());
         Collections.reverse(sortlist);
 
@@ -169,8 +186,10 @@ public class MaxField extends Sort {
      * @return max ordinal+1 of {@link DragonCharacter} if collection is not empty.
      */
     public static int maxCharacter() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByCharacter());
         Collections.reverse(sortlist);
 
@@ -182,8 +201,10 @@ public class MaxField extends Sort {
      * @return max {@link Dragon#getCave()} cave depth if collection is not empty.
      */
     public static Double maxCave() {
+        ObjectsGetters getters = new ObjectsGetters();
+
         sortlist.clear();
-        sortlist.addAll(CollectionManager.getAll());
+        sortlist.addAll(getters.getAll());
         sortlist.sort(new SortByCave());
 
         Collections.reverse(sortlist);
@@ -192,7 +213,7 @@ public class MaxField extends Sort {
 
     /**
      * This method checks that dragon's field does not have max format value.
-     * @param field
+     * @param fields //TODO
      * @return
      */
     public static boolean existence(DragonFields fields) {

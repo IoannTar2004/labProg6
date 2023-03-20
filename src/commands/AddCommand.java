@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsManager;
 import src.support.InputManager;
 import src.tools.OutputText;
 import src.collections.*;
@@ -33,6 +34,7 @@ public class AddCommand implements Command {
      */
     public static void add() {
         InputManager manager = new InputManager();
+        ObjectsManager objectsManager = new ObjectsManager();
         Dragon dragon = new Dragon();
 
         for (DragonFields fields: DragonFields.values()) {
@@ -44,9 +46,7 @@ public class AddCommand implements Command {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
-        dragon.setId(IdGenerator.generate());
-        dragon.setCreationDate(new Date());
-        CollectionManager.add(dragon);
+        objectsManager.add(dragon);
         OutputText.result("Added");
     }
 
@@ -55,16 +55,16 @@ public class AddCommand implements Command {
      * @param args elements of dragon which written in script
      */
     public static void addWithScript(String... args) {
+        ObjectsManager objectsManager = new ObjectsManager();
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
+
         for (DragonFields fields: DragonFields.values()) {
             Object element = manager.dragonProcessing(fields, args[fields.ordinal()]);
             if (element != null) {
                 dragon = manager.dragonInput(dragon, fields, element);
             } else {return;}
         }
-        dragon.setId(IdGenerator.generate());
-        dragon.setCreationDate(new Date());
-        CollectionManager.add(dragon);
+        objectsManager.add(dragon);
     }
 }

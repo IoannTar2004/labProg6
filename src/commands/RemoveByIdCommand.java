@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsManager;
 import src.support.Checks;
 import src.collections.Dragon;
 import src.tools.OutputText;
@@ -15,11 +16,12 @@ public class RemoveByIdCommand implements Command{
     @Override
     public void execute(String mode, String[] command, String... args) {
         try {
+            ObjectsManager objectsManager = new ObjectsManager();
             Dragon dragon = Checks.idChecker(command[1]);
             if (dragon == null) {
                 return;
             }
-            CollectionManager.remove(dragon);
+            objectsManager.remove(dragon);
             OutputText.result("Removed");
         } catch (ArrayIndexOutOfBoundsException e) {
             OutputText.error("NoIdArgument");

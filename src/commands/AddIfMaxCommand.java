@@ -1,6 +1,7 @@
 package src.commands;
 
 import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsManager;
 import src.collections.Dragon;
 import src.collections.DragonFields;
 import src.support.InputManager;
@@ -35,6 +36,7 @@ public class AddIfMaxCommand implements Command {
      */
     public static void addIfMax() {
         DragonFields fieldNum;
+        ObjectsManager objectsManager = new ObjectsManager();
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
 
@@ -60,9 +62,7 @@ public class AddIfMaxCommand implements Command {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
-        dragon.setId(IdGenerator.generate());
-        dragon.setCreationDate(new Date());
-        CollectionManager.add(dragon);
+        objectsManager.add(dragon);
         OutputText.result("Added");
     }
 
@@ -77,6 +77,7 @@ public class AddIfMaxCommand implements Command {
 
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
+        ObjectsManager objectsManager = new ObjectsManager();
 
         for (DragonFields fields: DragonFields.values()) {
             Object element;
@@ -88,8 +89,6 @@ public class AddIfMaxCommand implements Command {
             } else if (element == null) {return;}
             dragon = manager.dragonInput(dragon, fields, element);
         }
-        dragon.setId(IdGenerator.generate());
-        dragon.setCreationDate(new Date());
-        CollectionManager.add(dragon);
+        objectsManager.add(dragon);
     }
 }
