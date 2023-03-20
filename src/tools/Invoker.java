@@ -54,7 +54,9 @@ public abstract class Invoker {
         InputManager manager = new InputManager();
         do {
             input = manager.scanner();
-            invoke("user", input);
+            if (!Objects.equals(input, "exit")) {
+                invoke("user", input);
+            }
         } while (!input.equals("exit"));
     }
 }
