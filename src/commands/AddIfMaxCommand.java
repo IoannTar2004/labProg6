@@ -34,28 +34,27 @@ public class AddIfMaxCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     public static void addIfMax() {
-        Scanner scanner = new Scanner(System.in);
         DragonFields fieldNum;
-        OutputText.input("FieldInput");
-        do {
-            String input = scanner.nextLine().trim();
-            fieldNum = DragonFields.getFieldByNumber(input);
-        } while (fieldNum == null || !MaxField.existence(fieldNum));
-
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
 
-        element:
+        OutputText.input("FieldInput");
+        do {
+            String input = manager.scanner();
+            fieldNum = DragonFields.getFieldByNumber(input);
+        } while (fieldNum == null || !MaxField.existence(fieldNum));
+
+        nextField:
         for (DragonFields fields: DragonFields.values()) {
             Object element;
             OutputText.input(fields.getField() + "Input");
             do {
-                String input = scanner.nextLine().trim();
+                String input = manager.scanner();
                 element = manager.dragonProcessing(fields, input);
                 if (fields == fieldNum && element != null) {
                     if (MaxField.max(fieldNum, element)) {
                         dragon = manager.dragonInput(dragon, fields, element);
-                        continue element;
+                        continue nextField;
                     } else {element = null;}
                 }
             } while (element == null);
@@ -70,7 +69,7 @@ public class AddIfMaxCommand implements Command {
     /**
      * Triggers when command is from script file. Object is not created if at least one of the argument is invalid or less than max.
      * @param field number of field whose value must be greater
-     * @param args
+     * @param args elements of dragon which written in script
      */
     public static void executeWithScript(String field, String... args) {
         DragonFields fieldNum = DragonFields.getFieldByNumber(field);

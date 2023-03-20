@@ -32,7 +32,6 @@ public class AddCommand implements Command {
      * Triggers when user enters this command to terminal
      */
     public static void add() {
-        Scanner scanner = new Scanner(System.in);
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
 
@@ -40,7 +39,7 @@ public class AddCommand implements Command {
             Object element;
             OutputText.input(fields.getField() + "Input");
             do {
-                String input = scanner.nextLine().trim();
+                String input = manager.scanner();
                 element = manager.dragonProcessing(fields, input);
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);

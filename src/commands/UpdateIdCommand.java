@@ -18,7 +18,7 @@ public class UpdateIdCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... args) {
         if (Objects.equals(mode, "script")) {
-            executeWithScript(command, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+            addIfMaxWithScript(command, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else {update(command);}
     }
     /**
@@ -50,7 +50,7 @@ public class UpdateIdCommand implements Command {
      * Triggers when command is from script file. Object is not created if at least one of the argument is invalid.
      * @param args elements of dragon which written in script
      */
-    public static void executeWithScript(String[] command, String... args) {
+    public static void addIfMaxWithScript(String[] command, String... args) {
         InputManager manager = new InputManager();
 
         Dragon dragon = IdChecker.parse(command);
