@@ -2,6 +2,7 @@ package src.commands;
 
 import src.support.Checks;
 import src.support.FileManager;
+import src.support.InputManager;
 import src.tools.OutputText;
 import src.tools.XMLWriteParser;
 
@@ -23,13 +24,14 @@ public class SaveCommand implements Command {
         Scanner scanner = new Scanner(System.in);
         File file;
         String data;
+        InputManager inputManager = new InputManager();
 
         System.out.println("Введите название переменной окружения, " +
                 "куда вы хотите сохранить или нажмите 'Enter', если хотите сохранить в текущий файл.");
 
         do {
-            data = scanner.nextLine();
-            if (!data.matches("\\s*")) {
+            data = inputManager.scanner();
+            if (data.length() > 0) {
                 file = Checks.fileChecker(data);
             } else {
                 file = FileManager.getFile();
@@ -41,7 +43,6 @@ public class SaveCommand implements Command {
             PrintWriter writer = new PrintWriter(new FileWriter(path));
 
             writer.write(XMLWriteParser.parse());
-
             writer.flush();
             writer.close();
 

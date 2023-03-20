@@ -56,7 +56,7 @@ public class Dragon {
                 "цвет: " + this.color.getColor() + " | " +
                 "тип: " + this.type.getType() + " | " +
                 "характер: " + this.character.getCharacter() + " | " +
-                "глубина пещеры: " + this.cave.getDepth() + "\n";
+                "глубина пещеры: " + this.cave.getDepth();
     }
 
     public String getName() {return name;}

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
 	<object>
-		<id>274724782890</id>
-		<name>Ivan</name>
-		<coordinates>55; 746</coordinates>
-		<age>3</age>
+		<id>928577067688</id>
+		<name>ttt</name>
+		<coordinates>30; 30</coordinates>
+		<age>1</age>
 		<color>Чёрный</color>
-		<type>Воздушный</type>
-		<character>Злой</character>
-		<cave>3.04</cave>
+		<type>Водный</type>
+		<character>Хитрый</character>
+		<cave>2.98</cave>
 	</object>
 	<object>
-		<id>274724782855</id>
-		<name>Vasya</name>
-		<coordinates>444; 444</coordinates>
-		<age>3</age>
+		<id>960699948068</id>
+		<name>wemfmef</name>
+		<coordinates>45; 45</coordinates>
+		<age>2</age>
 		<color>Синий</color>
-		<type>Водный</type>
+		<type>Подземельный</type>
 		<character>Злой</character>
-		<cave>1.0</cave>
+		<cave>6.89</cave>
 	</object>
 </root>

@@ -7,6 +7,6 @@ import java.util.Deque;
 /**
  * Controls the collection
  */
-public abstract class CollectionManager {
+public abstract class getters {
    static Deque<Dragon> dragons = new ArrayDeque<>();
 }

@@ -1,6 +1,5 @@
 package src.commands;
 
-import src.collectionManager.CollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.support.Checks;
 import src.collections.Dragon;

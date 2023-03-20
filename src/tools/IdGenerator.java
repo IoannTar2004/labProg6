@@ -1,6 +1,5 @@
 package src.tools;
 
-import src.collectionManager.CollectionManager;
 import src.collectionManager.ObjectsGetters;
 import src.collectionManager.ObjectsManager;
 import src.collections.Dragon;

@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * class for processing dragon's fields
  */
-public class ObjectsElements extends CollectionManager {
+public class ObjectsElements extends getters {
 
     /**
      * Method which can build string with dragon's elements in relation on entered numbers.

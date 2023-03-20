@@ -1,13 +1,11 @@
 package src.commands;
 
-import src.collectionManager.CollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.support.InputManager;
 import src.tools.OutputText;
 import src.collections.*;
 import src.tools.IdGenerator;
 
-import java.util.Date;
 import java.util.Objects;
 
 /**

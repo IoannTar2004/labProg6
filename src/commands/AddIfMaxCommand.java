@@ -1,6 +1,5 @@
 package src.commands;
 
-import src.collectionManager.CollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.collections.Dragon;
 import src.collections.DragonFields;
@@ -9,7 +8,6 @@ import src.support.MaxField;
 import src.tools.IdGenerator;
 import src.tools.OutputText;
 
-import java.util.Date;
 import java.util.Objects;
 
 /**

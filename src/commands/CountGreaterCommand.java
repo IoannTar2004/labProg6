@@ -4,7 +4,6 @@ import src.collectionManager.ObjectsGetters;
 import src.collectionManager.ObjectsManager;
 import src.support.Checks;
 import src.tools.OutputText;
-import src.collectionManager.CollectionManager;
 import src.collections.Dragon;
 
 /**

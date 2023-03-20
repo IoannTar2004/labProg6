@@ -24,6 +24,7 @@ public class ShowCommand implements Command {
             for (int i = 0; i < objectsManager.length(); i++) {
                 objectsElements.element(getters.getDragonByIndex(i), command);
             }
+            System.out.println();
         } else {
             OutputText.result("Empty");
         }
