@@ -35,6 +35,7 @@ public class AddCommand implements Command {
         Scanner scanner = new Scanner(System.in);
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
+
         for (DragonFields fields: DragonFields.values()) {
             Object element;
             OutputText.input(fields.getField() + "Input");

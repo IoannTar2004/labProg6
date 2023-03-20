@@ -1,12 +1,16 @@
 package src.support;
 
+import src.collectionClasses.CollectionManager;
 import src.collectionClasses.Dragon;
 import src.collectionClasses.DragonFields;
+import src.commands.AddCommand;
+import src.commands.Command;
+import src.tools.IdGenerator;
 import src.tools.OutputText;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -73,4 +77,5 @@ public class InputManager {
 
         return dragon;
     }
+
 }
