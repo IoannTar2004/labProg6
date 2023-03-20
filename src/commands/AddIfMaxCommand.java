@@ -1,17 +1,16 @@
 package src.commands;
 
-import src.tools.OutputText;
-import src.collectionClasses.*;
+import src.collectionClasses.CollectionManager;
+import src.collectionClasses.Dragon;
+import src.collectionClasses.DragonFields;
+import src.support.InputManager;
 import src.support.MaxField;
-import src.support.Checks;
 import src.tools.IdGenerator;
+import src.tools.OutputText;
 
 import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * Add object to collection if max value of one field is less than entered value.
  */
@@ -26,190 +25,44 @@ public class AddIfMaxCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
-       /* if (Objects.equals(mode, "script")) {
+       if (Objects.equals(mode, "script")) {
             executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
         } else {addIfMax();}
-    }*/
+    }
 
     /**
      * Triggers when user enters this command to terminal
      */
-    /*public static void addIfMax() {
+    public static void addIfMax() {
         Scanner scanner = new Scanner(System.in);
-        Matcher matcher;
-        String data;
-        boolean checkField;
-
+        DragonFields fieldNum;
         OutputText.input("FieldInput");
-        Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
-        String field;
         do {
-            field = scanner.nextLine();
-            matcher = pattern.matcher(field);
-            checkField = true;
+            String input = scanner.nextLine().trim();
+            fieldNum = DragonFields.getFieldByNumber(input);
+        } while (fieldNum == null || !MaxField.existence(fieldNum));
 
-            if(matcher.matches()) {
-                field = matcher.group(1);
-                MaxField.max(field);
+        InputManager manager = new InputManager();
+        Dragon dragon = new Dragon();
 
-            } else {
-                OutputText.error("FieldIncorrect");
-                checkField = false;
-            }
-
-            if (!MaxField.existence(field)) {checkField = false;}
-        } while (!checkField);
-
-        //имя
-        OutputText.input("nameInput");
-        String name, maxName;
-        do {
-            data = scanner.nextLine();
-            name = Checks.nameChecker(data);
-            maxName = MaxField.maxName();
-            checkField = true;
-
-            if (name == null) {
-                OutputText.error("nameIncorrect");
-            } else if (name.compareTo(maxName) < 0 && field.equals("1")) {
-                OutputText.errorWithArgs("NameLess", maxName);
-                checkField = false;
-            } else if (name.compareTo(maxName) == 0 && field.equals("1")) {
-                OutputText.errorWithArgs("NameEqual", maxName);
-                checkField = false;
-            }
-        } while(name == null || !checkField);
-
-        //координаты
-        OutputText.input("coordinatesInput");
-        Coordinates coordinates;
-        Long sumMax;
-        do {
-            data = scanner.nextLine();
-            coordinates = Checks.coordinatesChecker(data);
-            sumMax = MaxField.maxSumCoordinates();
-            checkField = true;
-
-            if (coordinates == null) {
-                OutputText.error("coordinatesIncorrect");
-            } else if (coordinates.sum().compareTo(sumMax) < 0 && field.equals("2")) {
-                OutputText.errorWithArgs("CoordinatesLess", MaxField.maxCoordinates());
-                checkField = false;
-            } else if (coordinates.sum().compareTo(sumMax) == 0 && field.equals("2")) {
-                OutputText.errorWithArgs("CoordinatesEqual", MaxField.maxCoordinates());
-                checkField = false;
-            }
-        } while(coordinates == null || !checkField);
-
-        //возраст
-        OutputText.input("ageInput");
-        int age, maxAge;
-        do {
-            data = scanner.nextLine();
-            age = Checks.ageChecker(data);
-            maxAge = MaxField.maxAge();
-            checkField = true;
-
-            if (age == -1) {
-                OutputText.error("ageIncorrect");
-            } else if (age < maxAge && field.equals("3")) {
-                OutputText.errorWithArgs("AgeLess", maxAge);
-                checkField = false;
-            } else if (age == maxAge && field.equals("3")) {
-                OutputText.errorWithArgs("AgeEqual", maxAge);
-                checkField = false;
-            }
-        } while(age == -1 || !checkField);
-
-        //цвет
-        OutputText.input("colorInput");
-        Color color;
-        int maxColor;
-        do {
-            data = scanner.nextLine();
-            color = Color.getColorByNumber(data);
-            maxColor = MaxField.maxColor();
-            checkField = true;
-
-            if (color == null) {
-                OutputText.error("colorIncorrect");
-            } else if (color.ordinal()+1 < maxColor && field.equals("4")) {
-                OutputText.errorWithArgs("ColorLess", Color.getColorByNumber(String.valueOf(maxColor)).getColor());
-                checkField = false;
-            } else if (color.ordinal()+1 == maxColor && field.equals("4")) {
-                OutputText.errorWithArgs("ColorEqual", Color.getColorByNumber(String.valueOf(maxColor)).getColor());
-                checkField = false;
-            }
-        } while(color == null || !checkField);
-
-        //тип
-        OutputText.input("typeInput");
-        DragonType type;
-        int maxType;
-        do {
-            data = scanner.nextLine();
-            type = DragonType.getTypeByNumber(data);
-            maxType = MaxField.maxType();
-            checkField = true;
-
-            if (type == null) {
-                OutputText.error("typeIncorrect");
-            } else if (type.ordinal()+1 < maxType && field.equals("5")) {
-                OutputText.errorWithArgs("TypeLess", DragonType.getTypeByNumber(String.valueOf(maxType)).getType());
-                checkField = false;
-            } else if (type.ordinal()+1 == maxType && field.equals("5")) {
-                OutputText.errorWithArgs("TypeEqual", DragonType.getTypeByNumber(String.valueOf(maxType)).getType());
-                checkField = false;
-            }
-        } while(type == null || !checkField);
-
-        //характер
-        OutputText.input("characterInput");
-        DragonCharacter character;
-        int maxCharacter;
-        do {
-            data = scanner.nextLine();
-            character = DragonCharacter.getCharacterByNumber(data);
-            maxCharacter = MaxField.maxCharacter();
-            checkField = true;
-            if (character == null) {
-                OutputText.error("characterIncorrect");
-            } else if (character.ordinal()+1 < maxCharacter && field.equals("6")) {
-                OutputText.errorWithArgs("CharacterLess", DragonCharacter.getCharacterByNumber(String.valueOf(maxCharacter)).getCharacter());
-                checkField = false;
-            } else if (character.ordinal()+1 == maxCharacter && field.equals("6")) {
-                OutputText.errorWithArgs("CharacterEqual", DragonCharacter.getCharacterByNumber(String.valueOf(maxCharacter)).getCharacter());
-                checkField = false;
-            }
-        } while(character == null || !checkField);
-
-        //пещера
-        OutputText.input("caveInput");
-        DragonCave cave;
-        double maxCave;
-        do {
-            data = scanner.nextLine();
-            cave = Checks.caveChecker(data);
-            maxCave = MaxField.maxCave();
-            checkField = true;
-            if (cave == null) {
-                OutputText.error("caveIncorrect");
-            } else if (cave.getDepth() < maxCave && field.equals("7")) {
-                OutputText.errorWithArgs("CaveLess", maxCave);
-                checkField = false;
-            } else if (cave.getDepth() == maxCave && field.equals("7")) {
-                OutputText.errorWithArgs("CaveEqual", maxCave);
-                checkField = false;
-            }
-        } while(cave == null || !checkField);
-
-        //id
-        Long id = IdGenerator.generate();
-
-        //date
-        Date date = new Date();
-        Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, date);
-
+        element:
+        for (DragonFields fields: DragonFields.values()) {
+            Object element;
+            OutputText.input(fields.getField() + "Input");
+            do {
+                String input = scanner.nextLine().trim();
+                element = manager.dragonProcessing(fields, input);
+                if (fields == fieldNum && element != null) {
+                    if (MaxField.max(fieldNum, element)) {
+                        dragon = manager.dragonInput(dragon, fields, element);
+                        continue element;
+                    } else {element = null;}
+                }
+            } while (element == null);
+            dragon = manager.dragonInput(dragon, fields, element);
+        }
+        dragon.setId(IdGenerator.generate());
+        dragon.setCreationDate(new Date());
         CollectionManager.add(dragon);
         OutputText.result("Added");
     }
@@ -217,73 +70,27 @@ public class AddIfMaxCommand implements Command {
     /**
      * Triggers when command is from script file. Object is not created if at least one of the argument is invalid or less than max.
      * @param field number of field whose value must be greater
-     * @param name name
-     * @param coordinates two coordinates separated by a space or semicolon
-     * @param age age
-     * @param color ordinal+1 of color
-     * @param type ordinal+1 of type
-     * @param character ordinal+1 of character
-     * @param cave cave depth
+     * @param args
      */
-    /*public static void executeWithScript(String field, String name, String coordinates,
-                                         String age, String color, String type, String character,
-                                         String cave) {
-        /* count = 0;
+    public static void executeWithScript(String field, String... args) {
+        DragonFields fieldNum = DragonFields.getFieldByNumber(field);
+        if (fieldNum == null || !MaxField.existence(fieldNum)) {return;}
 
-        Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
-        Matcher matcher = pattern.matcher(field);
+        InputManager manager = new InputManager();
+        Dragon dragon = new Dragon();
 
-        if(matcher.matches()) {count++;} else {return;}
-
-        String nameMax = MaxField.maxName();
-        if (Checks.nameChecker(name) != null && !field.equals("1")) {count++;}
-        else if (name.compareTo(nameMax) > 0 && field.equals("1")) {count++;}
-        else {return;}
-
-        Coordinates coordinates1 = Checks.coordinatesChecker(coordinates);
-        Long sum = MaxField.maxSumCoordinates();
-        if(coordinates1 != null && !field.equals("2")) {count++;}
-        else if (coordinates1.sum() > sum && field.equals("2")) {count++;}
-        else {return;}
-
-        int age1 = Checks.ageChecker(age);
-        int maxAge = MaxField.maxAge();
-        if (age1 != -1 && !field.equals("3")){count++;}
-        else if (age1 > maxAge && field.equals("3")) {count++;}
-        else {return;}
-
-        Color color1 = Color.getColorByNumber(color);
-        int maxColor = MaxField.maxColor();
-        if (color1 != null && !field.equals("4")){count++;}
-        else if (color1.ordinal()+1 > maxColor && field.equals("4")) {count++;}
-        else {return;}
-
-        DragonType type1 = DragonType.getTypeByNumber(type);
-        int maxType = MaxField.maxType();
-        if (type1 != null && !field.equals("5")){count++;}
-        else if (type1.ordinal()+1 > maxType && field.equals("5")) {count++;}
-        else {return;}
-
-        DragonCharacter character1 = DragonCharacter.getCharacterByNumber(character);
-        int maxCharacter = MaxField.maxCharacter();
-        if (character1 != null && !field.equals("6")){count++;}
-        else if (character1.ordinal()+1 > maxCharacter && field.equals("6")){count++;}
-        else {return;}
-
-        DragonCave cave1 = Checks.caveChecker(cave);
-        double maxCave = MaxField.maxCave();
-        if (cave1 != null && !field.equals("7")){count++;}
-        else if (cave1.getDepth() > maxCave && field.equals("7")) {count++;}
-        else {return;}
-
-        Long id = IdGenerator.generate();
-
-        //дата
-        Date date = new Date();
-
-        if (count == 8) {
-            Dragon dragon = new Dragon(id, name, coordinates1, age1, color1, type1, character1, cave1, date);
-            CollectionManager.add(dragon);
-        }*/
+        for (DragonFields fields: DragonFields.values()) {
+            Object element;
+            element = manager.dragonProcessing(fields, args[fields.ordinal()]);
+            if (fields == fieldNum && element != null) {
+                if (MaxField.max(fieldNum, element)) {
+                    dragon = manager.dragonInput(dragon, fields, element);
+                } else {return;}
+            } else if (element == null) {return;}
+            dragon = manager.dragonInput(dragon, fields, element);
+        }
+        dragon.setId(IdGenerator.generate());
+        dragon.setCreationDate(new Date());
+        CollectionManager.add(dragon);
     }
 }
