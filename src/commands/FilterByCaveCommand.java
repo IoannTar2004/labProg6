@@ -30,7 +30,7 @@ public class FilterByCaveCommand implements Command {
                 for (int i = 0; i < objectsManager.length(); i++) {
                     Dragon dragon = getters.getDragonByIndex(i);
                     if (getters.getCave(dragon) == cave1.getDepth()) {
-                        objectsElements.element(dragon);
+                        System.out.println(dragon);
                         check = true;
                     }
                 }

@@ -16,11 +16,10 @@ public class HeadCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... args) {
         ObjectsManager objectsManager = new ObjectsManager();
-        ObjectsElements objectsElements = new ObjectsElements();
         ObjectsGetters getters = new ObjectsGetters();
 
         if (objectsManager.length() > 0) {
-            objectsElements.element(getters.getDragonByIndex(0), command);
+            System.out.println(getters.getDragonByIndex(0));
         } else {
             OutputText.result("Empty");
         }
