@@ -32,10 +32,10 @@ public class InputManager {
      * @throws NoSuchElementException
      */
     public boolean yesNoInput() throws NoSuchElementException {
-        Scanner scanner = new Scanner(System.in);
+        InputManager manager = new InputManager();
         String data;
         do {
-            data = scanner.nextLine().trim();
+            data = manager.scanner();
             if(data.equals("y")) {
                 return true;
             } else if(data.equals("n")) {

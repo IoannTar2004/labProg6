@@ -13,7 +13,7 @@ import src.tools.*;
 
 public class Main {
     public static void main(String[] args) {
-        //ProgramStart.start();
+        ProgramStart.start();
         InitializationDate.getDate();
         Invoker.commandScan();
     }
