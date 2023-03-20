@@ -16,7 +16,6 @@ public abstract class Invoker {
         commands.put("add", new AddCommand());
         commands.put("add_if_max", new AddIfMaxCommand());
         commands.put("help", new HelpCommand());
-        commands.put("exit", new ExitCommand());
         commands.put("clear", new ClearCommand());
         commands.put("head", new HeadCommand());
         commands.put("info", new InfoCommand());
