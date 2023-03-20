@@ -1,6 +1,6 @@
 package src.support;
 
-import src.collectionManager.CollectionManager;
+import src.collectionManager.ObjectsElements;
 import src.collectionManager.ObjectsGetters;
 import src.collections.*;
 
@@ -35,8 +35,8 @@ public class Sort {
         }
         Collections.reverse(sortlist);
         for(int i = 0; i < sortlist.size(); i++) {
-            DragonElements dragonElements = new DragonElements();
-            dragonElements.element(sortlist.get(i), args);
+            ObjectsElements objectsElements = new ObjectsElements();
+            objectsElements.element(sortlist.get(i), args);
         }
         System.out.println();
         sortlist.clear();

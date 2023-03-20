@@ -1,9 +1,8 @@
 package src.commands;
 
-import src.collectionManager.CollectionManager;
 import src.collectionManager.ObjectsGetters;
 import src.collectionManager.ObjectsManager;
-import src.collections.DragonElements;
+import src.collectionManager.ObjectsElements;
 import src.tools.OutputText;
 
 /**
@@ -18,12 +17,12 @@ public class ShowCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... args) {
         ObjectsManager objectsManager = new ObjectsManager();
-        DragonElements dragonElements = new DragonElements();
+        ObjectsElements objectsElements = new ObjectsElements();
         ObjectsGetters getters = new ObjectsGetters();
 
         if (objectsManager.length() > 0) {
             for (int i = 0; i < objectsManager.length(); i++) {
-                dragonElements.element(getters.getDragonByIndex(i), command);
+                objectsElements.element(getters.getDragonByIndex(i), command);
             }
         } else {
             OutputText.result("Empty");

@@ -1,6 +1,6 @@
-package src.collections;
+package src.collectionManager;
 
-import src.collectionManager.CollectionManager;
+import src.collections.Dragon;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * class for processing dragon's fields
  */
-public class DragonElements extends CollectionManager {
+public class ObjectsElements extends CollectionManager {
 
     /**
      * Method which can build string with dragon's elements in relation on entered numbers.
