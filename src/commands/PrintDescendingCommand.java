@@ -22,7 +22,7 @@ public class PrintDescendingCommand implements Command {
     @Override
     public void execute(String mode, String[] command, String... args) {
         if (Objects.equals(mode, "script")) {
-            executeWithScript(args[0]);
+            executeWithScript(command, args[0]);
         } else {printDescending(command);}
     }
 
@@ -48,14 +48,11 @@ public class PrintDescendingCommand implements Command {
      * Triggers when command is from script file. Object is not created if at least one of the argument is invalid.
      * @param arg number of field
      */
-    public static void executeWithScript(String arg) {
-        Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
-        Matcher matcher;
-        matcher = pattern.matcher(arg);
+    public static void executeWithScript(String[] command, String arg) {
+        DragonFields fieldNum;
 
-        if(matcher.matches()) {
-            arg = matcher.group(1);
-            //Sort.sort(arg);
-        }
+        fieldNum = DragonFields.getFieldByNumber(arg);
+        assert fieldNum != null;
+        Sort.sort(fieldNum, command);
     }
 }
