@@ -1,5 +1,9 @@
 package src.commands;
 
+import src.collectionClasses.DragonElements;
+import src.collectionClasses.DragonFields;
+import src.support.InputManager;
+import src.support.MaxField;
 import src.support.Sort;
 import src.tools.OutputText;
 
@@ -19,28 +23,25 @@ public class PrintDescendingCommand implements Command {
     public void execute(String mode, String[] command, String... args) {
         if (Objects.equals(mode, "script")) {
             executeWithScript(args[0]);
-        } else {printDescending();}
+        } else {printDescending(command);}
     }
 
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void printDescending() {
-        Scanner scanner = new Scanner(System.in);
-        Matcher matcher;
+    public static void printDescending(String[] command) {
+        DragonFields fieldNum;
+        InputManager manager = new InputManager();
 
         OutputText.input("DescendingInput");
-        Pattern pattern = Pattern.compile("\\s*([1-7])\\s*");
         do {
-            String field = scanner.nextLine();
-            matcher = pattern.matcher(field);
-
-            if(matcher.matches()) {
-                field = matcher.group(1);
-                Sort.sort(field);
-            } else {OutputText.error("FieldIncorrect");}
-
-        } while (!matcher.matches());
+            String input = manager.scanner();
+            fieldNum = DragonFields.getFieldByNumber(input);
+            if (fieldNum == null) {OutputText.error("FieldIncorrect");}
+            else {
+                Sort.sort(fieldNum, command);
+            }
+        } while (fieldNum == null);
     }
 
     /**
@@ -54,7 +55,7 @@ public class PrintDescendingCommand implements Command {
 
         if(matcher.matches()) {
             arg = matcher.group(1);
-            Sort.sort(arg);
+            //Sort.sort(arg);
         }
     }
 }

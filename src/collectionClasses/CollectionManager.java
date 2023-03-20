@@ -59,36 +59,10 @@ public class CollectionManager {
     public static double getCave(Dragon dragon) {
         return dragon.getCave();
     }
-    public static String getCreationDate(Dragon dragon) {
-        return dragon.getCreationDate();
-    }
     public static Integer getAge(Dragon dragon) {
         return dragon.getAge();
     }
     public static String getType(Dragon dragon) {
         return dragon.getType();
-    }
-
-    //updates
-    public static void updateName(Dragon dragon, String name) {
-        dragon.setName(name);
-    }
-    public static void updateCoordinates(Dragon dragon, Coordinates coordinates) {
-        dragon.setCoordinates(coordinates);
-    }
-    public static void updateAge(Dragon dragon, Integer age) {
-        dragon.setAge(age);
-    }
-    public static void updateColor(Dragon dragon, Color color) {
-        dragon.setColor(color);
-    }
-    public static void updateType(Dragon dragon, DragonType type) {
-        dragon.setType(type);
-    }
-    public static void updateCharacter(Dragon dragon, DragonCharacter character) {
-        dragon.setCharacter(character);
-    }
-    public static void updateCave(Dragon dragon, DragonCave cave) {
-        dragon.setCave(cave);
     }
 }
