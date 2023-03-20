@@ -1,3 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <root>
+    <object>
+        <id>959755476201</id>
+        <name>Ivan</name>
+        <coordinates>55; 746</coordinates>
+        <age>3</age>
+        <color>Чёрный</color>
+        <type>Воздушный</type>
+        <character>Злой</character>
+        <cave>3.04</cave>
+    </object>
 </root>
