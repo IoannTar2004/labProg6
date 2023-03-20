@@ -31,9 +31,8 @@ public class UpdateIdCommand implements Command {
 
         Scanner scanner = new Scanner(System.in);
         InputManager manager = new InputManager();
-
         nextField:
-        for (DragonFields fields : DragonFields.values()) {
+        for (DragonFields fields: DragonFields.values()) {
             Object element;
             OutputText.input(fields.getField() + "NewInput");
             do {
@@ -44,7 +43,7 @@ public class UpdateIdCommand implements Command {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
-       OutputText.result("DataChanged");
+        OutputText.result("DataChanged");
     }
 
     /**
@@ -66,4 +65,5 @@ public class UpdateIdCommand implements Command {
             } else {return;}
         }
     }
+
 }

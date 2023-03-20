@@ -18,7 +18,6 @@ public class ShowCommand implements Command {
         if (CollectionManager.length() > 0) {
             for (int i = 0; i < CollectionManager.length(); i++) {
                 DragonElements.element(CollectionManager.getDragonByIndex(i), command);
-                System.out.println();
             }
         } else {
             OutputText.result("Empty");
