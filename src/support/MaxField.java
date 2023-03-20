@@ -34,18 +34,19 @@ public class MaxField extends Sort {
             }
             case COLOR -> {
                 max = (((Color) element).ordinal() + 1) - maxColor();
-                maxValue = new Checks((String) element).colorChecker().getColor();
+                System.out.println(element);
+                maxValue = new Checks(String.valueOf(maxColor())).colorChecker();
             }
             case TYPE -> {
                 max = (((DragonType) element).ordinal() + 1) - maxType();
-                maxValue = new Checks((String) element).typeChecker().getType();
+                maxValue = new Checks(String.valueOf(maxType())).typeChecker();
             }
             case CHARACTER -> {
                 max = (((DragonCharacter) element).ordinal() + 1) - maxCharacter();
-                maxValue = new Checks((String) element).characterChecker().getCharacter();
+                maxValue = new Checks(String.valueOf(maxCharacter())).characterChecker();
             }
             case CAVE -> {
-                max = ((Double) element).compareTo(maxCave());
+                max = ((DragonCave) element).getDepth().compareTo(maxCave());
                 maxValue = maxCave();
             }
         }
@@ -199,7 +200,7 @@ public class MaxField extends Sort {
      *
      * @return max {@link Dragon#getCave()} cave depth if collection is not empty.
      */
-    public static Double maxCave() {
+    public static double maxCave() {
         ObjectsGetters getters = new ObjectsGetters();
 
         sortlist.clear();
