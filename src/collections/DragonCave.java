@@ -10,7 +10,7 @@ public class DragonCave {
         this.depth = death;
     }
 
-    public double getDepth() {
+    public Double getDepth() {
         return depth;
     }
 }

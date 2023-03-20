@@ -20,7 +20,7 @@ public class HeadCommand implements Command {
         ObjectsGetters getters = new ObjectsGetters();
 
         if (objectsManager.length() > 0) {
-            objectsElements.element(getters.getDragonByIndex(0));
+            objectsElements.element(getters.getDragonByIndex(0), command);
         } else {
             OutputText.result("Empty");
         }
