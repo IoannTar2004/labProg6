@@ -1,5 +1,6 @@
 package src.tools;
 
+import src.collectionManager.CollectionManager;
 import src.collections.*;
 
 public class XMLWriteParser {

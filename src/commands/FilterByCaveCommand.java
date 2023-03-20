@@ -3,7 +3,7 @@ package src.commands;
 import src.collections.DragonCave;
 import src.support.Checks;
 import src.tools.OutputText;
-import src.collections.CollectionManager;
+import src.collectionManager.CollectionManager;
 import src.collections.Dragon;
 
 /**

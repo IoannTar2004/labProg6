@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.collections.CollectionManager;
+import src.collectionManager.CollectionManager;
 import src.support.InitializationDate;
 /**
  * Prints information about collection.

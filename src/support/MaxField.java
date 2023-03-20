@@ -1,5 +1,6 @@
 package src.support;
 
+import src.collectionManager.CollectionManager;
 import src.collections.*;
 import src.tools.OutputText;
 

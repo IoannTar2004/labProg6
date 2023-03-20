@@ -1,5 +1,7 @@
 package src.collections;
 
+import src.collectionManager.CollectionManager;
+
 import java.util.HashMap;
 import java.util.Map;
 

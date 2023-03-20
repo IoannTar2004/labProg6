@@ -1,4 +1,6 @@
-package src.collections;
+package src.collectionManager;
+
+import src.collections.Dragon;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
