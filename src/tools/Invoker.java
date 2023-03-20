@@ -36,7 +36,7 @@ public abstract class Invoker {
      * It works while command is not "exit".
      */
     public static void invoke(String mode, String input, String... args) {
-        String[] line = input.trim().split("(\\s*\\W+\\s*)|(\\s+)");
+        String[] line = input.trim().split("\\s+");
         Command command = commands.get(line[0]);
         try {
             command.execute(mode, line, args);
