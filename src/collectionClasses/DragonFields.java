@@ -23,8 +23,8 @@ public enum DragonFields {
                     return fields;
                 }
             }
-            OutputText.error("FieldIncorrect");
         } catch (NumberFormatException ignored){}
+        OutputText.error("FieldIncorrect");
         return null;
     }
 }

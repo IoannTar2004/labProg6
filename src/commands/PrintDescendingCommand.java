@@ -1,16 +1,10 @@
 package src.commands;
 
-import src.collectionClasses.DragonElements;
 import src.collectionClasses.DragonFields;
 import src.support.InputManager;
-import src.support.MaxField;
 import src.support.Sort;
 import src.tools.OutputText;
-
 import java.util.Objects;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Prints objects in descending order by its value of field.
@@ -37,10 +31,7 @@ public class PrintDescendingCommand implements Command {
         do {
             String input = manager.scanner();
             fieldNum = DragonFields.getFieldByNumber(input);
-            if (fieldNum == null) {OutputText.error("FieldIncorrect");}
-            else {
-                Sort.sort(fieldNum, command);
-            }
+            if (fieldNum != null) {Sort.sort(fieldNum, command);}
         } while (fieldNum == null);
     }
 
