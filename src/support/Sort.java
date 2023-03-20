@@ -14,24 +14,24 @@ public class Sort {
      * Sort elements in collection using inner classes which implement Comparator interface and print them.
      * @param fieldNum number of {@link Dragon} field (1 - name, 2 - coordinates, 3 - age, etc).
      */
-    public static void sort(String fieldNum) {
+    public static void sort(DragonFields fieldNum, String... args) {
         sortlist.clear();
         sortlist.addAll(CollectionManager.getAll());
         switch (fieldNum) {
-            case "1" -> sortlist.sort(new SortByName());
-            case "2" -> sortlist.sort(new SortByCoordinates());
-            case "3" -> sortlist.sort(new SortByAge());
-            case "4" -> sortlist.sort(new SortByColor());
-            case "5" -> sortlist.sort(new SortByType());
-            case "6" -> sortlist.sort(new SortByCharacter());
-            case "7" -> sortlist.sort(new SortByCave());
+            case NAME -> sortlist.sort(new SortByName());
+            case COORDINATES -> sortlist.sort(new SortByCoordinates());
+            case AGE -> sortlist.sort(new SortByAge());
+            case COLOR -> sortlist.sort(new SortByColor());
+            case TYPE -> sortlist.sort(new SortByType());
+            case CHARACTER -> sortlist.sort(new SortByCharacter());
+            case CAVE -> sortlist.sort(new SortByCave());
             default -> {
                 return;
             }
         }
         Collections.reverse(sortlist);
         for(int i = 0; i < sortlist.size(); i++) {
-            CollectionManager.element(sortlist.get(i));
+            DragonElements.element(sortlist.get(i), args);
         }
         System.out.println();
         sortlist.clear();
