@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.support.Checks;
 import src.tools.OutputText;
@@ -17,7 +17,7 @@ public class CountGreaterCommand implements Command {
     public void execute(String mode, String[] command, String... args) {
         try {
             ObjectsManager objectsManager = new ObjectsManager();
-            ObjectsGetters getters = new ObjectsGetters();
+            ObjectsCollectionManager getters = new ObjectsCollectionManager();
             Checks checks = new Checks(command[1]);
             Integer age1 = checks.ageChecker();
 

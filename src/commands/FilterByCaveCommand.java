@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.collections.DragonCave;
 import src.collectionManager.ObjectsElements;
@@ -24,7 +24,7 @@ public class FilterByCaveCommand implements Command {
             DragonCave cave1 = checks.caveChecker();
             ObjectsManager objectsManager = new ObjectsManager();
             ObjectsElements objectsElements = new ObjectsElements();
-            ObjectsGetters getters = new ObjectsGetters();
+            ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
             if (cave1 != null) {
                 for (int i = 0; i < objectsManager.length(); i++) {

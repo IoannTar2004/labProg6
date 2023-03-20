@@ -1,7 +1,7 @@
 package src.support;
 
 import src.collectionManager.ObjectsElements;
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.collections.*;
 
 import java.util.*;
@@ -17,7 +17,7 @@ public class Sort {
      * @param fieldNum number of {@link Dragon} field (1 - name, 2 - coordinates, 3 - age, etc).
      */
     public static void sort(DragonFields fieldNum, String... args) {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -46,7 +46,7 @@ public class Sort {
     public static class SortByName extends Sort implements Comparator<Dragon>{
         @Override
         public int compare(Dragon d1, Dragon d2) {
-            ObjectsGetters getters = new ObjectsGetters();
+            ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
             return d1.getName().compareTo(d2.getName());
         }

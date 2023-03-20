@@ -3,7 +3,7 @@ package src.collectionManager;
 import src.collections.Dragon;
 import java.util.Date;
 
-public class ObjectsManager extends getters {
+public class ObjectsManager extends CollectionManager {
     public ObjectsManager() {
     }
 

@@ -1,6 +1,6 @@
 package src.tools;
 
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.collections.*;
 
@@ -11,7 +11,7 @@ public class XMLWriteParser {
      */
     public static String parse() {
         ObjectsManager objectsManager = new ObjectsManager();
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
         String data = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
         data = data + "<root>\n";

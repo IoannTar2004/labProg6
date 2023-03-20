@@ -2,14 +2,13 @@ package src.collectionManager;
 
 import src.collections.Dragon;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * class for processing dragon's fields
  */
-public class ObjectsElements extends getters {
+public class ObjectsElements extends CollectionManager {
 
     /**
      * Method which can build string with dragon's elements in relation on entered numbers.

@@ -1,6 +1,6 @@
 package src.support;
 
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.tools.OutputText;
 import src.collections.*;
 
@@ -149,7 +149,7 @@ public class Checks {
      */
     public static Dragon idChecker(String command) {
         Long id = IdChecker.check(command);
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
         if (id != -1) {
             Dragon dragon = getters.getDragonById(id);
             if (dragon != null) {

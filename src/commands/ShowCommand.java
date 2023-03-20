@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.collectionManager.ObjectsElements;
 import src.tools.OutputText;
@@ -18,7 +18,7 @@ public class ShowCommand implements Command {
     public void execute(String mode, String[] command, String... args) {
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsElements objectsElements = new ObjectsElements();
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         if (objectsManager.length() > 0) {
             for (int i = 0; i < objectsManager.length(); i++) {

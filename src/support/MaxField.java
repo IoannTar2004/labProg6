@@ -1,6 +1,6 @@
 package src.support;
 
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.collections.*;
 import src.tools.OutputText;
 
@@ -65,7 +65,7 @@ public class MaxField extends Sort {
      * @return max value of {@link Dragon#getName()} name if collection is not empty.
      */
     public static String maxName() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -80,7 +80,7 @@ public class MaxField extends Sort {
      * @return max sum of {@link Coordinates coordinates} (x + y) if collection is not empty.
      */
     public static Long maxSumCoordinates() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -96,7 +96,7 @@ public class MaxField extends Sort {
      * @return x coordinate of the object which has max sum coordinates.
      */
     public static int maxX() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -111,7 +111,7 @@ public class MaxField extends Sort {
      * @return y coordinate of the object which has max sum coordinates.
      */
     public static Long maxY() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -126,7 +126,7 @@ public class MaxField extends Sort {
      * @return string of the form {@link Dragon#getCoordinates() 'x; y'} (where x + y is max) if collection is not empty
      */
     public static String maxCoordinates() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -141,7 +141,7 @@ public class MaxField extends Sort {
      * @return max {@link Dragon#getAge() age} if collection is not empty.
      */
     public static int maxAge() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -156,7 +156,7 @@ public class MaxField extends Sort {
      * @return max ordinal+1 of {@link Color} if collection is not empty.
      */
     public static int maxColor() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -171,7 +171,7 @@ public class MaxField extends Sort {
      * @return max ordinal+1 of {@link DragonType} if collection is not empty.
      */
     public static int maxType() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -186,7 +186,7 @@ public class MaxField extends Sort {
      * @return max ordinal+1 of {@link DragonCharacter} if collection is not empty.
      */
     public static int maxCharacter() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());
@@ -201,7 +201,7 @@ public class MaxField extends Sort {
      * @return max {@link Dragon#getCave()} cave depth if collection is not empty.
      */
     public static double maxCave() {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
         sortlist.addAll(getters.getAll());

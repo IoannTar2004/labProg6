@@ -4,7 +4,7 @@ import src.collections.Dragon;
 
 import java.util.Deque;
 
-public class ObjectsGetters extends getters {
+public class ObjectsCollectionManager extends CollectionManager {
     public Dragon getDragonById(Long id) {
         for (int i = 0; i < dragons.size(); i++) {
             Dragon dragon = (Dragon) dragons.toArray()[i];

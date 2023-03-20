@@ -5,7 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsCollectionManager;
 import src.collectionManager.ObjectsManager;
 import src.collections.*;
 import src.support.IdChecker;
@@ -17,7 +17,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Objects;
 
 public class XMLReader {
     /**
@@ -69,7 +68,7 @@ public class XMLReader {
     }
 
     private static Long idParse(String id, Element element) {
-        ObjectsGetters getters = new ObjectsGetters();
+        ObjectsCollectionManager getters = new ObjectsCollectionManager();
         Long id1 = IdChecker.check(id);
         if (id1 == -1) {
             return -1L;
