@@ -1,5 +1,7 @@
 package src.collectionClasses;
 
+import src.tools.OutputText;
+
 public enum DragonFields {
     NAME("name"), COORDINATES("coordinates"), AGE("age"), COLOR("color"), TYPE("type"), CHARACTER("character"), CAVE("cave");
 
@@ -14,12 +16,15 @@ public enum DragonFields {
     }
 
     public static DragonFields getFieldByNumber(String number) {
-        int num = Integer.parseInt(number);
-        for (DragonFields fields: DragonFields.values()) {
-            if (fields.ordinal()+1 == num) {
-                return fields;
+        try {
+            int num = Integer.parseInt(number);
+            for (DragonFields fields : DragonFields.values()) {
+                if (fields.ordinal() + 1 == num) {
+                    return fields;
+                }
             }
-        }
+            OutputText.error("FieldIncorrect");
+        } catch (NumberFormatException ignored){}
         return null;
     }
 }
