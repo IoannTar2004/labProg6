@@ -2,6 +2,7 @@ package src.tools;
 
 import src.collectionClasses.CollectionManager;
 import src.commands.*;
+import src.support.InputManager;
 
 import java.util.*;
 
@@ -51,12 +52,11 @@ public abstract class Invoker {
      * Method reads commands entered by user.
      */
     public static void commandScan() {
-        InfoCommand.date();
-
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String input = scanner.nextLine();
+        String input;
+        InputManager manager = new InputManager();
+        do {
+            input = manager.scanner();
             invoke("user", input);
-        }
+        } while (!input.equals("exit"));
     }
 }

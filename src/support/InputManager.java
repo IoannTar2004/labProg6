@@ -78,4 +78,13 @@ public class InputManager {
         return dragon;
     }
 
+    public String scanner() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            return scanner.nextLine().trim();
+        } catch (NoSuchElementException e) {
+            System.exit(0);
+        }
+        return null;
+    }
 }
