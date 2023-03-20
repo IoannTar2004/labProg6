@@ -11,18 +11,51 @@ import java.util.Collections;
 public class MaxField extends Sort {
     /**
      * Combines other methods in this class to call defined method.
-     * @param fieldNum number of {@link Dragon} field (1 - name, 2 - coordinates, 3 - age, etc).
+     * @param fields enum of {@link Dragon} field which includes in {@link DragonFields}.
+     * @param element that add to collection
+     * @return true if element is greater than max element in collection
      */
-    public static void max(String fieldNum) {
-        switch (fieldNum) {
-            case "1" -> maxName();
-            case "2" -> maxSumCoordinates();
-            case "3" -> maxAge();
-            case "4" -> maxColor();
-            case "5" -> maxType();
-            case "6" -> maxCharacter();
-            case "7" -> maxCave();
+    public static boolean max(DragonFields fields, Object element) {
+        int max = -1;
+        Object maxValue = null;
+        switch (fields) {
+            case NAME -> {
+                max = ((String) element).compareTo(maxName());
+                maxValue = maxName();
+                }
+            case COORDINATES -> {
+                max = ((Coordinates) element).sum().compareTo(maxSumCoordinates());
+                maxValue = maxCoordinates();
+            }
+            case AGE -> {
+                max = ((int) element) - maxAge();
+                maxValue = maxAge();
+            }
+            case COLOR -> {
+                max = (((Color) element).ordinal() + 1) - maxColor();
+                maxValue = new Checks((String) element).colorChecker().getColor();
+            }
+            case TYPE -> {
+                max = (((DragonType) element).ordinal() + 1) - maxType();
+                maxValue = new Checks((String) element).typeChecker().getType();
+            }
+            case CHARACTER -> {
+                max = (((DragonCharacter) element).ordinal() + 1) - maxCharacter();
+                maxValue = new Checks((String) element).characterChecker().getCharacter();
+            }
+            case CAVE -> {
+                max = ((Double) element).compareTo(maxCave());
+                maxValue = maxCave();
+            }
         }
+        if (max < 0) {
+            OutputText.errorWithArgs(fields.getField() + "Less", maxValue);
+            return false;
+        } else if (max == 0) {
+            OutputText.errorWithArgs(fields.getField() + "Equal", maxValue);
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -147,7 +180,7 @@ public class MaxField extends Sort {
      *
      * @return max {@link Dragon#getCave()} cave depth if collection is not empty.
      */
-    public static double maxCave() {
+    public static Double maxCave() {
         sortlist.clear();
         sortlist.addAll(CollectionManager.getAll());
         sortlist.sort(new SortByCave());
@@ -161,23 +194,23 @@ public class MaxField extends Sort {
      * @param field
      * @return
      */
-    public static boolean existence(String field) {
-        if(field.equals("2") && (maxX() == Integer.MAX_VALUE || maxY() == Long.MAX_VALUE)) {
+    public static boolean existence(DragonFields fields) {
+        if(fields == DragonFields.COORDINATES && (maxX() == Integer.MAX_VALUE || maxY() == Long.MAX_VALUE)) {
             OutputText.maxValues("MaxCoordinates");
             return false;
-        } else if (field.equals("3") && maxAge() == Integer.MAX_VALUE) {
+        } else if (fields == DragonFields.AGE && maxAge() == Integer.MAX_VALUE) {
             OutputText.maxValues("MaxAge");
             return false;
-        } else if(field.equals("4") && maxColor() == 3) {
+        } else if(fields == DragonFields.COLOR && maxColor() == 3) {
             OutputText.maxValues("MaxColor");
             return false;
-        } else if(field.equals("5") && maxType() == 4) {
+        } else if(fields == DragonFields.TYPE && maxType() == 4) {
             OutputText.maxValues("MaxType");
             return false;
-        } else if(field.equals("6") && maxCharacter() == 3) {
+        } else if(fields == DragonFields.CHARACTER && maxCharacter() == 3) {
             OutputText.maxValues("MaxCharacter");
             return false;
-        } else if(field.equals("7") && maxCave() == Double.MAX_VALUE) {
+        } else if(fields == DragonFields.CAVE && maxCave() == Double.MAX_VALUE) {
             OutputText.maxValues("MaxCave");
             return false;
         }
