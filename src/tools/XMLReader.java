@@ -1,6 +1,23 @@
 package src.tools;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import src.collectionManager.ObjectsGetters;
+import src.collectionManager.ObjectsManager;
+import src.collections.*;
+import src.support.Checks;
+import src.support.IdChecker;
+import src.support.InputManager;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
 public class XMLReader {
     /**
@@ -8,8 +25,69 @@ public class XMLReader {
      * @param xml xml file
      */
     public static void parse(File xml) {
-        /*boolean start = true;
+        NodeList nodeList = domParse(xml);
 
+        nextObject:
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node obj = nodeList.item(i);
+            Element element = (Element) obj;
+            String error = " - ошибка в \"object id: " + element.getElementsByTagName("id").item(0).getTextContent()
+                    + "\"\n";
+
+            Long id = idParse(element.getElementsByTagName("id").item(0).getTextContent(), element);
+            if (id == -1) {
+                System.out.println(error);
+                continue;
+            }
+            Dragon dragon = new Dragon();
+            ObjectsManager objectsManager = new ObjectsManager();
+            InputManager manager = new InputManager();
+
+            for (DragonFields fields : DragonFields.values()) {
+                String input = element.getElementsByTagName(fields.getField()).item(0).getTextContent().trim();
+                input = getEnumStringByNumber(fields, input);
+
+                Object object = manager.dragonProcessing(fields, input);
+                if (object != null) {
+                    dragon = manager.dragonInput(dragon, fields, object);
+                } else {
+                    System.out.println(error);
+                    continue nextObject;
+                }
+            }
+            dragon.setId(id);
+            dragon.setCreationDate(new Date());
+            objectsManager.add(dragon);
+        }
+
+    }
+
+    private static String getEnumStringByNumber(DragonFields fields, String input) {
+        switch (fields) {
+            case COLOR -> {return String.valueOf(Color.getEnumColor(input).ordinal()+1);}
+            case TYPE -> {return String.valueOf(DragonType.getEnumType(input).ordinal()+1);}
+            case CHARACTER -> {return String.valueOf(DragonCharacter.getEnumCharacter(input).ordinal()+1);}
+            default -> {return input;}
+        }
+    }
+
+    private static Long idParse(String id, Element element) {
+        ObjectsGetters getters = new ObjectsGetters();
+        Long id1 = IdChecker.check(element.getElementsByTagName("id").item(0).getTextContent());
+        if (id1 == -1) {
+            return -1L;
+        } else {
+            Dragon dragon = getters.getDragonById(id1);
+            if (dragon != null) {
+                System.out.println("Объект с id: \"" + element.getElementsByTagName("id").item(0).getTextContent()
+                        + "\" уже существует");
+                return -1L;
+            }
+        }
+        return id1;
+    }
+
+    private static NodeList domParse(File xml) {
         DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
         Document document = null;
         try {
@@ -22,121 +100,6 @@ public class XMLReader {
             System.out.println("Файл куда-то пропал или были изменены его права!");
             System.exit(0);
         }
-        NodeList nodeList = document.getElementsByTagName("object");
-
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Node obj = nodeList.item(i);
-            Element element = (Element) obj;
-            boolean create = true;
-            String error = " - ошибка в \"object id: " + element.getAttribute("id") + "\"";
-
-            Long id = IdChecker.check(element.getAttribute("id"));
-            if (id == -1) {
-                System.out.println(error);
-                create = false;
-            } else {
-                Dragon dragon = CollectionManager.getDragonById(id);
-                if (dragon != null) {
-                    System.out.println("Объект с id: \"" + element.getAttribute("id") + "\" уже существует");
-                    create = false;
-                }
-            }
-
-            String name = null;
-            try {
-                //TODO changed
-                Checks checks = new Checks(element.getElementsByTagName("name").item(0).getTextContent());
-                name = checks.nameChecker();
-                if (name == null) {
-                    System.out.println("Имя не может быть пустым!" + error);
-                    create = false;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <name>"+error);
-                create = false;
-            }
-
-            Coordinates coordinates = null;
-            try {
-                coordinates = Checks.coordinatesChecker(element.getElementsByTagName("coordinates").item(0).getTextContent());
-                if (coordinates == null) {
-                    System.out.println("Координаты должны быть записаны в виде двух чисел через пробел или точку с запятой" +
-                            error);
-                    create = false;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <coordinates>"+error);
-                create = false;
-            }
-
-            int age = -1;
-            try {
-                age = Checks.ageChecker(element.getElementsByTagName("age").item(0).getTextContent());
-                if (age == -1) {
-                    System.out.println("Возраст должен быть целым положительным числом!" + error);
-                    create = false;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <age>"+error);
-                create = false;
-            }
-
-
-            Color color = null;
-            try {
-                color = Color.getEnumColor(element.getElementsByTagName("color").item(0).getTextContent());
-                if (color == null) {
-                    System.out.println("Такого цвета нет!"+error);
-                    create = false;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <color>"+error);
-                create = false;
-            }
-
-            DragonType type = null;
-            try {
-                type = DragonType.getEnumType(element.getElementsByTagName("type").item(0).getTextContent());
-                if (type == null) {
-                    System.out.println("Такого типа нет!"+error);
-                    create = false;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <type>"+error);
-                create = false;
-            }
-
-            DragonCharacter character = null;
-            try {
-                character = DragonCharacter.getEnumCharacter(element.getElementsByTagName("character").item(0).getTextContent());
-                if (character == null) {
-                    System.out.println("Такого характера нет!"+error);
-                    create = false;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <character>"+error);
-                create = false;
-            }
-
-            DragonCave cave = null;
-            try {
-                cave = Checks.caveChecker(element.getElementsByTagName("cavedepth").item(0).getTextContent());
-                if (cave == null) {
-                    System.out.println("Глубина пещеры должна быть записана в виде дробного числа через точку!" + error);
-                    create = false;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Отсутствует тег <cavedepth>"+error);
-                create = false;
-            }
-
-            if (create) {
-                Dragon dragon = new Dragon(id, name, coordinates, age, color, type, character, cave, new Date());
-                CollectionManager.add(dragon);
-            }
-        }
-        if (!start) {
-            System.exit(0);
-        }*/
+        return document.getElementsByTagName("object");
     }
 }
