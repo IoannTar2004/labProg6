@@ -14,11 +14,11 @@ public class CountGreaterCommand implements Command {
      */
     @Override
     public void execute(String mode, String[] command, String... args) {
-        Checks checks = new Checks(command[1]);
         try {
-            int age1 = checks.ageChecker();
+            Checks checks = new Checks(command[1]);
+            Integer age1 = checks.ageChecker();
 
-            if (age1 > 0) {
+            if (age1 != null) {
                 int count = 0;
                 for (int i = 0; i < CollectionManager.length(); i++) {
                     Dragon dragon = CollectionManager.getDragonByIndex(i);
