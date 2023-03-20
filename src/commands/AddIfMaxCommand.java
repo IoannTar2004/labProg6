@@ -62,6 +62,7 @@ public class AddIfMaxCommand implements Command {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
+        dragon.setId(IdGenerator.generate());
         objectsManager.add(dragon);
         OutputText.result("Added");
     }
@@ -89,6 +90,7 @@ public class AddIfMaxCommand implements Command {
             } else if (element == null) {return;}
             dragon = manager.dragonInput(dragon, fields, element);
         }
+        dragon.setId(IdGenerator.generate());
         objectsManager.add(dragon);
     }
 }

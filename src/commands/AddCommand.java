@@ -46,6 +46,7 @@ public class AddCommand implements Command {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
+        dragon.setId(IdGenerator.generate());
         objectsManager.add(dragon);
         OutputText.result("Added");
     }
@@ -65,6 +66,7 @@ public class AddCommand implements Command {
                 dragon = manager.dragonInput(dragon, fields, element);
             } else {return;}
         }
+        dragon.setId(IdGenerator.generate());
         objectsManager.add(dragon);
     }
 }

@@ -85,6 +85,10 @@ public class InputManager {
         return dragon;
     }
 
+    /**
+     * Scan entered strings, if user enters ctrl + d the program will be stopped.
+     * @return entered string
+     */
     public String scanner() {
         Scanner scanner = new Scanner(System.in);
         try {

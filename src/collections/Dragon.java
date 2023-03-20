@@ -48,15 +48,15 @@ public class Dragon {
 
     @Override
     public String toString() {
-        return "| Имя: " + this.name + " | " +
-                "id: " + this.id + " | " +
+        return "| id: " + this.id + " | " +
+                "Имя: " + this.name + " | "+
                 "координаты: " + this.coordinates.toString() + " | " +
                 "возраст: " + this.age + " | " +
                 "дата создания: " + this.getCreationDate() + " | " +
                 "цвет: " + this.color.getColor() + " | " +
                 "тип: " + this.type.getType() + " | " +
                 "характер: " + this.character.getCharacter() + " | " +
-                "глубина пещеры: " + this.cave.getDepth();
+                "глубина пещеры: " + this.cave.getDepth() + "\n";
     }
 
     public String getName() {return name;}

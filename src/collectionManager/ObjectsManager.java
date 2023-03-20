@@ -1,8 +1,6 @@
 package src.collectionManager;
 
 import src.collections.Dragon;
-import src.tools.IdGenerator;
-
 import java.util.Date;
 
 public class ObjectsManager extends CollectionManager {
@@ -10,7 +8,6 @@ public class ObjectsManager extends CollectionManager {
     }
 
     public void add(Dragon dragon) {
-        dragon.setId(IdGenerator.generate());
         dragon.setCreationDate(new Date());
         dragons.add(dragon);
     }
