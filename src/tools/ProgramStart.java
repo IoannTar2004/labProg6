@@ -13,37 +13,29 @@ public class ProgramStart {
      * This method runs at the beginning. It explains basic things of this program and requests initial xml file.
      */
     public static void start() {
-        Scanner scanner = new Scanner(System.in);
         InputManager inputManager = new InputManager();
 
         OutputText.startInformation("CorrectXmlFile");
+        String data;
+        if (inputManager.yesNoInput()) {
+            OutputText.startInformation("Example");
+        }
 
-        try {
-            String data;
-            if (inputManager.yesNoInput()) {
-                OutputText.startInformation("Example");
+        OutputText.startInformation("EnvVar");
+        File file;
+        do {
+            data = inputManager.scanner();
+            file = Checks.fileChecker(data);
+            FileManager.setFile(file);
+        } while (file == null);
+
+        OutputText.startInformation("ReadFile");
+        if (inputManager.yesNoInput()) {
+            if (FileManager.isNotEmpty(file)) {
+                XMLReader.parse(file);
             }
+        }
 
-            OutputText.startInformation("EnvVar");
-            File file;
-            do {
-                data = scanner.nextLine();
-                file = Checks.fileChecker(data);
-                if (file != null) {
-                    FileManager.setFile(file);
-                    break;
-                }
-            } while (true);
-
-            OutputText.startInformation("ReadFile");
-
-            if (inputManager.yesNoInput()) {
-                if (FileManager.isNotEmpty(file)) {
-                    XMLReader.parse(file);
-                }
-            }
-
-            OutputText.startInformation("ProgramReady");
-        } catch (NoSuchElementException e) {System.exit(0);}
+        OutputText.startInformation("ProgramReady");
     }
 }
