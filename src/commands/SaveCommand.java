@@ -34,7 +34,7 @@ public class SaveCommand implements Command {
             if (data.length() > 0) {
                 file = Checks.fileChecker(data);
             } else {
-                file = FileManager.getFile();
+                file = FileManager.getCurrentFile();
             }
         } while (file == null);
 
