@@ -47,6 +47,8 @@ public class SaveCommand implements Command {
             writer.close();
 
             OutputText.result("Saved");
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+            OutputText.error("FileNotFound");
+        }
     }
 }
