@@ -63,7 +63,7 @@ public class XMLReader {
      * Processes enum fields. Transfers enums in russian to numbers
      * @param fields field of enums
      * @param input text in xml
-     * @return number in String
+     * @return number in String type
      */
     private static String getEnumStringByNumber(DragonFields fields, String input) {
         switch (fields) {
@@ -74,6 +74,12 @@ public class XMLReader {
         }
     }
 
+    /**
+     * Сhecks the id for correctness
+     * @param id id in xml
+     * @param element org.w3c.dom.Element
+     * @return id in Long type
+     */
     private static Long idParse(Long id, Element element) {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
         Long id1 = IdChecker.check(String.valueOf(id));
@@ -90,6 +96,11 @@ public class XMLReader {
         return id1;
     }
 
+    /**
+     * Checks the xml file for validation
+     * @param xml file
+     * @return list of objects
+     */
     private static NodeList domParse(File xml) {
         DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
         Document document = null;
@@ -106,6 +117,12 @@ public class XMLReader {
         return document.getElementsByTagName("object");
     }
 
+    /**
+     * reads tags of object
+     * @param field tag
+     * @param element org.w3c.dom.Element
+     * @return
+     */
     private static String readTag(String field, Element element) {
         String input;
         try {

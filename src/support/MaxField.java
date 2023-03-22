@@ -213,7 +213,7 @@ public class MaxField extends Sort {
 
     /**
      * This method checks that dragon's field does not have max format value.
-     * @param fields //TODO
+     * @param fields dragon's field
      * @return
      */
     public static boolean existence(DragonFields fields) {

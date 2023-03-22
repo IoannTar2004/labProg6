@@ -18,7 +18,11 @@ import static src.collections.DragonType.*;
 public class Checks {
 
     private String input;
-    //TODO javadoc
+
+    /**
+     *
+     * @param input entered by user or read from script string
+     */
     public Checks(String input) {
         this.input = input;
     }
@@ -90,7 +94,11 @@ public class Checks {
         }
         return null;
     }
-    //TODO javadoc
+
+    /**
+     *
+     * @return {@link Color color} in relation to number
+     */
     public Color colorChecker() {
         if (input.matches("\\s*1\\s*")) {return BLACK;}
         else if (input.matches("\\s*2\\s*")) {return BLUE;}
@@ -100,6 +108,10 @@ public class Checks {
         return null;
     }
 
+    /**
+     *
+     * @return {@link DragonType type} in relation to number
+     */
     public DragonType typeChecker() {
         if (input.matches("\\s*1\\s*")) {return WATER;}
         else if (input.matches("\\s*2\\s*")) {return UNDERGROUND;}
@@ -110,6 +122,10 @@ public class Checks {
         return null;
     }
 
+    /**
+     *
+     * @return {@link DragonCharacter character} in relation to number
+     */
     public DragonCharacter characterChecker() {
         if (input.matches("\\s*1\\s*")) {return CUNNING;}
         else if (input.matches("\\s*2\\s*")) {return EVIL;}
