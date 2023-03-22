@@ -31,7 +31,8 @@ public class XMLReader {
             Node obj = nodeList.item(i);
             Element element = (Element) obj;
 
-            Long id = missingTag("id", element) != null ? Long.valueOf(missingTag("id", element)) : null;
+            Long id = readTag("id", element) != null ? Long.valueOf(readTag("id", element)) : null;
+            id = idParse(id, element);
             if (id == null) {continue;}
 
             Dragon dragon = new Dragon();
@@ -40,7 +41,7 @@ public class XMLReader {
             String input;
 
             for (DragonFields fields : DragonFields.values()) {
-                input = missingTag(fields.getField(), element);
+                input = readTag(fields.getField(), element);
                 if (input == null) {continue nextObject;}
                 input = getEnumStringByNumber(fields, input);
 
@@ -58,6 +59,12 @@ public class XMLReader {
 
     }
 
+    /**
+     * Processes enum fields. Transfers enums in russian to numbers
+     * @param fields field of enums
+     * @param input text in xml
+     * @return number in String
+     */
     private static String getEnumStringByNumber(DragonFields fields, String input) {
         switch (fields) {
             case COLOR -> {return String.valueOf(Color.getEnumColor(input).ordinal()+1);}
@@ -67,17 +74,17 @@ public class XMLReader {
         }
     }
 
-    private static Long idParse(String id, Element element) {
+    private static Long idParse(Long id, Element element) {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
-        Long id1 = IdChecker.check(id);
+        Long id1 = IdChecker.check(String.valueOf(id));
         if (id1 == -1) {
-            return -1L;
+            return null;
         } else {
             Dragon dragon = getters.getDragonById(id1);
             if (dragon != null) {
                 System.out.println("Объект с id: \"" + element.getElementsByTagName("id").item(0).getTextContent()
                         + "\" уже существует");
-                return -1L;
+                return null;
             }
         }
         return id1;
@@ -99,7 +106,7 @@ public class XMLReader {
         return document.getElementsByTagName("object");
     }
 
-    private static String missingTag(String field, Element element) {
+    private static String readTag(String field, Element element) {
         String input;
         try {
             input = element.getElementsByTagName(field).item(0).getTextContent().trim();
