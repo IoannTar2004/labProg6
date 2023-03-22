@@ -5,8 +5,6 @@ import src.support.FileManager;
 import src.support.InputManager;
 
 import java.io.File;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class ProgramStart {
     /**
@@ -26,7 +24,7 @@ public class ProgramStart {
         do {
             data = inputManager.scanner();
             file = Checks.fileChecker(data);
-            FileManager.setFile(file);
+            FileManager.setCurrentFile(file);
         } while (file == null);
 
         OutputText.startInformation("ReadFile");
