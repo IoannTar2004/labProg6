@@ -1,20 +1,24 @@
 package src.support;
 
+import src.tools.OutputText;
 import java.io.File;
 import java.io.FileReader;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * class for working with files
  */
 public class FileManager {
-    private static File file;
+    private static File currentFile;
+    private static Set<File> filesInStack = new LinkedHashSet<>();
 
-    public static File getFile() {
-        return file;
+    public static File getCurrentFile() {
+        return currentFile;
     }
 
-    public static void setFile(File file) {
-        FileManager.file = file;
+    public static void setCurrentFile(File currentFile) {
+        FileManager.currentFile = currentFile;
     }
 
     /**
@@ -28,5 +32,18 @@ public class FileManager {
             if(reader.read() == -1) {return false;}
         } catch (Exception ignored) {}
         return true;
+    }
+
+    public static boolean addFileToStack(File file) {
+        if (!filesInStack.add(file)) {
+            OutputText.error("ScriptRecursion");
+            return false;
+        }
+        return true
+                ;
+    }
+
+    public static void removeFromStack(File file) {
+        filesInStack.remove(file);
     }
 }
