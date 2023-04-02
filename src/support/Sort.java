@@ -1,7 +1,7 @@
 package src.support;
 
-import src.collectionManager.ObjectsElements;
-import src.collectionManager.ObjectsCollectionManager;
+import src.manager.ObjectsElements;
+import src.manager.ObjectsCollectionManager;
 import src.collections.*;
 
 import java.util.*;

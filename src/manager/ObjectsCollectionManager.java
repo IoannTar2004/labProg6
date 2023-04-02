@@ -1,4 +1,4 @@
-package src.collectionManager;
+package src.manager;
 
 import src.collections.Dragon;
 

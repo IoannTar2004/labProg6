@@ -1,8 +1,8 @@
 package src.commands;
 
-import src.collectionManager.ObjectsCollectionManager;
-import src.collectionManager.ObjectsManager;
-import src.collectionManager.ObjectsElements;
+import src.manager.ObjectsCollectionManager;
+import src.manager.ObjectsManager;
+import src.manager.ObjectsElements;
 import src.tools.OutputText;
 
 /**

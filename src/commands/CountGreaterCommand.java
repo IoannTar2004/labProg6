@@ -1,7 +1,7 @@
 package src.commands;
 
-import src.collectionManager.ObjectsCollectionManager;
-import src.collectionManager.ObjectsManager;
+import src.manager.ObjectsCollectionManager;
+import src.manager.ObjectsManager;
 import src.support.Checks;
 import src.tools.OutputText;
 import src.collections.Dragon;

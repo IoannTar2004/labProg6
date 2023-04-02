@@ -1,9 +1,9 @@
 package src.commands;
 
-import src.collectionManager.ObjectsCollectionManager;
-import src.collectionManager.ObjectsManager;
+import src.manager.ObjectsCollectionManager;
+import src.manager.ObjectsManager;
 import src.collections.DragonCave;
-import src.collectionManager.ObjectsElements;
+import src.manager.ObjectsElements;
 import src.support.Checks;
 import src.tools.OutputText;
 import src.collections.Dragon;

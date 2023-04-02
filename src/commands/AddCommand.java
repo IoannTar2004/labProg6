@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.collectionManager.ObjectsManager;
+import src.manager.ObjectsManager;
 import src.support.InputManager;
 import src.tools.OutputText;
 import src.collections.*;

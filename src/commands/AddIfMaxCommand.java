@@ -1,6 +1,6 @@
 package src.commands;
 
-import src.collectionManager.ObjectsManager;
+import src.manager.ObjectsManager;
 import src.collections.Dragon;
 import src.collections.DragonFields;
 import src.support.InputManager;
