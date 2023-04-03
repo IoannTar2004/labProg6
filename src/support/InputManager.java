@@ -23,7 +23,7 @@ public class InputManager {
         for (int i = 2; i < arg.length; i++) {
             line = line + " " + arg[i];
         }
-        return lin;
+        return line;
     }
 
     /**
