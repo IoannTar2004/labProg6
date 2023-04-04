@@ -39,8 +39,7 @@ public class FileManager {
             OutputText.error("ScriptRecursion");
             return false;
         }
-        return true
-                ;
+        return true;
     }
 
     public static void removeFromStack(File file) {
