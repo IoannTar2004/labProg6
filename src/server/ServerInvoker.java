@@ -9,9 +9,6 @@ import java.util.Objects;
 
 public class ServerInvoker {
 
-    private String command;
-    private Dragon dragonObject;
-
     private static Map<String, Command> commands = new HashMap<>();
     static {
         commands.put("add", new AddCommand());
@@ -47,4 +44,6 @@ public class ServerInvoker {
             }
         }
     }
+
+
 }
