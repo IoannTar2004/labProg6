@@ -1,5 +1,8 @@
 package src.server;
 
+import src.client.CommandSender;
+import src.tools.OutputText;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.InetSocketAddress;
@@ -12,13 +15,10 @@ public class ServerExchanger {
             serverSocket.bind(new InetSocketAddress(3009));
             while (true) {
                 Socket socket = serverSocket.socket().accept();
+                ServerReader.read(socket);
                 socket.close();
             }
         } catch (IOException ignored) {}
     }
 
-    public static void read(Socket socket) throws IOException {
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-
-    }
 }
