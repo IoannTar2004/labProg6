@@ -1,9 +1,11 @@
 package src.collections;
 
+import java.io.Serializable;
+
 /**
  * Dragon's cave
  */
-public class DragonCave {
+public class DragonCave implements Serializable {
     private double depth;
 
     public DragonCave(double death) {

@@ -1,9 +1,11 @@
 package src.collections;
 
+import java.io.Serializable;
+
 /**
  * Enums of dragon's color
  */
-public enum Color {
+public enum Color implements Serializable {
     BLACK("Чёрный"), BLUE("Синий"), YELLOW("Жёлтый");
 
     private String color;

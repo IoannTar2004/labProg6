@@ -1,9 +1,11 @@
 package src.collections;
 
+import java.io.Serializable;
+
 /**
  * Enums of dragon's character
  */
-public enum DragonCharacter {
+public enum DragonCharacter implements Serializable {
     CUNNING("Хитрый"), EVIL("Злой"), CHAOTIC("Хаотичный");
 
     private String character;

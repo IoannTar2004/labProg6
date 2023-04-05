@@ -1,9 +1,11 @@
 package src.collections;
 
+import java.io.Serializable;
+
 /**
  * Dragon's coordinates
  */
-public class Coordinates {
+public class Coordinates implements Serializable {
     private int x;
     private Long y;
 

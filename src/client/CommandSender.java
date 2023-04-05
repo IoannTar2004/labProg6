@@ -5,9 +5,10 @@ import src.tools.OutputText;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 
-public class CommandSender {
+public class CommandSender implements Serializable {
     private String command;
     private Dragon dragonObject;
 
@@ -33,7 +34,15 @@ public class CommandSender {
             outputStream.writeObject(this);
             outputStream.flush();
         } catch (IOException e) {
-            OutputText.error("Connection");
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "CommandSender{" +
+                "command='" + command + '\'' +
+                ", dragonObject=" + dragonObject +
+                '}';
     }
 }

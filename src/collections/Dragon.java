@@ -1,12 +1,13 @@
 package src.collections;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Class Dragon whose objects stored in Java Collection and xml file
  */
-public class Dragon {
+public class Dragon implements Serializable {
     private long id;
     private String name;
     private Coordinates coordinates;

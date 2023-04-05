@@ -1,9 +1,11 @@
 package src.collections;
 
+import java.io.Serializable;
+
 /**
  * Enums of dragon's type
  */
-public enum DragonType {
+public enum DragonType implements Serializable {
     WATER("Водный"), UNDERGROUND("Подземельный"), AIR("Воздушный"), FIRE("Огненный");
 
     private String type;
