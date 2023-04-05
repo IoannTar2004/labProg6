@@ -3,10 +3,10 @@ package src.server.modules;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class ResultSender implements Serializable {
-    private Object[] result;
+public class ResultSender<T> implements Serializable {
+    private T[] result;
 
-    public ResultSender(Object[] result) {
+    public ResultSender(T[] result) {
         this.result = result;
     }
 
