@@ -1,4 +1,4 @@
-package src.server;
+package src.server.modules;
 
 import src.client.CommandSender;
 import src.tools.OutputText;

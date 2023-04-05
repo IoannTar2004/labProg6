@@ -1,6 +1,6 @@
 package src.tools;
 
-import src.commands.*;
+import src.server.commands.*;
 import src.support.InputManager;
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package src.commands;
+package src.server.commands;
 
 /**
  * interfaces for classes which are responsible to command

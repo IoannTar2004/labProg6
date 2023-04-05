@@ -1,4 +1,4 @@
-package src.commands;
+package src.server.commands;
 
 import src.manager.ObjectsManager;
 import src.support.InitializationDate;

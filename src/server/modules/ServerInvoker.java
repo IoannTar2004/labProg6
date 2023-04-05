@@ -1,7 +1,6 @@
-package src.server;
+package src.server.modules;
 
-import src.collections.Dragon;
-import src.commands.*;
+import src.server.commands.*;
 
 import java.util.HashMap;
 import java.util.Map;

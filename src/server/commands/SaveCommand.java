@@ -1,4 +1,4 @@
-package src.commands;
+package src.server.commands;
 
 import src.support.Checks;
 import src.support.FileManager;
