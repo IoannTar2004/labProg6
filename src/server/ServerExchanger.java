@@ -1,12 +1,24 @@
 package src.server;
 
 import java.io.IOException;
-import java.net.ServerSocket;
+import java.io.ObjectInputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.nio.channels.ServerSocketChannel;
 
 public class ServerExchanger {
     public static void main(String[] args) {
-        try {
-            ServerSocket serverSocket = new ServerSocket(3009);
+        try(ServerSocketChannel serverSocket = ServerSocketChannel.open()) {
+            serverSocket.bind(new InetSocketAddress(3009));
+            while (true) {
+                Socket socket = serverSocket.socket().accept();
+                socket.close();
+            }
         } catch (IOException ignored) {}
+    }
+
+    public static void read(Socket socket) throws IOException {
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+
     }
 }
