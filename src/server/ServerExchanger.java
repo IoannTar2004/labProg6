@@ -15,7 +15,7 @@ public class ServerExchanger {
             serverSocket.bind(new InetSocketAddress(3009));
             while (true) {
                 Socket socket = serverSocket.socket().accept();
-                ServerReader.read(socket);
+                CommandSender sender = ServerReader.read(socket);
                 socket.close();
             }
         } catch (IOException ignored) {}
