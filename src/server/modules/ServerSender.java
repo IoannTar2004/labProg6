@@ -7,7 +7,7 @@ import java.net.Socket;
 public class ServerSender {
     private Object[] result;
 
-    public ServerSender(Object... result) {
+    public ServerSender(Object[] result) {
         this.result = result;
     }
 

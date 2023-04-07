@@ -10,7 +10,7 @@ public class HelpCommand implements Command {
      * Prints all commands.
      */
     @Override
-    public String execute(String mode, String[] command, String... args) {
-        return OutputText.result("AllCommands");
+    public Object[] execute(String mode, String[] command, String... args) {
+        return new Object[]{OutputText.result("AllCommands")};
     }
 }
