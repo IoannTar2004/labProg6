@@ -1,25 +1,26 @@
 package src.server.modules;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ServerSender {
-    private String result;
-    private Object[] data;
+    private Object[] result;
 
-    public ServerSender(String result, Object... inputManager) {
+    public ServerSender(Object... result) {
         this.result = result;
-        this.data = inputManager;
     }
 
-    public String getResult() {
+    public Object[] getResult() {
         return result;
     }
 
-    public Object[] getData() {
-        return data;
-    }
-
-    public static void sendToClient(Socket socket) {
-
+    public void sendToClient(Socket socket) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream())) {
+            oos.writeObject(this);
+            oos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

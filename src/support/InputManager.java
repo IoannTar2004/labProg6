@@ -119,11 +119,11 @@ public class InputManager {
                 sender.sendToServer(socket);
 
                 ResultReceiver result = ResultReceiver.receive(socket);
-                System.out.println(result.getResult());
+                System.out.println(result.getResult(0));
 
                 Class<InputManager> valid = InputManager.class;
                 try {
-                    Method method = valid.getDeclaredMethod((String) result.getData(0));
+                    Method method = valid.getDeclaredMethod((String) result.getResult(1));
                     method.invoke(manager);
                 } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {}
             } //TODO временный сокет
