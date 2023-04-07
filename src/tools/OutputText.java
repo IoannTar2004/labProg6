@@ -29,8 +29,8 @@ public class OutputText {
         System.out.println(inputs.getString(input));
     }
 
-    public static void result(String result) {
-        System.out.println(results.getString(result));
+    public static String result(String result) {
+        return results.getString(result);
     }
 
     public static void maxValues(String value) {System.out.println(values.getString(value));}
