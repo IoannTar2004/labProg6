@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class ResultReceiver {
+public class ResultReceiver{
     private String result;
-    private String inputManager;
+    private Object[] data;
 
     public static ResultReceiver receive(Socket socket) {
         try {
@@ -18,7 +18,7 @@ public class ResultReceiver {
 
             ResultReceiver resultReceiver = new ResultReceiver();
             resultReceiver.result = sender.getResult();
-            resultReceiver.inputManager = sender.getInputManager();
+            resultReceiver.data = sender.getData();
 
             return resultReceiver;
         } catch (IOException e) {
@@ -27,5 +27,13 @@ public class ResultReceiver {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public Object getData(int index) {
+        return data[index];
     }
 }

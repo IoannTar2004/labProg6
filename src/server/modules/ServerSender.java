@@ -4,19 +4,19 @@ import java.net.Socket;
 
 public class ServerSender {
     private String result;
-    private String inputManager;
+    private Object[] data;
 
-    public ServerSender(String result, String inputManager) {
+    public ServerSender(String result, Object... inputManager) {
         this.result = result;
-        this.inputManager = inputManager;
+        this.data = inputManager;
     }
 
     public String getResult() {
         return result;
     }
 
-    public String getInputManager() {
-        return inputManager;
+    public Object[] getData() {
+        return data;
     }
 
     public static void sendToClient(Socket socket) {
