@@ -15,7 +15,7 @@ public class ShowCommand implements Command {
      * It can print some fields in relation to numbers.
      */
     @Override
-    public String execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, String... args) {
         StringBuilder builder = new StringBuilder();
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsElements objectsElements = new ObjectsElements();
@@ -25,9 +25,9 @@ public class ShowCommand implements Command {
             for (int i = 0; i < objectsManager.length(); i++) {
                 builder.append(objectsElements.element(getters.getDragonByIndex(i), command)).append("\n");
             }
-            return builder + "\n";
+            return new Object[]{builder + "\n"};
         } else {
-            return OutputText.result("Empty");
+            return new Object[]{OutputText.result("Empty")};
         }
     }
 }

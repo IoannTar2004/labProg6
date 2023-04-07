@@ -13,7 +13,7 @@ public class RemoveByIdCommand implements Command{
      * Removes object by its ID.
      */
     @Override
-    public String execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, String... args) {
         try {
             //TODO rewrite idChecker
             ObjectsManager objectsManager = new ObjectsManager();
@@ -22,10 +22,9 @@ public class RemoveByIdCommand implements Command{
                 return null;
             }
             objectsManager.remove(dragon);
-            OutputText.result("Removed");
+            return new Object[]{OutputText.result("Removed")};
         } catch (ArrayIndexOutOfBoundsException e) {
-            return OutputText.error("NoIdArgument");
+            return new Object[]{OutputText.error("NoIdArgument")};
         }
-        return null;
     }
 }

@@ -10,10 +10,10 @@ public class InfoCommand implements Command {
      * Prints information about collection.
      */
     @Override
-    public String execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, String... args) {
         ObjectsManager objectsManager = new ObjectsManager();
-        return  "Тип коллекции: ArrayDeque;\n" +
+        return new Object[]{"Тип коллекции: ArrayDeque;\n" +
                 "Дата инициализации: " + InitializationDate.getDate() + ";\n" +
-                "Количество элементов: " + objectsManager.length() + ".\n";
+                "Количество элементов: " + objectsManager.length() + ".\n"};
     }
 }
