@@ -2,7 +2,6 @@ package src.client;
 
 import src.collections.Dragon;
 import src.server.commands.*;
-import src.tools.OutputText;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -50,8 +49,12 @@ public class CommandSender implements Serializable {
         this.commandString = commandString;
     }
 
-    public String getCommand() {
+    public String getCommandString() {
         return commandString;
+    }
+
+    public Command getCommand() {
+        return command;
     }
 
     public Dragon getDragonObject() {
