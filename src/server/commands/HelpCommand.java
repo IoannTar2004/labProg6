@@ -11,7 +11,7 @@ public class HelpCommand implements Command {
      * Prints all commands.
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
-        OutputText.result("AllCommands");
+    public String execute(String mode, String[] command, String... args) {
+        return OutputText.result("AllCommands");
     }
 }
