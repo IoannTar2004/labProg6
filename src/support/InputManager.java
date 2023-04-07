@@ -8,6 +8,7 @@ import src.tools.OutputText;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.NoSuchElementException;
@@ -110,15 +111,23 @@ public class InputManager {
     public static void commandScan() throws IOException {
         String input;
         InputManager manager = new InputManager();
+        Socket socket = new Socket("localhost", 3009);
         do {
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
                 CommandSender sender = new CommandSender(input);
-                Socket socket = new Socket("localhost", 3009);
                 sender.sendToServer(socket);
 
                 ResultReceiver result = ResultReceiver.receive(socket);
+                System.out.println(result.getResult());
+
+                Class<InputManager> valid = InputManager.class;
+                try {
+                    Method method = valid.getDeclaredMethod((String) result.getData(0));
+                    method.invoke(manager);
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {}
             } //TODO временный сокет
         } while (!input.equals("exit"));
+        socket.close();
     }
 }
