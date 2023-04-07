@@ -11,8 +11,10 @@ public class ServerReader {
     public static CommandSender read(Socket socket) {
         try(ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
             return (CommandSender) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             OutputText.error("Connection");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return null;
     }
