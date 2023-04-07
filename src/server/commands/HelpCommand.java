@@ -1,6 +1,5 @@
 package src.server.commands;
 
-import src.server.modules.ResultSender;
 import src.tools.OutputText;
 
 /**
