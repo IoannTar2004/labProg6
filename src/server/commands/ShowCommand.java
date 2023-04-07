@@ -15,18 +15,19 @@ public class ShowCommand implements Command {
      * It can print some fields in relation to numbers.
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public String execute(String mode, String[] command, String... args) {
+        StringBuilder builder = new StringBuilder();
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsElements objectsElements = new ObjectsElements();
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         if (objectsManager.length() > 0) {
             for (int i = 0; i < objectsManager.length(); i++) {
-                objectsElements.element(getters.getDragonByIndex(i), command);
+                builder.append(objectsElements.element(getters.getDragonByIndex(i), command)).append("\n");
             }
-            System.out.println();
+            return builder + "\n";
         } else {
-            OutputText.result("Empty");
+            return OutputText.result("Empty");
         }
     }
 }

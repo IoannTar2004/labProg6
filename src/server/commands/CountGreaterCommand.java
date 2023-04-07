@@ -14,7 +14,7 @@ public class CountGreaterCommand implements Command {
      * Count amount of objects which have greater age than entered.
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public String execute(String mode, String[] command, String... args) {
         try {
             ObjectsManager objectsManager = new ObjectsManager();
             ObjectsCollectionManager getters = new ObjectsCollectionManager();
@@ -29,10 +29,11 @@ public class CountGreaterCommand implements Command {
                         count++;
                     }
                 }
-                System.out.println(count);
+                return String.valueOf(count);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            OutputText.error("NoAgeArgument");
+            return OutputText.error("NoAgeArgument");
         }
+        return null;
     }
 }

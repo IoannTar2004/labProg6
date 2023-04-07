@@ -11,10 +11,10 @@ public class ClearCommand implements Command {
      * Clears collection.
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public String execute(String mode, String[] command, String... args) {
         ObjectsManager objectsManager = new ObjectsManager();
 
         objectsManager.clear();
-        OutputText.result("Cleared");
+        return OutputText.result("Cleared");
     }
 }

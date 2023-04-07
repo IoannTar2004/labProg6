@@ -16,21 +16,21 @@ public class FilterByCaveCommand implements Command {
      * Prints objects if they have a same cave depth.
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public String execute(String mode, String[] command, String... args) {
         boolean check = false;
+        StringBuilder dragonsList = new StringBuilder();
 
         try {
             Checks checks = new Checks(command[1]);
             DragonCave cave1 = checks.caveChecker();
             ObjectsManager objectsManager = new ObjectsManager();
-            ObjectsElements objectsElements = new ObjectsElements();
             ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
             if (cave1 != null) {
                 for (int i = 0; i < objectsManager.length(); i++) {
                     Dragon dragon = getters.getDragonByIndex(i);
                     if (getters.getCave(dragon) == cave1.getDepth()) {
-                        System.out.println(dragon);
+                        dragonsList.append(dragon);
                         check = true;
                     }
                 }
@@ -39,7 +39,8 @@ public class FilterByCaveCommand implements Command {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            OutputText.error("NoCaveArgument");
+            return OutputText.error("NoCaveArgument");
         }
+        return null;
     }
 }

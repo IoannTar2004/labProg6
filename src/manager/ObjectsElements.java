@@ -15,7 +15,7 @@ public class ObjectsElements extends CollectionManager {
      * @param dragon
      * @param fields if filter by elements is required
      */
-    public void element(Dragon dragon, String... fields) {
+    public String element(Dragon dragon, String... fields) {
         if (fields.length == 1) {System.out.println(dragon.toString());}
         else {
             Map<String, String> elements = new HashMap<>();
@@ -38,7 +38,8 @@ public class ObjectsElements extends CollectionManager {
                     unknownNumber = true;
                 }
             }
-            if  (unknownNumber) {System.out.println(show);}
+            if  (unknownNumber) {return show;}
         }
+        return "";
     }
 }

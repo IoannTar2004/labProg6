@@ -16,24 +16,23 @@ public class OutputText {
     private static final ResourceBundle values = ResourceBundle.getBundle("resources.MaxValues", locale);
     private static final ResourceBundle errorsWithArgs = ResourceBundle.getBundle("resources.ErrorsWithArgs", locale);
 
-    public static void startInformation(String info) {
-        String s = startInfo.getString(info);
-        System.out.println(s);
+    public static String startInformation(String info) {
+        return startInfo.getString(info);
     }
 
-    public static void error(String error) {
-        System.out.println(errors.getString(error));
+    public static String error(String error) {
+        return errors.getString(error);
     }
 
-    public static void input(String input) {
-        System.out.println(inputs.getString(input));
+    public static String input(String input) {
+        return inputs.getString(input);
     }
 
     public static String result(String result) {
         return results.getString(result);
     }
 
-    public static void maxValues(String value) {System.out.println(values.getString(value));}
+    public static String maxValues(String value) {return values.getString(value);}
 
-    public static void errorWithArgs(String error, Object o) {System.out.printf(errorsWithArgs.getString(error), o);}
+    public static String errorWithArgs(String error, Object o) {return String.format(errorsWithArgs.getString(error), o);}
 }

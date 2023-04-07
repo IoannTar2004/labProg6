@@ -13,14 +13,14 @@ public class HeadCommand implements Command {
      * Prints the first object in collection if it is not empty.
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public String execute(String mode, String[] command, String... args) {
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         if (objectsManager.length() > 0) {
-            System.out.println(getters.getDragonByIndex(0));
+            return getters.getDragonByIndex(0).toString();
         } else {
-            OutputText.result("Empty");
+            return OutputText.result("Empty");
         }
     }
 }

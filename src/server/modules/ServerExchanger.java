@@ -14,7 +14,7 @@ public class ServerExchanger {
             while (true) {
                 Socket socket = serverSocket.socket().accept();
                 CommandSender sender = ServerReader.read(socket);
-                ServerInvoker.invoke("user", sender.getCommand(),sender.getCommandString());
+                String result = ServerInvoker.invoke("user", sender.getCommand(),sender.getCommandString());
                 socket.close();
             }
         } catch (IOException ignored) {}
