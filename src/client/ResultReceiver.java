@@ -6,9 +6,11 @@ import src.tools.OutputText;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ResultReceiver {
-    private Object[] result;
+    private List<Object> result = new LinkedList<>();
 
     public static ResultReceiver receive(Socket socket) {
         try {
@@ -28,7 +30,7 @@ public class ResultReceiver {
     }
 
     public Object getResult(int index) {
-        return result[index];
+        return result.get(index);
     }
 
 }

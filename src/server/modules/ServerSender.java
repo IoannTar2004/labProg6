@@ -3,15 +3,17 @@ package src.server.modules;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ServerSender {
-    private Object[] result;
+    private List<Object> result = new LinkedList<>();
 
-    public ServerSender(Object[] result) {
+    public ServerSender(List<Object> result) {
         this.result = result;
     }
 
-    public Object[] getResult() {
+    public List<Object> getResult() {
         return result;
     }
 

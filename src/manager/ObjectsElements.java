@@ -16,7 +16,7 @@ public class ObjectsElements extends CollectionManager {
      * @param fields if filter by elements is required
      */
     public String element(Dragon dragon, String... fields) {
-        if (fields.length == 1) {System.out.println(dragon.toString());}
+        if (fields.length == 1) {return dragon.toString();}
         else {
             Map<String, String> elements = new HashMap<>();
 
