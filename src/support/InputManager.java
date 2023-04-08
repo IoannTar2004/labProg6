@@ -4,8 +4,6 @@ import src.client.CommandSender;
 import src.client.ResultReceiver;
 import src.collections.Dragon;
 import src.collections.DragonFields;
-import src.manager.ObjectsManager;
-import src.tools.IdGenerator;
 import src.tools.OutputText;
 
 import java.io.IOException;
