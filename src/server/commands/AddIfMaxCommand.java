@@ -23,46 +23,18 @@ public class AddIfMaxCommand implements Command {
      * @param args
      */
     @Override
-    public void execute(String mode, String[] command, Object... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
        if (Objects.equals(mode, "script")) {
-            executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
-        } else {addIfMax();}
-    }
-
-    /**
-     * Triggers when user enters this command to terminal
-     */
-    public static void addIfMax() {
-        DragonFields fieldNum;
-        ObjectsManager objectsManager = new ObjectsManager();
-        InputManager manager = new InputManager();
-        Dragon dragon = new Dragon();
-
-        OutputText.input("FieldInput");
-        do {
-            String input = manager.scanner();
-            fieldNum = DragonFields.getFieldByNumber(input);
-        } while (fieldNum == null || !MaxField.existence(fieldNum));
-
-        nextField:
-        for (DragonFields fields: DragonFields.values()) {
-            Object element;
-            OutputText.input(fields.getField() + "Input");
-            do {
-                String input = manager.scanner();
-                element = manager.dragonProcessing(fields, input);
-                if (fields == fieldNum && element != null) {
-                    if (MaxField.max(fieldNum, element)) {
-                        dragon = manager.dragonInput(dragon, fields, element);
-                        continue nextField;
-                    } else {element = null;}
-                }
-            } while (element == null);
-            dragon = manager.dragonInput(dragon, fields, element);
+            addIfMaxWithScript((String) args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+       } else if (Objects.equals(mode, "server")) {
+           ObjectsManager manager = new ObjectsManager();
+           manager.add((Dragon) args[0]);
+           return new Object[]{OutputText.result("Added")};
+       }
+       else {
+           return new Object[]{"","addIfMaxDragon"};
         }
-        dragon.setId(IdGenerator.generate());
-        objectsManager.add(dragon);
-        OutputText.result("Added");
+       return null;
     }
 
     /**
@@ -70,7 +42,7 @@ public class AddIfMaxCommand implements Command {
      * @param field number of field whose value must be greater
      * @param args elements of dragon which written in script
      */
-    public static void executeWithScript(String field, String... args) {
+    public static void addIfMaxWithScript(String field, Object... args) {
         DragonFields fieldNum = DragonFields.getFieldByNumber(field);
         if (fieldNum == null || !MaxField.existence(fieldNum)) {return;}
 
@@ -80,7 +52,7 @@ public class AddIfMaxCommand implements Command {
 
         for (DragonFields fields: DragonFields.values()) {
             Object element;
-            element = manager.dragonProcessing(fields, args[fields.ordinal()]);
+            element = manager.dragonProcessing(fields, (String) args[fields.ordinal()]);
             if (fields == fieldNum && element != null) {
                 if (MaxField.max(fieldNum, element)) {
                     dragon = manager.dragonInput(dragon, fields, element);

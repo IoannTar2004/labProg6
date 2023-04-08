@@ -31,30 +31,8 @@ public class AddCommand implements Command {
             return new Object[]{OutputText.result("Added")};
         }
         else {
-            return new Object[]{"","addValidation"};
+            return new Object[]{"","addDragon"};
         }
-    }
-
-    /**
-     * Triggers when user enters this command to terminal
-     */
-    public static void add() {
-        InputManager manager = new InputManager();
-        ObjectsManager objectsManager = new ObjectsManager();
-        Dragon dragon = new Dragon();
-
-        for (DragonFields fields: DragonFields.values()) {
-            Object element;
-            OutputText.input(fields.getField() + "Input");
-            do {
-                String input = manager.scanner();
-                element = manager.dragonProcessing(fields, input);
-            } while (element == null);
-            dragon = manager.dragonInput(dragon, fields, element);
-        }
-        dragon.setId(IdGenerator.generate());
-        objectsManager.add(dragon);
-        OutputText.result("Added");
     }
 
     /**

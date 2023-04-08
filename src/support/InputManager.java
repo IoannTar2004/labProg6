@@ -4,6 +4,8 @@ import src.client.CommandSender;
 import src.client.ResultReceiver;
 import src.collections.Dragon;
 import src.collections.DragonFields;
+import src.manager.ObjectsManager;
+import src.tools.IdGenerator;
 import src.tools.OutputText;
 
 import java.io.IOException;
@@ -130,4 +132,86 @@ public class InputManager {
         } while (!input.equals("exit"));
         socket.close();
     }
+
+    /**
+     * Triggers when user enters command "add" to terminal
+     */
+    public Dragon addDragon() {
+        InputManager manager = new InputManager();
+        ObjectsManager objectsManager = new ObjectsManager();
+        Dragon dragon = new Dragon();
+
+        for (DragonFields fields: DragonFields.values()) {
+            Object element;
+            OutputText.input(fields.getField() + "Input");
+            do {
+                String input = manager.scanner();
+                element = manager.dragonProcessing(fields, input);
+            } while (element == null);
+            dragon = manager.dragonInput(dragon, fields, element);
+        }
+        dragon.setId(IdGenerator.generate());
+        return dragon;
+    }
+
+    /**
+     * Triggers when user enters command "update" to terminal
+     */
+    public static void updateDragon(String[] command) {
+        Dragon dragon = IdChecker.parse(command);
+        if (dragon == null) {return;}
+
+        Scanner scanner = new Scanner(System.in);
+        InputManager manager = new InputManager();
+        nextField:
+        for (DragonFields fields: DragonFields.values()) {
+            Object element;
+            OutputText.input(fields.getField() + "NewInput");
+            do {
+                String input = scanner.nextLine().trim();
+                if (input.length() == 0) {continue nextField;}
+
+                element = manager.dragonProcessing(fields, input);
+            } while (element == null);
+            dragon = manager.dragonInput(dragon, fields, element);
+        }
+        OutputText.result("DataChanged");
+    }
+
+    /**
+     * Triggers when user enters this command to terminal
+     */
+    public static void addIfMax() {
+        DragonFields fieldNum;
+        ObjectsManager objectsManager = new ObjectsManager();
+        InputManager manager = new InputManager();
+        Dragon dragon = new Dragon();
+
+        OutputText.input("FieldInput");
+        do {
+            String input = manager.scanner();
+            fieldNum = DragonFields.getFieldByNumber(input);
+        } while (fieldNum == null || !MaxField.existence(fieldNum));
+
+        nextField:
+        for (DragonFields fields: DragonFields.values()) {
+            Object element;
+            OutputText.input(fields.getField() + "Input");
+            do {
+                String input = manager.scanner();
+                element = manager.dragonProcessing(fields, input);
+                if (fields == fieldNum && element != null) {
+                    if (MaxField.max(fieldNum, element)) {
+                        dragon = manager.dragonInput(dragon, fields, element);
+                        continue nextField;
+                    } else {element = null;}
+                }
+            } while (element == null);
+            dragon = manager.dragonInput(dragon, fields, element);
+        }
+        dragon.setId(IdGenerator.generate());
+        objectsManager.add(dragon);
+        OutputText.result("Added");
+    }
+
 }
