@@ -11,7 +11,7 @@ public class ClearCommand implements Command {
      * Clears collection.
      */
     @Override
-    public Object[] execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         ObjectsManager objectsManager = new ObjectsManager();
 
         objectsManager.clear();

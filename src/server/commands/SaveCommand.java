@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
 
 /**
  * Saves collection to entered xml file.
@@ -20,7 +19,7 @@ public class SaveCommand implements Command {
      * Saves collection to entered xml file.
      */
     @Override
-    public String execute(String mode, String[] command, String... args){
+    public String execute(String mode, String[] command, Object... args){
         File file;
         String data;
         InputManager inputManager = new InputManager();

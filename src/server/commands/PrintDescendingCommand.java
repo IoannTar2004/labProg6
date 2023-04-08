@@ -14,7 +14,7 @@ public class PrintDescendingCommand implements Command {
      * Prints objects in descending order by its value of field.
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public void execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             executeWithScript(command, args[0]);
         } else {printDescending(command);}

@@ -14,7 +14,7 @@ public class CountGreaterCommand implements Command {
      * Count amount of objects which have greater age than entered.
      */
     @Override
-    public Object[] execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         try {
             ObjectsManager objectsManager = new ObjectsManager();
             ObjectsCollectionManager getters = new ObjectsCollectionManager();

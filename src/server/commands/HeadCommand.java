@@ -13,7 +13,7 @@ public class HeadCommand implements Command {
      * Prints the first object in collection if it is not empty.
      */
     @Override
-    public Object[] execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 

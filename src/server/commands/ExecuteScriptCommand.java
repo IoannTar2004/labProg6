@@ -18,7 +18,7 @@ public class ExecuteScriptCommand implements Command{
      * Creates the list of commands received from txt file and runs.
      */
     @Override
-    public void execute(String mode, String[] command, String... filename) {
+    public void execute(String mode, String[] command, Object... filename) {
         File file;
 
         try {

@@ -21,10 +21,18 @@ public class AddCommand implements Command {
      * @param args
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             addWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
-        } else {add();}
+            return null;
+        } else if (Objects.equals(mode, "server")) {
+            ObjectsManager manager = new ObjectsManager();
+
+        }
+        else {
+            add();
+            return new Object[]{"","addValidation"};
+        }
     }
 
     /**

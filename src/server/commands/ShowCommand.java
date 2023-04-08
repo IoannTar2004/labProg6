@@ -15,7 +15,7 @@ public class ShowCommand implements Command {
      * It can print some fields in relation to numbers.
      */
     @Override
-    public Object[] execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         StringBuilder builder = new StringBuilder();
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsElements objectsElements = new ObjectsElements();

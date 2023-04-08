@@ -23,7 +23,7 @@ public class AddIfMaxCommand implements Command {
      * @param args
      */
     @Override
-    public void execute(String mode, String[] command, String... args) {
+    public void execute(String mode, String[] command, Object... args) {
        if (Objects.equals(mode, "script")) {
             executeWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
         } else {addIfMax();}

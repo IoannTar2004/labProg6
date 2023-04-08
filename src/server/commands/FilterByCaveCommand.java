@@ -3,7 +3,6 @@ package src.server.commands;
 import src.manager.ObjectsCollectionManager;
 import src.manager.ObjectsManager;
 import src.collections.DragonCave;
-import src.manager.ObjectsElements;
 import src.support.Checks;
 import src.tools.OutputText;
 import src.collections.Dragon;
@@ -16,7 +15,7 @@ public class FilterByCaveCommand implements Command {
      * Prints objects if they have a same cave depth.
      */
     @Override
-    public Object[] execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         boolean check = false;
         StringBuilder dragonsList = new StringBuilder();
 

@@ -13,7 +13,7 @@ public class RemoveByIdCommand implements Command{
      * Removes object by its ID.
      */
     @Override
-    public Object[] execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         try {
             //TODO rewrite idChecker
             ObjectsManager objectsManager = new ObjectsManager();

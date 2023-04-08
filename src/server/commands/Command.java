@@ -12,5 +12,5 @@ public interface Command {
      * @param args - arguments are supplied to execute() only if the mode is "script" and command requires extra inputs (for
      *             example, add, update, print_descending).
      */
-    Object[] execute(String mode, String[] command, String... args);
+    Object[] execute(String mode, String[] command, Object... args);
 }

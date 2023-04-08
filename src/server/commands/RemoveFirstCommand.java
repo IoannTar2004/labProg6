@@ -11,7 +11,7 @@ public class RemoveFirstCommand implements Command {
      * Removes the first object in collection.
      */
     @Override
-    public Object[] execute(String mode, String[] command, String... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         ObjectsManager objectsManager = new ObjectsManager();
         if (objectsManager.length() > 0) {
             objectsManager.remove_first();
