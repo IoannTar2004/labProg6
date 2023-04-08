@@ -5,6 +5,9 @@ import src.manager.ObjectsManager;
 import src.manager.ObjectsElements;
 import src.tools.OutputText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Prints all objects in collection
  */
@@ -15,19 +18,19 @@ public class ShowCommand implements Command {
      * It can print some fields in relation to numbers.
      */
     @Override
-    public Object[] execute(String mode, String[] command, Object... args) {
-        StringBuilder builder = new StringBuilder();
+    public List<String> execute(String mode, String[] command, Object... args) {
+        List<String> list = new ArrayList<>();
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsElements objectsElements = new ObjectsElements();
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         if (objectsManager.length() > 0) {
             for (int i = 0; i < objectsManager.length(); i++) {
-                builder.append(objectsElements.element(getters.getDragonByIndex(i), command)).append("\n");
+                list.add(objectsElements.element(getters.getDragonByIndex(i), command));
             }
-            return new Object[]{builder + "\n"};
+            return list;
         } else {
-            return new Object[]{OutputText.result("Empty")};
+            return List.of(OutputText.result("Empty"));
         }
     }
 }

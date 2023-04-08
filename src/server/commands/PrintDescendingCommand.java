@@ -1,5 +1,6 @@
 package src.server.commands;
 
+import src.collections.Dragon;
 import src.collections.DragonFields;
 import src.support.InputManager;
 import src.support.Sort;
@@ -14,16 +15,21 @@ public class PrintDescendingCommand implements Command {
      * Prints objects in descending order by its value of field.
      */
     @Override
-    public void execute(String mode, String[] command, Object... args) {
+    public Object[] execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
-            executeWithScript(command, args[0]);
-        } else {printDescending(command);}
+            executeWithScript(command, (String) args[0]);
+        } else if (Objects.equals(mode, "server")) {
+            printDescending(command);
+        }
+        else {
+            return new Object[]{"fieldSelection"};
+        }
     }
 
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void printDescending(String[] command) {
+    public static Dragon[] printDescending(String[] command) {
         DragonFields fieldNum;
         InputManager manager = new InputManager();
 

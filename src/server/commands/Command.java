@@ -1,5 +1,7 @@
 package src.server.commands;
 
+import java.util.List;
+
 /**
  * interfaces for classes which are responsible to command
  */
@@ -11,5 +13,5 @@ public interface Command {
      * @param command entered or read command (with arguments if they are required)
      * @param args arguments are supplied to execute(). Contains some special objects.
      */
-    Object[] execute(String mode, String[] command, Object... args);
+    List<String> execute(String mode, String[] command, Object... args);
 }

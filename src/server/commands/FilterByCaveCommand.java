@@ -7,6 +7,9 @@ import src.support.Checks;
 import src.tools.OutputText;
 import src.collections.Dragon;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Prints objects if they have a same cave depth
  */
@@ -15,10 +18,9 @@ public class FilterByCaveCommand implements Command {
      * Prints objects if they have a same cave depth.
      */
     @Override
-    public Object[] execute(String mode, String[] command, Object... args) {
+    public List<String> execute(String mode, String[] command, Object... args) {
         boolean check = false;
-        StringBuilder dragonsList = new StringBuilder();
-
+        List<String> dragonsList = new LinkedList<>();
         try {
             Checks checks = new Checks(command[1]);
             DragonCave cave1 = checks.caveChecker();
@@ -29,17 +31,17 @@ public class FilterByCaveCommand implements Command {
                 for (int i = 0; i < objectsManager.length(); i++) {
                     Dragon dragon = getters.getDragonByIndex(i);
                     if (getters.getCave(dragon) == cave1.getDepth()) {
-                        dragonsList.append(dragon).append("\n");
+                        dragonsList.add(dragon.toString());
                         check = true;
                     }
                 }
                 if (!check) {
-                    return new Object[]{OutputText.error("ObjectsNotFound")};
+                    return List.of(OutputText.error("ObjectsNotFound"));
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            return new Object[]{OutputText.error("NoCaveArgument")};
+            return List.of(OutputText.error("NoCaveArgument"));
         }
-        return new Object[]{dragonsList};
+        return dragonsList;
     }
 }

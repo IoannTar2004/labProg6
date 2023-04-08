@@ -6,6 +6,7 @@ import src.tools.OutputText;
 import src.collections.*;
 import src.tools.IdGenerator;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -21,17 +22,16 @@ public class AddCommand implements Command {
      * @param args
      */
     @Override
-    public Object[] execute(String mode, String[] command, Object... args) {
+    public List<String> execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             addWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             return null;
         } else if (Objects.equals(mode, "server")) {
             ObjectsManager manager = new ObjectsManager();
             manager.add((Dragon) args[0]);
-            return new Object[]{OutputText.result("Added")};
-        }
-        else {
-            return new Object[]{"","addDragon"};
+            return List.of(OutputText.result("Added"));
+        } else {
+            return List.of("","addDragon");
         }
     }
 

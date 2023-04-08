@@ -1,5 +1,7 @@
 package src.server.commands;
 
+import src.client.CommandSender;
+import src.server.modules.ServerInvoker;
 import src.support.FileManager;
 import src.support.InputManager;
 import src.tools.OutputText;
@@ -18,15 +20,13 @@ public class ExecuteScriptCommand implements Command{
      * Creates the list of commands received from txt file and runs.
      */
     @Override
-    public void execute(String mode, String[] command, Object... filename) {
+    public List<String> execute(String mode, String[] command, Object... filename) {
         File file;
-
         try {
             String filename1 = InputManager.builder(command);
             file = Checks.fileChecker(filename1);
         } catch (ArrayIndexOutOfBoundsException e){
-            OutputText.error("NoFileArgument");
-            return;
+            return List.of(OutputText.error("NoFileArgument"));
         }
         List<String> commands;
         if (file != null) {
@@ -35,16 +35,20 @@ public class ExecuteScriptCommand implements Command{
                 if (commands.size() > 0 && FileManager.addFileToStack(file)) {
                     int i = 0;
                     while (!Objects.equals(commands.get(i), null)) {
-                        Invoker.invoke("script", commands.get(i), commands.get(i + 1), commands.get(i + 2), commands.get(i + 3),
-                                commands.get(i + 4), commands.get(i + 5), commands.get(i + 6), commands.get(i + 7), commands.get(i + 8));
+                        CommandSender commandIn = new CommandSender(commands.get(i));
+                        ServerInvoker.invoke("script", commandIn.getCommand(), commandIn.getCommandString(),
+                                commands.get(i + 1), commands.get(i + 2),
+                                commands.get(i + 3), commands.get(i + 4),
+                                commands.get(i + 5), commands.get(i + 6),
+                                commands.get(i + 7), commands.get(i + 8));
                         i++;
                     }
                     FileManager.removeFromStack(file);
                 }
             } catch (FileNotFoundException e) {
-                OutputText.error("FileNotFound");
+                return List.of(OutputText.error("FileNotFound"));
             }
-
         }
+        return null;
     }
 }

@@ -16,7 +16,7 @@ public class Sort {
      * Sort elements in collection using inner classes which implement Comparator interface and print them.
      * @param fieldNum number of {@link Dragon} field (1 - name, 2 - coordinates, 3 - age, etc).
      */
-    public static void sort(DragonFields fieldNum, String... args) {
+    public static String[] sort(DragonFields fieldNum, String... args) {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -30,7 +30,7 @@ public class Sort {
             case CHARACTER -> sortlist.sort(new SortByCharacter());
             case CAVE -> sortlist.sort(new SortByCave());
             default -> {
-                return;
+                return null;
             }
         }
         Collections.reverse(sortlist);

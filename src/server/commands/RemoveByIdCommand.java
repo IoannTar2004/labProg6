@@ -5,15 +5,17 @@ import src.support.Checks;
 import src.collections.Dragon;
 import src.tools.OutputText;
 
+import java.util.List;
+
 /**
  * Removes object by its ID.
  */
-public class RemoveByIdCommand implements Command{
+public class RemoveByIdCommand implements Command {
     /**
      * Removes object by its ID.
      */
     @Override
-    public Object[] execute(String mode, String[] command, Object... args) {
+    public List<String> execute(String mode, String[] command, Object... args) {
         try {
             //TODO rewrite idChecker
             ObjectsManager objectsManager = new ObjectsManager();
@@ -22,9 +24,9 @@ public class RemoveByIdCommand implements Command{
                 return null;
             }
             objectsManager.remove(dragon);
-            return new Object[]{OutputText.result("Removed")};
+            return List.of(OutputText.result("Removed"));
         } catch (ArrayIndexOutOfBoundsException e) {
-            return new Object[]{OutputText.error("NoIdArgument")};
+            return List.of(OutputText.error("NoIdArgument"));
         }
     }
 }

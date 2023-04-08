@@ -3,6 +3,8 @@ package src.server.commands;
 import src.manager.ObjectsManager;
 import src.tools.OutputText;
 
+import java.util.List;
+
 /**
  * Clears collection.
  */
@@ -11,10 +13,10 @@ public class ClearCommand implements Command {
      * Clears collection.
      */
     @Override
-    public Object[] execute(String mode, String[] command, Object... args) {
+    public List<String> execute(String mode, String[] command, Object... args) {
         ObjectsManager objectsManager = new ObjectsManager();
 
         objectsManager.clear();
-        return new Object[]{OutputText.result("Cleared")};
+        return List.of(OutputText.result("Cleared"));
     }
 }

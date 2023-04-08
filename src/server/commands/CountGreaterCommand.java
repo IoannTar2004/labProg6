@@ -6,6 +6,8 @@ import src.support.Checks;
 import src.tools.OutputText;
 import src.collections.Dragon;
 
+import java.util.List;
+
 /**
  * Count amount of objects which have greater age than entered.
  */
@@ -14,7 +16,7 @@ public class CountGreaterCommand implements Command {
      * Count amount of objects which have greater age than entered.
      */
     @Override
-    public Object[] execute(String mode, String[] command, Object... args) {
+    public List<String> execute(String mode, String[] command, Object... args) {
         try {
             ObjectsManager objectsManager = new ObjectsManager();
             ObjectsCollectionManager getters = new ObjectsCollectionManager();
@@ -29,10 +31,10 @@ public class CountGreaterCommand implements Command {
                         count++;
                     }
                 }
-                return new Object[]{String.valueOf(count)};
+                return List.of(String.valueOf(count));
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            return new Object[]{OutputText.error("NoAgeArgument")};
+            return List.of(OutputText.error("NoAgeArgument"));
         }
         return null;
     }
