@@ -27,10 +27,10 @@ public class AddCommand implements Command {
             return null;
         } else if (Objects.equals(mode, "server")) {
             ObjectsManager manager = new ObjectsManager();
-
+            manager.add((Dragon) args[0]);
+            return new Object[]{OutputText.result("Added")};
         }
         else {
-            add();
             return new Object[]{"","addValidation"};
         }
     }
@@ -61,13 +61,13 @@ public class AddCommand implements Command {
      * Triggers when command is from script file. Object is not created if at least one of the argument is invalid.
      * @param args elements of dragon which written in script
      */
-    public static void addWithScript(String... args) {
+    public static void addWithScript(Object... args) {
         ObjectsManager objectsManager = new ObjectsManager();
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
 
         for (DragonFields fields: DragonFields.values()) {
-            Object element = manager.dragonProcessing(fields, args[fields.ordinal()]);
+            Object element = manager.dragonProcessing(fields, args[fields.ordinal()].toString());
             if (element != null) {
                 dragon = manager.dragonInput(dragon, fields, element);
             } else {return;}
