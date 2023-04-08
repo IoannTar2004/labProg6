@@ -1,6 +1,7 @@
 package src.manager;
 
-import src.collections.Dragon;
+import src.collections.*;
+
 import java.util.Date;
 
 public class ObjectsManager extends CollectionManager {
@@ -20,5 +21,17 @@ public class ObjectsManager extends CollectionManager {
     }
     public void clear() {dragons.clear();}
     public void remove_first() {dragons.removeFirst();
+    }
+
+    public void replace(Long id, Dragon newDragon) {
+        Dragon dragon = new ObjectsCollectionManager().getDragonById(id);
+
+        dragon.setName(newDragon.getName());
+        dragon.setCoordinates(new Coordinates(newDragon.getX(), newDragon.getY()));
+        dragon.setAge(newDragon.getAge());
+        dragon.setColor(Color.getEnumColor(newDragon.getColor()));
+        dragon.setType(DragonType.getEnumType(newDragon.getType()));
+        dragon.setCharacter(DragonCharacter.getEnumCharacter(newDragon.getCharacter()));
+        dragon.setCave(new DragonCave(dragon.getCave()));
     }
 }
