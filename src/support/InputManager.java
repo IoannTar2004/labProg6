@@ -138,7 +138,6 @@ public class InputManager {
      */
     public Dragon addDragon() {
         InputManager manager = new InputManager();
-        ObjectsManager objectsManager = new ObjectsManager();
         Dragon dragon = new Dragon();
 
         for (DragonFields fields: DragonFields.values()) {
@@ -150,16 +149,15 @@ public class InputManager {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
-        dragon.setId(IdGenerator.generate());
         return dragon;
     }
 
     /**
      * Triggers when user enters command "update" to terminal
      */
-    public static void updateDragon(String[] command) {
+    public Dragon updateDragon(String[] command) {
         Dragon dragon = IdChecker.parse(command);
-        if (dragon == null) {return;}
+        if (dragon == null) {return null;}
 
         Scanner scanner = new Scanner(System.in);
         InputManager manager = new InputManager();
@@ -175,15 +173,14 @@ public class InputManager {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
-        OutputText.result("DataChanged");
+        return dragon;
     }
 
     /**
      * Triggers when user enters this command to terminal
      */
-    public static void addIfMax() {
+    public Dragon addIfMax() {
         DragonFields fieldNum;
-        ObjectsManager objectsManager = new ObjectsManager();
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
 
@@ -209,9 +206,20 @@ public class InputManager {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
-        dragon.setId(IdGenerator.generate());
-        objectsManager.add(dragon);
-        OutputText.result("Added");
+        return dragon;
     }
+    /**
+     * Triggers when user enters this command to terminal
+     */
+    public DragonFields fieldSelection() {
+        DragonFields fieldNum;
+        InputManager manager = new InputManager();
 
+        OutputText.input("DescendingInput");
+        do {
+            String input = manager.scanner();
+            fieldNum = DragonFields.getFieldByNumber(input);
+        } while (fieldNum == null);
+        return fieldNum;
+    }
 }
