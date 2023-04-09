@@ -12,25 +12,22 @@ import java.util.List;
 public class ResultReceiver {
     private List<String> result = new LinkedList<>();
 
-    public static ResultReceiver receive(Socket socket) {
+    public ResultReceiver(Socket socket) {
         try {
             ObjectInputStream stream = new ObjectInputStream(socket.getInputStream());
             ServerSender sender = (ServerSender) stream.readObject();
 
-            ResultReceiver resultReceiver = new ResultReceiver();
-            resultReceiver.result = sender.getResult();
-
-            return resultReceiver;
+            this.result = sender.getResult();
+            stream.close();
         } catch (IOException e) {
             OutputText.error("Connection");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    public Object getResult(int index) {
-        return result.get(index);
+    public List<String> getResult() {
+        return result;
     }
 
 }

@@ -62,7 +62,8 @@ public class CommandSender implements Serializable {
     }
 
     public void sendToServer(Socket socket) {
-        try(ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream())) {
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             outputStream.writeObject(this);
             outputStream.flush();
         } catch (IOException e) {
@@ -73,7 +74,8 @@ public class CommandSender implements Serializable {
     @Override
     public String toString() {
         return "CommandSender{" +
-                "command='" + command + '\'' +
+                "command=" + command +
+                ", commandString='" + commandString + '\'' +
                 ", dragonObject=" + dragonObject +
                 '}';
     }

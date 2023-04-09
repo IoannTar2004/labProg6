@@ -3,25 +3,27 @@ package src.server.modules;
 import src.client.CommandSender;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.ServerSocketChannel;
 import java.util.List;
 
 public class ServerExchanger {
     public static void main(String[] args) {
-        try(ServerSocketChannel serverSocket = ServerSocketChannel.open()) {
-            serverSocket.bind(new InetSocketAddress(3009));
+        try(ServerSocket serverSocket = new ServerSocket(3009)) {
             while (true) {
-                Socket socket = serverSocket.socket().accept();
+                Socket socket = serverSocket.accept();
                 CommandSender sender = ServerReader.read(socket);
+
                 List<String> result = ServerInvoker.invoke("user", sender.getCommand(), sender.getCommandString());
 
                 ServerSender serverSender = new ServerSender(result);
+                System.out.println(serverSender.getResult());
                 serverSender.sendToClient(socket);
                 socket.close();
             }
-        } catch (IOException ignored) {}
+        } catch (Exception e) {e.printStackTrace();}
     }
 
 }

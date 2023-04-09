@@ -1,11 +1,12 @@
 package src.server.commands;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * interfaces for classes which are responsible to command
  */
-public interface Command {
+public interface Command extends Serializable {
     /**
      *
      * @param mode have two modes: user and script. "User" is switched on when you write down the command to terminal, "script" -

@@ -9,7 +9,8 @@ import java.net.Socket;
 
 public class ServerReader {
     public static CommandSender read(Socket socket) {
-        try(ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             return (CommandSender) ois.readObject();
         } catch (IOException e) {
             OutputText.error("Connection");

@@ -17,6 +17,6 @@ public class InfoCommand implements Command {
         ObjectsManager objectsManager = new ObjectsManager();
         return List.of("Тип коллекции: ArrayDeque;",
                 "Дата инициализации: " + InitializationDate.getDate() + ";",
-                "Количество элементов: " + objectsManager.length() + ".");
+                "Количество элементов: " + objectsManager.length() + ".\n");
     }
 }

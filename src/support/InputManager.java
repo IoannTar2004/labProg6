@@ -111,24 +111,25 @@ public class InputManager {
     public static void commandScan() throws IOException {
         String input;
         InputManager manager = new InputManager();
-        Socket socket = new Socket("localhost", 3009);
         do {
+            Socket socket = new Socket("localhost", 3009);
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
+
                 CommandSender sender = new CommandSender(input);
                 sender.sendToServer(socket);
-
-                ResultReceiver result = ResultReceiver.receive(socket);
-                System.out.println(result.getResult(0));
+                ResultReceiver result = new ResultReceiver(socket);
+                result.getResult().forEach(System.out::println);
 
                 Class<InputManager> valid = InputManager.class;
                 try {
-                    Method method = valid.getDeclaredMethod((String) result.getResult(1));
+                    Method method = valid.getDeclaredMethod(result.getResult().get(1));
                     method.invoke(manager);
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {}
+                } catch (Exception e) {
+
+                }
             } //TODO временный сокет
         } while (!input.equals("exit"));
-        socket.close();
     }
 
     /**

@@ -2,12 +2,12 @@ package src.server.modules;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
-import java.util.LinkedList;
 import java.util.List;
 
-public class ServerSender {
-    private List<String> result = new LinkedList<>();
+public class ServerSender implements Serializable {
+    private List<String> result;
 
     public ServerSender(List<String> result) {
         this.result = result;
@@ -18,9 +18,11 @@ public class ServerSender {
     }
 
     public void sendToClient(Socket socket) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream())) {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(this);
             oos.flush();
+            oos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

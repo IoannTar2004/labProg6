@@ -1,7 +1,10 @@
 package src;
 
 import src.support.InitializationDate;
+import src.support.InputManager;
 import src.tools.*;
+
+import java.io.IOException;
 
 /**
  * Main class runs three methods: {@link ProgramStart#start()} - explains basic things of this program and requests initial xml file,
@@ -12,8 +15,9 @@ import src.tools.*;
  */
 
 public class Main {
-    public static void main(String[] args) {
-        ProgramStart.start();
+    public static void main(String[] args) throws IOException {
+        //ProgramStart.start();
         InitializationDate.getDate();
+        InputManager.commandScan();
     }
 }
