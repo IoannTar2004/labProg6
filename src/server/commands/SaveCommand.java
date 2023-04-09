@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Saves collection to entered xml file.
@@ -19,7 +20,7 @@ public class SaveCommand implements Command {
      * Saves collection to entered xml file.
      */
     @Override
-    public String execute(String mode, String[] command, Object... args){
+    public List<String> execute(String mode, String[] command, Object... args){
         File file;
         String data;
         InputManager inputManager = new InputManager();
@@ -48,5 +49,6 @@ public class SaveCommand implements Command {
         } catch (IOException ignored) {
             OutputText.error("FileNotFound");
         }
+        return List.of("");
     }
 }

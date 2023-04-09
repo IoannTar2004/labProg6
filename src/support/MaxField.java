@@ -4,12 +4,15 @@ import src.manager.ObjectsCollectionManager;
 import src.collections.*;
 import src.tools.OutputText;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * this class has a similar destiny to {@link Sort} but it is used to get max values.
  */
 public class MaxField extends Sort {
+    private List<Dragon> sortlist = new ArrayList<>(new ObjectsCollectionManager().getAll());
     /**
      * Combines other methods in this class to call defined method.
      * @param fields enum of {@link Dragon} field which includes in {@link DragonFields}.
@@ -17,37 +20,38 @@ public class MaxField extends Sort {
      * @return true if element is greater than max element in collection
      */
     public static boolean max(DragonFields fields, Object element) {
+        MaxField maxField = new MaxField();
         int max = -1;
         Object maxValue = null;
         switch (fields) {
             case NAME -> {
-                max = ((String) element).compareTo(maxName());
-                maxValue = maxName();
+                max = ((String) element).compareTo(maxField.maxName());
+                maxValue = maxField.maxName();
                 }
             case COORDINATES -> {
-                max = ((Coordinates) element).sum().compareTo(maxSumCoordinates());
-                maxValue = maxCoordinates();
+                max = ((Coordinates) element).sum().compareTo(maxField.maxSumCoordinates());
+                maxValue = maxField.maxCoordinates();
             }
             case AGE -> {
-                max = ((int) element) - maxAge();
-                maxValue = maxAge();
+                max = ((int) element) - maxField.maxAge();
+                maxValue = maxField.maxAge();
             }
             case COLOR -> {
-                max = (((Color) element).ordinal() + 1) - maxColor();
+                max = (((Color) element).ordinal() + 1) - maxField.maxColor();
                 System.out.println(element);
-                maxValue = new Checks(String.valueOf(maxColor())).colorChecker();
+                maxValue = new Checks(String.valueOf(maxField.maxColor())).colorChecker();
             }
             case TYPE -> {
-                max = (((DragonType) element).ordinal() + 1) - maxType();
-                maxValue = new Checks(String.valueOf(maxType())).typeChecker();
+                max = (((DragonType) element).ordinal() + 1) - maxField.maxType();
+                maxValue = new Checks(String.valueOf(maxField.maxType())).typeChecker();
             }
             case CHARACTER -> {
-                max = (((DragonCharacter) element).ordinal() + 1) - maxCharacter();
-                maxValue = new Checks(String.valueOf(maxCharacter())).characterChecker();
+                max = (((DragonCharacter) element).ordinal() + 1) - maxField.maxCharacter();
+                maxValue = new Checks(String.valueOf(maxField.maxCharacter())).characterChecker();
             }
             case CAVE -> {
-                max = ((DragonCave) element).getDepth().compareTo(maxCave());
-                maxValue = maxCave();
+                max = ((DragonCave) element).getDepth().compareTo(maxField.maxCave());
+                maxValue = maxField.maxCave();
             }
         }
         if (max < 0) {
@@ -64,7 +68,7 @@ public class MaxField extends Sort {
      *
      * @return max value of {@link Dragon#getName()} name if collection is not empty.
      */
-    public static String maxName() {
+    public String maxName() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -79,7 +83,7 @@ public class MaxField extends Sort {
      *
      * @return max sum of {@link Coordinates coordinates} (x + y) if collection is not empty.
      */
-    public static Long maxSumCoordinates() {
+    public Long maxSumCoordinates() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -95,7 +99,7 @@ public class MaxField extends Sort {
      *
      * @return x coordinate of the object which has max sum coordinates.
      */
-    public static int maxX() {
+    public int maxX() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -110,7 +114,7 @@ public class MaxField extends Sort {
      *
      * @return y coordinate of the object which has max sum coordinates.
      */
-    public static Long maxY() {
+    public Long maxY() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -125,7 +129,7 @@ public class MaxField extends Sort {
      *
      * @return string of the form {@link Dragon#getCoordinates() 'x; y'} (where x + y is max) if collection is not empty
      */
-    public static String maxCoordinates() {
+    public String maxCoordinates() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -140,7 +144,7 @@ public class MaxField extends Sort {
      *
      * @return max {@link Dragon#getAge() age} if collection is not empty.
      */
-    public static int maxAge() {
+    public int maxAge() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -155,7 +159,7 @@ public class MaxField extends Sort {
      *
      * @return max ordinal+1 of {@link Color} if collection is not empty.
      */
-    public static int maxColor() {
+    public int maxColor() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -170,7 +174,7 @@ public class MaxField extends Sort {
      *
      * @return max ordinal+1 of {@link DragonType} if collection is not empty.
      */
-    public static int maxType() {
+    public int maxType() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -185,7 +189,7 @@ public class MaxField extends Sort {
      *
      * @return max ordinal+1 of {@link DragonCharacter} if collection is not empty.
      */
-    public static int maxCharacter() {
+    public int maxCharacter() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -200,7 +204,7 @@ public class MaxField extends Sort {
      *
      * @return max {@link Dragon#getCave()} cave depth if collection is not empty.
      */
-    public static double maxCave() {
+    public double maxCave() {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
 
         sortlist.clear();
@@ -217,22 +221,23 @@ public class MaxField extends Sort {
      * @return
      */
     public static boolean existence(DragonFields fields) {
-        if(fields == DragonFields.COORDINATES && (maxX() == Integer.MAX_VALUE || maxY() == Long.MAX_VALUE)) {
+        MaxField maxField = new MaxField();
+        if(fields == DragonFields.COORDINATES && (maxField.maxX() == Integer.MAX_VALUE || maxField.maxY() == Long.MAX_VALUE)) {
             OutputText.maxValues("MaxCoordinates");
             return false;
-        } else if (fields == DragonFields.AGE && maxAge() == Integer.MAX_VALUE) {
+        } else if (fields == DragonFields.AGE && maxField.maxAge() == Integer.MAX_VALUE) {
             OutputText.maxValues("MaxAge");
             return false;
-        } else if(fields == DragonFields.COLOR && maxColor() == 3) {
+        } else if(fields == DragonFields.COLOR && maxField.maxColor() == 3) {
             OutputText.maxValues("MaxColor");
             return false;
-        } else if(fields == DragonFields.TYPE && maxType() == 4) {
+        } else if(fields == DragonFields.TYPE && maxField.maxType() == 4) {
             OutputText.maxValues("MaxType");
             return false;
-        } else if(fields == DragonFields.CHARACTER && maxCharacter() == 3) {
+        } else if(fields == DragonFields.CHARACTER && maxField.maxCharacter() == 3) {
             OutputText.maxValues("MaxCharacter");
             return false;
-        } else if(fields == DragonFields.CAVE && maxCave() == Double.MAX_VALUE) {
+        } else if(fields == DragonFields.CAVE && maxField.maxCave() == Double.MAX_VALUE) {
             OutputText.maxValues("MaxCave");
             return false;
         }

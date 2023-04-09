@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.channels.ServerSocketChannel;
+import java.util.List;
 
 public class ServerExchanger {
     public static void main(String[] args) {
@@ -14,7 +15,7 @@ public class ServerExchanger {
             while (true) {
                 Socket socket = serverSocket.socket().accept();
                 CommandSender sender = ServerReader.read(socket);
-                Object[] result = ServerInvoker.invoke("user", sender.getCommand(), sender.getCommandString());
+                List<String> result = ServerInvoker.invoke("user", sender.getCommand(), sender.getCommandString());
 
                 ServerSender serverSender = new ServerSender(result);
                 serverSender.sendToClient(socket);

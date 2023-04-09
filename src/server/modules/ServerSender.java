@@ -7,13 +7,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ServerSender {
-    private List<Object> result = new LinkedList<>();
+    private List<String> result = new LinkedList<>();
 
-    public ServerSender(List<Object> result) {
+    public ServerSender(List<String> result) {
         this.result = result;
     }
 
-    public List<Object> getResult() {
+    public List<String> getResult() {
         return result;
     }
 

@@ -1,44 +1,32 @@
 package src.server.commands;
 
-import src.collections.Dragon;
 import src.collections.DragonFields;
-import src.support.InputManager;
 import src.support.Sort;
-import src.tools.OutputText;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * Prints objects in descending order by its value of field.
  */
 public class PrintDescendingCommand implements Command {
+    private static String[] arguments;
     /**
      * Prints objects in descending order by its value of field.
      */
     @Override
-    public Object[] execute(String mode, String[] command, Object... args) {
+    public List<String> execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             executeWithScript(command, (String) args[0]);
         } else if (Objects.equals(mode, "server")) {
-            printDescending(command);
+            return new LinkedList<>(Sort.sort(DragonFields.getFieldByNumber(command[0]), arguments));
         }
         else {
-            return new Object[]{"fieldSelection"};
+            arguments = command;
+            return List.of("","fieldSelection");
         }
-    }
-
-    /**
-     * Triggers when user enters this command to terminal
-     */
-    public static Dragon[] printDescending(String[] command) {
-        DragonFields fieldNum;
-        InputManager manager = new InputManager();
-
-        OutputText.input("DescendingInput");
-        do {
-            String input = manager.scanner();
-            fieldNum = DragonFields.getFieldByNumber(input);
-            if (fieldNum != null) {Sort.sort(fieldNum, command);}
-        } while (fieldNum == null);
+        return null;
     }
 
     /**

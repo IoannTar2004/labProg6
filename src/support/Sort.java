@@ -11,16 +11,15 @@ import java.util.*;
  */
 public class Sort {
 
-    protected static List<Dragon> sortlist = new ArrayList<>();
     /**
-     * Sort elements in collection using inner classes which implement Comparator interface and print them.
+     * Sort elements in collection using nested classes which implement Comparator interface and print them.
      * @param fieldNum number of {@link Dragon} field (1 - name, 2 - coordinates, 3 - age, etc).
      */
-    public static String[] sort(DragonFields fieldNum, String... args) {
+    public static List<String> sort(DragonFields fieldNum, String... args) {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
+        List<String> dragonList = new LinkedList<>();
 
-        sortlist.clear();
-        sortlist.addAll(getters.getAll());
+        List<Dragon> sortlist = new ArrayList<>(getters.getAll());
         switch (fieldNum) {
             case NAME -> sortlist.sort(new SortByName());
             case COORDINATES -> sortlist.sort(new SortByCoordinates());
@@ -34,20 +33,17 @@ public class Sort {
             }
         }
         Collections.reverse(sortlist);
-        for(int i = 0; i < sortlist.size(); i++) {
+        for (Dragon dragon : sortlist) {
             ObjectsElements objectsElements = new ObjectsElements();
-            objectsElements.element(sortlist.get(i), args);
+            dragonList.add(objectsElements.element(dragon, args));
         }
-        System.out.println();
-        sortlist.clear();
+        return dragonList;
     }
 
 
     public static class SortByName extends Sort implements Comparator<Dragon>{
         @Override
         public int compare(Dragon d1, Dragon d2) {
-            ObjectsCollectionManager getters = new ObjectsCollectionManager();
-
             return d1.getName().compareTo(d2.getName());
         }
     }

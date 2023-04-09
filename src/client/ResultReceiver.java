@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ResultReceiver {
-    private List<Object> result = new LinkedList<>();
+    private List<String> result = new LinkedList<>();
 
     public static ResultReceiver receive(Socket socket) {
         try {

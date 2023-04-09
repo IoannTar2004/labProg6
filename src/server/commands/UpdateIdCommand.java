@@ -29,7 +29,7 @@ public class UpdateIdCommand implements Command {
             Dragon dragon = IdChecker.parse(command);
             if (dragon == null) {
                 try {
-                    return List.of(IdChecker.check(command[1]));
+                    return null;//List.of(IdChecker.check(command[1]));
                 } catch (ArrayIndexOutOfBoundsException e) {
                     return List.of(OutputText.error("NoIdArgument"));
                 }
