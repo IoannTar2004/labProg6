@@ -33,7 +33,7 @@ public class Checks {
      */
     public String nameChecker() {
         if (input.matches("\\s*")) {
-            OutputText.error("nameIncorrect");
+            System.out.println(OutputText.error("nameIncorrect"));
             return null;
         }
         return input;
@@ -53,19 +53,19 @@ public class Checks {
             try {
                 x = Integer.parseInt(coordinates[0]);
             } catch (NumberFormatException e) {
-                OutputText.errorWithArgs("X_IntegerFormatExceeded", Integer.MAX_VALUE);
+                System.out.println(OutputText.errorWithArgs("X_IntegerFormatExceeded", Integer.MAX_VALUE));
                 return null;
             }
 
             try {
                 y = Long.parseLong(coordinates[1]);
             } catch (NumberFormatException e) {
-                OutputText.errorWithArgs("Y_LongFormatExceeded", Long.MAX_VALUE);
+                System.out.println(OutputText.errorWithArgs("Y_LongFormatExceeded", Long.MAX_VALUE));
                 return null;
             }
             return new Coordinates(x, y);
         }
-        OutputText.error("coordinatesIncorrect");
+        System.out.println(OutputText.error("coordinatesIncorrect"));
         return null;
     }
 
@@ -104,7 +104,7 @@ public class Checks {
         else if (input.matches("\\s*2\\s*")) {return BLUE;}
         else if (input.matches("\\s*3\\s*")) {return YELLOW;}
 
-        OutputText.error("colorIncorrect");
+        System.out.println(OutputText.error("colorIncorrect"));
         return null;
     }
 
@@ -118,7 +118,7 @@ public class Checks {
         else if (input.matches("\\s*3\\s*")) {return AIR;}
         else if (input.matches("\\s*4\\s*")) {return FIRE;}
 
-        OutputText.error("typeIncorrect");
+        System.out.println(OutputText.error("typeIncorrect"));
         return null;
     }
 
@@ -131,7 +131,7 @@ public class Checks {
         else if (input.matches("\\s*2\\s*")) {return EVIL;}
         else if (input.matches("\\s*3\\s*")) {return CHAOTIC;}
 
-        OutputText.error("characterIncorrect");
+        System.out.println(OutputText.error("characterIncorrect"));
         return null;
     }
 

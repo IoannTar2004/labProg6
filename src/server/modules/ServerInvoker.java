@@ -18,7 +18,7 @@ public class ServerInvoker {
             return command.execute(mode, line, args);
         } catch (NullPointerException e) {
             if (Objects.equals(mode, "user")) {
-                return List.of("Такой команды нет!");
+                return new ServerSender(List.of("Такой команды нет!"));
             }
         }
         return null;

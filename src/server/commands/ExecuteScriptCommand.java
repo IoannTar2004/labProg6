@@ -2,8 +2,9 @@ package src.server.commands;
 
 import src.client.CommandSender;
 import src.server.modules.ServerInvoker;
+import src.server.modules.ServerSender;
 import src.support.FileManager;
-import src.support.InputManager;
+import src.support.Processing;
 import src.tools.OutputText;
 import src.support.Checks;
 import src.tools.ScriptReader;
@@ -20,13 +21,13 @@ public class ExecuteScriptCommand implements Command{
      * Creates the list of commands received from txt file and runs.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... filename) {
+    public ServerSender execute(String mode, String[] command, Object... filename) {
         File file;
         try {
-            String filename1 = InputManager.builder(command);
+            String filename1 = Processing.builder(command);
             file = Checks.fileChecker(filename1);
         } catch (ArrayIndexOutOfBoundsException e){
-            return List.of(OutputText.error("NoFileArgument"));
+            return new ServerSender(List.of(OutputText.error("NoFileArgument")));
         }
         List<String> commands;
         if (file != null) {
@@ -46,7 +47,7 @@ public class ExecuteScriptCommand implements Command{
                     FileManager.removeFromStack(file);
                 }
             } catch (FileNotFoundException e) {
-                return List.of(OutputText.error("FileNotFound"));
+                return new ServerSender(List.of(OutputText.error("FileNotFound")));
             }
         }
         return null;

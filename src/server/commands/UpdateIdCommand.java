@@ -1,8 +1,9 @@
 package src.server.commands;
 
 import src.manager.ObjectsManager;
+import src.server.modules.ServerSender;
 import src.support.IdChecker;
-import src.support.InputManager;
+import src.support.Processing;
 import src.tools.OutputText;
 import src.collections.*;
 
@@ -17,24 +18,24 @@ public class UpdateIdCommand implements Command {
      * Changes {@link Dragon dragon's fields} by its ID.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
+    public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             updateWithScript(command, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         } else if (Objects.equals(mode, "server")) {
             ObjectsManager manager = new ObjectsManager();
             manager.replace(Long.valueOf(command[1]), (Dragon) args[0]);
-            return List.of(OutputText.result("DataChanged"));
+            return new ServerSender(List.of(OutputText.result("DataChanged")));
         }
         else {
             Dragon dragon = IdChecker.parse(command);
             if (dragon == null) {
                 try {
-                    return null;//List.of(IdChecker.check(command[1]));
+                    return null;//List.of(IdChecker.check(command[1])); TODO
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    return List.of(OutputText.error("NoIdArgument"));
+                    return new ServerSender(List.of(OutputText.error("NoIdArgument")));
                 }
             } //TODO text
-            return List.of("","updateDragon");
+            return new ServerSender("updateDragon");
         }
         return null;
     }
@@ -44,7 +45,7 @@ public class UpdateIdCommand implements Command {
      * @param args elements of dragon which written in script
      */
     public static void updateWithScript(String[] command, Object... args) {
-        InputManager manager = new InputManager();
+        Processing manager = new Processing();
 
         Dragon dragon = IdChecker.parse(command);
         if (dragon == null) {return;}

@@ -1,6 +1,7 @@
 package src.server.commands;
 
 import src.manager.ObjectsManager;
+import src.server.modules.ServerSender;
 import src.support.Checks;
 import src.collections.Dragon;
 import src.tools.OutputText;
@@ -15,7 +16,7 @@ public class RemoveByIdCommand implements Command {
      * Removes object by its ID.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
+    public ServerSender execute(String mode, String[] command, Object... args) {
         try {
             //TODO rewrite idChecker
             ObjectsManager objectsManager = new ObjectsManager();
@@ -24,9 +25,9 @@ public class RemoveByIdCommand implements Command {
                 return null;
             }
             objectsManager.remove(dragon);
-            return List.of(OutputText.result("Removed"));
+            return new ServerSender(List.of(OutputText.result("Removed")));
         } catch (ArrayIndexOutOfBoundsException e) {
-            return List.of(OutputText.error("NoIdArgument"));
+            return new ServerSender(List.of(OutputText.error("NoIdArgument")));
         }
     }
 }

@@ -9,7 +9,7 @@ import src.manager.ObjectsCollectionManager;
 import src.manager.ObjectsManager;
 import src.collections.*;
 import src.support.IdChecker;
-import src.support.InputManager;
+import src.support.Processing;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,7 +37,7 @@ public class XMLReader {
 
             Dragon dragon = new Dragon();
             ObjectsManager objectsManager = new ObjectsManager();
-            InputManager manager = new InputManager();
+            Processing manager = new Processing();
             String input;
 
             for (DragonFields fields : DragonFields.values()) {

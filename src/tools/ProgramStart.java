@@ -2,7 +2,7 @@ package src.tools;
 
 import src.support.Checks;
 import src.support.FileManager;
-import src.support.InputManager;
+import src.support.Processing;
 
 import java.io.File;
 
@@ -11,24 +11,24 @@ public class ProgramStart {
      * This method runs at the beginning. It explains basic things of this program and requests initial xml file.
      */
     public static void start() {
-        InputManager inputManager = new InputManager();
+        Processing processing = new Processing();
 
         OutputText.startInformation("CorrectXmlFile");
         String data;
-        if (inputManager.yesNoInput()) {
+        if (processing.yesNoInput()) {
             OutputText.startInformation("Example");
         }
 
         OutputText.startInformation("EnvVar");
         File file;
         do {
-            data = inputManager.scanner();
+            data = processing.scanner();
             file = Checks.fileChecker(data);
             FileManager.setCurrentFile(file);
         } while (file == null);
 
         OutputText.startInformation("ReadFile");
-        if (inputManager.yesNoInput()) {
+        if (processing.yesNoInput()) {
             if (FileManager.isNotEmpty(file)) {
                 XMLReader.parse(file);
             }

@@ -1,7 +1,7 @@
 package src;
 
 import src.support.InitializationDate;
-import src.support.InputManager;
+import src.support.Processing;
 import src.tools.*;
 
 import java.io.IOException;
@@ -18,6 +18,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
         //ProgramStart.start();
         InitializationDate.getDate();
-        InputManager.commandScan();
+        Processing.commandScan();
     }
 }

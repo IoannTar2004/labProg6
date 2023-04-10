@@ -1,8 +1,9 @@
 package src.server.commands;
 
+import src.server.modules.ServerSender;
 import src.support.Checks;
 import src.support.FileManager;
-import src.support.InputManager;
+import src.support.Processing;
 import src.tools.OutputText;
 import src.tools.XMLWriteParser;
 
@@ -20,16 +21,16 @@ public class SaveCommand implements Command {
      * Saves collection to entered xml file.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args){
+    public ServerSender execute(String mode, String[] command, Object... args){
         File file;
         String data;
-        InputManager inputManager = new InputManager();
+        Processing processing = new Processing();
 
         System.out.println("Введите название переменной окружения, " +
                 "куда вы хотите сохранить или нажмите 'Enter', если хотите сохранить в текущий файл.");
 
         do {
-            data = inputManager.scanner();
+            data = processing.scanner();
             if (data.length() > 0) {
                 file = Checks.fileChecker(data);
             } else {
@@ -45,10 +46,10 @@ public class SaveCommand implements Command {
             writer.flush();
             writer.close();
 
-            OutputText.result("Saved");
+            return new ServerSender(List.of(OutputText.result("Saved")));
         } catch (IOException ignored) {
-            OutputText.error("FileNotFound");
+            new ServerSender(List.of(OutputText.error("FileNotFound")));
         }
-        return List.of("");
+        return null;
     }
 }

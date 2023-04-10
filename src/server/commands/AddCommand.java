@@ -1,7 +1,8 @@
 package src.server.commands;
 
 import src.manager.ObjectsManager;
-import src.support.InputManager;
+import src.server.modules.ServerSender;
+import src.support.Processing;
 import src.tools.OutputText;
 import src.collections.*;
 import src.tools.IdGenerator;
@@ -22,16 +23,16 @@ public class AddCommand implements Command {
      * @param args
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
+    public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             addWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             return null;
         } else if (Objects.equals(mode, "server")) {
             ObjectsManager manager = new ObjectsManager();
             manager.add((Dragon) args[0]);
-            return List.of(OutputText.result("Added"));
+            return new ServerSender(List.of(OutputText.result("Added")));
         } else {
-            return List.of("","addDragon");
+            return new ServerSender("addDragon");
         }
     }
 
@@ -41,7 +42,7 @@ public class AddCommand implements Command {
      */
     public static void addWithScript(Object... args) {
         ObjectsManager objectsManager = new ObjectsManager();
-        InputManager manager = new InputManager();
+        Processing manager = new Processing();
         Dragon dragon = new Dragon();
 
         for (DragonFields fields: DragonFields.values()) {

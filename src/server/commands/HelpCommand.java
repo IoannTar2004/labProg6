@@ -1,5 +1,6 @@
 package src.server.commands;
 
+import src.server.modules.ServerSender;
 import src.tools.OutputText;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class HelpCommand implements Command {
      * Prints all commands.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
-        return List.of(OutputText.result("AllCommands"));
+    public ServerSender execute(String mode, String[] command, Object... args) {
+        return new ServerSender(List.of(OutputText.result("AllCommands")));
     }
 }

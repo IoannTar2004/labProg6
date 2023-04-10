@@ -1,6 +1,7 @@
 package src.server.commands;
 
 import src.collections.DragonFields;
+import src.server.modules.ServerSender;
 import src.support.Sort;
 
 import java.util.LinkedList;
@@ -16,15 +17,16 @@ public class PrintDescendingCommand implements Command {
      * Prints objects in descending order by its value of field.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
+    public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             executeWithScript(command, (String) args[0]);
         } else if (Objects.equals(mode, "server")) {
-            return new LinkedList<>(Sort.sort(DragonFields.getFieldByNumber(command[0]), arguments));
+            List<String> list = new LinkedList<>(Sort.sort(DragonFields.getFieldByNumber(command[0]), arguments));
+            return new ServerSender(list);
         }
         else {
             arguments = command;
-            return List.of("","fieldSelection");
+            return new ServerSender("fieldSelection");
         }
         return null;
     }

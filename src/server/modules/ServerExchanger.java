@@ -16,9 +16,7 @@ public class ServerExchanger {
                 Socket socket = serverSocket.accept();
                 CommandSender sender = ServerReader.read(socket);
 
-                List<String> result = ServerInvoker.invoke("user", sender.getCommand(), sender.getCommandString());
-
-                ServerSender serverSender = new ServerSender(result);
+                ServerSender serverSender = ServerInvoker.invoke("user", sender.getCommand(), sender.getCommandString());
                 System.out.println(serverSender.getResult());
                 serverSender.sendToClient(socket);
                 socket.close();

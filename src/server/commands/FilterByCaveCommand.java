@@ -3,6 +3,7 @@ package src.server.commands;
 import src.manager.ObjectsCollectionManager;
 import src.manager.ObjectsManager;
 import src.collections.DragonCave;
+import src.server.modules.ServerSender;
 import src.support.Checks;
 import src.tools.OutputText;
 import src.collections.Dragon;
@@ -18,7 +19,7 @@ public class FilterByCaveCommand implements Command {
      * Prints objects if they have a same cave depth.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
+    public ServerSender execute(String mode, String[] command, Object... args) {
         boolean check = false;
         List<String> dragonsList = new LinkedList<>();
         try {
@@ -36,12 +37,12 @@ public class FilterByCaveCommand implements Command {
                     }
                 }
                 if (!check) {
-                    return List.of(OutputText.error("ObjectsNotFound"));
+                    return new ServerSender(List.of(OutputText.error("ObjectsNotFound"))) ;
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            return List.of(OutputText.error("NoCaveArgument"));
+            return new ServerSender(List.of(OutputText.error("NoCaveArgument"))) ;
         }
-        return dragonsList;
+        return new ServerSender(dragonsList);
     }
 }

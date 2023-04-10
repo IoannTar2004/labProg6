@@ -3,7 +3,8 @@ package src.server.commands;
 import src.manager.ObjectsManager;
 import src.collections.Dragon;
 import src.collections.DragonFields;
-import src.support.InputManager;
+import src.server.modules.ServerSender;
+import src.support.Processing;
 import src.support.MaxField;
 import src.tools.IdGenerator;
 import src.tools.OutputText;
@@ -24,16 +25,16 @@ public class AddIfMaxCommand implements Command {
      * @param args
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
+    public ServerSender execute(String mode, String[] command, Object... args) {
        if (Objects.equals(mode, "script")) {
             addIfMaxWithScript((String) args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
        } else if (Objects.equals(mode, "server")) {
            ObjectsManager manager = new ObjectsManager();
            manager.add((Dragon) args[0]);
-           return List.of(OutputText.result("Added"));
+           return new ServerSender(List.of(OutputText.result("Added")));
        }
        else {
-           return List.of("","addIfMaxDragon");
+           return new ServerSender("addIfMaxDragon");
         }
        return null;
     }
@@ -47,7 +48,7 @@ public class AddIfMaxCommand implements Command {
         DragonFields fieldNum = DragonFields.getFieldByNumber(field);
         if (fieldNum == null || !MaxField.existence(fieldNum)) {return;}
 
-        InputManager manager = new InputManager();
+        Processing manager = new Processing();
         Dragon dragon = new Dragon();
         ObjectsManager objectsManager = new ObjectsManager();
 

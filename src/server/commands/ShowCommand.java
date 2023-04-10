@@ -3,6 +3,7 @@ package src.server.commands;
 import src.manager.ObjectsCollectionManager;
 import src.manager.ObjectsManager;
 import src.manager.ObjectsElements;
+import src.server.modules.ServerSender;
 import src.tools.OutputText;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class ShowCommand implements Command {
      * It can print some fields in relation to numbers.
      */
     @Override
-    public List<String> execute(String mode, String[] command, Object... args) {
+    public ServerSender execute(String mode, String[] command, Object... args) {
         List<String> list = new ArrayList<>();
         ObjectsManager objectsManager = new ObjectsManager();
         ObjectsElements objectsElements = new ObjectsElements();
@@ -28,9 +29,9 @@ public class ShowCommand implements Command {
             for (int i = 0; i < objectsManager.length(); i++) {
                 list.add(objectsElements.element(getters.getDragonByIndex(i), command));
             }
-            return list;
+            return new ServerSender(list);
         } else {
-            return List.of(OutputText.result("Empty"));
+            return new ServerSender(List.of(OutputText.result("Empty")));
         }
     }
 }
