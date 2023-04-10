@@ -2,6 +2,8 @@ package src.client;
 
 import src.collections.Dragon;
 import src.collections.DragonFields;
+import src.server.commands.Command;
+import src.server.modules.Connection;
 import src.support.IdChecker;
 import src.support.Processing;
 import src.support.MaxField;
@@ -11,7 +13,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Validation {
-    public void addDragon(Socket socket) {
+    public void addDragon(Connection connection) {
         Processing manager = new Processing();
         Dragon dragon = new Dragon();
 
@@ -24,7 +26,8 @@ public class Validation {
             } while (element == null);
             dragon = manager.dragonInput(dragon, fields, element);
         }
-        //return dragon;
+        new Processing().exchange(connection, "server", "add", dragon);
+
     }
 
     /**
@@ -116,7 +119,4 @@ public class Validation {
         } while (true);
     }
 
-    public static ResultReceiver manualStream(Socket socket) {
-
-    }
 }

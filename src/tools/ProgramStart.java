@@ -1,5 +1,6 @@
 package src.tools;
 
+import src.client.Validation;
 import src.support.Checks;
 import src.support.FileManager;
 import src.support.Processing;
@@ -11,24 +12,24 @@ public class ProgramStart {
      * This method runs at the beginning. It explains basic things of this program and requests initial xml file.
      */
     public static void start() {
-        Processing processing = new Processing();
+        Validation validation = new Validation();
 
         OutputText.startInformation("CorrectXmlFile");
         String data;
-        if (processing.yesNoInput()) {
+        if (validation.yesNoInput()) {
             OutputText.startInformation("Example");
         }
 
         OutputText.startInformation("EnvVar");
         File file;
         do {
-            data = processing.scanner();
+            data = new Processing().scanner();
             file = Checks.fileChecker(data);
             FileManager.setCurrentFile(file);
         } while (file == null);
 
         OutputText.startInformation("ReadFile");
-        if (processing.yesNoInput()) {
+        if (validation.yesNoInput()) {
             if (FileManager.isNotEmpty(file)) {
                 XMLReader.parse(file);
             }

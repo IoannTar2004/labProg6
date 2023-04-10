@@ -1,5 +1,6 @@
 package src;
 
+import src.server.modules.Connection;
 import src.support.InitializationDate;
 import src.support.Processing;
 import src.tools.*;
@@ -18,6 +19,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
         //ProgramStart.start();
         InitializationDate.getDate();
-        Processing.commandScan();
+        Processing.commandScan(new Connection("localhost", 3009));
     }
 }

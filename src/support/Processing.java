@@ -5,6 +5,7 @@ import src.client.ResultReceiver;
 import src.client.Validation;
 import src.collections.Dragon;
 import src.collections.DragonFields;
+import src.server.modules.Connection;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -88,29 +89,36 @@ public class Processing {
     /**
      * Method reads commands entered by user.
      */
-    public static void commandScan() throws IOException {
+    public static void commandScan(Connection connection) {
         String input;
         Processing manager = new Processing();
         do {
-            Socket socket = new Socket("localhost", 3009);
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
-                ResultReceiver result = exchange(socket, input);
+                String invoke = new Processing().exchange(connection, "user", input, null);
 
-                Class<Validation> valid = Validation.class;
                 try {
-                    Method method = valid.getDeclaredMethod(result.getInputInvoke());
-                    method.invoke(valid);
-                } catch (Exception e) {
-                    result.getResult().forEach(System.out::println);
-                }
+                    Class<Validation> valid = Validation.class;
+                    Method method = valid.getDeclaredMethod(invoke, Connection.class);
+                    method.invoke(new Validation(), connection);
+                } catch (Exception ignored) {}
             } //TODO временный сокет
         } while (!input.equals("exit"));
     }
 
-    public static ResultReceiver exchange(Socket socket, Object input) {
-        CommandSender sender = new CommandSender((String) input);
-        sender.sendToServer(socket);
-        return new ResultReceiver(socket);
+    public String exchange(Connection connection, String mode, String input, Object dragon) {
+        try {
+            Socket socket = new Socket(connection.getHost(), connection.getPort());
+
+            CommandSender sender = new CommandSender(mode, input, (Dragon) dragon);
+            sender.sendToServer(socket);
+            ResultReceiver result = new ResultReceiver(socket);
+
+            try {
+                result.getResult().forEach(System.out::println);
+            } catch (Exception ignored) {}
+            return result.getInputInvoke();
+        } catch (IOException ignored) {}
+        return null;
     }
 }

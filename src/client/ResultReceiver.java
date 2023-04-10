@@ -20,7 +20,6 @@ public class ResultReceiver {
 
             this.result = sender.getResult();
             this.inputInvoke = sender.getInputInvoke();
-            stream.close();
         } catch (IOException e) {
             OutputText.error("Connection");
         } catch (ClassNotFoundException e) {
