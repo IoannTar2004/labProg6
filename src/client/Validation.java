@@ -15,8 +15,7 @@ import java.util.Scanner;
 public class Validation {
     public void addDragon(Connection connection) {
         Processing manager = new Processing();
-        Dragon dragon = new Dragon();
-
+        Object[] args = new Object[7];
         for (DragonFields fields: DragonFields.values()) {
             Object element;
             System.out.println(OutputText.input(fields.getField() + "Input"));
@@ -24,10 +23,10 @@ public class Validation {
                 String input = manager.scanner();
                 element = manager.dragonProcessing(fields, input);
             } while (element == null);
-            dragon = manager.dragonInput(dragon, fields, element);
+            args[fields.ordinal()] = element;
         }
-        new Processing().exchange(connection, "server", "add", dragon);
-
+        Processing processing = new Processing();
+        processing.exchange(connection, "collection", "add", args);
     }
 
     /**

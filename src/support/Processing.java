@@ -68,7 +68,6 @@ public class Processing {
             field.setAccessible(true);
             field.set(dragon, element);
         } catch (NoSuchFieldException | IllegalAccessException ignored) {}
-
         return dragon;
     }
 
@@ -96,21 +95,19 @@ public class Processing {
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
                 String invoke = new Processing().exchange(connection, "user", input, null);
-
                 try {
                     Class<Validation> valid = Validation.class;
                     Method method = valid.getDeclaredMethod(invoke, Connection.class);
                     method.invoke(new Validation(), connection);
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {ignored.printStackTrace();}
             } //TODO временный сокет
         } while (!input.equals("exit"));
     }
 
-    public String exchange(Connection connection, String mode, String input, Object dragon) {
+    public String exchange(Connection connection, String mode, String input, Object[] objects) {
         try {
             Socket socket = new Socket(connection.getHost(), connection.getPort());
-
-            CommandSender sender = new CommandSender(mode, input, (Dragon) dragon);
+            CommandSender sender = new CommandSender(mode, input, objects);
             sender.sendToServer(socket);
             ResultReceiver result = new ResultReceiver(socket);
 

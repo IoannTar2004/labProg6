@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,15 +34,15 @@ public class CommandSender implements Serializable {
     private Command command;
     private String commandString;
     private String mode;
-    private Dragon dragonObject;
+    private Object[] objects;
 
-    public CommandSender(String mode, String commandString, Dragon dragonObject) {
+    public CommandSender(String mode, String commandString, Object[] objects) {
         try {
             command = commands.get(commandString);
         } catch (NullPointerException ignored) {}
         this.commandString = commandString;
         this.mode = mode;
-        this.dragonObject = dragonObject;
+        this.objects = objects;
     }
 
     public CommandSender(String mode, String commandString) {
@@ -64,8 +65,8 @@ public class CommandSender implements Serializable {
         return mode;
     }
 
-    public Dragon getDragonObject() {
-        return dragonObject;
+    public Object[] getObjects() {
+        return objects;
     }
 
     public void sendToServer(Socket socket) {
@@ -83,7 +84,8 @@ public class CommandSender implements Serializable {
         return "CommandSender{" +
                 "command=" + command +
                 ", commandString='" + commandString + '\'' +
-                ", dragonObject=" + dragonObject +
+                ", mode='" + mode + '\'' +
+                ", objects=" + Arrays.toString(objects) +
                 '}';
     }
 }

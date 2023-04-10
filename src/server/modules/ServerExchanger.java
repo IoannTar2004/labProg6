@@ -17,12 +17,12 @@ public class ServerExchanger {
                 CommandSender sender = ServerReader.read(socket);
 
                 try {
-                    ServerSender serverSender = ServerInvoker.invoke("user",
-                            sender.getCommand(), sender.getCommandString());
-                    System.out.println(serverSender.getResult());
+                    ServerSender serverSender = ServerInvoker.invoke(sender.getMode(),
+                            sender.getCommand(), sender.getCommandString(), sender.getObjects());
+                    System.out.println(sender);
                     serverSender.sendToClient(socket);
                     socket.close();
-                } catch (NullPointerException ignored) {}
+                } catch (NullPointerException ignored) {ignored.printStackTrace();}
             }
         } catch (Exception e) {e.printStackTrace();}
     }
