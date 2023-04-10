@@ -12,7 +12,7 @@ public class ServerInvoker {
      * This method receives entered or read from script command and splits by spaces.
      * It works while command is not "exit".
      */
-    public static List<String> invoke(String mode, Command command, String input, Object... args) {
+    public static ServerSender invoke(String mode, Command command, String input, Object... args) {
         String[] line = input.trim().split("\\s+");
         try {
             return command.execute(mode, line, args);

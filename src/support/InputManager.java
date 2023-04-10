@@ -119,14 +119,13 @@ public class InputManager {
                 CommandSender sender = new CommandSender(input);
                 sender.sendToServer(socket);
                 ResultReceiver result = new ResultReceiver(socket);
-                result.getResult().forEach(System.out::println);
 
                 Class<InputManager> valid = InputManager.class;
                 try {
                     Method method = valid.getDeclaredMethod(result.getResult().get(1));
                     method.invoke(manager);
                 } catch (Exception e) {
-
+                    result.getResult().forEach(System.out::println);
                 }
             } //TODO временный сокет
         } while (!input.equals("exit"));
@@ -135,7 +134,8 @@ public class InputManager {
     /**
      * Triggers when user enters command "add" to terminal
      */
-    public Dragon addDragon() {
+    public void addDragon() {
+        System.out.println("dwksmd");
         InputManager manager = new InputManager();
         Dragon dragon = new Dragon();
 
@@ -221,4 +221,5 @@ public class InputManager {
         } while (fieldNum == null);
         return fieldNum;
     }
+
 }
