@@ -32,20 +32,23 @@ public class CommandSender implements Serializable {
     }
     private Command command;
     private String commandString;
+    private String mode;
     private Dragon dragonObject;
 
-    public CommandSender(String commandString, Dragon dragonObject) {
+    public CommandSender(String mode, String commandString, Dragon dragonObject) {
         try {
             command = commands.get(commandString);
         } catch (NullPointerException ignored) {}
         this.commandString = commandString;
+        this.mode = mode;
         this.dragonObject = dragonObject;
     }
 
-    public CommandSender(String commandString) {
+    public CommandSender(String mode, String commandString) {
         try {
             command = commands.get(commandString);
         } catch (NullPointerException ignored) {}
+        this.mode = mode;
         this.commandString = commandString;
     }
 
@@ -55,6 +58,10 @@ public class CommandSender implements Serializable {
 
     public Command getCommand() {
         return command;
+    }
+
+    public String getMode() {
+        return mode;
     }
 
     public Dragon getDragonObject() {
