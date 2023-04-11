@@ -1,6 +1,7 @@
 package src.manager;
 
 import src.collections.*;
+import src.support.Processing;
 
 import java.util.Date;
 
@@ -23,15 +24,12 @@ public class ObjectsManager extends CollectionManager {
     public void remove_first() {dragons.removeFirst();
     }
 
-    public void replace(Long id, Dragon newDragon) {
+    public void replace(Long id, Object... args) {
         Dragon dragon = new ObjectsCollectionManager().getDragonById(id);
-
-        dragon.setName(newDragon.getName());
-        dragon.setCoordinates(new Coordinates(newDragon.getX(), newDragon.getY()));
-        dragon.setAge(newDragon.getAge());
-        dragon.setColor(Color.getEnumColor(newDragon.getColor()));
-        dragon.setType(DragonType.getEnumType(newDragon.getType()));
-        dragon.setCharacter(DragonCharacter.getEnumCharacter(newDragon.getCharacter()));
-        dragon.setCave(new DragonCave(dragon.getCave()));
+        for(DragonFields fields: DragonFields.values()) {
+            if (args[fields.ordinal()] != null) {
+                dragon = new Processing().dragonInput(dragon, fields, args[fields.ordinal()]);
+            }
+        }
     }
 }

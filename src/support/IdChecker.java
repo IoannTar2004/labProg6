@@ -1,6 +1,7 @@
 package src.support;
 
 import src.collections.Dragon;
+import src.manager.ObjectsCollectionManager;
 import src.tools.OutputText;
 
 import java.util.regex.Matcher;
@@ -12,7 +13,7 @@ public class IdChecker {
      * @param id ID
      * @return Long id if entered id consists of 12 numbers, else -1.
      */
-    public static Long check(String id) {
+    public static String check(String id) {
 
         Pattern pattern = Pattern.compile("\\s*(\\d{12})\\s*");
         Matcher matcher = pattern.matcher(id);
@@ -30,30 +31,27 @@ public class IdChecker {
         Matcher matcher5 = pattern5.matcher(id);
 
         if (matcher.matches()) {
-            id = matcher.group(1);
-            return Long.parseLong(id);
-
+            Dragon dragon = new ObjectsCollectionManager().getDragonById(Long.parseLong(id));
+            if (dragon == null) {return OutputText.error("DragonDoesNotExist");}
+            else {return "Existed";}
         } else if (matcher1.matches()) {
-            OutputText.error("IdIncorrect1");
+            return OutputText.error("IdIncorrect1");
         } else if (matcher3.matches()) {
-            OutputText.error("IdIncorrect2");
+            return OutputText.error("IdIncorrect2");
         } else if (matcher4.matches()) {
-            OutputText.error("IdIncorrect3");
+            return OutputText.error("IdIncorrect3");
         } else if (matcher5.matches()) {
-            OutputText.error("IdIncorrect4");
+            return OutputText.error("IdIncorrect4");
         }  else {
-            OutputText.error("IdIncorrect5");
+            return OutputText.error("IdIncorrect5");
         }
-        return -1L;
     }
 
     public static Dragon parse(String[] command) {
         try {
             Dragon dragon = Checks.idChecker(command[1]);
             if (dragon != null) {return dragon;}
-        } catch (ArrayIndexOutOfBoundsException e) {
-            OutputText.error("NoIdArgument");
-        }
+        } catch (ArrayIndexOutOfBoundsException ignored) {}
         return null;
     }
 }

@@ -94,17 +94,17 @@ public class Processing {
         do {
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
-                String invoke = new Processing().exchange(connection, "user", input, null);
+                String invoke = new Processing().exchange(connection, "user", input.split("\\s+"), null);
                 try {
                     Class<Validation> valid = Validation.class;
                     Method method = valid.getDeclaredMethod(invoke, Connection.class);
                     method.invoke(new Validation(), connection);
-                } catch (Exception ignored) {ignored.printStackTrace();}
+                } catch (Exception ignored) {}
             } //TODO временный сокет
         } while (!input.equals("exit"));
     }
 
-    public String exchange(Connection connection, String mode, String input, Object[] objects) {
+    public String exchange(Connection connection, String mode, String[] input, Object[] objects) {
         try {
             Socket socket = new Socket(connection.getHost(), connection.getPort());
             CommandSender sender = new CommandSender(mode, input, objects);

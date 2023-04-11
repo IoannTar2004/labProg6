@@ -82,7 +82,7 @@ public class Checks {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                OutputText.errorWithArgs("IntegerFormatExceeded", Integer.MAX_VALUE);
+                System.out.println(OutputText.errorWithArgs("IntegerFormatExceeded", Integer.MAX_VALUE));
                 return null;
             }
         } else if (matcher1.matches()) {
@@ -147,7 +147,7 @@ public class Checks {
             try {
                 return new DragonCave(Double.parseDouble(input));
             } catch (NumberFormatException e) {
-                OutputText.errorWithArgs("DoubleFormatExceeded", Double.MAX_VALUE);
+                System.out.println(OutputText.errorWithArgs("DoubleFormatExceeded", Double.MAX_VALUE));
             }
         } else if (matcher1.matches()) {
             System.out.println("Дробное часть числа не может быть отрицательной!");
@@ -164,7 +164,7 @@ public class Checks {
      * @return {@link Dragon} if collection includes dragon with this ID, else null.
      */
     public static Dragon idChecker(String command) {
-        Long id = IdChecker.check(command);
+        Long id = Long.valueOf(IdChecker.check(command));
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
         if (id != -1) {
             Dragon dragon = getters.getDragonById(id);

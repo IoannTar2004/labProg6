@@ -10,6 +10,7 @@ import src.support.MaxField;
 import src.tools.OutputText;
 
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Validation {
@@ -25,32 +26,31 @@ public class Validation {
             } while (element == null);
             args[fields.ordinal()] = element;
         }
-        Processing processing = new Processing();
-        processing.exchange(connection, "collection", "add", args);
+        new Processing().exchange(connection, "collection", new String[]{"add"}, args);
     }
 
     /**
      * Triggers when user enters command "update" to terminal
      */
-    public Dragon updateDragon(String[] command) {
-        Dragon dragon = IdChecker.parse(command);
-        if (dragon == null) {return null;}
-
-        Scanner scanner = new Scanner(System.in);
+    public void updateDragon(Connection connection) {
         Processing manager = new Processing();
+        Object[] args = new Object[7];
         nextField:
         for (DragonFields fields: DragonFields.values()) {
             Object element;
-            OutputText.input(fields.getField() + "NewInput");
+            System.out.println(OutputText.input(fields.getField() + "NewInput"));
             do {
-                String input = scanner.nextLine().trim();
-                if (input.length() == 0) {continue nextField;}
+                String input = manager.scanner();
+                if (input.length() == 0) {
+                    args[fields.ordinal()] = null;
+                    continue nextField;
+                }
 
                 element = manager.dragonProcessing(fields, input);
             } while (element == null);
-            dragon = manager.dragonInput(dragon, fields, element);
+            args[fields.ordinal()] = element;
         }
-        return dragon;
+        new Processing().exchange(connection, "collection", new String[]{"update"}, args);
     }
 
     /**

@@ -36,7 +36,7 @@ public class ExecuteScriptCommand implements Command{
                 if (commands.size() > 0 && FileManager.addFileToStack(file)) {
                     int i = 0;
                     while (!Objects.equals(commands.get(i), null)) {
-                        CommandSender commandIn = new CommandSender("script", commands.get(i));
+                        CommandSender commandIn = new CommandSender("script", new String[]{commands.get(i)});//TODO
                         ServerInvoker.invoke(commandIn.getMode(), commandIn.getCommand(), commandIn.getCommandString(),
                                 commands.get(i + 1), commands.get(i + 2),
                                 commands.get(i + 3), commands.get(i + 4),

@@ -29,18 +29,19 @@ public class AddCommand implements Command {
     @Override
     public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
-            addWithScript(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
-            return null;
+            addWithScript(args);
         } else if (Objects.equals(mode, "collection")) {
             ObjectsManager manager = new ObjectsManager();
             Dragon dragon = new Dragon(IdGenerator.generate(), (String) args[0], (Coordinates) args[1],
-                    (int) args[2], (Color) args[3], (DragonType) args[4], (DragonCharacter) args[5], (DragonCave) args[6], new Date());
+                    (int) args[2], (Color) args[3], (DragonType) args[4], (DragonCharacter) args[5],
+                    (DragonCave) args[6], new Date());
             manager.add(dragon);
-            System.out.println(dragon + " " + new ObjectsCollectionManager().getAll());
+
             return new ServerSender(List.of(OutputText.result("Added")));
         } else {
             return new ServerSender("addDragon");
         }
+        return null;
     }
 
     /**

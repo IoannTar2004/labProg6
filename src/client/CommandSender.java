@@ -32,28 +32,28 @@ public class CommandSender implements Serializable {
         commands.put("update", new UpdateIdCommand());
     }
     private Command command;
-    private String commandString;
+    private String[] commandString;
     private String mode;
     private Object[] objects;
 
-    public CommandSender(String mode, String commandString, Object[] objects) {
+    public CommandSender(String mode, String[] commandString, Object[] objects) {
         try {
-            command = commands.get(commandString);
+            command = commands.get(commandString[0]);
         } catch (NullPointerException ignored) {}
         this.commandString = commandString;
         this.mode = mode;
         this.objects = objects;
     }
 
-    public CommandSender(String mode, String commandString) {
+    public CommandSender(String mode, String[] commandString) {
         try {
-            command = commands.get(commandString);
+            command = commands.get(commandString[0]);
         } catch (NullPointerException ignored) {}
         this.mode = mode;
         this.commandString = commandString;
     }
 
-    public String getCommandString() {
+    public String[] getCommandString() {
         return commandString;
     }
 
@@ -83,7 +83,7 @@ public class CommandSender implements Serializable {
     public String toString() {
         return "CommandSender{" +
                 "command=" + command +
-                ", commandString='" + commandString + '\'' +
+                ", commandString='" + Arrays.toString(commandString) + '\'' +
                 ", mode='" + mode + '\'' +
                 ", objects=" + Arrays.toString(objects) +
                 '}';

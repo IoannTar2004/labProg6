@@ -82,7 +82,7 @@ public class XMLReader {
      */
     private static Long idParse(Long id, Element element) {
         ObjectsCollectionManager getters = new ObjectsCollectionManager();
-        Long id1 = IdChecker.check(String.valueOf(id));
+        Long id1 = Long.valueOf(IdChecker.check(String.valueOf(id)));
         if (id1 == -1) {
             return null;
         } else {

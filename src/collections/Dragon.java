@@ -93,7 +93,7 @@ public class Dragon implements Serializable {
         return character.getCharacter();
     }
 
-    public double getCave() {
+    public Double getCave() {
         return cave.getDepth();
     }
 
