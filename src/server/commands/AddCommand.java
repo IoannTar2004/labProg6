@@ -30,18 +30,10 @@ public class AddCommand implements Command {
     public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             addWithScript(args);
-        } else if (Objects.equals(mode, "collection")) {
-            ObjectsManager manager = new ObjectsManager();
-            Dragon dragon = new Dragon(IdGenerator.generate(), (String) args[0], (Coordinates) args[1],
-                    (int) args[2], (Color) args[3], (DragonType) args[4], (DragonCharacter) args[5],
-                    (DragonCave) args[6], new Date());
-            manager.add(dragon);
-
             return new ServerSender(List.of(OutputText.result("Added")));
         } else {
             return new ServerSender("addDragon");
         }
-        return null;
     }
 
     /**
