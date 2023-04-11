@@ -2,16 +2,11 @@ package src.client;
 
 import src.collections.Dragon;
 import src.collections.DragonFields;
-import src.server.commands.Command;
 import src.server.modules.Connection;
-import src.support.IdChecker;
 import src.support.Processing;
 import src.support.MaxField;
 import src.tools.OutputText;
 
-import java.net.Socket;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class Validation {
     public void addDragon(Connection connection) {
@@ -26,7 +21,7 @@ public class Validation {
             } while (element == null);
             args[fields.ordinal()] = element;
         }
-        new Processing().exchange(connection, "collection", new String[]{"add"}, args);
+        new Processing().exchange(connection, "script", new String[]{"add"}, args);
     }
 
     /**

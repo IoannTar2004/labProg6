@@ -2,6 +2,7 @@ package src.manager;
 
 import src.collections.*;
 import src.support.Processing;
+import src.tools.IdGenerator;
 
 import java.util.Date;
 
@@ -9,8 +10,17 @@ public class ObjectsManager extends CollectionManager {
     public ObjectsManager() {
     }
 
-    public void add(Dragon dragon) {
+    public void add(Object... args) {
+        Dragon dragon = new Dragon();
+
+        for(DragonFields fields: DragonFields.values()) {
+            if (args[fields.ordinal()] != null) {
+                dragon = new Processing().dragonInput(dragon, fields, args[fields.ordinal()]);
+            }
+        }
+        dragon.setId(IdGenerator.generate());
         dragon.setCreationDate(new Date());
+        System.out.println(dragon);
         dragons.add(dragon);
     }
 
