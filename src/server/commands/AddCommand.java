@@ -1,16 +1,11 @@
 package src.server.commands;
 
-import src.manager.ObjectsCollectionManager;
-import src.manager.ObjectsElements;
 import src.manager.ObjectsManager;
 import src.server.modules.ServerSender;
 import src.support.Processing;
 import src.tools.OutputText;
 import src.collections.*;
 import src.tools.IdGenerator;
-
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
