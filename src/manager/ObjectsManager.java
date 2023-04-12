@@ -20,7 +20,6 @@ public class ObjectsManager extends CollectionManager {
         }
         dragon.setId(IdGenerator.generate());
         dragon.setCreationDate(new Date());
-        System.out.println(dragon);
         dragons.add(dragon);
     }
 

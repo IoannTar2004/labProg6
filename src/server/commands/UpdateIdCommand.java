@@ -8,6 +8,7 @@ import src.support.Processing;
 import src.tools.OutputText;
 import src.collections.*;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -24,8 +25,13 @@ public class UpdateIdCommand implements Command {
     public ServerSender execute(String mode, String[] command, Object... args) {
          if (Objects.equals(mode, "script")) {
              id = Long.parseLong(command[1]);
-         }
-         if (Objects.equals(mode, "collection") || Objects.equals(mode, "script")) {
+             for (DragonFields fields: DragonFields.values()) {
+                 args[fields.ordinal()] = new Processing().dragonProcessing(fields, (String) args[fields.ordinal()]);
+             }
+             new ObjectsManager().replace(id, args);
+             return new ServerSender(List.of(OutputText.result("DataChanged")));
+
+         } else if (Objects.equals(mode, "collection")) {
             new ObjectsManager().replace(id, args);
             return new ServerSender(List.of(OutputText.result("DataChanged")));
         } else {
