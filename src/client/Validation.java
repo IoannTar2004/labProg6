@@ -3,9 +3,17 @@ package src.client;
 import src.collections.Dragon;
 import src.collections.DragonFields;
 import src.server.modules.Connection;
+import src.server.modules.ServerSender;
+import src.support.Checks;
+import src.support.FileManager;
 import src.support.Processing;
 import src.support.MaxField;
 import src.tools.OutputText;
+import src.tools.ScriptReader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 
 public class Validation {
@@ -117,4 +125,21 @@ public class Validation {
         } while (true);
     }
 
+    public void commandsParser(Connection connection, File file, String[] command) {
+        try {
+            String filename = Processing.builder(command);
+            file = Checks.fileChecker(filename);
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println(OutputText.error("NoFileArgument"));
+        }
+        List<String> commands;
+        if (file != null) {
+            try {
+                commands = ScriptReader.read(file);
+                if (commands.size() > 0 && FileManager.addFileToStack(file)) {
+                    //new Processing().exchange(connection, "")
+                }
+            } catch (FileNotFoundException ignored) {}
+        }
+    }
 }
