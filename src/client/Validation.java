@@ -9,6 +9,7 @@ import src.tools.OutputText;
 
 
 public class Validation {
+
     public void addDragon(Connection connection) {
         Processing manager = new Processing();
         Object[] args = new Object[7];
@@ -49,36 +50,39 @@ public class Validation {
     }
 
     /**
-     * Triggers when user enters this command to terminal
+     * Triggers when user enters command "add_if_max" to terminal
      */
-    public Dragon addIfMax() {
+    public void addIfMaxDragon(Connection connection) {
         DragonFields fieldNum;
         Processing manager = new Processing();
-        Dragon dragon = new Dragon();
+        Object[] args = new Object[7];
+        String input;
 
-        OutputText.input("FieldInput");
+        System.out.println(OutputText.input("FieldInput"));
         do {
-            String input = manager.scanner();
+            input = manager.scanner();
             fieldNum = DragonFields.getFieldByNumber(input);
-        } while (fieldNum == null || !MaxField.existence(fieldNum));
-
+        } while (fieldNum == null);
+        Dragon dragon = manager.<Dragon>exchange(connection, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum});
         nextField:
         for (DragonFields fields: DragonFields.values()) {
             Object element;
-            OutputText.input(fields.getField() + "Input");
+            System.out.println(OutputText.input(fields.getField() + "Input"));
             do {
-                String input = manager.scanner();
+                input = manager.scanner();
                 element = manager.dragonProcessing(fields, input);
                 if (fields == fieldNum && element != null) {
-                    if (MaxField.max(fieldNum, element)) {
-                        dragon = manager.dragonInput(dragon, fields, element);
+                    if (MaxField.compare(dragon, fields, element)) {
+                        args[fields.ordinal()] = element;
                         continue nextField;
-                    } else {element = null;}
+                    } else {
+                        element = null;
+                    }
                 }
             } while (element == null);
-            dragon = manager.dragonInput(dragon, fields, element);
+            args[fields.ordinal()] = element;
         }
-        return dragon;
+        new Processing().exchange(connection, "server2", new String[]{"add_if_max"}, args);
     }
     /**
      * Triggers when user enters this command to terminal

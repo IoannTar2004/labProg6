@@ -5,6 +5,7 @@ import src.client.ResultReceiver;
 import src.client.Validation;
 import src.collections.Dragon;
 import src.collections.DragonFields;
+import src.manager.ObjectsCollectionManager;
 import src.server.modules.Connection;
 
 import java.io.IOException;
@@ -94,7 +95,7 @@ public class Processing {
         do {
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
-                String invoke = new Processing().exchange(connection, "user", input.split("\\s+"), null);
+                String invoke = new Processing().<String>exchange(connection, "user", input.split("\\s+"), null);
                 try {
                     Class<Validation> valid = Validation.class;
                     Method method = valid.getDeclaredMethod(invoke, Connection.class);
@@ -104,7 +105,7 @@ public class Processing {
         } while (!input.equals("exit"));
     }
 
-    public String exchange(Connection connection, String mode, String[] input, Object[] objects) {
+    public <T> T exchange(Connection connection, String mode, String[] input, Object[] objects) {
         try {
             Socket socket = new Socket(connection.getHost(), connection.getPort());
             CommandSender sender = new CommandSender(mode, input, objects);
@@ -114,7 +115,7 @@ public class Processing {
             try {
                 result.getResult().forEach(System.out::println);
             } catch (Exception ignored) {}
-            return result.getInputInvoke();
+            return (T) result.getExtraData();
         } catch (IOException ignored) {}
         return null;
     }

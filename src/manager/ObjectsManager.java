@@ -34,12 +34,13 @@ public class ObjectsManager extends CollectionManager {
     public void remove_first() {dragons.removeFirst();
     }
 
-    public void replace(Long id, Object... args) {
+    public Dragon replace(Long id, Object... args) {
         Dragon dragon = new ObjectsCollectionManager().getDragonById(id);
         for(DragonFields fields: DragonFields.values()) {
             if (args[fields.ordinal()] != null) {
                 dragon = new Processing().dragonInput(dragon, fields, args[fields.ordinal()]);
             }
         }
+        return dragon;
     }
 }

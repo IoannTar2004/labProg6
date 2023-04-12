@@ -1,6 +1,7 @@
 package src.server.modules;
 
 import src.client.CommandSender;
+import src.manager.ObjectsCollectionManager;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,7 +16,6 @@ public class ServerExchanger {
             while (true) {
                 Socket socket = serverSocket.accept();
                 CommandSender sender = ServerReader.read(socket);
-
                 try {
                     ServerSender serverSender = ServerInvoker.invoke(sender.getMode(),
                             sender.getCommand(), sender.getCommandString(), sender.getObjects());

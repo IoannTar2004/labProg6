@@ -8,22 +8,22 @@ import java.util.List;
 
 public class ServerSender implements Serializable {
     private List<String> result;
-    private String inputInvoke;
+    private Object extraData;
 
     public ServerSender(List<String> result) {
         this.result = result;
     }
 
-    public ServerSender(String inputInvoke) {
-        this.inputInvoke = inputInvoke;
+    public ServerSender(Object extraData) {
+        this.extraData = extraData;
     }
 
     public List<String> getResult() {
         return result;
     }
 
-    public String getInputInvoke() {
-        return inputInvoke;
+    public Object getExtraData() {
+        return extraData;
     }
 
     public void sendToClient(Socket socket) {

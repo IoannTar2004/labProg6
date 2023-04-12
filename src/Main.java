@@ -1,5 +1,6 @@
 package src;
 
+import src.manager.ObjectsCollectionManager;
 import src.server.modules.Connection;
 import src.support.InitializationDate;
 import src.support.Processing;
@@ -16,7 +17,7 @@ import java.io.IOException;
  */
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         //ProgramStart.start();
         InitializationDate.getDate();
         Processing.commandScan(new Connection("localhost", 3009));

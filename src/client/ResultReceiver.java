@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ResultReceiver {
     private List<String> result = new LinkedList<>();
-    private String inputInvoke;
+    private Object extraData;
 
     public ResultReceiver(Socket socket) {
         try {
@@ -19,7 +19,7 @@ public class ResultReceiver {
             ServerSender sender = (ServerSender) stream.readObject();
 
             this.result = sender.getResult();
-            this.inputInvoke = sender.getInputInvoke();
+            this.extraData = sender.getExtraData();
             stream.close();
         } catch (IOException e) {
             OutputText.error("Connection");
@@ -32,7 +32,7 @@ public class ResultReceiver {
         return result;
     }
 
-    public String getInputInvoke() {
-        return inputInvoke;
+    public Object getExtraData() {
+        return extraData;
     }
 }
