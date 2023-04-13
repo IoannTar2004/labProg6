@@ -95,9 +95,6 @@ public class Processing {
         do {
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
-                if (Objects.equals(input.split("\\s+")[0], "execute_script")) {
-
-                }
                 String invoke = new Processing().<String>exchange(connection, "user", input.split("\\s+"), null);
                 try {
                     Class<Validation> valid = Validation.class;

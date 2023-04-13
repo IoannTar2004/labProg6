@@ -1,6 +1,8 @@
 package src.tools;
 
 import src.client.Validation;
+import src.collections.Dragon;
+import src.server.modules.Connection;
 import src.support.Checks;
 import src.support.FileManager;
 import src.support.Processing;
@@ -10,39 +12,41 @@ import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 public class ProgramStart {
     /**
      * This method runs at the beginning. It explains basic things of this program and requests initial xml file.
      */
     public static void start() throws IOException {
-        Socket socket = connectionToServer();
-        socket.close();
+        Connection connection = connectionToServer();
         Validation validation = new Validation();
 
-        OutputText.startInformation("CorrectXmlFile");
+        System.out.println(OutputText.startInformation("CorrectXmlFile"));
         String data;
         if (validation.yesNoInput()) {
             OutputText.startInformation("Example");
         }
 
-        OutputText.startInformation("EnvVar");
+        System.out.println(OutputText.startInformation("EnvVar"));
         File file;
         do {
             data = new Processing().scanner();
             file = Checks.fileChecker(data);
             FileManager.setCurrentFile(file);
-            XMLReader.parse(file);
+            List<Dragon> list = XMLReader.parse(file);
+            new Processing().exchange(connection, "xml", new String[]{"add"}, new Object[] {list});
         } while (file == null);
 
-        OutputText.startInformation("ProgramReady");
+        System.out.println(OutputText.startInformation("ProgramReady"));
+        Processing.commandScan(connection);
     }
 
     /**
      * Method processes input of server host and port
      * @return socket
      */
-    private static Socket connectionToServer() {
+    private static Connection connectionToServer() {
         Processing processing = new Processing();
         System.out.println("Программа работает с коллекцией и вызывает команды на сервере. Введите имя хоста.");
         do {
@@ -52,7 +56,8 @@ public class ProgramStart {
             do {
                 try {
                     int port = Integer.parseInt(processing.scanner());
-                    return new Socket(host, port);
+                    Socket socket = new Socket(host, port);
+                    return new Connection(host, port);
                 } catch (NumberFormatException e) {
                     System.out.println("Порт - целое положительное число");
                 } catch (UnknownHostException e) {
