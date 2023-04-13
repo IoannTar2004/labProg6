@@ -28,7 +28,6 @@ public class XMLReader {
     public static List<Dragon> parse(File xml) {
         NodeList nodeList = domParse(xml);
         List<Dragon> list = new LinkedList<>();
-
         nextObject:
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node obj = nodeList.item(i);
@@ -59,7 +58,6 @@ public class XMLReader {
             list.add(dragon);
         }
         return list;
-
     }
 
     /**
@@ -125,7 +123,7 @@ public class XMLReader {
         try {
             input = element.getElementsByTagName(field).item(0).getTextContent().trim();
         } catch (NullPointerException e) {
-            OutputText.error(field + "MissingTag");
+            System.out.println(OutputText.error(field + "MissingTag"));
             return null;
         }
         return input;

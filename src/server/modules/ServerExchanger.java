@@ -20,9 +20,9 @@ public class ServerExchanger {
                 Socket socket = serverSocket.accept();
                 try {
                     CommandSender sender = ServerReader.read(socket);
+                    System.out.println(sender);
                     ServerSender serverSender = ServerInvoker.invoke(sender.getMode(),
                             sender.getCommand(), sender.getCommandString(), sender.getObjects());
-                    System.out.println(sender);
                     serverSender.sendToClient(socket);
                     socket.close();
                 } catch (NullPointerException ignored) {

@@ -35,7 +35,9 @@ public class ProgramStart {
             file = Checks.fileChecker(data);
             FileManager.setCurrentFile(file);
             List<Dragon> list = XMLReader.parse(file);
-            new Processing().exchange(connection, "xml", new String[]{"add"}, new Object[] {list});
+            if (list.size() > 0) {
+                new Processing().exchange(connection, "xml", new String[]{"add"}, new Object[]{list});
+            }
         } while (file == null);
 
         System.out.println(OutputText.startInformation("ProgramReady"));
@@ -57,6 +59,7 @@ public class ProgramStart {
                 try {
                     int port = Integer.parseInt(processing.scanner());
                     Socket socket = new Socket(host, port);
+                    socket.close();
                     return new Connection(host, port);
                 } catch (NumberFormatException e) {
                     System.out.println("Порт - целое положительное число");
