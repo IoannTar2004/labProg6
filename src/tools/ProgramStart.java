@@ -33,11 +33,8 @@ public class ProgramStart {
         do {
             data = new Processing().scanner();
             file = Checks.fileChecker(data);
-            FileManager.setCurrentFile(file);
             List<Dragon> list = XMLReader.parse(file);
-            if (list.size() > 0) {
-                new Processing().exchange(connection, "xml", new String[]{"add"}, new Object[]{list});
-            }
+            new Processing().exchange(connection, "xml", new String[]{"add"}, new Object[]{list, file});
         } while (file == null);
 
         System.out.println(OutputText.startInformation("ProgramReady"));

@@ -3,11 +3,13 @@ package src.server.commands;
 import src.manager.ObjectsCollectionManager;
 import src.manager.ObjectsManager;
 import src.server.modules.ServerSender;
+import src.support.FileManager;
 import src.support.Processing;
 import src.tools.OutputText;
 import src.collections.*;
 import src.tools.IdGenerator;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +34,9 @@ public class AddCommand implements Command {
             for (Dragon dragon : list) {
                 new ObjectsManager().add(dragon);
             }
+            FileManager.setCurrentFile((File) args[1]);
             return new ServerSender("");
+
         } else if (Objects.equals(mode, "script")) {
             for (DragonFields fields: DragonFields.values()) {
                 args[fields.ordinal()] = new Processing().dragonProcessing(fields, (String) args[fields.ordinal()]);
