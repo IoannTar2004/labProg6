@@ -20,9 +20,8 @@ public class PrintDescendingCommand implements Command {
     public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "script")) {
             executeWithScript(command, (String) args[0]);
-        } else if (Objects.equals(mode, "server")) {
-            List<String> list = new LinkedList<>(Sort.sort(DragonFields.getFieldByNumber(command[0]), arguments));
-            return new ServerSender(list);
+        } else if (Objects.equals(mode, "collection")) {
+            return new ServerSender(Sort.sort((DragonFields) args[0], arguments));
         }
         else {
             arguments = command;

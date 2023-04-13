@@ -93,16 +93,16 @@ public class Validation {
     /**
      * Triggers when user enters this command to terminal
      */
-    public DragonFields fieldSelection() {
+    public void fieldSelection(Connection connection) {
         DragonFields fieldNum;
         Processing manager = new Processing();
 
-        OutputText.input("DescendingInput");
+        System.out.println(OutputText.input("DescendingInput"));
         do {
             String input = manager.scanner();
             fieldNum = DragonFields.getFieldByNumber(input);
         } while (fieldNum == null);
-        return fieldNum;
+        new Processing().exchange(connection, "collection", new String[]{"print_descending"}, new Object[]{fieldNum});
     }
 
     /**
