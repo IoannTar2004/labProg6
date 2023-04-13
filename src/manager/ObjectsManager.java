@@ -23,6 +23,12 @@ public class ObjectsManager extends CollectionManager {
         dragons.add(dragon);
     }
 
+    public void add(Dragon dragon) {
+        if (dragon != null) {
+            dragons.add(dragon);
+        }
+    }
+
     public int length() {
         return dragons.size();
     }

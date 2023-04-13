@@ -17,14 +17,17 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class XMLReader {
     /**
      * Reads initial xml file during {@link ProgramStart#start() programm start}. Method can print mistakes pointing to the object.
      * @param xml xml file
      */
-    public static void parse(File xml) {
+    public static List<Dragon> parse(File xml) {
         NodeList nodeList = domParse(xml);
+        List<Dragon> list = new LinkedList<>();
 
         nextObject:
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -36,7 +39,6 @@ public class XMLReader {
             if (id == null) {continue;}
 
             Dragon dragon = new Dragon();
-            ObjectsManager objectsManager = new ObjectsManager();
             Processing manager = new Processing();
             String input;
 
@@ -54,8 +56,9 @@ public class XMLReader {
             }
             dragon.setId(id);
             dragon.setCreationDate(new Date());
-            objectsManager.add(dragon);
+            list.add(dragon);
         }
+        return list;
 
     }
 
@@ -81,19 +84,13 @@ public class XMLReader {
      * @return id in Long type
      */
     private static Long idParse(Long id, Element element) {
-        ObjectsCollectionManager getters = new ObjectsCollectionManager();
-        Long id1 = Long.valueOf(IdChecker.check(String.valueOf(id)));
-        if (id1 == -1) {
-            return null;
+        if (!IdChecker.check(String.valueOf(id)).equals("DragonDoesNotExist")) {
+            return id;
         } else {
-            Dragon dragon = getters.getDragonById(id1);
-            if (dragon != null) {
-                System.out.println("Объект с id: \"" + element.getElementsByTagName("id").item(0).getTextContent()
-                        + "\" уже существует");
-                return null;
-            }
+            System.out.println("Объект с id: \"" + element.getElementsByTagName("id").item(0).getTextContent()
+                    + "\" уже существует");
         }
-        return id1;
+        return null;
     }
 
     /**

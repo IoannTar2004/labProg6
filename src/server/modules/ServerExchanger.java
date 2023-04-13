@@ -18,9 +18,8 @@ public class ServerExchanger {
         try(ServerSocket serverSocket = new ServerSocket(3009)) {
             while (true) {
                 Socket socket = serverSocket.accept();
-                CommandSender sender = ServerReader.read(socket);
-
                 try {
+                    CommandSender sender = ServerReader.read(socket);
                     ServerSender serverSender = ServerInvoker.invoke(sender.getMode(),
                             sender.getCommand(), sender.getCommandString(), sender.getObjects());
                     System.out.println(sender);

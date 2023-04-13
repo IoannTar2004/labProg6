@@ -19,8 +19,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        //ProgramStart.start();
+        ProgramStart.start();
         InitializationDate.getDate();
-        Processing.commandScan(new Connection("localhost", 3009));
+        //Processing.commandScan(new Connection("localhost", 3009));
     }
 }

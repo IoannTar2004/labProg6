@@ -27,4 +27,13 @@ public class Connection {
     public Socket getSocket() {
         return socket;
     }
+
+    @Override
+    public String toString() {
+        return "Connection{" +
+                "host='" + host + '\'' +
+                ", port=" + port +
+                ", socket=" + socket +
+                '}';
+    }
 }
