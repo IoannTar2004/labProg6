@@ -32,14 +32,8 @@ public class ProgramStart {
             data = new Processing().scanner();
             file = Checks.fileChecker(data);
             FileManager.setCurrentFile(file);
+            XMLReader.parse(file);
         } while (file == null);
-
-        OutputText.startInformation("ReadFile");
-        if (validation.yesNoInput()) {
-            if (FileManager.isNotEmpty(file)) {
-                XMLReader.parse(file);
-            }
-        }
 
         OutputText.startInformation("ProgramReady");
     }

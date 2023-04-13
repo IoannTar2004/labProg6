@@ -3,6 +3,7 @@ package src.support;
 import src.manager.ObjectsElements;
 import src.manager.ObjectsCollectionManager;
 import src.collections.*;
+import src.tools.OutputText;
 
 import java.util.*;
 
@@ -31,6 +32,9 @@ public class Sort {
             default -> {
                 return null;
             }
+        }
+        if (sortlist.size() == 0) {
+            return List.of(OutputText.result("Empty"));
         }
         Collections.reverse(sortlist);
         for (Dragon dragon : sortlist) {
