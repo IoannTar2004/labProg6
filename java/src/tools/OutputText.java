@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
  * class to output texts from .properties files.
  */
 public class OutputText {
-    private static final Locale locale = new Locale("ru", "RU");
+    private static final Locale locale = new Locale("r", "RU");
 
     private static final ResourceBundle startInfo = ResourceBundle.getBundle("StartInfo", locale);
     private static final ResourceBundle errors = ResourceBundle.getBundle("Errors", locale);
