@@ -18,7 +18,7 @@ public class ProgramStart {
     /**
      * This method runs at the beginning. It explains basic things of this program and requests initial xml file.
      */
-    public static void start() throws IOException {
+    public static void start() {
         Connection connection = connectionToServer();
         Validation validation = new Validation();
 
@@ -33,8 +33,10 @@ public class ProgramStart {
         do {
             data = new Processing().scanner();
             file = Checks.fileChecker(data);
-            List<Dragon> list = XMLReader.parse(file);
-            new Processing().exchange(connection, "xml", new String[]{"add"}, new Object[]{list, file});
+            if (file != null) {
+                List<Dragon> list = XMLReader.parse(file);
+                new Processing().exchange(connection, "xml", new String[]{"add"}, new Object[]{list, file});
+            }
         } while (file == null);
 
         System.out.println(OutputText.startInformation("ProgramReady"));

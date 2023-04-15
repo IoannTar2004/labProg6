@@ -193,7 +193,7 @@ public class Checks {
             if (file.exists()) {return file;}
         } catch (NullPointerException ignored) {}
 
-        OutputText.error("FileNotFound");
+        System.out.println(OutputText.error("FileNotFound"));
         return null;
     }
 }

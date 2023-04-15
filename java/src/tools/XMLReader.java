@@ -104,10 +104,8 @@ public class XMLReader {
             document = dbuilder.parse(xml);
         } catch (SAXException | ParserConfigurationException e) {
             System.out.println("XML-файл не валиден! Проверьте теги!");
-            System.exit(0);
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             System.out.println("Файл куда-то пропал или были изменены его права!");
-            System.exit(0);
         }
         return document.getElementsByTagName("object");
     }
