@@ -2,7 +2,6 @@ package src.server.modules;
 
 import src.client.CommandSender;
 
-import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
