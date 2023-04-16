@@ -1,17 +1,18 @@
 package src.support;
 
+import org.apache.commons.lang3.SerializationUtils;
 import src.client.CommandSender;
-import src.client.ResultReceiver;
 import src.client.Validation;
 import src.collections.Dragon;
 import src.collections.DragonFields;
-import src.manager.ObjectsCollectionManager;
 import src.server.modules.Connection;
+import src.server.modules.ServerSender;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -89,34 +90,37 @@ public class Processing {
     /**
      * Method reads commands entered by user.
      */
-    public static void commandScan(Connection connection) {
+    public void commandScan(SocketChannel channel) {
         String input;
         Processing manager = new Processing();
         do {
             input = manager.scanner();
             if (!Objects.equals(input, "exit") && input.length() > 0) {
-                String invoke = new Processing().<String>exchange(connection, "user", input.split("\\s+"), null);
+                String invoke = new Processing().exchange(channel, "user", input.split("\\s+"), null);
                 try {
                     Class<Validation> valid = Validation.class;
                     Method method = valid.getDeclaredMethod(invoke, Connection.class);
-                    method.invoke(new Validation(), connection);
+                    //method.invoke(new Validation(), connection);
                 } catch (Exception ignored) {}
             } //TODO временный сокет
         } while (!input.equals("exit"));
     }
 
-    public <T> T exchange(Connection connection, String mode, String[] input, Object[] objects) {
+    public <T> T exchange(SocketChannel channel, String mode, String[] input, Object[] objects) {
+        ByteBuffer buffer = ByteBuffer.allocate(100000);
         try {
-            Socket socket = new Socket(connection.getHost(), connection.getPort());
             CommandSender sender = new CommandSender(mode, input, objects);
-            sender.sendToServer(socket);
-            ResultReceiver result = new ResultReceiver(socket);
+            byte[] bytes = SerializationUtils.serialize(sender);
+            channel.write(ByteBuffer.wrap(bytes));
 
+            channel.read(buffer);
+            ServerSender result = SerializationUtils.deserialize(buffer.array());
             try {
                 result.getResult().forEach(System.out::println);
             } catch (Exception ignored) {}
             return (T) result.getExtraData();
-        } catch (IOException ignored) {}
+
+        } catch (Exception ignored) {}
         return null;
     }
 }

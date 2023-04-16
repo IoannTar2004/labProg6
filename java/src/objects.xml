@@ -10,4 +10,14 @@
 		<character>Хитрый</character>
 		<cave>1.0</cave>
 	</object>
+	<object>
+		<id>921694712595</id>
+		<name>lkefmkrf</name>
+		<coordinates>1; 1</coordinates>
+		<age>1</age>
+		<color>Чёрный</color>
+		<type>Водный</type>
+		<character>Хитрый</character>
+		<cave>1.0</cave>
+	</object>
 </root>

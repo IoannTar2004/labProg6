@@ -20,6 +20,6 @@ public class ServerInvoker {
                 return new ServerSender(List.of("Такой команды нет!"));
             }
         }
-        return null;
+        return new ServerSender("");
     }
 }

@@ -28,7 +28,7 @@ public class Validation {
             } while (element == null);
             args[fields.ordinal()] = element;
         }
-        new Processing().exchange(connection, "collection", new String[]{"add"}, args);
+        //new Processing().exchange(connection, "collection", new String[]{"add"}, args);
     }
 
     /**
@@ -52,7 +52,7 @@ public class Validation {
             } while (element == null);
             args[fields.ordinal()] = element;
         }
-        new Processing().exchange(connection, "collection", new String[]{"update"}, args);
+        //new Processing().exchange(connection, "collection", new String[]{"update"}, args);
     }
 
     /**
@@ -69,7 +69,7 @@ public class Validation {
             input = manager.scanner();
             fieldNum = DragonFields.getFieldByNumber(input);
         } while (fieldNum == null);
-        Dragon dragon = manager.<Dragon>exchange(connection, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum});
+        Dragon dragon = null; //manager.<Dragon>exchange(connection, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum});
         nextField:
         for (DragonFields fields: DragonFields.values()) {
             Object element;
@@ -88,7 +88,7 @@ public class Validation {
             } while (element == null);
             args[fields.ordinal()] = element;
         }
-        new Processing().exchange(connection, "server2", new String[]{"add_if_max"}, args);
+        //new Processing().exchange(connection, "server2", new String[]{"add_if_max"}, args);
     }
     /**
      * Triggers when user enters this command to terminal
@@ -102,7 +102,7 @@ public class Validation {
             String input = manager.scanner();
             fieldNum = DragonFields.getFieldByNumber(input);
         } while (fieldNum == null);
-        new Processing().exchange(connection, "collection", new String[]{"print_descending"}, new Object[]{fieldNum});
+        //new Processing().exchange(connection, "collection", new String[]{"print_descending"}, new Object[]{fieldNum});
     }
 
     /**

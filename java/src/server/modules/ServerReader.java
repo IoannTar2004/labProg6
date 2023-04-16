@@ -1,22 +1,26 @@
 package src.server.modules;
 
+import org.apache.commons.lang3.SerializationUtils;
 import src.client.CommandSender;
-import src.tools.OutputText;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 
 public class ServerReader {
-    public static CommandSender read(Socket socket) {
+
+    public static CommandSender read(SocketChannel socketChannel) {
+        ByteBuffer buffer = ByteBuffer.allocate(100000);
         try {
-            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            return (CommandSender) ois.readObject();
-        } catch (IOException e) {
-            OutputText.error("Connection");
-        } catch (ClassNotFoundException e) {
+            socketChannel.read(buffer);
+            CommandSender commandSender = SerializationUtils.deserialize(buffer.array());
+            System.out.println(commandSender);
+
+            return commandSender;
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 }

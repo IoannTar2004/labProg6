@@ -1,9 +1,14 @@
 package src.server.modules;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.SocketChannel;
 import java.util.List;
 
 public class ServerSender implements Serializable {
@@ -26,14 +31,20 @@ public class ServerSender implements Serializable {
         return extraData;
     }
 
-    public void sendToClient(Socket socket) {
+    public void sendToClient(SocketChannel socketChannel) {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            oos.writeObject(this);
-            oos.flush();
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            byte[] bytes = SerializationUtils.serialize(this);
+            socketChannel.write(ByteBuffer.wrap(bytes));
+        } catch (Exception e) {
+            //e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ServerSender{" +
+                "result=" + result +
+                ", extraData=" + extraData +
+                '}';
     }
 }
