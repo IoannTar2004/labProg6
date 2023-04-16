@@ -1,13 +1,18 @@
 package src.server.modules;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.channels.SelectionKey;
 import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 
 public class ServerAccepter {
-    public static void accept() {
-        try(ServerSocketChannel channel = ServerSocketChannel.open()) {
-            channel.bind(new InetSocketAddress(3009));
-            channel.configureBlocking(false);
-        } catch (Exception e) {e.printStackTrace();}
+    public static void accept(SelectionKey key) {
+        try {
+            ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
+            SocketChannel socketChannel = serverSocketChannel.accept();
+            socketChannel.configureBlocking(false);
+            socketChannel.register(key.selector(), SelectionKey.OP_READ);
+        } catch (IOException ignored) {}
     }
 }

@@ -2,12 +2,8 @@ package src.server.modules;
 
 import org.apache.commons.lang3.SerializationUtils;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.Socket;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.List;
 

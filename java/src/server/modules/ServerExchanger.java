@@ -19,7 +19,6 @@ public class ServerExchanger {
             channel.configureBlocking(false);
             channel.register(selector, SelectionKey.OP_ACCEPT);
 
-            //TODO decompose
             while (true) {
                 selector.select();
                 Set<SelectionKey> keys = selector.selectedKeys();
@@ -28,13 +27,10 @@ public class ServerExchanger {
                     SelectionKey key = iterator.next();
                     if (key.isValid()) {
                         if (key.isAcceptable()) {
-                            channelAccept(key);
+                            ServerAccepter.accept(key);
                         }
                         if (key.isReadable()) {
-                            SocketChannel socketChannel = (SocketChannel) key.channel();
-                            commandSender = ServerReader.read(socketChannel);
-                            socketChannel.configureBlocking(false);
-                            socketChannel.register(key.selector(), SelectionKey.OP_WRITE);
+                            commandSender = ServerReader.read(key);
                         }
                         if (key.isWritable()) {
                             SocketChannel socketChannel = (SocketChannel) key.channel();
@@ -54,14 +50,5 @@ public class ServerExchanger {
                 keys.clear();
             }
         } catch (Exception e) {e.printStackTrace();}
-    }
-
-    private static void channelAccept(SelectionKey key) {
-        try {
-            ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
-            SocketChannel socketChannel = serverSocketChannel.accept();
-            socketChannel.configureBlocking(false);
-            socketChannel.register(key.selector(), SelectionKey.OP_READ);
-        } catch (IOException ignored) {}
     }
 }
