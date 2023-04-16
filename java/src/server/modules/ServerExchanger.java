@@ -47,6 +47,7 @@ public class ServerExchanger {
             channel.configureBlocking(false);
             channel.register(selector, SelectionKey.OP_ACCEPT);
 
+            //TODO decompose
             while (true) {
                 selector.select();
                 Set<SelectionKey> keys = selector.selectedKeys();

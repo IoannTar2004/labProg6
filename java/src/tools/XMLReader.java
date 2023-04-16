@@ -5,7 +5,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import src.manager.ObjectsCollectionManager;
 import src.manager.ObjectsManager;
 import src.collections.*;
 import src.support.IdChecker;
@@ -32,12 +31,14 @@ public class XMLReader {
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node obj = nodeList.item(i);
             Element element = (Element) obj;
-
-            Long id = readTag("id", element) != null ? Long.valueOf(readTag("id", element)) : null;
-            id = idParse(id, element);
-            if (id == null) {continue;}
-
             Dragon dragon = new Dragon();
+            String id;
+            id = readTag("id", element) != null ? readTag("id", element) : null;
+            id = idParse(id, element);
+            if (id == null) {
+                continue;
+            }
+
             Processing manager = new Processing();
             String input;
 
@@ -53,8 +54,9 @@ public class XMLReader {
                     continue nextObject;
                 }
             }
-            dragon.setId(id);
+            dragon.setId(Long.parseLong(id));
             dragon.setCreationDate(new Date());
+            new ObjectsManager().add(dragon);
             list.add(dragon);
         }
         return list;
@@ -81,12 +83,14 @@ public class XMLReader {
      * @param element org.w3c.dom.Element
      * @return id in Long type
      */
-    private static Long idParse(Long id, Element element) {
-        if (!IdChecker.check(String.valueOf(id)).equals("DragonDoesNotExist")) {
+    private static String idParse(String id, Element element) {
+        if (IdChecker.check(String.valueOf(id)).equals(OutputText.error("DragonDoesNotExist"))) {
             return id;
-        } else {
-            System.out.println("Объект с id: \"" + element.getElementsByTagName("id").item(0).getTextContent()
+        } else if (IdChecker.check(String.valueOf(id)).equals("Existed")) {
+            System.out.println("Объект с id \"" + element.getElementsByTagName("id").item(0).getTextContent()
                     + "\" уже существует");
+        } else {
+            System.out.println(IdChecker.check(id));
         }
         return null;
     }
@@ -105,7 +109,7 @@ public class XMLReader {
         } catch (SAXException | ParserConfigurationException e) {
             System.out.println("XML-файл не валиден! Проверьте теги!");
         } catch (IOException | IllegalArgumentException e) {
-            System.out.println("Файл куда-то пропал или были изменены его права!");
+            System.out.println("Файл куда-то пропал или его были изменены права!");
         }
         return document.getElementsByTagName("object");
     }
