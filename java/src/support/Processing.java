@@ -95,12 +95,12 @@ public class Processing {
         Processing manager = new Processing();
         do {
             input = manager.scanner();
-            if (!Objects.equals(input, "exit") && input.length() > 0) {
+            if (input.length() > 0) {
                 String invoke = new Processing().exchange(channel, "user", input.split("\\s+"), null);
                 try {
                     Class<Validation> valid = Validation.class;
-                    Method method = valid.getDeclaredMethod(invoke, Connection.class);
-                    //method.invoke(new Validation(), connection);
+                    Method method = valid.getDeclaredMethod(invoke, SocketChannel.class);
+                    method.invoke(new Validation(), channel);
                 } catch (Exception ignored) {}
             } //TODO временный сокет
         } while (!input.equals("exit"));

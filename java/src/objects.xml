@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
 	<object>
-		<id>92169471259t</id>
+		<id>921694712595</id>
 		<name>lkefmkrf</name>
 		<coordinates>1; 1</coordinates>
 		<age>1</age>
@@ -11,13 +11,13 @@
 		<cave>1.0</cave>
 	</object>
 	<object>
-		<id>921694712595</id>
-		<name>lkefmkrf</name>
-		<coordinates>1; 1</coordinates>
-		<age>1</age>
-		<color>Чёрный</color>
+		<id>915589386314</id>
+		<name>kedmdme</name>
+		<coordinates>1; 2</coordinates>
+		<age>3</age>
+		<color>Синий</color>
 		<type>Водный</type>
-		<character>Хитрый</character>
-		<cave>1.0</cave>
+		<character>Хаотичный</character>
+		<cave>5.0</cave>
 	</object>
 </root>
