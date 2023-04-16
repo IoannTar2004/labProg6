@@ -2,14 +2,12 @@ package src.tools;
 
 import src.client.Validation;
 import src.collections.Dragon;
-import src.server.modules.Connection;
 import src.support.Checks;
 import src.support.Processing;
 
 import java.io.File;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.channels.SocketChannel;
 import java.util.List;

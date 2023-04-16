@@ -2,7 +2,6 @@ package src.client;
 
 import src.collections.Dragon;
 import src.collections.DragonFields;
-import src.server.modules.Connection;
 import src.support.Processing;
 import src.support.MaxField;
 import src.tools.OutputText;

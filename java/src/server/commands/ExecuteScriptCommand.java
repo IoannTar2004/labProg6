@@ -1,7 +1,6 @@
 package src.server.commands;
 
 import src.client.CommandSender;
-import src.server.modules.Connection;
 import src.server.modules.ServerInvoker;
 import src.server.modules.ServerSender;
 import src.support.FileManager;
