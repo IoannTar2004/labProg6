@@ -7,6 +7,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class ServerExchanger {
@@ -31,9 +32,14 @@ public class ServerExchanger {
                             commandSender = ServerReader.read(key);
                         }
                         if (key.isWritable()) {
-                            ServerSender serverSender = ServerInvoker.invoke(commandSender.getMode(),
-                                    commandSender.getCommand(), commandSender.getCommandString(), commandSender.getObjects());
-                            ServerSender.send(key, serverSender);
+                            try {
+                                System.out.println(commandSender);
+                                ServerSender serverSender = ServerInvoker.invoke(commandSender.getMode(),
+                                        commandSender.getCommand(), commandSender.getCommandString(), commandSender.getObjects());
+                                ServerSender.send(key, serverSender);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
                         }
                         iterator.remove();
                     }

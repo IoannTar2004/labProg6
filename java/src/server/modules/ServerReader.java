@@ -15,7 +15,7 @@ public class ServerReader {
             SocketChannel socketChannel = (SocketChannel) key.channel();
             socketChannel.read(buffer);
             CommandSender commandSender = SerializationUtils.deserialize(buffer.array());
-            System.out.println(commandSender);
+            //System.out.println(commandSender);
 
             socketChannel.configureBlocking(false);
             socketChannel.register(key.selector(), SelectionKey.OP_WRITE);
