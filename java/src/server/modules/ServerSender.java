@@ -4,6 +4,7 @@ import org.apache.commons.lang3.SerializationUtils;
 
 import java.io.Serializable;
 import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.List;
 
@@ -25,6 +26,15 @@ public class ServerSender implements Serializable {
 
     public Object getExtraData() {
         return extraData;
+    }
+
+    public static void send(SelectionKey key, ServerSender serverSender) {
+        try {
+            SocketChannel socketChannel = (SocketChannel) key.channel();
+            serverSender.sendToClient(socketChannel);
+            socketChannel.configureBlocking(false);
+            socketChannel.register(key.selector(), SelectionKey.OP_READ);
+        } catch (Exception e) {e.printStackTrace();}
     }
 
     public void sendToClient(SocketChannel socketChannel) {

@@ -32,16 +32,9 @@ public class ServerExchanger {
                             commandSender = ServerReader.read(key);
                         }
                         if (key.isWritable()) {
-                            SocketChannel socketChannel = (SocketChannel) key.channel();
-                            try {
-                                ServerSender serverSender = ServerInvoker.invoke(commandSender.getMode(),
-                                        commandSender.getCommand(), commandSender.getCommandString(), commandSender.getObjects());
-                                serverSender.sendToClient(socketChannel);
-                            } catch (NullPointerException e) {
-                                new ServerSender("").sendToClient(socketChannel);
-                            }
-                            socketChannel.configureBlocking(false);
-                            socketChannel.register(key.selector(), SelectionKey.OP_READ);
+                            ServerSender serverSender = ServerInvoker.invoke(commandSender.getMode(),
+                                    commandSender.getCommand(), commandSender.getCommandString(), commandSender.getObjects());
+                            ServerSender.send(key, serverSender);
                         }
                         iterator.remove();
                     }

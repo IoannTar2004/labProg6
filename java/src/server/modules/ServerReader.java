@@ -11,7 +11,7 @@ public class ServerReader {
 
     public static CommandSender read(SelectionKey key) {
         ByteBuffer buffer = ByteBuffer.allocate(100000);
-        try {
+        try  {
             SocketChannel socketChannel = (SocketChannel) key.channel();
             socketChannel.read(buffer);
             CommandSender commandSender = SerializationUtils.deserialize(buffer.array());
@@ -22,9 +22,7 @@ public class ServerReader {
 
             return commandSender;
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 }
