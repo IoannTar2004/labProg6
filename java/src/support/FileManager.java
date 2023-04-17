@@ -36,13 +36,12 @@ public class FileManager {
 
     public static boolean addFileToStack(File file) {
         if (!filesInStack.add(file)) {
-            OutputText.error("ScriptRecursion");
             return false;
         }
         return true;
     }
 
-    public static void removeFromStack(File file) {
-        filesInStack.remove(file);
+    public static void clear() {
+        filesInStack.clear();
     }
 }

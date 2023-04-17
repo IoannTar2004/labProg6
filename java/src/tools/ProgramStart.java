@@ -31,7 +31,7 @@ public class ProgramStart {
             File file;
             do {
                 data = new Processing().scanner();
-                file = Checks.fileChecker(data);
+                file = new Checks(data).fileChecker();
                 if (file != null) {
                     List<Dragon> list = XMLReader.parse(file);
                     processing.exchange(channel, "xml", new String[]{"add"}, new Object[]{list, file});

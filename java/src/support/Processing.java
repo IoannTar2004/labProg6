@@ -94,14 +94,14 @@ public class Processing {
         do {
             input = manager.scanner();
             if (input.length() > 0) {
-                Object[] arguments = new Processing().<String>exchange(channel, "user", input.split("\\s+"),
+                Object[] arguments = new Processing().exchange(channel, "user", input.split("\\s+"),
                         null);
                 try {
                     Class<Validation> valid = Validation.class;
                     Method method = valid.getDeclaredMethod((String) arguments[0], SocketChannel.class, Object[].class);
                     method.invoke(new Validation(), channel, arguments);
                 } catch (Exception ignored) {}
-            } //TODO временный сокет
+            }
         } while (!input.equals("exit"));
     }
 

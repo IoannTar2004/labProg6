@@ -74,7 +74,7 @@ public class Validation {
             fieldNum = DragonFields.getFieldByNumber(input);
         } while (fieldNum == null);
 
-        Dragon dragon = null;//(Dragon) manager.exchange(channel, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum})[0];
+        Dragon dragon = (Dragon) manager.exchange(channel, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum})[0];
         nextField:
         for (DragonFields fields: DragonFields.values()) {
             Object element;
@@ -128,25 +128,13 @@ public class Validation {
         } while (true);
     }
 
-    /*public void scriptParse(SocketChannel channel, Object... data) {
-        File file;
-        List<String> result = new LinkedList<>();
-        try {
-            file = Checks.fileChecker(data[1]);
-        } catch (ArrayIndexOutOfBoundsException e){
-            return new ServerSender(List.of(OutputText.error("NoFileArgument")));
-        }
+    public void scriptParse(SocketChannel channel, Object... data) {
         List<String> commands;
-        if (file != null) {
-            commands = ScriptReader.read(file);
-            if (commands.size() > 0 && FileManager.addFileToStack(file)) {
-                FileManager.removeFromStack(file);
-                return new ServerSender(result);
-            } else if (!FileManager.addFileToStack(file)) {
-                return new ServerSender(List.of(OutputText.error("ScriptRecursion")));
-            }
-        } else {return new ServerSender(List.of(OutputText.error("FileNotFound")));}
-        return null;
+        FileManager.addFileToStack((File) data[1]);
+        commands = ScriptReader.read((File) data[1]);
+        if (commands.size() > 0) {
+            new Processing().exchange(channel, "script", new String[]{"execute_script"}, new Object[]{commands});
         }
-    }*/
+        FileManager.clear();
+    }
 }

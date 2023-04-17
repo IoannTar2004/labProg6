@@ -47,11 +47,4 @@ public class IdChecker {
         }
     }
 
-    public static Dragon parse(String[] command) {
-        try {
-            Dragon dragon = Checks.idChecker(command[1]);
-            if (dragon != null) {return dragon;}
-        } catch (ArrayIndexOutOfBoundsException ignored) {}
-        return null;
-    }
 }

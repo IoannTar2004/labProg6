@@ -5,6 +5,7 @@ import src.tools.OutputText;
 import src.collections.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -159,41 +160,20 @@ public class Checks {
     }
 
     /**
-     * Method processes commands with argument as dragon ID.
-     * @param command commands with argument as dragon's ID
-     * @return {@link Dragon} if collection includes dragon with this ID, else null.
-     */
-    public static Dragon idChecker(String command) {
-        Long id = Long.valueOf(IdChecker.check(command));
-        ObjectsCollectionManager getters = new ObjectsCollectionManager();
-        if (id != -1) {
-            Dragon dragon = getters.getDragonById(id);
-            if (dragon != null) {
-                return dragon;
-            } else {
-                OutputText.error("DragonDoesNotExist");
-            }
-        }
-        return null;
-    }
-
-    /**
      * Method checks existence of file.
-     * @param filename environment variable whose value is absolute path to file.
      * @return new {@link File} or null in case of absence.
      */
-    public static File fileChecker(String filename) {
+    public File fileChecker() throws FileNotFoundException {
         Pattern pattern = Pattern.compile("\\s*(\\S.*)\\s*");
-        Matcher matcher = pattern.matcher(filename);
+        Matcher matcher = pattern.matcher(input);
 
-        if (matcher.matches()) {filename = matcher.group(1);}
-        try {
-            filename = filename.replaceAll("~",System.getProperty("user.home"));
-            File file = new File(System.getenv(filename));
-            if (file.exists()) {return file;}
-        } catch (NullPointerException ignored) {}
+        if (matcher.matches()) {input = matcher.group(1);}
+        input = input.replaceAll("~",System.getProperty("user.home"));
 
-        System.out.println(OutputText.error("FileNotFound"));
-        return null;
+        if (System.getenv(input) != null) {
+            File file = new File(System.getenv(input));
+            return file;
+        }
+        throw new FileNotFoundException();
     }
 }

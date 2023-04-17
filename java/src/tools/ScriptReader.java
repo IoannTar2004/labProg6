@@ -1,9 +1,13 @@
 package src.tools;
 
+import src.support.Checks;
+import src.support.FileManager;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ScriptReader {
     /**
@@ -19,15 +23,25 @@ public class ScriptReader {
             BufferedReader buffer = new BufferedReader(new FileReader(file));
             do {
                 command = buffer.readLine();
-                commands.add(command);
+                if (Objects.equals(command.split("\\s+")[0], "execute_script")) {
+                    if (FileManager.addFileToStack(file)) {
+                        try {
+                            List<String> extraCommands = read(new Checks(command.split("\\s+")[1]).fileChecker());
+                            commands.addAll(extraCommands);
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            commands.add("NoFileArgument");
+                        } catch (FileNotFoundException e) {
+                            commands.add("FileNotFound");
+                        }
+                    } else {
+                        commands.add("ScriptRecursion");
+                    }
+                } else {
+                    commands.add(command);
+                }
             } while (command != null);
-
             buffer.close();
         } catch (Exception ignored) {}
-
-        for(int i = 0; i < 8; i++) {
-            commands.add(null);
-        }
         return commands;
     }
 }
