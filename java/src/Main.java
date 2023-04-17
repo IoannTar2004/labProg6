@@ -3,7 +3,6 @@ package src;
 import src.support.InitializationDate;
 import src.tools.ProgramStart;
 
-import java.io.IOException;
 import java.nio.channels.SocketChannel;
 
 /**
