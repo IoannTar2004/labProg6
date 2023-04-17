@@ -31,9 +31,9 @@ public class ExitCommand implements Command {
             writer.flush();
             writer.close();
 
-            return new ServerSender(List.of(OutputText.result("Saved")));
+            return new ServerSender(List.of(OutputText.result("Saved")), new Object[]{"exit"});
         } catch (IOException ignored) {
-            return new ServerSender(List.of(OutputText.error("FileNotFound")));
+            return new ServerSender(List.of(OutputText.error("FileNotFound")), new Object[]{"exit"});
         }
     }
 }

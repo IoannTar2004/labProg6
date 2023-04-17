@@ -19,7 +19,7 @@ import java.nio.channels.SocketChannel;
 public class Main {
     public static void main(String[] args) throws IOException {
         InitializationDate.getDate();
-        //ProgramStart.start();
-        new Processing().commandScan(SocketChannel.open(new InetSocketAddress("localhost", 3009)));
+        ProgramStart.start();
+        //new Processing().commandScan(SocketChannel.open(new InetSocketAddress("localhost", 3009)));
     }
 }

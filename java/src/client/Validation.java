@@ -11,7 +11,9 @@ import src.tools.OutputText;
 import src.tools.ScriptReader;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -133,7 +135,13 @@ public class Validation {
         FileManager.addFileToStack((File) data[1]);
         commands = ScriptReader.read((File) data[1]);
         if (commands.size() > 0) {
-            new Processing().exchange(channel, "script", new String[]{"execute_script"}, new Object[]{commands});
+            Object[] args = new Processing().exchange(channel, "script", new String[]{"execute_script"}, new Object[]{commands});
+            if(Arrays.binarySearch(args, "exit") >= 0) {
+                try {
+                    channel.close();
+                } catch (IOException ignored) {}
+                System.exit(0);
+            }
         }
         FileManager.clear();
     }

@@ -21,6 +21,11 @@ public class ServerSender implements Serializable {
         this.arguments = arguments;
     }
 
+    public ServerSender(List<String> result, Object[] arguments) {
+        this.result = result;
+        this.arguments = arguments;
+    }
+
     public List<String> getResult() {
         return result;
     }
@@ -51,7 +56,7 @@ public class ServerSender implements Serializable {
     public String toString() {
         return "ServerSender{" +
                 "result=" + result +
-                ", extraData=" + Arrays.toString(arguments) +
+                ", arguments=" + Arrays.toString(arguments) +
                 '}';
     }
 }
