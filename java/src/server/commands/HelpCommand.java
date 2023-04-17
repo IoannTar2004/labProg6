@@ -1,7 +1,7 @@
 package src.server.commands;
 
 import src.server.modules.ServerSender;
-import src.tools.OutputText;
+import src.support.OutputText;
 
 import java.util.List;
 

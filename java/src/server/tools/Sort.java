@@ -1,9 +1,9 @@
-package src.support;
+package src.server.tools;
 
-import src.manager.ObjectsElements;
-import src.manager.ObjectsCollectionManager;
+import src.server.manager.ObjectsElements;
+import src.server.manager.ObjectsCollectionManager;
 import src.collections.*;
-import src.tools.OutputText;
+import src.support.OutputText;
 
 import java.util.*;
 

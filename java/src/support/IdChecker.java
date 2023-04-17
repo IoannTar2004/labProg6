@@ -1,8 +1,7 @@
 package src.support;
 
 import src.collections.Dragon;
-import src.manager.ObjectsCollectionManager;
-import src.tools.OutputText;
+import src.server.manager.ObjectsCollectionManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

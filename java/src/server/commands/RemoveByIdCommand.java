@@ -1,12 +1,11 @@
 package src.server.commands;
 
-import src.manager.ObjectsCollectionManager;
-import src.manager.ObjectsManager;
+import src.server.manager.ObjectsCollectionManager;
+import src.server.manager.ObjectsManager;
 import src.server.modules.ServerSender;
-import src.support.Checks;
 import src.collections.Dragon;
 import src.support.IdChecker;
-import src.tools.OutputText;
+import src.support.OutputText;
 
 import java.util.List;
 import java.util.Objects;

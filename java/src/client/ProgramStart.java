@@ -1,9 +1,8 @@
-package src.tools;
+package src.client;
 
-import src.client.Validation;
 import src.collections.Dragon;
 import src.support.Checks;
-import src.support.Processing;
+import src.support.OutputText;
 
 import java.io.File;
 import java.io.FileNotFoundException;

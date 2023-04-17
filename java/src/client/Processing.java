@@ -1,19 +1,16 @@
-package src.support;
+package src.client;
 
 import org.apache.commons.lang3.SerializationUtils;
-import src.client.CommandSender;
-import src.client.Validation;
 import src.collections.Dragon;
 import src.collections.DragonFields;
 import src.server.modules.ServerSender;
+import src.support.Checks;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.util.Arrays;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**

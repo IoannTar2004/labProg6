@@ -1,4 +1,4 @@
-package src.tools;
+package src.support;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

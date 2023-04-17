@@ -1,16 +1,14 @@
 package src.server.commands;
 
-import src.manager.ObjectsCollectionManager;
-import src.manager.ObjectsManager;
+import src.server.manager.ObjectsCollectionManager;
+import src.server.manager.ObjectsManager;
 import src.server.modules.ServerSender;
-import src.support.FileManager;
-import src.support.Processing;
-import src.tools.OutputText;
+import src.client.FileManager;
+import src.client.Processing;
+import src.support.OutputText;
 import src.collections.*;
-import src.tools.IdGenerator;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +30,9 @@ public class AddCommand implements Command {
         if (Objects.equals(mode, "xml")) {
             List<Dragon> list = new LinkedList<>((List<Dragon>) args[0]);
             for (Dragon dragon : list) {
-                new ObjectsManager().add(dragon);
+                if (new ObjectsCollectionManager().getDragonById(dragon.getId()) == null) {
+                    new ObjectsManager().add(dragon);
+                }
             }
             FileManager.setCurrentFile((File) args[1]);
             return new ServerSender(new Object[]{""});

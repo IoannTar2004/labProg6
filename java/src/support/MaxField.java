@@ -1,8 +1,8 @@
 package src.support;
 
-import src.manager.ObjectsCollectionManager;
+import src.server.manager.ObjectsCollectionManager;
 import src.collections.*;
-import src.tools.OutputText;
+import src.server.tools.Sort;
 
 import java.util.ArrayList;
 import java.util.Collections;

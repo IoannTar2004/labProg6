@@ -1,13 +1,11 @@
 package src.server.commands;
 
-import src.manager.ObjectsManager;
+import src.server.manager.ObjectsManager;
 import src.collections.Dragon;
 import src.collections.DragonFields;
 import src.server.modules.ServerSender;
-import src.support.Processing;
 import src.support.MaxField;
-import src.tools.IdGenerator;
-import src.tools.OutputText;
+import src.support.OutputText;
 
 import java.util.List;
 import java.util.Objects;

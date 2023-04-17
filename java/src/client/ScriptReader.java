@@ -1,10 +1,9 @@
-package src.tools;
+package src.client;
 
 import src.support.Checks;
-import src.support.FileManager;
+import src.client.FileManager;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

@@ -1,10 +1,9 @@
 package src.server.commands;
 
 import src.server.modules.ServerSender;
-import src.support.FileManager;
-import src.support.Processing;
-import src.tools.OutputText;
-import src.tools.XMLWriteParser;
+import src.client.FileManager;
+import src.support.OutputText;
+import src.server.tools.XMLWriteParser;
 
 import java.io.File;
 import java.io.FileWriter;

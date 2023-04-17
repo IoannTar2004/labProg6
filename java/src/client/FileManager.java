@@ -1,6 +1,5 @@
-package src.support;
+package src.client;
 
-import src.tools.OutputText;
 import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedHashSet;

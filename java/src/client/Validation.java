@@ -2,19 +2,13 @@ package src.client;
 
 import src.collections.Dragon;
 import src.collections.DragonFields;
-import src.server.modules.ServerSender;
-import src.support.Checks;
-import src.support.FileManager;
-import src.support.Processing;
 import src.support.MaxField;
-import src.tools.OutputText;
-import src.tools.ScriptReader;
+import src.support.OutputText;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Validation {

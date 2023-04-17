@@ -1,7 +1,5 @@
 package src.support;
 
-import src.manager.ObjectsCollectionManager;
-import src.tools.OutputText;
 import src.collections.*;
 
 import java.io.File;

@@ -1,10 +1,10 @@
 package src.server.commands;
 
-import src.manager.ObjectsCollectionManager;
-import src.manager.ObjectsManager;
+import src.server.manager.ObjectsCollectionManager;
+import src.server.manager.ObjectsManager;
 import src.server.modules.ServerSender;
 import src.support.Checks;
-import src.tools.OutputText;
+import src.support.OutputText;
 import src.collections.Dragon;
 
 import java.util.List;

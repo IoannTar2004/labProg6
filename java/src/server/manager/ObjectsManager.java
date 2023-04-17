@@ -1,8 +1,8 @@
-package src.manager;
+package src.server.manager;
 
 import src.collections.*;
-import src.support.Processing;
-import src.tools.IdGenerator;
+import src.client.Processing;
+import src.server.tools.IdGenerator;
 
 import java.util.Date;
 

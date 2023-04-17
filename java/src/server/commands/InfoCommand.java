@@ -1,8 +1,8 @@
 package src.server.commands;
 
-import src.manager.ObjectsManager;
+import src.server.manager.ObjectsManager;
 import src.server.modules.ServerSender;
-import src.support.InitializationDate;
+import src.client.InitializationDate;
 
 import java.util.List;
 

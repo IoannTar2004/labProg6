@@ -1,8 +1,8 @@
 package src.server.commands;
 
-import src.manager.ObjectsManager;
+import src.server.manager.ObjectsManager;
 import src.server.modules.ServerSender;
-import src.tools.OutputText;
+import src.support.OutputText;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package src.collections;
 
-import src.tools.OutputText;
+import src.support.OutputText;
 
 public enum DragonFields {
     NAME("name"), COORDINATES("coordinates"), AGE("age"), COLOR("color"), TYPE("type"), CHARACTER("character"), CAVE("cave");
