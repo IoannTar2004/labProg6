@@ -22,7 +22,6 @@ public class ExitCommand implements Command {
     @Override
     public ServerSender execute(String mode, String[] command, Object... args){
         File file = FileManager.getCurrentFile();
-        Processing processing = new Processing();
 
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(file.getAbsolutePath()));
@@ -32,7 +31,7 @@ public class ExitCommand implements Command {
             writer.close();
 
             return new ServerSender(List.of(OutputText.result("Saved")), new Object[]{"exit"});
-        } catch (IOException ignored) {
+        } catch (IOException e) {
             return new ServerSender(List.of(OutputText.error("FileNotFound")), new Object[]{"exit"});
         }
     }

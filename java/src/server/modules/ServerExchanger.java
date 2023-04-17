@@ -17,6 +17,7 @@ public class ServerExchanger {
             channel.configureBlocking(false);
             channel.register(selector, SelectionKey.OP_ACCEPT);
 
+            new ServerExitCommand().run();
             while (true) {
                 selector.select();
                 Set<SelectionKey> keys = selector.selectedKeys();
