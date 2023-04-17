@@ -15,7 +15,7 @@ import java.nio.channels.SocketChannel;
  */
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         InitializationDate.getDate();
         ProgramStart.start();
     }
