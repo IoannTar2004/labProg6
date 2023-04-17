@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
 	<object>
-		<id>915589386314</id>
-		<name>kedmdme</name>
-		<coordinates>1; 2</coordinates>
-		<age>3</age>
-		<color>Синий</color>
-		<type>Водный</type>
-		<character>Хаотичный</character>
-		<cave>5.0</cave>
+		<id>957613270362</id>
+		<name>ythth</name>
+		<coordinates>3; 4545</coordinates>
+		<age>2</age>
+		<color>Жёлтый</color>
+		<type>Подземельный</type>
+		<character>Хитрый</character>
+		<cave>56.4</cave>
 	</object>
 </root>

@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -93,17 +94,18 @@ public class Processing {
         do {
             input = manager.scanner();
             if (input.length() > 0) {
-                String invoke = new Processing().exchange(channel, "user", input.split("\\s+"), null);
+                Object[] arguments = new Processing().<String>exchange(channel, "user", input.split("\\s+"),
+                        null);
                 try {
                     Class<Validation> valid = Validation.class;
-                    Method method = valid.getDeclaredMethod(invoke, SocketChannel.class);
-                    method.invoke(new Validation(), channel);
+                    Method method = valid.getDeclaredMethod((String) arguments[0], SocketChannel.class, Object[].class);
+                    method.invoke(new Validation(), channel, arguments);
                 } catch (Exception ignored) {}
             } //TODO временный сокет
         } while (!input.equals("exit"));
     }
 
-    public <T> T exchange(SocketChannel channel, String mode, String[] input, Object[] objects) {
+    public Object[] exchange(SocketChannel channel, String mode, String[] input, Object[] objects) {
         ByteBuffer buffer = ByteBuffer.allocate(100000);
         try {
             CommandSender sender = new CommandSender(mode, input, objects);
@@ -115,7 +117,8 @@ public class Processing {
             try {
                 result.getResult().forEach(System.out::println);
             } catch (Exception ignored) {}
-            return (T) result.getExtraData();
+
+            return result.getArguments();
 
         } catch (Exception ignored) {}
         return null;

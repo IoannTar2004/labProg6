@@ -2,18 +2,25 @@ package src.client;
 
 import src.collections.Dragon;
 import src.collections.DragonFields;
+import src.server.modules.ServerSender;
+import src.support.Checks;
+import src.support.FileManager;
 import src.support.Processing;
 import src.support.MaxField;
 import src.tools.OutputText;
+import src.tools.ScriptReader;
 
+import java.io.File;
 import java.nio.channels.SocketChannel;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Validation {
 
     /**
      * Triggers when user enters command "add" to terminal
      */
-    public void addDragon(SocketChannel channel) {
+    public void addDragon(SocketChannel channel, Object... data) {
         Processing manager = new Processing();
         Object[] args = new Object[7];
         for (DragonFields fields: DragonFields.values()) {
@@ -31,7 +38,7 @@ public class Validation {
     /**
      * Triggers when user enters command "update" to terminal
      */
-    public void updateDragon(SocketChannel channel) {
+    public void updateDragon(SocketChannel channel, Object... data) {
         Processing manager = new Processing();
         Object[] args = new Object[7];
         nextField:
@@ -55,7 +62,7 @@ public class Validation {
     /**
      * Triggers when user enters command "add_if_max" to terminal
      */
-    public void addIfMaxDragon(SocketChannel channel) {
+    public void addIfMaxDragon(SocketChannel channel, Object... data) {
         DragonFields fieldNum;
         Processing manager = new Processing();
         Object[] args = new Object[7];
@@ -67,7 +74,7 @@ public class Validation {
             fieldNum = DragonFields.getFieldByNumber(input);
         } while (fieldNum == null);
 
-        Dragon dragon = manager.exchange(channel, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum});
+        Dragon dragon = null;//(Dragon) manager.exchange(channel, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum})[0];
         nextField:
         for (DragonFields fields: DragonFields.values()) {
             Object element;
@@ -91,7 +98,7 @@ public class Validation {
     /**
      * Triggers when user enters command "print_descending" to terminal
      */
-    public void fieldSelection(SocketChannel channel) {
+    public void fieldSelection(SocketChannel channel, Object... data) {
         DragonFields fieldNum;
         Processing manager = new Processing();
 
@@ -121,4 +128,25 @@ public class Validation {
         } while (true);
     }
 
+    /*public void scriptParse(SocketChannel channel, Object... data) {
+        File file;
+        List<String> result = new LinkedList<>();
+        try {
+            file = Checks.fileChecker(data[1]);
+        } catch (ArrayIndexOutOfBoundsException e){
+            return new ServerSender(List.of(OutputText.error("NoFileArgument")));
+        }
+        List<String> commands;
+        if (file != null) {
+            commands = ScriptReader.read(file);
+            if (commands.size() > 0 && FileManager.addFileToStack(file)) {
+                FileManager.removeFromStack(file);
+                return new ServerSender(result);
+            } else if (!FileManager.addFileToStack(file)) {
+                return new ServerSender(List.of(OutputText.error("ScriptRecursion")));
+            }
+        } else {return new ServerSender(List.of(OutputText.error("FileNotFound")));}
+        return null;
+        }
+    }*/
 }

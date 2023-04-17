@@ -34,12 +34,13 @@ public class UpdateIdCommand implements Command {
          } else if (Objects.equals(mode, "collection")) {
             new ObjectsManager().replace(id, args);
             return new ServerSender(List.of(OutputText.result("DataChanged")));
-        } else {
+
+         } else {
              id = Long.parseLong(command[1]);
             try {
                 String output = IdChecker.check(command[1]);
                 if (Objects.equals(output, "Existed")) {
-                    return new ServerSender("updateDragon");
+                    return new ServerSender(new Object[]{"updateDragon"});
                 }
                 return new ServerSender(List.of(IdChecker.check(command[1])));
             } catch (ArrayIndexOutOfBoundsException e) {

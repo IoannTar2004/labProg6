@@ -26,7 +26,7 @@ public class PrintDescendingCommand implements Command {
         }
         else {
             arguments = command;
-            return new ServerSender("fieldSelection");
+            return new ServerSender(new Object[]{"fieldSelection"});
         }
         return null;
     }

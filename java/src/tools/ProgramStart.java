@@ -24,7 +24,7 @@ public class ProgramStart {
             System.out.println(OutputText.startInformation("CorrectXmlFile"));
             String data;
             if (validation.yesNoInput()) {
-                OutputText.startInformation("Example");
+                System.out.println(OutputText.startInformation("Example"));
             }
 
             System.out.println(OutputText.startInformation("EnvVar"));

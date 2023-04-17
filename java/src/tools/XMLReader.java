@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import src.manager.ObjectsManager;
 import src.collections.*;
+import src.support.FileManager;
 import src.support.IdChecker;
 import src.support.Processing;
 
@@ -26,6 +27,10 @@ public class XMLReader {
      */
     public static List<Dragon> parse(File xml) {
         NodeList nodeList = domParse(xml);
+        if (nodeList == null) {
+            return new LinkedList<>();
+        }
+
         List<Dragon> list = new LinkedList<>();
         nextObject:
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -102,16 +107,17 @@ public class XMLReader {
      */
     private static NodeList domParse(File xml) {
         DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
-        Document document = null;
+        if (!FileManager.isNotEmpty(xml)) {
+            return null;
+        }
         try {
             DocumentBuilder dbuilder = dbfact.newDocumentBuilder();
-            document = dbuilder.parse(xml);
+            Document document = dbuilder.parse(xml);
+            return document.getElementsByTagName("object");
         } catch (SAXException | ParserConfigurationException e) {
             System.out.println("XML-файл не валиден! Проверьте теги!");
-        } catch (IOException | IllegalArgumentException e) {
-            System.out.println("Файл куда-то пропал или его были изменены права!");
-        }
-        return document.getElementsByTagName("object");
+        } catch (Exception ignored) {}
+        return null;
     }
 
     /**

@@ -6,26 +6,27 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 import java.util.List;
 
 public class ServerSender implements Serializable {
     private List<String> result;
-    private Object extraData;
+    private Object[] arguments;
 
     public ServerSender(List<String> result) {
         this.result = result;
     }
 
-    public ServerSender(Object extraData) {
-        this.extraData = extraData;
+    public ServerSender(Object[] arguments) {
+        this.arguments = arguments;
     }
 
     public List<String> getResult() {
         return result;
     }
 
-    public Object getExtraData() {
-        return extraData;
+    public Object[] getArguments() {
+        return arguments;
     }
 
     public static void send(SelectionKey key, ServerSender serverSender) {
@@ -50,7 +51,7 @@ public class ServerSender implements Serializable {
     public String toString() {
         return "ServerSender{" +
                 "result=" + result +
-                ", extraData=" + extraData +
+                ", extraData=" + Arrays.toString(arguments) +
                 '}';
     }
 }

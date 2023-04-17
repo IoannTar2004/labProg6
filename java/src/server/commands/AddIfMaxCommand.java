@@ -28,14 +28,13 @@ public class AddIfMaxCommand implements Command {
     public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "server1")) {
             Dragon dragon = MaxField.max((DragonFields) args[0]);
-            return new ServerSender(dragon);
+            return new ServerSender(new Object[]{dragon});
         } else if (Objects.equals(mode, "server2")) {
-            System.out.println("ld,kdm");
             new ObjectsManager().add(args);
             return new ServerSender(List.of(OutputText.result("Added")));
         }
         else {
-           return new ServerSender("addIfMaxDragon");
+           return new ServerSender(new Object[]{"addIfMaxDragon"});
         }
     }
 }

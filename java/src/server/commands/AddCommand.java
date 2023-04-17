@@ -35,7 +35,7 @@ public class AddCommand implements Command {
                 new ObjectsManager().add(dragon);
             }
             FileManager.setCurrentFile((File) args[1]);
-            return new ServerSender("");
+            return new ServerSender(new Object[]{""});
 
         } else if (Objects.equals(mode, "script")) {
             for (DragonFields fields: DragonFields.values()) {
@@ -49,7 +49,7 @@ public class AddCommand implements Command {
             return new ServerSender(List.of(OutputText.result("Added")));
 
         } else {
-            return new ServerSender("addDragon");
+            return new ServerSender(new Object[]{"addDragon"});
         }
     }
 }
