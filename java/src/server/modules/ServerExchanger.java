@@ -13,11 +13,10 @@ public class ServerExchanger {
     public static void main(String[] args) {
         CommandSender commandSender = null;
         try(Selector selector = Selector.open(); ServerSocketChannel channel = ServerSocketChannel.open()) {
-            channel.bind(new InetSocketAddress(3009));
+            channel.bind(new InetSocketAddress(30094));
             channel.configureBlocking(false);
             channel.register(selector, SelectionKey.OP_ACCEPT);
 
-            new ServerExitCommand().run();
             while (true) {
                 selector.select();
                 Set<SelectionKey> keys = selector.selectedKeys();
