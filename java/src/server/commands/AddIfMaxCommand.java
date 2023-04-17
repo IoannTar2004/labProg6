@@ -27,7 +27,11 @@ public class AddIfMaxCommand implements Command {
     @Override
     public ServerSender execute(String mode, String[] command, Object... args) {
         if (Objects.equals(mode, "server1")) {
-            Dragon dragon = MaxField.max((DragonFields) args[0]);
+            DragonFields fields = (DragonFields) args[0];
+            Dragon dragon = MaxField.max(fields);
+            if (!MaxField.existence(fields, dragon)) {
+                return new ServerSender(List.of(OutputText.maxValues("Max_" + fields.getField())), new Object[]{null});
+            }
             return new ServerSender(new Object[]{dragon});
         } else if (Objects.equals(mode, "server2")) {
             new ObjectsManager().add(args);

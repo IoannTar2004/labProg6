@@ -66,6 +66,7 @@ public class Validation {
      */
     public void addIfMaxDragon(SocketChannel channel, Object... data) {
         DragonFields fieldNum;
+        Dragon dragon;
         Processing manager = new Processing();
         Object[] args = new Object[7];
         String input;
@@ -74,9 +75,9 @@ public class Validation {
         do {
             input = manager.scanner();
             fieldNum = DragonFields.getFieldByNumber(input);
-        } while (fieldNum == null);
+            dragon = (Dragon) manager.exchange(channel, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum})[0];
+        } while (fieldNum == null || dragon == null);
 
-        Dragon dragon = (Dragon) manager.exchange(channel, "server1", new String[]{"add_if_max"}, new Object[]{fieldNum})[0];
         nextField:
         for (DragonFields fields: DragonFields.values()) {
             Object element;

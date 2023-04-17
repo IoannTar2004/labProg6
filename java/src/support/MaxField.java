@@ -1,12 +1,9 @@
 package src.support;
 
-import src.manager.CollectionManager;
 import src.manager.ObjectsCollectionManager;
 import src.collections.*;
-import src.manager.ObjectsManager;
 import src.tools.OutputText;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -158,22 +155,22 @@ public class MaxField extends Sort {
     public static boolean existence(DragonFields fields, Dragon dragon) {
         MaxField maxField = new MaxField();
         if(fields == DragonFields.COORDINATES && (dragon.getX() == Integer.MAX_VALUE || dragon.getY() == Long.MAX_VALUE)) {
-            System.out.println(OutputText.maxValues("MaxCoordinates"));
+            System.out.println(OutputText.maxValues("Max_coordinates"));
             return false;
         } else if (fields == DragonFields.AGE && dragon.getAge() == Integer.MAX_VALUE) {
-            System.out.println(OutputText.maxValues("MaxAge"));
+            System.out.println(OutputText.maxValues("Max_age"));
             return false;
         } else if (fields == DragonFields.COLOR && Objects.equals(dragon.getColor(), "Жёлтый")) {
-            System.out.println(OutputText.maxValues("MaxColor"));
+            System.out.println(OutputText.maxValues("Max_color"));
             return false;
         } else if (fields == DragonFields.TYPE && Objects.equals(dragon.getType(), "Огненный")) {
-            System.out.println(OutputText.maxValues("MaxType"));
+            System.out.println(OutputText.maxValues("Max_type"));
             return false;
         } else if (fields == DragonFields.CHARACTER && Objects.equals(dragon.getCharacter(), "Хаотичный")) {
-            System.out.println(OutputText.maxValues("MaxCharacter"));
+            System.out.println(OutputText.maxValues("Max_character"));
             return false;
         } else if (fields == DragonFields.CAVE && dragon.getCave() == Double.MAX_VALUE) {
-            System.out.println(OutputText.maxValues("MaxCave"));
+            System.out.println(OutputText.maxValues("Max_cave"));
             return false;
         }
         return true;
