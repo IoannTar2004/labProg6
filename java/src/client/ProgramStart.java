@@ -56,23 +56,24 @@ public class ProgramStart {
      */
     private static SocketChannel connectionToServer() {
         Processing processing = new Processing();
-        System.out.println("Программа работает с коллекцией и вызывает команды на сервере. Введите имя хоста.");
+        System.out.println(OutputText.startInformation("ServerInfo"));
         do {
             String host = processing.scanner();
 
-            System.out.println("Введите номер порта");
+            System.out.println(OutputText.startInformation("EnterPort"));
             do {
                 try {
                     int port = Integer.parseInt(processing.scanner());
                     return SocketChannel.open(new InetSocketAddress(host, port));
-                } catch (NumberFormatException e) {
-                    System.out.println("Порт - целое положительное число");
                 } catch (UnknownHostException | UnresolvedAddressException e) {
-                    System.out.println("Неизвестный хост. Повторите попытку.");
+                    System.out.println(OutputText.serverError("UnknownHost"));
                     break;
-                } catch (ConnectException e) {
-                    System.out.println("Программа не смогла подключиться к серверу. Проверьте порт.");
-                } catch (Exception e) {e.printStackTrace();}
+                } catch (ConnectException | NullPointerException e) {
+                    System.out.println(OutputText.serverError("CheckPort"));
+                } catch (NumberFormatException e) {
+                    System.out.println(OutputText.serverError("PortIsInt"));
+                }
+                catch (Exception ignored) {}
             } while (true);
         } while (true);
     }
