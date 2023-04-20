@@ -38,9 +38,9 @@ public class XMLReader {
             Node obj = nodeList.item(i);
             Element element = (Element) obj;
             Dragon dragon = new Dragon();
-            String id;
-            id = readTag("id", element) != null ? readTag("id", element) : null;
-            id = idParse(id, element);
+
+            String id = readTag("id", element) != null ? readTag("id", element) : null;
+            id = idParse(list, id, element);
             if (id == null) {
                 continue;
             }
@@ -89,14 +89,14 @@ public class XMLReader {
      * @param element org.w3c.dom.Element
      * @return id in Long type
      */
-    private static String idParse(String id, Element element) {
-        if (IdChecker.check(String.valueOf(id)).equals(OutputText.error("DragonDoesNotExist"))) {
+    private static String idParse(List list, String id, Element element) {
+        if (IdChecker.check(list, id).equals(OutputText.error("DragonDoesNotExist"))) {
             return id;
-        } else if (IdChecker.check(String.valueOf(id)).equals("Existed")) {
+        } else if (IdChecker.check(list, id).equals("Existed")) {
             System.out.println("Объект с id \"" + element.getElementsByTagName("id").item(0).getTextContent()
                     + "\" уже существует");
         } else {
-            System.out.println(IdChecker.check(id));
+            System.out.println(IdChecker.check(list, id));
         }
         return null;
     }

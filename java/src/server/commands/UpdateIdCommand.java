@@ -1,5 +1,6 @@
 package src.server.commands;
 
+import src.server.manager.ObjectsCollectionManager;
 import src.server.manager.ObjectsManager;
 import src.server.modules.ServerSender;
 import src.support.IdChecker;
@@ -33,13 +34,13 @@ public class UpdateIdCommand implements Command {
             return new ServerSender(List.of(OutputText.result("DataChanged")));
 
          } else {
-             id = Long.parseLong(command[1]);
             try {
-                String output = IdChecker.check(command[1]);
+                id = Long.parseLong(command[1]);
+                String output = IdChecker.check(new ObjectsCollectionManager().getAll(),command[1]);
                 if (Objects.equals(output, "Existed")) {
                     return new ServerSender(new Object[]{"updateDragon"});
                 }
-                return new ServerSender(List.of(IdChecker.check(command[1])));
+                return new ServerSender(List.of(output));
             } catch (ArrayIndexOutOfBoundsException e) {
                 return new ServerSender(List.of(OutputText.error("NoIdArgument")));
             }

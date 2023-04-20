@@ -3,6 +3,8 @@ package src.support;
 import src.collections.Dragon;
 import src.server.manager.ObjectsCollectionManager;
 
+import java.util.Collection;
+import java.util.Deque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +14,7 @@ public class IdChecker {
      * @param id ID
      * @return Long id if entered id consists of 12 numbers, else -1.
      */
-    public static String check(String id) {
+    public static String check(Collection<Dragon> list, String id) {
 
         Pattern pattern = Pattern.compile("\\s*(\\d{12})\\s*");
         Matcher matcher = pattern.matcher(id);
@@ -30,7 +32,7 @@ public class IdChecker {
         Matcher matcher5 = pattern5.matcher(id);
 
         if (matcher.matches()) {
-            Dragon dragon = new ObjectsCollectionManager().getDragonById(Long.parseLong(id));
+            Dragon dragon = list.stream().filter(d -> d.getId() == Long.parseLong(id)).findFirst().orElse(null);
             if (dragon == null) {return OutputText.error("DragonDoesNotExist");}
             else {return "Existed";}
         } else if (matcher1.matches()) {

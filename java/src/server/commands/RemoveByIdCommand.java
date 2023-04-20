@@ -21,7 +21,7 @@ public class RemoveByIdCommand implements Command {
     public ServerSender execute(String mode, String[] command, Object... args) {
         try {
             ObjectsManager objectsManager = new ObjectsManager();
-            String output = IdChecker.check(command[1]);
+            String output = IdChecker.check(new ObjectsCollectionManager().getAll(), command[1]);
             if (Objects.equals(output, "Existed")) {
                 Dragon dragon = new ObjectsCollectionManager().getDragonById(Long.parseLong(command[1]));
                 objectsManager.remove(dragon);
