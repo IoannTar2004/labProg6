@@ -5,7 +5,9 @@ import src.collections.Dragon;
 import src.collections.DragonFields;
 import src.server.modules.ServerSender;
 import src.support.Checks;
+import src.support.OutputText;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
@@ -117,7 +119,7 @@ public class Processing {
             } catch (Exception ignored) {}
             return result.getArguments();
 
-        } catch (Exception ignored) {}
+        } catch (IOException ignored) {System.out.println(OutputText.serverError("ConnectionStop"));}
         return null;
     }
 }

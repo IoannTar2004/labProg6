@@ -68,16 +68,6 @@ public class CommandSender implements Serializable {
         return objects;
     }
 
-    public void sendToServer(Socket socket) {
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            outputStream.writeObject(this);
-            outputStream.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public String toString() {
         return "CommandSender{" +
